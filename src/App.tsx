@@ -1,24 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useEffect } from 'react';
 import './App.css';
+import Header from 'components/Header';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Login from 'Login';
+import SignUp from 'SignUp';
+import { auth } from 'utils';
+import { useStateValue } from 'context';
+import Features from 'components/Features';
 
 function App() {
+  const [, dispatch] = useStateValue();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        // user has logged in...
+        const { uid, displayName, photoURL, email } = authUser;
+        dispatch({
+          type: 'set_user',
+          user: {
+            uid,
+            name: displayName,
+            photoURL,
+            email,
+          },
+        });
+      } else {
+        // user has logged out...
+        dispatch({
+          type: 'set_user',
+          user: null,
+        });
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Router>
+        <Header />
+        <Switch>
+          <Route path="/login" component={Login} />
+          <Route path="/sign-up" component={SignUp} />
+          <Route path="/">
+            <Features />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }

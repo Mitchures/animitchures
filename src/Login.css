@@ -1,0 +1,81 @@
+.login {
+  display: flex;
+  justify-content: center;
+}
+
+.login__container {
+  display: flex;
+  flex-direction: column;
+  padding: 100px 1.25rem 1.25rem;
+  text-align: left;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 640px;
+}
+
+.login__container > p > a {
+  color: var(--action);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login__form {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.login__form > div {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.login__form label {
+  align-items: center;
+  color: rgba(55,65,81, 1);
+}
+
+.login__withGoogle,
+.login__withApple {
+  cursor: pointer;
+  width: 100%;
+  color: rgba(17,24,39, 1);
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.875rem;
+  font-weight: 600;
+  border: 1px solid rgba(209,213,219,1);
+  border-radius: .5rem;
+  background-color: white;
+  transition: all 0.3s;
+}
+
+.login__withGoogle:hover,
+.login__withApple:hover {
+  background-color: #F3F4F6;
+}
+
+.login__withApple > div,
+.login__withGoogle > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login__withApple > div > svg,
+.login__withGoogle > div > svg {
+  width: 1.5rem;
+}
+
+.login__withApple > div > span,
+.login__withGoogle > div > span {
+  margin-left: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .login__form label {
+    color: white;
+  }
+}

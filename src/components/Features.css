@@ -1,0 +1,66 @@
+.features {
+  flex: 0.75;
+  overflow-y: scroll;
+}
+
+.features__header {
+  padding: 2rem 2rem 0;
+}
+
+.features__header > h2 {
+  font-weight: 800;
+}
+
+.features__body::-webkit-scrollbar { 
+  width: 0 !important 
+}
+
+.features__body {
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.features__body > .features__item:first-child {
+  padding-left: 2rem;
+}
+
+.features__body > .features__item:last-child {
+  padding-right: 2rem;
+}
+
+.features__item {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 1.25rem 0.875rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+}
+
+.features__item:hover {
+  transform: scale(1.05) translateZ(0px);
+}
+
+.features__item:hover .features__itemLabel {
+  color: var(--action);
+}
+
+.features__item > img {
+  height: 300px;
+  width: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 14px 30px rgba(103,132,187,.15), 0 4px 4px rgba(103,132,187,.05);
+}
+
+.features__itemLabel {
+  display: -webkit-box;
+  color: rgb(116,136,153);
+  font-size: 14px;
+  padding-top: 0.625rem;
+  font-weight: 600;
+  overflow: hidden;
+  transition: color .2s ease;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}

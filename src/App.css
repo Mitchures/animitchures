@@ -1,38 +1,71 @@
-.App {
-  text-align: center;
+:root {
+  --primary: #0b1621;
+  --secondary: #000000;
+  --accent-primary: #F345AE;
+  --accent-secondary: #9b50f4;
+  --action: #6366f1;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  color: var(--secondary)
+}
+
+hr {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-color: rgba(209, 213, 219, 1);
+  border-top-width: 1px;
+}
+
+button {
+  cursor: pointer;
+  width: 100%;
+  height: 50px;
   color: white;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: .5rem;
+  background-color: var(--action);
+  transition: all 0.3s;
 }
 
-.App-link {
-  color: #61dafb;
+button[type="submit"] {
+  margin-top: 1.875rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+button:hover {
+  opacity: 0.75;
+}
+
+input {
+  margin-top: 0.5rem;
+  border-width: 1px;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: rgba(243, 244, 246, 1);
+  transition-property: box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+  .app {
+    background-color: var(--primary);
+    color: white;
   }
-  to {
-    transform: rotate(360deg);
+
+  hr {
+    border-color: rgba(209, 213, 219, 0.15);
   }
+
 }
