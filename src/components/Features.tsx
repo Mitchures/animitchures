@@ -1,90 +1,75 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './Features.css';
-import { FEATURED_QUERY } from 'utils';
+import { FEATURED_QUERY, api } from 'utils';
+import { Link } from 'react-router-dom';
+import { useStateValue } from 'context';
+
+interface ITitles {
+  [key: string]: string;
+}
 
 function Features() {
-  const [items, setItems] = useState([]);
+  const [{ featured }, dispatch] = useStateValue();
+
+  const titles: ITitles = {
+    trending: 'Trending Now',
+    season: 'Popular This Season',
+    nextSeason: 'Upcoming Next Season',
+    popular: 'All Time Popular',
+    top: 'Top Ranked',
+  };
 
   useEffect(() => {
     const getItems = async () => {
-      const options = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const { data } = await api.fetch({
+        query: FEATURED_QUERY,
+        variables: {
+          type: 'ANIME',
+          season: 'SUMMER',
+          seasonYear: 2021,
+          nextSeason: 'FALL',
+          nextYear: 2021,
         },
-        body: JSON.stringify({
-          query: FEATURED_QUERY,
-          variables: {
-            type: 'ANIME',
-            season: 'SUMMER',
-            seasonYear: 2021,
-            nextSeason: 'FALL',
-            nextYear: 2021,
-          },
-        }),
-      };
-      const resp = await fetch('https://graphql.anilist.co', options);
-      const { data } = await resp.json();
+      });
       console.log(data);
-      setItems(data);
+      dispatch({
+        type: 'set_featured',
+        featured: data,
+      });
     };
     getItems();
   }, []);
 
   return (
     <div className="features">
-      <div className="features__header">
-        <h2>Trending Now</h2>
-      </div>
-      <div className="features__body">
-        {items['trending']?.media.map((item, index) => (
-          <div className="features__item" key={index}>
-            <img src={item.coverImage.large} alt={item.title.userPreferred} />
-            <span className="features__itemLabel">
-              <span className="features__itemLabelTitle">{item.title.userPreferred}</span>
-            </span>
+      {featured &&
+        Object.keys(featured).map((key, index) => (
+          <div key={index}>
+            <div className="features__header">
+              <h3>{titles[key]}</h3>
+            </div>
+            <div className="features__body">
+              {featured[key].media.map((mediaItem) => (
+                <Link
+                  to={`/anime/${mediaItem.id}/${mediaItem.title.userPreferred
+                    .replace(/,?[ ]/g, '-')
+                    .toLowerCase()}`}
+                  className="features__item"
+                  key={mediaItem.id}
+                >
+                  <img src={mediaItem.coverImage.extraLarge} alt={mediaItem.title.userPreferred} />
+                  <span className="features__itemLabel">
+                    <span className="features__itemLabelTitle">
+                      {mediaItem.title.english
+                        ? mediaItem.title.english
+                        : mediaItem.title.userPreferred}
+                    </span>
+                  </span>
+                </Link>
+              ))}
+            </div>
           </div>
         ))}
-      </div>
-      <div className="features__header">
-        <h2>Popular This Season</h2>
-      </div>
-      <div className="features__body">
-        {items['season']?.media.map((item, index) => (
-          <div className="features__item" key={index}>
-            <img height="300" src={item.coverImage.large} alt={item.title.userPreferred} />
-            <span className="features__itemLabel">
-              <span className="features__itemLabelTitle">{item.title.userPreferred}</span>
-            </span>
-          </div>
-        ))}
-      </div>
-      <div className="features__header">
-        <h2>Upcoming Next Season</h2>
-      </div>
-      <div className="features__body">
-        {items['nextSeason']?.media.map((item, index) => (
-          <div className="features__item" key={index}>
-            <img height="300" src={item.coverImage.large} alt={item.title.userPreferred} />
-            <span className="features__itemLabel">
-              <span className="features__itemLabelTitle">{item.title.userPreferred}</span>
-            </span>
-          </div>
-        ))}
-      </div>
-      <div className="features__header">
-        <h2>All Time Popular</h2>
-      </div>
-      <div className="features__body">
-        {items['popular']?.media.map((item, index) => (
-          <div className="features__item" key={index}>
-            <img height="300" src={item.coverImage.large} alt={item.title.userPreferred} />
-            <span className="features__itemLabel">
-              <span className="features__itemLabelTitle">{item.title.userPreferred}</span>
-            </span>
-          </div>
-        ))}
-      </div>
     </div>
   );
 }

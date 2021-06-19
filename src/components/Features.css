@@ -7,7 +7,7 @@
   padding: 2rem 2rem 0;
 }
 
-.features__header > h2 {
+.features__header > h3 {
   font-weight: 800;
 }
 
@@ -32,8 +32,8 @@
 .features__item {
   display: flex;
   flex-direction: column;
-  cursor: pointer;
-  padding: 1.25rem 0.875rem;
+  text-decoration: none;
+  padding: 1.25rem 0.875rem 0;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
 }
 
@@ -49,8 +49,8 @@
   height: 300px;
   width: 200px;
   object-fit: cover;
-  border-radius: 6px;
-  box-shadow: 0 14px 30px rgba(103,132,187,.15), 0 4px 4px rgba(103,132,187,.05);
+  border-radius: 12px;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
 }
 
 .features__itemLabel {

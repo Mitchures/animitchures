@@ -7,6 +7,7 @@ import SignUp from 'SignUp';
 import { auth } from 'utils';
 import { useStateValue } from 'context';
 import Features from 'components/Features';
+import Details from 'Details';
 
 function App() {
   const [, dispatch] = useStateValue();
@@ -44,6 +45,7 @@ function App() {
       <Router>
         <Header />
         <Switch>
+          <Route path="/anime/:id/:title" component={Details} />
           <Route path="/login" component={Login} />
           <Route path="/sign-up" component={SignUp} />
           <Route path="/">

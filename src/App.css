@@ -1,9 +1,10 @@
 :root {
   --primary: #0b1621;
-  --secondary: #000000;
+  --secondary: rgb(116,136,153);
   --accent-primary: #F345AE;
   --accent-secondary: #9b50f4;
   --action: #6366f1;
+  --action-secondary: #ff5657;
 }
 
 .app {

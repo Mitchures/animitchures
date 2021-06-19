@@ -1,4 +1,16 @@
-interface UserState {
+interface IData {
+  [key: string]: any
+}
+
+interface IMedia {
+  media: IData[];
+}
+
+interface IFeatured {
+  [key: string]: IMedia;
+}
+
+interface IUserState {
   uid?: string | null;
   name?: string | null;
   photoURL?: string | null;
@@ -6,10 +18,21 @@ interface UserState {
 }
 
 export type State = {
-  user: UserState | null;
+  user: IUserState | null;
+  selected: IData | null;
+  featured: IFeatured | null;
 };
 
-export type Action = {
-  type: 'set_user';
-  user: UserState;
-};
+export type Action =
+  | {
+      type: 'set_featured';
+      featured: IFeatured;
+    }
+  | {
+      type: 'set_selected';
+      selected: IData | null;
+    }
+  | {
+      type: 'set_user';
+      user: IUserState | null;
+    };

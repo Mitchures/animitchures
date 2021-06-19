@@ -1,3 +1,5 @@
 export const initialState = {
-  user: null
+  user: null,
+  selected: null,
+  featured: null
 };
