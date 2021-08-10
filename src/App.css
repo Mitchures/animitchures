@@ -8,8 +8,9 @@
 }
 
 .app {
+  position: relative;
   min-height: 100vh;
-  color: var(--secondary)
+  color: var(--secondary);
 }
 
 hr {
@@ -42,12 +43,13 @@ button:hover {
 
 input {
   margin-top: 0.5rem;
-  border-width: 1px;
   border-radius: 0.5rem;
-  padding: 0.75rem 1rem;
+  font-size: 14px;
+  padding: 1rem;
   width: 100%;
   -webkit-appearance: none;
   appearance: none;
+  border: none;
   background-color: rgba(243, 244, 246, 1);
   transition-property: box-shadow;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -67,6 +69,11 @@ input:focus {
 
   hr {
     border-color: rgba(209, 213, 219, 0.15);
+  }
+
+  input {
+    background-color: rgba(243, 244, 246, 0.15);
+    color: white;
   }
 
 }

@@ -1,6 +1,5 @@
 .features {
-  flex: 0.75;
-  overflow-y: scroll;
+  /* padding-top: 80px; */
 }
 
 .features__header {
@@ -33,7 +32,7 @@
   display: flex;
   flex-direction: column;
   text-decoration: none;
-  padding: 1.25rem 0.875rem 0;
+  padding: 1.25rem 0.875rem;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
 }
 

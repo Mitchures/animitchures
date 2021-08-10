@@ -200,7 +200,13 @@ function Header() {
       </div>
       <div className="header__right">
         {user ? (
-          <Avatar className="header__avatar" alt={`${user.name}`} src={`${user.photoURL}`} />
+          <Link to="/profile">
+            <Avatar
+              className="header__avatar"
+              alt={`${user.displayName ? user.displayName : user.email}`}
+              src={`${user.photoURL}`}
+            />
+          </Link>
         ) : (
           <>
             <Link to="/login">Login</Link>

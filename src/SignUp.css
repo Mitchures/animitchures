@@ -1,0 +1,100 @@
+.signUp {
+  display: flex;
+  min-height: calc(100vh - 80px); /* 100vh - header height */
+}
+
+.signUp h1 {
+  font-size: 28px;
+  text-align: center;
+  font-weight: 800;
+}
+
+.signUp p > a {
+  color: var(--action);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.signUp__left {
+  flex: 0.5;
+  display: grid;
+  place-items: center;
+}
+
+.signUp__formContainer {
+  width: 100%;
+  max-width: 640px;
+  padding: 2.5rem;
+}
+
+.signUp__right {
+  flex: 0.5;
+  background-image: url("./images/usagi.jpeg");
+  background-position: center;
+  background-size: cover;
+}
+
+.signUp__form {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.signUp__form > div {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.signUp__form label {
+  align-items: center;
+  color: rgba(55,65,81, 1);
+}
+
+.signUp__withGoogle,
+.signUp__withApple {
+  cursor: pointer;
+  width: 100%;
+  color: rgba(17,24,39, 1);
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.875rem;
+  font-weight: 600;
+  border: 1px solid rgba(209,213,219,1);
+  border-radius: .5rem;
+  background-color: white;
+  transition: all 0.3s;
+}
+
+.signUp__withGoogle:hover,
+.signUp__withApple:hover {
+  background-color: #F3F4F6;
+}
+
+.signUp__withApple > div,
+.signUp__withGoogle > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signUp__withApple > div > svg,
+.signUp__withGoogle > div > svg {
+  width: 1.5rem;
+}
+
+.signUp__withApple > div > span,
+.signUp__withGoogle > div > span {
+  margin-left: 0.875rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .signUp__container {
+    background-color: rgba(16, 18, 27, 40%);
+  }
+
+  .signUp__form label {
+    color: white;
+  }
+}

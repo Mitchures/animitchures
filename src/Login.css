@@ -1,22 +1,37 @@
 .login {
   display: flex;
-  justify-content: center;
+  min-height: calc(100vh - 80px); /* 100vh - header height */
 }
 
-.login__container {
-  display: flex;
-  flex-direction: column;
-  padding: 100px 1.25rem 1.25rem;
-  text-align: left;
-  border-radius: 1rem;
-  width: 100%;
-  max-width: 640px;
+.login h1 {
+  font-size: 28px;
+  text-align: center;
+  font-weight: 800;
 }
 
-.login__container > p > a {
+.login p > a {
   color: var(--action);
   font-weight: 600;
   text-decoration: none;
+}
+
+.login__left {
+  flex: 0.5;
+  display: grid;
+  place-items: center;
+}
+
+.login__formContainer {
+  width: 100%;
+  max-width: 640px;
+  padding: 2.5rem;
+}
+
+.login__right {
+  flex: 0.5;
+  background-image: url('./images/maiden.jpg');
+  background-position: center;
+  background-size: cover;
 }
 
 .login__form {
@@ -35,26 +50,26 @@
 
 .login__form label {
   align-items: center;
-  color: rgba(55,65,81, 1);
+  color: rgba(55, 65, 81, 1);
 }
 
 .login__withGoogle,
 .login__withApple {
   cursor: pointer;
   width: 100%;
-  color: rgba(17,24,39, 1);
+  color: rgba(17, 24, 39, 1);
   padding: 0.75rem 1rem;
   margin-bottom: 0.875rem;
   font-weight: 600;
-  border: 1px solid rgba(209,213,219,1);
-  border-radius: .5rem;
+  border: 1px solid rgba(209, 213, 219, 1);
+  border-radius: 0.5rem;
   background-color: white;
   transition: all 0.3s;
 }
 
 .login__withGoogle:hover,
 .login__withApple:hover {
-  background-color: #F3F4F6;
+  background-color: #f3f4f6;
 }
 
 .login__withApple > div,
@@ -71,11 +86,31 @@
 
 .login__withApple > div > span,
 .login__withGoogle > div > span {
-  margin-left: 1rem;
+  margin-left: 0.875rem;
 }
 
 @media (prefers-color-scheme: dark) {
+  .login__container {
+    background-color: rgba(16, 18, 27, 40%);
+  }
+
   .login__form label {
     color: white;
+  }
+
+  .login__withGoogle,
+  .login__withApple {
+    background-color: black;
+    border: none;
+    color: white;
+  }
+
+  .login__withApple svg path {
+    fill: white;
+  }
+
+  .login__withGoogle:hover,
+  .login__withApple:hover {
+    background-color: #222;
   }
 }
