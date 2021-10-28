@@ -1,0 +1,8 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile__container {
+  padding: 2rem 1.875rem;
+}

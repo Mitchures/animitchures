@@ -13,6 +13,16 @@
   color: var(--secondary);
 }
 
+.app__body {
+  display: flex;
+}
+
+.app__content {
+  flex: 0.8;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
 hr {
   width: 100%;
   margin: 1.5rem 0;

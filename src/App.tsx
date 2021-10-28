@@ -9,6 +9,7 @@ import { useStateValue } from 'context';
 import Features from 'components/Features';
 import Details from 'Details';
 import Profile from 'Profile';
+import Navigation from 'components/Navigation';
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -16,7 +17,6 @@ function App() {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        console.log(authUser.displayName);
         // user has logged in...
         const { uid, displayName, photoURL, email } = authUser;
         dispatch({
@@ -54,18 +54,23 @@ function App() {
 
   return (
     <div className="app">
-      <Router>
-        <Header />
-        <Switch>
-          <Route path="/anime/:id/:title" component={Details} />
-          {user && <Route path="/profile" component={Profile} />}
-          <Route path="/login" component={Login} />
-          <Route path="/sign-up" component={SignUp} />
-          <Route path="/">
-            <Features />
-          </Route>
-        </Switch>
-      </Router>
+      <div className="app__body">
+        <Navigation />
+        <div className="app__content">
+          <Router>
+            <Header />
+            <Switch>
+              <Route path="/anime/:id/:title" component={Details} />
+              {user && <Route path="/profile" component={Profile} />}
+              <Route path="/login" component={Login} />
+              <Route path="/sign-up" component={SignUp} />
+              <Route path="/">
+                <Features />
+              </Route>
+            </Switch>
+          </Router>
+        </div>
+      </div>
     </div>
   );
 }
