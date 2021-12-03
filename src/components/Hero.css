@@ -1,0 +1,126 @@
+.hero {
+  padding: 0 var(--right-spacing) 2rem var(--left-spacing);
+  height: 600px;
+  color: white;
+}
+
+.hero__banner {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--border-radius);
+  background-position: 50% 35%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
+  transition: all 0.3s;
+  overflow: hidden;
+}
+
+.hero__bannerBody {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  padding: 3.5rem 4rem;
+  border-radius: var(--border-radius);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero__bannerBody h1 {
+  font-size: 45px;
+}
+
+.hero__bannerBody h3 {
+  font-weight: 500;
+}
+
+.hero__column {
+  flex: 0.5;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero__row {
+  flex: 0.5;
+}
+
+.hero__rowBottom {
+  margin-top: auto;
+}
+
+.hero__tags {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 1rem 0 0;
+}
+
+.hero__tag {
+  font-weight: 500;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.35rem 0.875rem;
+  font-size: 12px;
+  border-radius: 999px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero__score {
+  display: flex;
+  align-items: center;
+}
+
+.hero__score svg {
+  width: 28px;
+  height: 28px;
+}
+
+.hero__score span {
+  margin-left: 0.5rem;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.hero__selectGroup {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  width: 100%;
+}
+
+.hero__selectItem {
+  cursor: pointer;
+  width: 125px;
+  height: 80px;
+  margin: 0 0.875rem;
+  border-radius: var(--border-radius);
+  background-position: 50% 35%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+}
+
+.hero__selectItem:first-child {
+  margin-left: 0;
+}
+
+.hero__selectItem:last-child {
+  margin-right: 0;
+}
+
+.hero__selectItem:hover {
+  transform: scale(1.1) translateZ(0px);
+}
+
+.hero__selectItem.active {
+  width: 150px;
+  height: 100px;
+  cursor: default;
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.25);
+  transform: scale(1.05) translateZ(0px);
+}
+
+@media (prefers-color-scheme: dark) {
+
+}

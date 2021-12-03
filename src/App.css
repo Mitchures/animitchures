@@ -1,26 +1,37 @@
 :root {
   --primary: #0b1621;
-  --secondary: rgb(116,136,153);
-  --accent-primary: #F345AE;
+  --secondary: rgb(116, 136, 153);
+  --accent-primary: #f345ae;
   --accent-secondary: #9b50f4;
   --action: #6366f1;
   --action-secondary: #ff5657;
+  /* Border radius of all block elements */
+  --border-radius: 20px;
+  /* Margins and padding of left and right content spacing */
+  --x-axis-spacing: 2rem;
+  --left-spacing: 2rem;
+  --right-spacing: 2rem;
 }
 
 .app {
   position: relative;
   min-height: 100vh;
   color: var(--secondary);
+  background: rgb(237, 238, 247);
+  background: linear-gradient(-90deg, rgba(237, 238, 247, 1) 65%, rgba(240, 225, 233, 1) 100%);
 }
 
-.app__body {
+.app__container {
   display: flex;
 }
 
-.app__content {
-  flex: 0.8;
-  overflow-y: scroll;
+.app__body {
+  flex: 0.82;
+  /* height: calc(100vh - 80px); */
   height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 hr {
@@ -28,6 +39,35 @@ hr {
   margin: 1.5rem 0;
   border-color: rgba(209, 213, 219, 1);
   border-top-width: 1px;
+}
+
+a {
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+a svg {
+  transition: all 0.3s;
+}
+
+a span {
+  transition: all 0.3s;
+}
+
+a:hover {
+  color: var(--action) !important;
+}
+
+a.logout:hover {
+  color: var(--action-secondary) !important;
+}
+
+a.active {
+  color: var(--action) !important;
+}
+
+a.active span {
+  color: var(--primary);
 }
 
 button {
@@ -38,12 +78,12 @@ button {
   padding: 0.75rem 1rem;
   font-weight: 600;
   border: none;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   background-color: var(--action);
   transition: all 0.3s;
 }
 
-button[type="submit"] {
+button[type='submit'] {
   margin-top: 1.875rem;
 }
 
@@ -71,9 +111,15 @@ input:focus {
   box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.5);
 }
 
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
 @media (prefers-color-scheme: dark) {
   .app {
-    background-color: var(--primary);
+    background: var(--primary);
     color: white;
   }
 
@@ -86,4 +132,7 @@ input:focus {
     color: white;
   }
 
+  a.active span {
+    color: white;
+  }
 }

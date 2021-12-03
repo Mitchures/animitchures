@@ -1,5 +1,5 @@
 interface IData {
-  [key: string]: any
+  [key: string]: any;
 }
 
 interface IMedia {
@@ -15,15 +15,25 @@ interface IUserState {
   displayName?: string | null;
   photoURL?: string | null;
   email?: string | null;
+  watchlist?: any;
+}
+
+interface IResults {
+  [key: string]: any;
 }
 
 export type State = {
   user: IUserState | null;
   selected: IData | null;
   featured: IFeatured | null;
+  results: IResults | null;
 };
 
 export type Action =
+  | {
+      type: 'set_results';
+      results: IResults | null;
+    }
   | {
       type: 'set_featured';
       featured: IFeatured;

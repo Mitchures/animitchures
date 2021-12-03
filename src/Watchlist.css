@@ -1,57 +1,35 @@
-.features {
-  display: flex;
-  flex-direction: column;
+.watchlist {
   height: calc(100vh - 116px); /* 100vh - header height */
   overflow-y: auto;
-}
-
-.features > div {
-  margin-bottom: 1.25rem;
-}
-
-.features__header {
   padding: 0 var(--x-axis-spacing);
 }
 
-.features__header > h3 {
-  font-weight: 800;
+.watchlist__container {
+  display: grid;
+  grid-row-gap: 1.25rem;
+  grid-column-gap: 1.25rem;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  padding-top: 0.875rem;
 }
 
-.features__body::-webkit-scrollbar { 
-  width: 0 !important 
-}
-
-.features__body {
-  display: flex;
-  overflow-x: scroll;
-  overflow-y: hidden;
-}
-
-.features__body > .features__item:first-child {
-  padding-left: var(--left-spacing);
-}
-
-.features__body > .features__item:last-child {
-  padding-right: var(--right-spacing);
-}
-
-.features__item {
+.watchlist__item {
   display: flex;
   flex-direction: column;
   text-decoration: none;
-  padding: 1.25rem 0.875rem;
+  padding: 0.5rem 0.875rem;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
 }
 
-.features__item:hover {
+.watchlist__item:hover {
   transform: scale(1.05) translateZ(0px);
 }
 
-.features__item:hover .features__itemLabel {
+.watchlist__item:hover .watchlist__itemLabel {
   color: var(--action);
 }
 
-.features__item > img {
+.watchlist__item > img {
   position: relative;
   height: 300px;
   width: 200px;
@@ -60,7 +38,7 @@
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
 }
 
-.features__itemLabel {
+.watchlist__itemLabel {
   display: -webkit-box;
   color: rgb(116,136,153);
   font-size: 14px;

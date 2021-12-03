@@ -1,29 +1,27 @@
-const IS_ADULT = false 
-
 export const FEATURED_QUERY = `
-  query ($season: MediaSeason, $seasonYear: Int, $nextSeason: MediaSeason, $nextYear: Int) {
+  query ($season: MediaSeason, $seasonYear: Int, $nextSeason: MediaSeason, $nextYear: Int, $isAdult: Boolean = false) {
     trending: Page(page: 1, perPage: 15) {
-      media(sort: TRENDING_DESC, type: ANIME, isAdult: ${IS_ADULT}) {
+      media(sort: TRENDING_DESC, type: ANIME, isAdult: $isAdult) {
         ...media
       }
     }
     season: Page(page: 1, perPage: 15) {
-      media(season: $season, seasonYear: $seasonYear, sort: POPULARITY_DESC, type: ANIME, isAdult: ${IS_ADULT}) {
+      media(season: $season, seasonYear: $seasonYear, sort: POPULARITY_DESC, type: ANIME, isAdult: $isAdult) {
         ...media
       }
     }
     nextSeason: Page(page: 1, perPage: 15) {
-      media(season: $nextSeason, seasonYear: $nextYear, sort: POPULARITY_DESC, type: ANIME, isAdult: ${IS_ADULT}) {
+      media(season: $nextSeason, seasonYear: $nextYear, sort: POPULARITY_DESC, type: ANIME, isAdult: $isAdult) {
         ...media
       }
     }
     popular: Page(page: 1, perPage: 15) {
-      media(sort: POPULARITY_DESC, type: ANIME, isAdult: ${IS_ADULT}) {
+      media(sort: POPULARITY_DESC, type: ANIME, isAdult: $isAdult) {
         ...media
       }
     }
     top: Page(page: 1, perPage: 15) {
-      media(sort: SCORE_DESC, type: ANIME, isAdult: ${IS_ADULT}) {
+      media(sort: SCORE_DESC, type: ANIME, isAdult: $isAdult) {
         ...media
       }
     }

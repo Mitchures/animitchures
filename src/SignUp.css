@@ -1,6 +1,6 @@
 .signUp {
   display: flex;
-  min-height: calc(100vh - 80px); /* 100vh - header height */
+  min-height: 100vh;
 }
 
 .signUp h1 {
@@ -10,13 +10,36 @@
 }
 
 .signUp p > a {
-  color: var(--action);
+  color: var(--secondary);
   font-weight: 600;
-  text-decoration: none;
 }
 
 .signUp__left {
   flex: 0.5;
+}
+
+.signUp__header {
+  height: 80px;
+  width: 100%;
+  padding: 1.25rem 4rem;
+}
+
+.signUp__header > a {
+  display: flex;
+  align-items: center;
+  /* margin-left: 1.5rem; */
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.signUp__header > a > span {
+  color: var(--action);
+  /* font-size: 40px; */
+}
+
+.signUp__container {
+  height: calc(100% - 80px);
   display: grid;
   place-items: center;
 }
@@ -90,9 +113,14 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .signUp__container {
+  .signUp__container, .signUp__header {
     background-color: rgba(16, 18, 27, 40%);
   }
+
+  .signUp__header > a {
+    color: white;
+  }
+
 
   .signUp__form label {
     color: white;

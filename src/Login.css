@@ -1,6 +1,6 @@
 .login {
   display: flex;
-  min-height: calc(100vh - 80px); /* 100vh - header height */
+  min-height: 100vh;
 }
 
 .login h1 {
@@ -10,13 +10,36 @@
 }
 
 .login p > a {
-  color: var(--action);
+  color: var(--secondary);
   font-weight: 600;
-  text-decoration: none;
 }
 
 .login__left {
   flex: 0.5;
+}
+
+.login__header {
+  height: 80px;
+  width: 100%;
+  padding: 1.25rem 4rem;
+}
+
+.login__header > a {
+  display: flex;
+  align-items: center;
+  /* margin-left: 1.5rem; */
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.login__header > a > span {
+  color: var(--action);
+  /* font-size: 40px; */
+}
+
+.login__container {
+  height: calc(100% - 80px);
   display: grid;
   place-items: center;
 }
@@ -90,7 +113,12 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .login__container {
+
+  .login__header > a {
+    color: white;
+  }
+
+  .login__container, .login__header {
     background-color: rgba(16, 18, 27, 40%);
   }
 

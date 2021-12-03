@@ -1,0 +1,56 @@
+.search {
+  border: 3px solid rgba(0, 0, 0, 0.05);
+  border-radius: var(--border-radius);
+  width: 100%;
+  max-width: 700px;
+}
+
+.search > form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: calc(var(--border-radius) - 3px);
+  background-color: #EDEEF7;
+  color: var(--secondary);
+}
+
+.search > form > input {
+  background-color: transparent;
+  border: none;
+  outline: 0;
+  height: 52px;
+  font-size: 18px;
+  margin: 0;
+}
+
+.search > form > input:focus {
+  box-shadow: none;
+}
+
+.search > form > svg {
+  margin-left: 1.25rem;
+}
+
+.search > form > button {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .search { 
+    border-color: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+
+  .search > form {
+    background-color: var(--primary);
+    color: white;
+  }
+
+  .search > form > input {
+    color: white;
+  }
+}
+
+@media screen and (max-width: 960px) {
+
+}
