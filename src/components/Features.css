@@ -27,47 +27,14 @@
   overflow-y: hidden;
 }
 
-.features__body > .features__item:first-child {
+.features__body > .card:first-child {
   padding-left: var(--left-spacing);
 }
 
-.features__body > .features__item:last-child {
+.features__body > .card:last-child {
   padding-right: var(--right-spacing);
 }
 
-.features__item {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  padding: 1.25rem 0.875rem;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
-}
-
-.features__item:hover {
-  transform: scale(1.05) translateZ(0px);
-}
-
-.features__item:hover .features__itemLabel {
-  color: var(--action);
-}
-
-.features__item > img {
-  position: relative;
-  height: 300px;
-  width: 200px;
-  object-fit: cover;
-  border-radius: var(--border-radius);
-  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
-}
-
-.features__itemLabel {
-  display: -webkit-box;
-  color: rgb(116,136,153);
-  font-size: 14px;
-  padding-top: 0.625rem;
-  font-weight: 600;
-  overflow: hidden;
-  transition: color .2s ease;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+.features__body > .card {
+  padding: 1.25rem 1.125rem;
 }

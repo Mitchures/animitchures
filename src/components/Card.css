@@ -1,0 +1,36 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  padding: 0.5rem 0.875rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+}
+
+.card:hover {
+  transform: scale(1.05) translateZ(0px);
+}
+
+.card:hover .card__label {
+  color: var(--action);
+}
+
+.card > img {
+  position: relative;
+  height: 300px;
+  width: 200px;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.card__label {
+  display: -webkit-box;
+  color: rgb(116,136,153);
+  font-size: 14px;
+  padding-top: 0.625rem;
+  font-weight: 600;
+  overflow: hidden;
+  transition: color .2s ease;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}

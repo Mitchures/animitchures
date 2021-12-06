@@ -6,7 +6,17 @@ import {
   SentimentDissatisfied,
   SentimentNeutral,
   SentimentSatisfiedAlt,
+  Remove,
+  Add,
+  ArtTrack,
 } from '@mui/icons-material';
+import { useStateValue } from 'context';
+import { addItemToWatchlist, removeItemFromWatchlist } from 'actions';
+import { useHistory } from 'react-router-dom';
+
+interface IData {
+  [key: string]: any;
+}
 
 const getScoreStatus = (score: number) => {
   if (score >= 90) return <SentimentVerySatisfied htmlColor="lightgreen" />;
@@ -17,8 +27,10 @@ const getScoreStatus = (score: number) => {
 };
 
 function Hero({ trending }: any) {
+  const [{ user, watchlist }, dispatch] = useStateValue();
   const [featured] = useState(trending?.media.slice(0, 3));
   const [selected, setSelected] = useState(trending?.media[0]);
+  const history = useHistory();
 
   return (
     <div className="hero">
@@ -52,6 +64,34 @@ function Hero({ trending }: any) {
                         {genre}
                       </div>
                     ))}
+                  </div>
+                  <div className="hero__actions">
+                    <button
+                      onClick={() =>
+                        history.push(
+                          `/anime/${selected.id}/${encodeURIComponent(
+                            selected.title.userPreferred.replace(/,?[ ]/g, '-').toLowerCase(),
+                          )}`,
+                        )
+                      }
+                    >
+                      <ArtTrack />
+                    </button>
+                    {user && (
+                      <>
+                        {watchlist.filter(({ id }: IData) => id === selected.id).length > 0 ? (
+                          <button
+                            onClick={() => removeItemFromWatchlist(selected, user.uid, dispatch)}
+                          >
+                            <Remove />
+                          </button>
+                        ) : (
+                          <button onClick={() => addItemToWatchlist(selected, user.uid, dispatch)}>
+                            <Add />
+                          </button>
+                        )}
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

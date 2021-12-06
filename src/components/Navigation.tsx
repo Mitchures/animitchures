@@ -9,7 +9,7 @@ import {
   Login,
 } from '@mui/icons-material';
 import './Navigation.css';
-import { auth } from 'utils';
+import { auth } from 'config';
 import { useStateValue } from 'context';
 
 function Navigation() {

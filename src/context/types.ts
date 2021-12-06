@@ -15,32 +15,55 @@ interface IUserState {
   displayName?: string | null;
   photoURL?: string | null;
   email?: string | null;
-  watchlist?: any;
-}
-
-interface IResults {
-  [key: string]: any;
+  isAdult?: boolean;
 }
 
 export type State = {
   user: IUserState | null;
   selected: IData | null;
   featured: IFeatured | null;
-  results: IResults | null;
+  results: IData | null;
+  watchlist: IData[];
 };
 
 export type Action =
   | {
+      type: 'init_watchlist';
+    }
+  | {
+      type: 'remove_from_watchlist';
+      watchlist: IData[];
+    }
+  | {
+      type: 'add_to_watchlist';
+      watchlist: IData[];
+    }
+  | {
+      type: 'set_watchlist';
+      watchlist: IData[];
+    }
+  | {
       type: 'set_results';
-      results: IResults | null;
+      results: IData | null;
     }
   | {
       type: 'set_featured';
-      featured: IFeatured;
+      featured: IFeatured | null;
     }
   | {
       type: 'set_selected';
       selected: IData | null;
+    }
+  | {
+      type: 'update_user';
+      user: IUserState;
+    }
+  | {
+      type: 'login_user';
+      user: IUserState;
+    }
+  | {
+      type: 'logout_user';
     }
   | {
       type: 'set_user';

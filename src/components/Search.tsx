@@ -10,6 +10,7 @@ function Search() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    console.log(input);
 
     history.push(`/search/anime?search=${input}`);
   };

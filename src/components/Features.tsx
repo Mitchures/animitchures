@@ -1,16 +1,19 @@
 import { useEffect } from 'react';
 import './Features.css';
-import { FEATURED_QUERY, api } from 'utils';
-import { Link } from 'react-router-dom';
+import { FEATURED_QUERY } from 'utils';
+import { api } from 'api';
 import { useStateValue } from 'context';
 import Hero from './Hero';
+import Card from './Card';
+import { useLocation } from 'react-router-dom';
 
 interface ITitles {
   [key: string]: string;
 }
 
 function Features() {
-  const [{ featured }, dispatch] = useStateValue();
+  const location = useLocation();
+  const [{ featured, user }, dispatch] = useStateValue();
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth();
   const seasons = [
@@ -77,13 +80,11 @@ function Features() {
 
   useEffect(() => {
     getItems();
+    console.log(location);
   }, []);
 
   return (
     <div className="features">
-      <div className="features__header">
-        <h3>Trending Now</h3>
-      </div>
       {featured && <Hero {...featured} />}
       {featured &&
         Object.keys(featured).map((key, index) => (
@@ -93,29 +94,7 @@ function Features() {
             </div>
             <div className={`features__body features__${key}`}>
               {featured[key].media.map((mediaItem) => (
-                <Link
-                  to={`/anime/${mediaItem.id}/${mediaItem.title.userPreferred
-                    .replace(/,?[ ]/g, '-')
-                    .toLowerCase()}`}
-                  className="features__item"
-                  key={mediaItem.id}
-                >
-                  <img
-                    src={
-                      mediaItem.coverImage.extraLarge
-                        ? mediaItem.coverImage.extraLarge
-                        : mediaItem.bannerImage
-                    }
-                    alt={mediaItem.title.userPreferred}
-                  />
-                  <span className="features__itemLabel">
-                    <span className="features__itemLabelTitle">
-                      {mediaItem.title.english
-                        ? mediaItem.title.english
-                        : mediaItem.title.userPreferred}
-                    </span>
-                  </span>
-                </Link>
+                <Card key={mediaItem.id} {...mediaItem} />
               ))}
             </div>
           </div>

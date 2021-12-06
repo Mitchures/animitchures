@@ -1,5 +1,5 @@
 import './SignUp.css';
-import { auth } from 'utils';
+import { auth } from 'config';
 import { Link, useHistory } from 'react-router-dom';
 import { useState } from 'react';
 

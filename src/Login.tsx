@@ -1,6 +1,5 @@
 import './Login.css';
-import { auth, db, appleProvider, googleProvider } from 'utils';
-import { useStateValue } from 'context';
+import { auth, appleProvider, googleProvider } from 'config';
 import firebase from 'firebase';
 import { Link, useHistory } from 'react-router-dom';
 import { useState } from 'react';
@@ -8,14 +7,12 @@ import { useState } from 'react';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [, dispatch] = useStateValue();
   const history = useHistory();
 
   const signInWithProvider = (provider: firebase.auth.AuthProvider) => {
     auth
       .signInWithPopup(provider)
       .then(({ user }) => {
-        console.log(user);
         history.push('/');
       })
       .catch((error) => alert(error.message));
@@ -28,7 +25,6 @@ function Login() {
       auth
         .signInWithEmailAndPassword(email, password)
         .then(({ user }) => {
-          console.log(user);
           history.push('/');
         })
         .catch((error) => alert(error.message));

@@ -1,6 +1,7 @@
 .hero {
   padding: 0 var(--right-spacing) 2rem var(--left-spacing);
   height: 600px;
+  min-height: 600px;
   color: white;
 }
 
@@ -22,7 +23,8 @@
   width: 100%;
   padding: 3.5rem 4rem;
   border-radius: var(--border-radius);
-  background-color: rgba(0, 0, 0, 0.5);
+  background: linear-gradient(-80deg, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0.75));
+  /* background-color: rgba(0, 0, 0, 0.5); */
 }
 
 .hero__bannerBody h1 {
@@ -51,7 +53,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin: 1rem 0 0;
+  margin: 1rem 0;
 }
 
 .hero__tag {
@@ -119,6 +121,37 @@
   cursor: default;
   box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.25);
   transform: scale(1.05) translateZ(0px);
+}
+
+.hero__actions {
+  display: flex;
+}
+
+.hero__actions > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--border-radius);
+  backdrop-filter: blur(20px);
+  background-color: rgba(255, 255, 255, 0.25);
+  color: white;
+}
+
+.hero__actions > button > svg {
+  width: 28px;
+  height: 28px;
+}
+
+.hero__actions > button:hover {
+  background-color: white;
+  color: black;
+  opacity: 1;
+}
+
+.hero__actions > button:first-child {
+  margin-right: 1rem;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import './Results.css';
 import { useStateValue } from 'context';
-import { Link } from 'react-router-dom';
-import { SEARCH_QUERY, api } from 'utils';
+import { SEARCH_QUERY } from 'utils';
+import { api } from 'api';
+import Card from './components/Card';
 
 function Results({ location }: any) {
   const [{ results }, dispatch] = useStateValue();
@@ -43,29 +44,7 @@ function Results({ location }: any) {
       {results?.length > 0 && (
         <div className="results__container">
           {results?.map((mediaItem: any) => (
-            <Link
-              to={`/anime/${mediaItem.id}/${mediaItem.title.userPreferred
-                .replace(/,?[ ]/g, '-')
-                .toLowerCase()}`}
-              className="results__item"
-              key={mediaItem.id}
-            >
-              <img
-                src={
-                  mediaItem.coverImage.extraLarge
-                    ? mediaItem.coverImage.extraLarge
-                    : mediaItem.bannerImage
-                }
-                alt={mediaItem.title.userPreferred}
-              />
-              <span className="results__itemLabel">
-                <span className="results__itemLabelTitle">
-                  {mediaItem.title.english
-                    ? mediaItem.title.english
-                    : mediaItem.title.userPreferred}
-                </span>
-              </span>
-            </Link>
+            <Card key={mediaItem.id} {...mediaItem} />
           ))}
         </div>
       )}

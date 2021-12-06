@@ -4,14 +4,16 @@ import Header from 'components/Header';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Login from 'Login';
 import SignUp from 'SignUp';
-import { auth, db } from 'utils';
+import { auth, db } from 'config';
 import { useStateValue } from 'context';
+import { getWatchlist } from 'actions';
 import Features from 'components/Features';
 import Details from 'Details';
 import Profile from 'Profile';
 import Navigation from 'components/Navigation';
 import Results from 'Results';
 import Watchlist from 'Watchlist';
+import Settings from 'Settings';
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -20,7 +22,7 @@ function App() {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         // user has logged in...
-        const { uid, displayName, photoURL, email } = authUser;
+        const { uid, photoURL, displayName, email } = authUser;
         // check if user already exists in db.
         const docRef = db.collection('users').doc(uid);
         docRef
@@ -33,27 +35,26 @@ function App() {
                 const user = { ...data };
                 // update db if any new information exists.
                 docRef.set(user).catch((error) => alert(error.message));
+                // get user watchlist.
+                getWatchlist(uid, dispatch);
                 // set current user to existing user.
                 dispatch({
-                  type: 'set_user',
+                  type: 'login_user',
                   user,
                 });
               }
             } else {
-              // set defaults.
-              //TODO: add default settings.
               const user = {
                 uid,
                 displayName,
                 photoURL,
                 email,
-                watchlist: [],
               };
               // save new user to db.
               docRef.set(user).catch((error) => alert(error.message));
               // set current user to new user.
               dispatch({
-                type: 'set_user',
+                type: 'login_user',
                 user,
               });
             }
@@ -62,8 +63,7 @@ function App() {
       } else {
         // user has logged out...
         dispatch({
-          type: 'set_user',
-          user: null,
+          type: 'logout_user',
         });
       }
     });
@@ -71,7 +71,7 @@ function App() {
     return () => {
       unsubscribe();
     };
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className="app">
@@ -83,6 +83,7 @@ function App() {
             <Navigation />
             <div className="app__body">
               <Header />
+              <Route path="/settings" component={Settings} />
               <Route path="/watchlist" component={Watchlist} />
               <Route path="/search/anime" component={Results} />
               <Route path="/anime/:id/:title" component={Details} />
