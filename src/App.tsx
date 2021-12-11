@@ -14,6 +14,7 @@ import Navigation from 'components/Navigation';
 import Results from 'Results';
 import Watchlist from 'Watchlist';
 import Settings from 'Settings';
+// import Callback from 'Callback';
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -83,6 +84,7 @@ function App() {
             <Navigation />
             <div className="app__body">
               <Header />
+              {/* <Route path="/callback" component={Callback} /> */}
               <Route path="/settings" component={Settings} />
               <Route path="/watchlist" component={Watchlist} />
               <Route path="/search/anime" component={Results} />
