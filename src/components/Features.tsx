@@ -5,14 +5,13 @@ import { api } from 'api';
 import { useStateValue } from 'context';
 import Hero from './Hero';
 import Card from './Card';
-import { useLocation } from 'react-router-dom';
+import Loader from './Loader';
 
 interface ITitles {
   [key: string]: string;
 }
 
 function Features() {
-  const location = useLocation();
   const [{ featured, user }, dispatch] = useStateValue();
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth();
@@ -69,7 +68,7 @@ function Features() {
         seasonYear: currentYear,
         nextSeason: getNextSeason(currentMonth),
         nextYear: currentYear + 1,
-        isAdult: false,
+        isAdult: user?.isAdult || false,
       },
     });
     dispatch({
@@ -80,25 +79,29 @@ function Features() {
 
   useEffect(() => {
     getItems();
-    console.log(location);
   }, []);
 
   return (
     <div className="features">
-      {featured && <Hero {...featured} />}
-      {featured &&
-        Object.keys(featured).map((key, index) => (
-          <div key={index}>
-            <div className="features__header">
-              <h3>{titles[key]}</h3>
+      {featured ? (
+        <>
+          <Hero {...featured} />
+          {Object.keys(featured).map((key, index) => (
+            <div key={index}>
+              <div className="features__header">
+                <h3>{titles[key]}</h3>
+              </div>
+              <div className={`features__body features__${key}`}>
+                {featured[key].media.map((mediaItem) => (
+                  <Card key={mediaItem.id} {...mediaItem} />
+                ))}
+              </div>
             </div>
-            <div className={`features__body features__${key}`}>
-              {featured[key].media.map((mediaItem) => (
-                <Card key={mediaItem.id} {...mediaItem} />
-              ))}
-            </div>
-          </div>
-        ))}
+          ))}
+        </>
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 }
