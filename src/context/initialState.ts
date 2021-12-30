@@ -3,5 +3,6 @@ export const initialState = {
   selected: null,
   featured: null,
   results: null,
-  watchlist: []
+  watchlist: [],
+  anilist_account: null
 };

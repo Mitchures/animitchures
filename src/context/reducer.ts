@@ -3,6 +3,16 @@ import { State, Action } from './types';
 export const reducer = (state: State, action: Action): State => {
   console.log(state, action);
   switch (action.type) {
+    case 'set_anilist_account':
+      return {
+        ...state,
+        anilist_account: action.anilist_account
+      };
+    case 'clear_featured':
+      return {
+        ...state,
+        featured: null,
+      };
     case 'set_featured':
       return {
         ...state,
@@ -24,7 +34,9 @@ export const reducer = (state: State, action: Action): State => {
       return {
         ...state,
         user: null,
-        watchlist: []
+        watchlist: [],
+        anilist_account: null,
+        featured: null
       };
     case 'set_results':
       return {
@@ -39,7 +51,7 @@ export const reducer = (state: State, action: Action): State => {
         watchlist: action.watchlist,
       };
     case 'init_watchlist':
-      return state
+      return state;
     default:
       return state;
   }

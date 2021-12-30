@@ -10,23 +10,39 @@ interface IFeatured {
   [key: string]: IMedia;
 }
 
-interface IUserState {
-  uid?: string | null;
-  displayName?: string | null;
-  photoURL?: string | null;
-  email?: string | null;
+export type IUser = {
+  uid: string | null;
+  displayName: string | null;
+  photoURL: string | null;
+  email: string | null;
   isAdult?: boolean;
-}
+  anilistLinked?: boolean;
+};
+
+export type AccessToken = {
+  access_token: string;
+  expires_in: number;
+  refresh_token: string;
+  token_type: string;
+};
 
 export type State = {
-  user: IUserState | null;
+  user: IUser | null;
   selected: IData | null;
   featured: IFeatured | null;
   results: IData | null;
   watchlist: IData[];
+  anilist_account: any;
 };
 
 export type Action =
+  | {
+      type: 'set_anilist_account';
+      anilist_account: any;
+    }
+  | {
+      type: 'clear_featured';
+    }
   | {
       type: 'init_watchlist';
     }
@@ -48,7 +64,7 @@ export type Action =
     }
   | {
       type: 'set_featured';
-      featured: IFeatured | null;
+      featured: IFeatured;
     }
   | {
       type: 'set_selected';
@@ -56,16 +72,16 @@ export type Action =
     }
   | {
       type: 'update_user';
-      user: IUserState;
+      user: IUser;
     }
   | {
       type: 'login_user';
-      user: IUserState;
+      user: IUser;
     }
   | {
       type: 'logout_user';
     }
   | {
       type: 'set_user';
-      user: IUserState | null;
+      user: IUser | null;
     };
