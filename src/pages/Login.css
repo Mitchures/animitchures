@@ -52,7 +52,7 @@
 
 .login__right {
   flex: 0.5;
-  background-image: url('./images/maiden.jpg');
+  background-image: url('../images/maiden.jpg');
   background-position: center;
   background-size: cover;
 }

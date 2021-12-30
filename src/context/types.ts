@@ -11,7 +11,7 @@ interface IFeatured {
 }
 
 export type IUser = {
-  uid: string | null;
+  uid: string;
   displayName: string | null;
   photoURL: string | null;
   email: string | null;

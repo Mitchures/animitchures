@@ -52,7 +52,7 @@
 
 .signUp__right {
   flex: 0.5;
-  background-image: url("./images/usagi.jpeg");
+  background-image: url("../images/usagi.jpeg");
   background-position: center;
   background-size: cover;
 }

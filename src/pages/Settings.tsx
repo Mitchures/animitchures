@@ -1,9 +1,13 @@
-import './Settings.css';
-import AnilistLogoImage from './images/anilist-logo.png';
 import { Check } from '@mui/icons-material';
+
+import './Settings.css';
+
+import ToggleSwitch from 'components/ToggleSwitch';
+
+import AnilistLogoImage from 'images/anilist-logo.png';
+
 import { useStateValue } from 'context';
 import { userActions } from 'actions';
-import ToggleSwitch from 'components/ToggleSwitch';
 
 function Settings() {
   const [{ user }, dispatch] = useStateValue();

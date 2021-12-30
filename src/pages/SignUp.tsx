@@ -1,7 +1,9 @@
-import './SignUp.css';
-import { auth } from 'config';
-import { Link, useHistory } from 'react-router-dom';
 import { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+
+import './SignUp.css';
+
+import { auth } from 'config';
 
 function SignUp() {
   const [name, setName] = useState('');

@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
+
 import './Results.css';
+
+import Card from 'components/Card';
+
 import { useStateValue } from 'context';
 import { SEARCH_QUERY } from 'utils';
 import { api } from 'api';
-import Card from './components/Card';
 
 function Results({ location }: any) {
   const [{ results }, dispatch] = useStateValue();

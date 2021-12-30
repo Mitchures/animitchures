@@ -11,7 +11,7 @@ import {
   ArtTrack,
 } from '@mui/icons-material';
 import { useStateValue } from 'context';
-import { addItemToWatchlist, removeItemFromWatchlist } from 'actions';
+import { watchlistActions } from 'actions';
 import { useHistory } from 'react-router-dom';
 
 interface IData {
@@ -81,12 +81,18 @@ function Hero({ trending }: any) {
                       <>
                         {watchlist.filter(({ id }: IData) => id === selected.id).length > 0 ? (
                           <button
-                            onClick={() => removeItemFromWatchlist(selected, user.uid, dispatch)}
+                            onClick={() =>
+                              watchlistActions.removeItemFromWatchlist(selected, user.uid, dispatch)
+                            }
                           >
                             <Remove />
                           </button>
                         ) : (
-                          <button onClick={() => addItemToWatchlist(selected, user.uid, dispatch)}>
+                          <button
+                            onClick={() =>
+                              watchlistActions.addItemToWatchlist(selected, user.uid, dispatch)
+                            }
+                          >
                             <Add />
                           </button>
                         )}

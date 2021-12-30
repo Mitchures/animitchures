@@ -1,20 +1,25 @@
 import { useEffect } from 'react';
-import './App.css';
-import Header from 'components/Header';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import Login from 'Login';
-import SignUp from 'SignUp';
+
+import './App.css';
+
+import Header from 'components/Header';
+import Navigation from 'components/Navigation';
+import Features from 'components/Features';
+
+import Login from 'pages/Login';
+import SignUp from 'pages/SignUp';
+import Details from 'pages/Details';
+import Profile from 'pages/Profile';
+import Results from 'pages/Results';
+import Watchlist from 'pages/Watchlist';
+import Settings from 'pages/Settings';
+import Callback from 'pages/Callback';
+
 import { auth, db } from 'config';
 import { useStateValue } from 'context';
-import { getWatchlist, anilistActions } from 'actions';
-import Features from 'components/Features';
-import Details from 'Details';
-import Profile from 'Profile';
-import Navigation from 'components/Navigation';
-import Results from 'Results';
-import Watchlist from 'Watchlist';
-import Settings from 'Settings';
-import Callback from 'Callback';
+import { IUser } from 'context/types';
+import { watchlistActions, anilistActions } from 'actions';
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -33,11 +38,11 @@ function App() {
               // get existing user data.
               const data = doc.data();
               if (data) {
-                const user: any = { ...data };
+                const user = { ...data } as IUser;
                 // update db if any new information exists.
                 docRef.set(user).catch((error) => alert(error.message));
                 // get user watchlist.
-                getWatchlist(uid, dispatch);
+                watchlistActions.getWatchlist(uid, dispatch);
                 // get anilist account if linked.
                 if (user.anilistLinked) {
                   anilistActions.getAccount(uid, dispatch);

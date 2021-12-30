@@ -1,8 +1,10 @@
-import './Login.css';
-import { auth, appleProvider, googleProvider } from 'config';
+import { useState } from 'react';
 import firebase from 'firebase';
 import { Link, useHistory } from 'react-router-dom';
-import { useState } from 'react';
+
+import './Login.css';
+
+import { auth, appleProvider, googleProvider } from 'config';
 
 function Login() {
   const [email, setEmail] = useState('');

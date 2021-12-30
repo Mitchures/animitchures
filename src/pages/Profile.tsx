@@ -1,7 +1,8 @@
-import './Profile.css';
-import { useStateValue } from 'context';
-
 import Avatar from '@material-ui/core/Avatar';
+
+import './Profile.css';
+
+import { useStateValue } from 'context';
 
 function Profile() {
   const [{ user }] = useStateValue();

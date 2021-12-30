@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
-import './Details.css';
 import { useParams } from 'react-router-dom';
+import { Add, Remove } from '@mui/icons-material';
+
+import './Details.css';
+
 import { DETAILS_QUERY } from 'utils';
 import { api } from 'api';
-import { addItemToWatchlist, removeItemFromWatchlist } from 'actions';
+import { watchlistActions } from 'actions';
 import { useStateValue } from 'context';
-import { Add, Remove } from '@mui/icons-material';
 
 interface IData {
   [key: string]: any;
@@ -72,12 +74,20 @@ function Details() {
             {user && (
               <div className="details__actions">
                 {watchlist.filter(({ id }: IData) => id === selected.id).length > 0 ? (
-                  <button onClick={() => removeItemFromWatchlist(selected, user.uid, dispatch)}>
+                  <button
+                    onClick={() =>
+                      watchlistActions.removeItemFromWatchlist(selected, user.uid, dispatch)
+                    }
+                  >
                     <Remove />
                     <span>Remove from Watchlist</span>
                   </button>
                 ) : (
-                  <button onClick={() => addItemToWatchlist(selected, user.uid, dispatch)}>
+                  <button
+                    onClick={() =>
+                      watchlistActions.addItemToWatchlist(selected, user.uid, dispatch)
+                    }
+                  >
                     <Add />
                     <span>Add to Watchlist</span>
                   </button>

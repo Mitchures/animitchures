@@ -7,7 +7,7 @@ interface IData {
 const collectionRef = db.collection('watchlists');
 
 export const watchlistService = {
-  async get(userId: any) {
+  get: async (userId: string) => {
     return await collectionRef
       .doc(`${userId}`)
       .get()
@@ -19,7 +19,7 @@ export const watchlistService = {
       })
       .catch((error) => alert(error.message));
   },
-  async add(media: IData, userId: any) {
+  add: async (media: IData, userId: string) => {
     return await collectionRef
       .doc(`${userId}`)
       .get()
@@ -41,7 +41,7 @@ export const watchlistService = {
       })
       .catch((error) => alert(error.message));
   },
-  async remove(media: IData, userId: any) {
+  remove: async (media: IData, userId: string) => {
     return await collectionRef
       .doc(`${userId}`)
       .get()

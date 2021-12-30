@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
+
+import Loader from 'components/Loader';
+
 import { authActions, anilistActions } from 'actions';
 import { useStateValue } from 'context';
-import Loader from 'components/Loader';
 
 function Callback() {
   const history = useHistory();

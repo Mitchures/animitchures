@@ -1,9 +1,12 @@
-import './Watchlist.css';
 import { useEffect, useState } from 'react';
+
+import './Watchlist.css';
+
+import Card from 'components/Card';
+import Loader from 'components/Loader';
+
 import { useStateValue } from 'context';
 import { anilistActions } from 'actions';
-import Card from './components/Card';
-import Loader from 'components/Loader';
 
 function Watchlist() {
   const [{ watchlist, anilist_account }, dispatch] = useStateValue();
