@@ -1,9 +1,10 @@
 import { db } from 'config';
+import { IUser } from 'context/types';
 
 const collectionRef = db.collection('users');
 
 export const userService = {
-  async getProfile (userId: any) {
+  async getProfile (userId: string) {
     return await collectionRef
       .doc(`${userId}`)
       .get()
@@ -15,7 +16,7 @@ export const userService = {
       })
       .catch((error) => alert(error.message));
   },
-  async updateProfile (user: any) {
+  async updateProfile (user: IUser) {
     return await collectionRef
       .doc(`${user.uid}`)
       .set(user)

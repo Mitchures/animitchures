@@ -1,26 +1,26 @@
 import { Dispatch } from 'react';
-import { Action } from 'context/types';
+import { Action, IUser } from 'context/types';
 import { userService } from 'api/services';
 
 export const userActions = {
-  getProfile: async (userId: any, dispatch: Dispatch<Action>) => {
+  getProfile: async (userId: string, dispatch: Dispatch<Action>) => {
     return await userService
       .getProfile(userId)
-      .then((user: any) => {
+      .then((user) => {
         dispatch({
           type: 'set_user',
-          user
+          user: user as IUser
         })
       })
       .catch((error) => alert(error.message));
   },
-  updateProfile: async (user: any, dispatch: Dispatch<Action>) => {
+  updateProfile: async (user: IUser, dispatch: Dispatch<Action>) => {
     return await userService
       .updateProfile(user)
       .then((updatedUser) => {
         dispatch({
           type: 'set_user',
-          user: updatedUser
+          user: updatedUser as IUser
         })
       })
       .catch((error) => alert(error.message));

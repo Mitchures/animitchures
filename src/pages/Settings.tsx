@@ -8,15 +8,13 @@ import AnilistLogoImage from 'images/anilist-logo.png';
 
 import { useStateValue } from 'context';
 import { userActions } from 'actions';
+import { IUser } from 'context/types';
 
 function Settings() {
   const [{ user }, dispatch] = useStateValue();
 
   const updateIsAdult = (isAdult: boolean) => {
-    const updatedUser = {
-      ...user,
-      isAdult,
-    };
+    const updatedUser = { ...user, isAdult } as IUser;
     userActions.updateProfile(updatedUser, dispatch).then(() => {
       // Clear featured to refresh content based on isAdult setting.
       dispatch({
