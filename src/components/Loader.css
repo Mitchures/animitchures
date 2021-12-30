@@ -1,0 +1,13 @@
+.loader {
+  display: grid;
+  place-content: center;
+  height: 100%;
+  color: var(--secondary);
+}
+
+.loader > img {
+  border-radius: var(--border-radius);
+  object-fit: contain;
+  margin-bottom: 0.875rem;
+  opacity: 0.5;
+}
