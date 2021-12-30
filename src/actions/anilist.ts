@@ -11,7 +11,7 @@ export const anilistActions = {
           .saveUser(userId, anilistUser)
           .then((anilist_user) => {
             dispatch({
-              type: 'set_anilist_account',
+              type: 'set_anilist_user',
               anilist_user
             })
           })
@@ -29,7 +29,7 @@ export const anilistActions = {
       .getUser(userId)
       .then((anilist_user) => {
         dispatch({
-          type: 'set_anilist_account',
+          type: 'set_anilist_user',
           anilist_user
         })
       })
