@@ -22,7 +22,6 @@ function Details() {
         variables: {
           id,
           type: 'ANIME',
-          isAdult: false,
         },
       });
       console.log(data);

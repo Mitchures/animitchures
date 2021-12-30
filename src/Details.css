@@ -63,9 +63,6 @@
 }
 
 .details__right > p {
-  font-size: 14px;
-  color: var(--secondary);
-  line-height: 1.5;
   font-weight: 600;
   padding: 1.25rem 0;
 }
