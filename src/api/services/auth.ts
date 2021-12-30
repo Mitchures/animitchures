@@ -1,6 +1,7 @@
 export const authService = {
   getAccessToken: async (code: string) => {
     // proxy stuff: https://stackoverflow.com/questions/36878255/allow-access-control-allow-origin-header-using-html5-fetch-api
+    // https://anilist.co/api/v2/oauth/token
     return await fetch('http://localhost:8010/proxy', {
       method: 'POST',
       headers: {
@@ -16,10 +17,7 @@ export const authService = {
       }),
     })
       .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        const { token_type, access_token } = data;
-      })
+      .then((data) => data)
       .catch((error) => alert(error.message));
   }
 }
