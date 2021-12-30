@@ -41,6 +41,14 @@ hr {
   border-top-width: 1px;
 }
 
+p {
+  font-size: 14px;
+  color: var(--secondary);
+  line-height: 1.5;
+  font-weight: 500;
+  padding: 0.25rem 0;
+}
+
 a {
   text-decoration: none;
   transition: all 0.3s;
