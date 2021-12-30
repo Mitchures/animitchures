@@ -37,7 +37,7 @@ export type State = {
 
 export type Action =
   | {
-      type: 'set_anilist_account';
+      type: 'set_anilist_user';
       anilist_user: any;
     }
   | {
