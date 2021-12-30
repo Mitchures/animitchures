@@ -6,7 +6,7 @@ import Login from 'Login';
 import SignUp from 'SignUp';
 import { auth, db } from 'config';
 import { useStateValue } from 'context';
-import { getWatchlist } from 'actions';
+import { getWatchlist, anilistActions } from 'actions';
 import Features from 'components/Features';
 import Details from 'Details';
 import Profile from 'Profile';
@@ -14,7 +14,7 @@ import Navigation from 'components/Navigation';
 import Results from 'Results';
 import Watchlist from 'Watchlist';
 import Settings from 'Settings';
-// import Callback from 'Callback';
+import Callback from 'Callback';
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -33,11 +33,15 @@ function App() {
               // get existing user data.
               const data = doc.data();
               if (data) {
-                const user = { ...data };
+                const user: any = { ...data };
                 // update db if any new information exists.
                 docRef.set(user).catch((error) => alert(error.message));
                 // get user watchlist.
                 getWatchlist(uid, dispatch);
+                // get anilist account if linked.
+                if (user.anilistLinked) {
+                  anilistActions.getAccount(uid, dispatch);
+                }
                 // set current user to existing user.
                 dispatch({
                   type: 'login_user',
@@ -66,6 +70,8 @@ function App() {
         dispatch({
           type: 'logout_user',
         });
+        // Remove token from localStorage if any.
+        localStorage.removeItem('token');
       }
     });
 
@@ -84,7 +90,7 @@ function App() {
             <Navigation />
             <div className="app__body">
               <Header />
-              {/* <Route path="/callback" component={Callback} /> */}
+              <Route path="/callback" component={Callback} />
               <Route path="/settings" component={Settings} />
               <Route path="/watchlist" component={Watchlist} />
               <Route path="/search/anime" component={Results} />

@@ -4,13 +4,17 @@
   padding: 0 var(--x-axis-spacing);
 }
 
-.watchlist__container {
+.watchlist h3 {
+  margin-top: 0.875rem;
+}
+
+.watchlist__grid {
   display: grid;
   grid-row-gap: 1.25rem;
   grid-column-gap: 1.25rem;
   justify-items: center;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  padding-top: 0.875rem;
+  padding: 0.875rem 0;
 }
 
 .watchlist__placeholder {
