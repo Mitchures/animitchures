@@ -32,13 +32,13 @@ export type State = {
   featured: IFeatured | null;
   results: IData | null;
   watchlist: IData[];
-  anilist_account: any;
+  anilist_user: any;
 };
 
 export type Action =
   | {
       type: 'set_anilist_account';
-      anilist_account: any;
+      anilist_user: any;
     }
   | {
       type: 'clear_featured';

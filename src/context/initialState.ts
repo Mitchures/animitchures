@@ -4,5 +4,5 @@ export const initialState = {
   featured: null,
   results: null,
   watchlist: [],
-  anilist_account: null
+  anilist_user: null
 };

@@ -3,30 +3,34 @@ import { Action } from 'context/types';
 import { anilistService } from 'api/services';
 
 export const anilistActions = {
-  getViewer: async (userId: any, dispatch: Dispatch<Action>) => {
+  fetchUser: async (userId: string, dispatch: Dispatch<Action>) => {
     return await anilistService
-      .getViewer(userId)
-      .then((anilist_account) => {
-        dispatch({
-          type: 'set_anilist_account',
-          anilist_account
-        })
+      .fetchUser()
+      .then(async (anilistUser) => {
+        return await anilistService
+          .saveUser(userId, anilistUser)
+          .then((anilist_user) => {
+            dispatch({
+              type: 'set_anilist_account',
+              anilist_user
+            })
+          })
       })
       .catch((error) => alert(error.message));
   },
-  getMediaListCollection: async (userId: number, userName: string, dispatch: Dispatch<Action>) => {
+  getMediaListCollection: async (anilistUserId: number, userName: string) => {
     return await anilistService
-      .getMediaListCollection(userId, userName)
+      .fetchMediaListCollection(anilistUserId, userName)
       .then((data) => data)
       .catch((error) => alert(error.message));
   },
-  getAccount: async (userId: any, dispatch: Dispatch<Action>) => {
+  getUser: async (userId: string, dispatch: Dispatch<Action>) => {
     return await anilistService
-      .getAccount(userId)
-      .then((anilist_account) => {
+      .getUser(userId)
+      .then((anilist_user) => {
         dispatch({
           type: 'set_anilist_account',
-          anilist_account
+          anilist_user
         })
       })
       .catch((error) => alert(error.message));

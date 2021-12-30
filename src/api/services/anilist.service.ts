@@ -6,7 +6,8 @@ import { ANILIST_VIEWER_QUERY, ANILIST_USER_MEDIA_LIST_COLLECTION_QUERY } from '
 const collectionRef = db.collection('anilist');
 
 export const anilistService = {
-  getViewer: async (userId: any) => {
+  // fetches
+  fetchUser: async () => {
     const { data } = await api.fetch({
       headers: authHeader(),
       query: ANILIST_VIEWER_QUERY,
@@ -14,18 +15,13 @@ export const anilistService = {
     });
     console.log(data);
     const { Viewer } = data;
-    // Save Viewer to database.
-    return await collectionRef
-      .doc(`${userId}`)
-      .set(Viewer)
-      .then(() => Viewer)
-      .catch((error) => alert(error.message));
+    return Viewer;
   },
-  getMediaListCollection: async (userId: number, userName: string) => {
+  fetchMediaListCollection: async (anilistUserId: number, userName: string) => {
     const { data } = await api.fetch({
       query: ANILIST_USER_MEDIA_LIST_COLLECTION_QUERY,
       variables: {
-        userId,
+        userId: anilistUserId,
         userName,
         type: 'ANIME',
       },
@@ -34,29 +30,15 @@ export const anilistService = {
     const { MediaListCollection } = data;
     return MediaListCollection;
   },
-  updateViewer: async (userId: any, viewer: any) => {
+  // database queries
+  saveUser: async (userId: string, anilistUser: any) => {
     return await collectionRef
       .doc(`${userId}`)
-      .get()
-      .then((docSnapshot) => {
-        if (docSnapshot.exists) {
-          const data = docSnapshot.data();
-          if (data) {
-            const updatedViewer = {
-              ...data,
-              viewer
-            };
-            return collectionRef
-              .doc(`${userId}`)
-              .update(updatedViewer)
-              .then(() => updatedViewer)
-              .catch((error) => alert(error.message));
-          }
-        }
-      })
+      .set(anilistUser)
+      .then(() => anilistUser)
       .catch((error) => alert(error.message));
   },
-  getAccount: async (userId: any) => {
+  getUser: async (userId: string) => {
     return await collectionRef
       .doc(`${userId}`)
       .get()

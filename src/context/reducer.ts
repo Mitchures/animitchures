@@ -6,7 +6,7 @@ export const reducer = (state: State, action: Action): State => {
     case 'set_anilist_account':
       return {
         ...state,
-        anilist_account: action.anilist_account
+        anilist_user: action.anilist_user
       };
     case 'clear_featured':
       return {
@@ -35,7 +35,7 @@ export const reducer = (state: State, action: Action): State => {
         ...state,
         user: null,
         watchlist: [],
-        anilist_account: null,
+        anilist_user: null,
         featured: null
       };
     case 'set_results':

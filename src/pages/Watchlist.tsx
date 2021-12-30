@@ -9,14 +9,14 @@ import { useStateValue } from 'context';
 import { anilistActions } from 'actions';
 
 function Watchlist() {
-  const [{ watchlist, anilist_account }, dispatch] = useStateValue();
+  const [{ watchlist, anilist_user }] = useStateValue();
   const [completed, setCompleted] = useState([]);
   const [watching, setWatching] = useState([]);
 
   useEffect(() => {
-    if (anilist_account) {
-      const { id, name } = anilist_account;
-      anilistActions.getMediaListCollection(id, name, dispatch).then((collection) => {
+    if (anilist_user) {
+      const { id, name } = anilist_user;
+      anilistActions.getMediaListCollection(id, name).then((collection) => {
         console.log(collection);
         const completedList = collection.lists
           .find((item: any) => item.name === 'Completed')
@@ -28,7 +28,7 @@ function Watchlist() {
         setWatching(watchingList);
       });
     }
-  }, [anilist_account]);
+  }, [anilist_user]);
 
   return (
     <div className="watchlist">
@@ -44,7 +44,7 @@ function Watchlist() {
       ) : (
         <Loader placeholderText="Nothing to watch..." />
       )}
-      {anilist_account && (
+      {anilist_user && (
         <>
           <h1>Anilist Watchlist</h1>
           {watching.length > 0 && (

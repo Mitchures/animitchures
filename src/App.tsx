@@ -43,9 +43,9 @@ function App() {
                 docRef.set(user).catch((error) => alert(error.message));
                 // get user watchlist.
                 watchlistActions.getWatchlist(uid, dispatch);
-                // get anilist account if linked.
+                // get anilist user if linked.
                 if (user.anilistLinked) {
-                  anilistActions.getAccount(uid, dispatch);
+                  anilistActions.getUser(uid, dispatch);
                 }
                 // set current user to existing user.
                 dispatch({

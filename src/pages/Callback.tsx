@@ -25,7 +25,7 @@ function Callback() {
   useEffect(() => {
     if (code && user) {
       authActions.getAccessToken(code, dispatch).then(() => {
-        anilistActions.getViewer(user.uid, dispatch).then(() => {
+        anilistActions.fetchUser(user.uid, dispatch).then(() => {
           history.push('/settings');
         });
       });
