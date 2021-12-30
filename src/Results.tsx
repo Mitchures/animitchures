@@ -17,7 +17,6 @@ function Results({ location }: any) {
       variables: {
         search: searchQuery,
         type: 'ANIME',
-        isAdult: false,
       },
     });
 
