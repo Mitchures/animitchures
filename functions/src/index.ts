@@ -13,6 +13,7 @@ export const createProfile = functions.auth.user().onCreate(async (userRecord, c
     photoURL,
     displayName,
     isAdult: false,
+    anilistLinked: false,
   };
   return await db.collection('users').doc(uid).set(profile).catch(console.error);
 });
@@ -24,3 +25,19 @@ export const createWatchlist = functions.auth.user().onCreate(async (userRecord,
   };
   return await db.collection('watchlists').doc(uid).set(watchlist).catch(console.error);
 });
+
+export const linkedAnilistAccount = functions.firestore
+  .document('anilist/{docId}')
+  .onCreate(async (change, context) => {
+    const userId = context.params.docId;
+    // Get User.
+    const getUserPromise = admin.firestore().collection('users').doc(userId).get();
+    // Resolve promises for Order and Messages.
+    const userResults = await Promise.resolve(getUserPromise);
+    const USER = userResults.data();
+    const updatedUser = {
+      ...USER,
+      anilistLinked: true,
+    };
+    return await db.collection('users').doc(userId).set(updatedUser).catch(console.error);
+  });

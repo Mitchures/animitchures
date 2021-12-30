@@ -22,7 +22,9 @@ module.exports = {
   ],
   plugins: ['@typescript-eslint', 'import'],
   rules: {
+    'quote-props': 'off',
     'max-len': ['warn', { code: 80, ignoreComments: true }],
     'object-curly-spacing': ['warn', 'always'],
+    indent: 'off',
   },
 };
