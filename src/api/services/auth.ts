@@ -12,7 +12,7 @@ export const authService = {
         grant_type: 'authorization_code',
         client_id: process.env.REACT_APP_ANILIST_CLIENT_ID,
         client_secret: process.env.REACT_APP_ANILIST_CLIENT_SECRET,
-        redirect_uri: 'http://localhost:3000/callback',
+        redirect_uri: process.env.REACT_APP_ANILIST_CALLBACK_URI,
         code,
       }),
     })

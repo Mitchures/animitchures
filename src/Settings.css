@@ -3,3 +3,97 @@
   flex-direction: column;
   padding: 0 2rem;
 }
+
+.settings__container {
+  margin-top: 1.25rem;
+}
+
+.settings__success {
+  display: flex;
+  align-items: center;
+  color: green;
+}
+
+.settings__success span {
+  font-size: 16px;
+  margin-left: 0.875rem;
+}
+
+.settings__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.settings__column {
+  flex: 0.5;
+  display: flex;
+  flex-direction: column;
+}
+
+.settings__row > .settings__column:last-child {
+  align-items: center;
+}
+
+.settings__column > h4 {
+  color: var(--primary);
+}
+
+.settings__loginWithAnilist {
+  cursor: pointer;
+  width: 100%;
+  max-width: 350px;
+  color: rgba(17, 24, 39, 1);
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.875rem;
+  font-weight: 600;
+  border: 1px solid rgba(209, 213, 219, 1);
+  border-radius: 0.5rem;
+  background-color: white;
+  transition: all 0.3s;
+}
+
+.settings__loginWithAnilist:hover {
+  color: rgba(17, 24, 39, 1) !important;
+  background-color: #f3f4f6;
+}
+
+.settings__loginWithAnilist > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.settings__loginWithAnilist > div > img {
+  border-radius: 4px;
+  width: 1.5rem;
+}
+
+.settings__loginWithAnilist > div > span {
+  font-size: 14px;
+  margin-left: 0.875rem;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  .settings__column > h4 {
+    color: white;
+  }
+
+  .settings__row {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .settings__loginWithAnilist {
+    background-color: #19212D;
+    border: none;
+    color: white;
+  }
+
+  .settings__loginWithAnilist:hover {
+    color: white !important;
+    background-color: #222;
+  }
+}
