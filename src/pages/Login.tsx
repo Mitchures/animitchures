@@ -1,14 +1,14 @@
-import { useState } from 'react';
 import firebase from 'firebase';
 import { Link, useHistory } from 'react-router-dom';
 
 import './Login.css';
 
 import { auth, appleProvider, googleProvider } from 'config';
+import { useInput } from 'utils/hooks';
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const email = useInput('');
+  const password = useInput('');
   const history = useHistory();
 
   const signInWithProvider = (provider: firebase.auth.AuthProvider) => {
@@ -23,9 +23,9 @@ function Login() {
   const signIn = (event: { preventDefault: () => void } | any) => {
     event?.preventDefault();
 
-    if (email && password) {
+    if (email.value && password.value) {
       auth
-        .signInWithEmailAndPassword(email, password)
+        .signInWithEmailAndPassword(email.value, password.value)
         .then(({ user }) => {
           history.push('/');
         })
@@ -47,21 +47,11 @@ function Login() {
             <form className="login__form">
               <div>
                 <label htmlFor="login-username">Email</label>
-                <input
-                  type="text"
-                  id="login-username"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+                <input type="email" id="login-username" {...email} />
               </div>
               <div>
                 <label htmlFor="login-password">Password</label>
-                <input
-                  type="password"
-                  id="login-password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                <input type="password" id="login-password" {...password} />
               </div>
               <button type="submit" onClick={signIn}>
                 Sign in

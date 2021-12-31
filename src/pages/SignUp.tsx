@@ -1,28 +1,34 @@
-import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import './SignUp.css';
 
 import { auth } from 'config';
+import { useInput } from 'utils/hooks';
 
 function SignUp() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const name = useInput('');
+  const email = useInput('');
+  const password = useInput('');
+  const confirmPassword = useInput('');
   const history = useHistory();
 
   const handleSignUp = (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
-    if (email && name && password && confirmPassword && password === confirmPassword) {
+    if (
+      email.value &&
+      name.value &&
+      password.value &&
+      confirmPassword.value &&
+      password.value === confirmPassword.value
+    ) {
       auth
-        .createUserWithEmailAndPassword(email, password)
+        .createUserWithEmailAndPassword(email.value, password.value)
         .then(({ user }) => {
           console.log(user);
           return user
             ?.updateProfile({
-              displayName: name,
+              displayName: name.value,
             })
             .then(() => {
               // On success route to home
@@ -49,39 +55,19 @@ function SignUp() {
             <form className="signUp__form">
               <div>
                 <label htmlFor="signUp-name">Name</label>
-                <input
-                  type="text"
-                  id="signUp-name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
+                <input type="text" id="signUp-name" {...name} />
               </div>
               <div>
                 <label htmlFor="signUp-email">Email</label>
-                <input
-                  type="text"
-                  id="signUp-email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+                <input type="email" id="signUp-email" {...email} />
               </div>
               <div>
                 <label htmlFor="signUp-password">Password</label>
-                <input
-                  type="password"
-                  id="signUp-password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                <input type="password" id="signUp-password" {...password} />
               </div>
               <div>
                 <label htmlFor="signUp-confirmPassword">Confirm Password</label>
-                <input
-                  type="password"
-                  id="signUp-confirmPassword"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                />
+                <input type="password" id="signUp-confirmPassword" {...confirmPassword} />
               </div>
               <button type="submit" onClick={handleSignUp}>
                 Sign Up
