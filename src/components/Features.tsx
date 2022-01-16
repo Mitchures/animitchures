@@ -14,7 +14,7 @@ interface ITitles {
 function Features() {
   const [{ featured, user }, dispatch] = useStateValue();
   const currentYear = new Date().getFullYear();
-  const currentMonth = new Date().getMonth();
+  const currentMonth = new Date().getMonth() + 1;
   const seasons = [
     {
       name: 'WINTER',
@@ -67,7 +67,8 @@ function Features() {
         season: getSeason(currentMonth),
         seasonYear: currentYear,
         nextSeason: getNextSeason(currentMonth),
-        nextYear: currentYear + 1,
+        // Pass next year only when the season is FALL towards the end of the current year.
+        nextYear: currentMonth <= 9 ? currentYear : currentYear + 1,
         isAdult: user?.isAdult || false,
       },
     });

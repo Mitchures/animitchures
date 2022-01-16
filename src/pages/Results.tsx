@@ -9,7 +9,7 @@ import { SEARCH_QUERY } from 'utils';
 import { api } from 'api';
 
 function Results({ location }: any) {
-  const [{ results }, dispatch] = useStateValue();
+  const [{ results, user }, dispatch] = useStateValue();
   const search = location.search;
   const params = new URLSearchParams(search);
   const query = params.get('search');
@@ -20,6 +20,7 @@ function Results({ location }: any) {
       variables: {
         search: searchQuery,
         type: 'ANIME',
+        isAdult: user?.isAdult || false,
       },
     });
 

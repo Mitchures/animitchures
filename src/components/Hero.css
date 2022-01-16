@@ -5,6 +5,15 @@
   color: white;
 }
 
+.hero h1 {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.hero h1:hover {
+  opacity: 0.65;
+}
+
 .hero__banner {
   width: 100%;
   height: 100%;

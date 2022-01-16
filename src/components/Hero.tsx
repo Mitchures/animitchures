@@ -55,7 +55,15 @@ function Hero({ trending }: any) {
               </div>
               <div className="hero__row hero__column">
                 <div className="hero__rowBottom">
-                  <h1>
+                  <h1
+                    onClick={() =>
+                      history.push(
+                        `/anime/${selected.id}/${encodeURIComponent(
+                          selected.title.userPreferred.replace(/,?[ ]/g, '-').toLowerCase(),
+                        )}`,
+                      )
+                    }
+                  >
                     {selected.title.english ? selected.title.english : selected.title.userPreferred}
                   </h1>
                   <div className="hero__tags">
@@ -66,17 +74,6 @@ function Hero({ trending }: any) {
                     ))}
                   </div>
                   <div className="hero__actions">
-                    <button
-                      onClick={() =>
-                        history.push(
-                          `/anime/${selected.id}/${encodeURIComponent(
-                            selected.title.userPreferred.replace(/,?[ ]/g, '-').toLowerCase(),
-                          )}`,
-                        )
-                      }
-                    >
-                      <ArtTrack />
-                    </button>
                     {user && (
                       <>
                         {watchlist.filter(({ id }: IData) => id === selected.id).length > 0 ? (

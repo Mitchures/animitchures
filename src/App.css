@@ -4,6 +4,7 @@
   --accent-primary: #f345ae;
   --accent-secondary: #9b50f4;
   --action: #6366f1;
+  --action-light: rgba(99, 102, 241, 0.15);
   --action-secondary: #ff5657;
   /* Border radius of all block elements */
   --border-radius: 20px;

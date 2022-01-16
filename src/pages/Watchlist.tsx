@@ -34,7 +34,6 @@ function Watchlist() {
     <div className="watchlist">
       {watchlist.length > 0 ? (
         <>
-          <h1>Watchlist</h1>
           <div className="watchlist__grid">
             {watchlist.map((mediaItem) => (
               <Card key={mediaItem.id} {...mediaItem} />

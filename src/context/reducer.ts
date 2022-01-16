@@ -36,7 +36,7 @@ export const reducer = (state: State, action: Action): State => {
         user: null,
         watchlist: [],
         anilist_user: null,
-        featured: null
+        // featured: null
       };
     case 'set_results':
       return {

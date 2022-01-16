@@ -6,6 +6,7 @@ import Loader from 'components/Loader';
 import { authActions, anilistActions } from 'actions';
 import { useStateValue } from 'context';
 
+// TODO: Clean this up.
 function Callback() {
   const history = useHistory();
   const location = useLocation();

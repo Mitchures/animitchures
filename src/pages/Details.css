@@ -48,8 +48,7 @@
 
 .details__rightHeader {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   margin-bottom: 0.25rem;
 }
 
@@ -65,10 +64,12 @@
 .details__right > p {
   font-weight: 600;
   padding: 1.25rem 0;
+  margin-bottom: 1.25rem;
 }
 
 .details__actions {
   display: flex;
+  margin: 1.25rem 0 2.5rem;
 }
 
 .details__actions > button {
@@ -81,6 +82,95 @@
   margin-left: 0.875rem;
 }
 
+.details__tags {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 1rem 0 0;
+}
+
+.details__tag {
+  font-weight: 500;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.35rem 0.875rem;
+  font-size: 12px;
+  border-radius: 999px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.details__dataContainer {
+  display: grid;
+  grid-row-gap: 0.875rem;
+  grid-column-gap: 0.875rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  padding: 0.875rem 0;
+}
+
+.details__data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 0.5;
+  padding: 0.875rem 1.25rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: var(--border-radius);
+}
+
+.details__data h5,
+.details__data p {
+  padding: 0;
+}
+
+.details__data p {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.details__data--active {
+  background-color: var(--action-light) !important;
+}
+
+.details__data--active h5,
+.details__data--active p {
+  color: var(--action);
+}
+
+.details__characters {
+  display: grid;
+  grid-row-gap: 0.875rem;
+  grid-column-gap: 0.875rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  padding: 0.875rem 0;
+  margin-bottom: 1.25rem;
+}
+
+.details__character {
+  display: flex;
+  align-items: center;
+  flex: 0.5;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: var(--border-radius);
+}
+
+.details__characterImage {
+  height: 80px;
+  width: 80px;
+}
+
+.details__characterImage > img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+.details__characterBody {
+  padding: 0.875rem 1.25rem;
+}
+
 @media (prefers-color-scheme: dark) {
   .details__rightHeader > h1 {
     color: white;
@@ -90,5 +180,14 @@
 
   .details__bannerShadow {
     background: linear-gradient(50deg, rgba(6, 13, 34, 0) 0%, rgba(6, 13, 34, 1));
+  }
+
+  .details__data,
+  .details__character {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+
+  .details__tag {
+    background-color: rgba(0, 0, 0, 0.25);
   }
 }

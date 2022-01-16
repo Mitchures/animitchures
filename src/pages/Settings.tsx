@@ -11,12 +11,12 @@ import { userActions } from 'actions';
 import { IUser } from 'context/types';
 
 function Settings() {
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user, anilist_user }, dispatch] = useStateValue();
 
   const updateIsAdult = (isAdult: boolean) => {
     const updatedUser = { ...user, isAdult } as IUser;
     userActions.updateProfile(updatedUser, dispatch).then(() => {
-      // Clear featured to refresh content based on isAdult setting.
+      // Clear to refresh content based on isAdult setting.
       dispatch({
         type: 'clear_featured',
       });
@@ -32,10 +32,10 @@ function Settings() {
         {user && (
           <>
             <h2>Profile</h2>
-            <div className="settings__row">
+            {/* <div className="settings__row">
               <div className="settings__column">
                 <h4>Show Explicit Content</h4>
-                <p>Enabled or disable explicit content.</p>
+                <p>Enable or disable 18+ content.</p>
               </div>
               <div className="settings__column">
                 <ToggleSwitch
@@ -43,7 +43,7 @@ function Settings() {
                   onToggle={() => updateIsAdult(!user.isAdult)}
                 />
               </div>
-            </div>
+            </div> */}
             <div className="settings__row">
               <div className="settings__column">
                 <h4>Link Anilist Account</h4>
@@ -54,7 +54,7 @@ function Settings() {
                 </p>
               </div>
               <div className="settings__column">
-                {user.anilistLinked ? (
+                {anilist_user ? (
                   <div className="settings__success">
                     <Check />
                     <span>Account Linked</span>
