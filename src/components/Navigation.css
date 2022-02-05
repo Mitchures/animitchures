@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   flex: 0.18;
+  overflow-x: hidden;
   overflow-y: scroll;
   /* height: calc(100vh - 80px); */
   height: 100vh;

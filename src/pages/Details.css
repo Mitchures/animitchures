@@ -28,22 +28,23 @@
 }
 
 .details__left {
-  max-width: 400px;
+  flex: 0.3;
   margin-top: -250px;
 }
 
-.details__left > img {
-  object-fit: contain;
-  /* width: 400px; */
-  /* height: 600px; */
+.details__poster {
+  width: 100%;
+  object-fit: cover;
   border-radius: var(--border-radius);
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
 }
 
 .details__right {
+  flex: 0.7;
   position: relative;
-  width: 100%;
-  padding: 0 1.875rem;
+  overflow-x: hidden;
+  /* width: calc(100% - 360px); */
+  padding: 0 0 0 1.875rem;
 }
 
 .details__rightHeader {
@@ -69,7 +70,7 @@
 
 .details__actions {
   display: flex;
-  margin: 1.25rem 0 2.5rem;
+  margin: 1.25rem 0 0;
 }
 
 .details__actions > button {
@@ -100,11 +101,11 @@
 }
 
 .details__dataContainer {
-  display: grid;
-  grid-row-gap: 0.875rem;
-  grid-column-gap: 0.875rem;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  padding: 0.875rem 0;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: var(--border-radius);
 }
 
 .details__data {
@@ -113,8 +114,14 @@
   justify-content: center;
   flex: 0.5;
   padding: 0.875rem 1.25rem;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: var(--border-radius);
+}
+
+.details__data:first-child {
+  padding-top: 1.25rem;
+}
+
+.details__data:last-child {
+  padding-bottom: 1.25rem;
 }
 
 .details__data h5,
@@ -129,6 +136,8 @@
 }
 
 .details__data--active {
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
   background-color: var(--action-light) !important;
 }
 
@@ -137,38 +146,98 @@
   color: var(--action);
 }
 
-.details__characters {
+.details__relations {
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: var(--border-radius);
+  padding: 1.25rem 0 0;
+  margin-top: 0.875rem;
+  margin-bottom: 1.25rem;
+}
+
+.details__relations::-webkit-scrollbar { 
+  width: 0 !important 
+}
+
+.details__relations > .card:first-child {
+  padding-left: var(--left-spacing);
+}
+
+.details__relations > .card:last-child {
+  padding-right: var(--right-spacing);
+}
+
+.details__blockContainer {
   display: grid;
   grid-row-gap: 0.875rem;
   grid-column-gap: 0.875rem;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   padding: 0.875rem 0;
   margin-bottom: 1.25rem;
 }
 
-.details__character {
+.details__block {
   display: flex;
   align-items: center;
-  flex: 0.5;
+  justify-content: space-between;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: var(--border-radius);
 }
 
-.details__characterImage {
+.details__blockLeft {
+  flex: 0.5;
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.details__blockRight {
+  flex: 0.5;
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.details__blockImageContainer {
+  max-height: 80px;
+  max-width: 80px;
+}
+
+.details__blockImageContainer > img {
+  object-fit: cover;
   height: 80px;
   width: 80px;
 }
 
-.details__characterImage > img {
-  object-fit: cover;
-  height: 100%;
-  width: 100%;
+.details__blockLeft > .details__blockImageContainer > img {
   border-top-left-radius: var(--border-radius);
   border-bottom-left-radius: var(--border-radius);
 }
 
-.details__characterBody {
+.details__blockRight > .details__blockImageContainer > img {
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.details__blockBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 0.875rem 1.25rem;
+}
+
+.details__blockBody > p {
+  padding: 0;
+}
+
+.details__blockLeft > .details__blockBody {
+  text-align: left;
+}
+
+.details__blockRight > .details__blockBody {
+  text-align: right;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -182,8 +251,9 @@
     background: linear-gradient(50deg, rgba(6, 13, 34, 0) 0%, rgba(6, 13, 34, 1));
   }
 
-  .details__data,
-  .details__character {
+  .details__dataContainer,
+  .details__relations,
+  .details__block {
     background-color: rgba(0, 0, 0, 0.15);
   }
 

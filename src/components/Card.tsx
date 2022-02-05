@@ -5,7 +5,7 @@ interface IMediaItem {
   [key: string]: any;
 }
 
-function Card({ id, title, coverImage, bannerImage }: IMediaItem) {
+function Card({ id, title, coverImage, bannerImage, relationType }: IMediaItem) {
   return (
     <Link
       to={`/anime/${id}/${encodeURIComponent(
@@ -13,15 +13,13 @@ function Card({ id, title, coverImage, bannerImage }: IMediaItem) {
       )}`}
       className="card"
     >
-      <img
-        src={coverImage.extraLarge ? coverImage.extraLarge : bannerImage}
-        alt={title.userPreferred}
-      />
+      <img src={coverImage.large ? coverImage.large : bannerImage} alt={title.userPreferred} />
       <span className="card__label">
         <span className="card__labelTitle">
           {title.english ? title.english : title.userPreferred}
         </span>
       </span>
+      {relationType && <p className="card__subLabel">{relationType}</p>}
     </Link>
   );
 }

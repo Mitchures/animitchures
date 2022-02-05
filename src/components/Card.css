@@ -26,6 +26,7 @@
 .card__label {
   display: -webkit-box;
   color: rgb(116,136,153);
+  max-width: 200px; /* Same width as image */
   font-size: 14px;
   padding-top: 0.625rem;
   font-weight: 600;
@@ -33,4 +34,8 @@
   transition: color .2s ease;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+}
+
+.card__subLabel {
+  padding-bottom: 0;
 }

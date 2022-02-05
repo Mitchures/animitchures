@@ -5,6 +5,8 @@ import moment from 'moment';
 
 import './Details.css';
 
+import Card from 'components/Card';
+
 import { DETAILS_EXTENDED_QUERY } from 'utils';
 import { api } from 'api';
 import { watchlistActions } from 'actions';
@@ -53,6 +55,7 @@ function Details() {
   const convertText = (text: string) => {
     // Only return text as is if its suspected to be an acronym. ex: OVA or TV
     if (text.length <= 3) return text;
+    if (text.includes('_')) text = text.replace(/_/g, ' ');
     return text.charAt(0).toUpperCase() + text.substring(1).toLowerCase();
   };
 
@@ -66,6 +69,17 @@ function Details() {
 
   const getStudio = (studios: any) => {
     return studios.edges.map((studio: any) => studio.isMain && studio.node.name);
+  };
+
+  // Determine if media has related anime, no book related relations.
+  const getRelations = (relations: any) => {
+    const animeRelations = relations.edges.filter(
+      (relation: any) => relation.node.type === 'ANIME',
+    );
+    animeRelations.forEach((relation: any) => {
+      relation.node.relationType = convertText(relation.relationType);
+    });
+    return animeRelations;
   };
 
   return (
@@ -84,8 +98,7 @@ function Details() {
         <div className="details__container">
           <div className="details__left">
             <img
-              width="400"
-              className={`details__poster`}
+              className="details__poster"
               src={selected.coverImage.extraLarge}
               alt={selected.title.userPreferred}
             />
@@ -223,21 +236,67 @@ function Details() {
               </div>
             </div>
             <p dangerouslySetInnerHTML={{ __html: selected.description }}></p>
+            {getRelations(selected.relations).length > 0 && (
+              <>
+                <h3>Relations</h3>
+                <div className="details__relations">
+                  {getRelations(selected.relations).map((relation: any) => (
+                    <Card key={relation.id} {...relation.node} />
+                  ))}
+                </div>
+              </>
+            )}
             {selected.characterPreview.edges.length > 0 && (
               <>
                 <h3>Characters</h3>
-                <div className="details__characters">
+                <div className="details__blockContainer">
                   {selected.characterPreview.edges.slice(0, 6).map((character: any) => (
-                    <div key={character.id} className="details__character">
-                      <div className="details__characterImage">
-                        <img
-                          src={character.node.image.large}
-                          alt={character.node.name.userPreferred}
-                        />
+                    <div key={character.id} className="details__block">
+                      <div className="details__blockLeft">
+                        <div className="details__blockImageContainer">
+                          <img
+                            src={character.node.image.large}
+                            alt={character.node.name.userPreferred}
+                          />
+                        </div>
+                        <div className="details__blockBody">
+                          <h5>{character.node.name.userPreferred}</h5>
+                          <p>{convertText(character.role)}</p>
+                        </div>
                       </div>
-                      <div className="details__characterBody">
-                        <h5>{character.node.name.userPreferred}</h5>
-                        <p>{convertText(character.role)}</p>
+                      {character.voiceActors.length > 0 && (
+                        <div className="details__blockRight">
+                          <div className="details__blockBody">
+                            <h5>{character.voiceActors[0].name.userPreferred}</h5>
+                            <p>{character.voiceActors[0].language}</p>
+                          </div>
+                          <div className="details__blockImageContainer">
+                            <img
+                              src={character.voiceActors[0].image.large}
+                              alt={character.voiceActors[0].name.userPreferred}
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+            {selected.staffPreview.edges.length > 0 && (
+              <>
+                <h3>Staff</h3>
+                <div className="details__blockContainer">
+                  {selected.staffPreview.edges.slice(0, 6).map((staff: any) => (
+                    <div key={staff.id} className="details__block">
+                      <div className="details__blockLeft">
+                        <div className="details__blockImageContainer">
+                          <img src={staff.node.image.large} alt={staff.node.name.userPreferred} />
+                        </div>
+                        <div className="details__blockBody">
+                          <h5>{staff.node.name.userPreferred}</h5>
+                          <p>{staff.role}</p>
+                        </div>
                       </div>
                     </div>
                   ))}
