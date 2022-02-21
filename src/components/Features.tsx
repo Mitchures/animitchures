@@ -86,6 +86,7 @@ function Features() {
     <div className="features">
       {featured ? (
         <>
+          <h1>Discover</h1>
           <Hero {...featured} />
           {Object.keys(featured).map((key, index) => (
             <div key={index}>

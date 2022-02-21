@@ -11,8 +11,8 @@ import {
   ArtTrack,
 } from '@mui/icons-material';
 import { useStateValue } from 'context';
-import { watchlistActions } from 'actions';
-import { useHistory } from 'react-router-dom';
+import { addItemToWatchlist, removeItemFromWatchlist } from 'actions';
+import { useNavigate } from 'react-router-dom';
 
 interface IData {
   [key: string]: any;
@@ -30,7 +30,7 @@ function Hero({ trending }: any) {
   const [{ user, watchlist }, dispatch] = useStateValue();
   const [featured] = useState(trending?.media.slice(0, 3));
   const [selected, setSelected] = useState(trending?.media[0]);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <div className="hero">
@@ -57,7 +57,7 @@ function Hero({ trending }: any) {
                 <div className="hero__rowBottom">
                   <h1
                     onClick={() =>
-                      history.push(
+                      navigate(
                         `/anime/${selected.id}/${encodeURIComponent(
                           selected.title.userPreferred.replace(/,?[ ]/g, '-').toLowerCase(),
                         )}`,
@@ -78,18 +78,12 @@ function Hero({ trending }: any) {
                       <>
                         {watchlist.filter(({ id }: IData) => id === selected.id).length > 0 ? (
                           <button
-                            onClick={() =>
-                              watchlistActions.removeItemFromWatchlist(selected, user.uid, dispatch)
-                            }
+                            onClick={() => removeItemFromWatchlist(selected, user.uid, dispatch)}
                           >
                             <Remove />
                           </button>
                         ) : (
-                          <button
-                            onClick={() =>
-                              watchlistActions.addItemToWatchlist(selected, user.uid, dispatch)
-                            }
-                          >
+                          <button onClick={() => addItemToWatchlist(selected, user.uid, dispatch)}>
                             <Add />
                           </button>
                         )}

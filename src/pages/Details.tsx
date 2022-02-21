@@ -9,7 +9,7 @@ import Card from 'components/Card';
 
 import { DETAILS_EXTENDED_QUERY } from 'utils';
 import { api } from 'api';
-import { watchlistActions } from 'actions';
+import { addItemToWatchlist, removeItemFromWatchlist } from 'actions';
 import { useStateValue } from 'context';
 
 interface IData {
@@ -105,20 +105,12 @@ function Details() {
             {user && (
               <div className="details__actions">
                 {watchlist.filter(({ id }: IData) => id === selected.id).length > 0 ? (
-                  <button
-                    onClick={() =>
-                      watchlistActions.removeItemFromWatchlist(selected, user.uid, dispatch)
-                    }
-                  >
+                  <button onClick={() => removeItemFromWatchlist(selected, user.uid, dispatch)}>
                     <Remove />
                     <span>Remove from Watchlist</span>
                   </button>
                 ) : (
-                  <button
-                    onClick={() =>
-                      watchlistActions.addItemToWatchlist(selected, user.uid, dispatch)
-                    }
-                  >
+                  <button onClick={() => addItemToWatchlist(selected, user.uid, dispatch)}>
                     <Add />
                     <span>Add to Watchlist</span>
                   </button>

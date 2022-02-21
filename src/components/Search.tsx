@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Search as SearchIcon } from '@mui/icons-material';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useStateValue } from 'context';
 import './Search.css';
-import { useHistory, useLocation } from 'react-router-dom';
 
 function Search() {
+  const [, dispatch] = useStateValue();
   const [input, setInput] = useState<string>('');
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(input);
 
-    history.push(`/search/anime?search=${input}`);
+    // clear results before search.
+    dispatch({
+      type: 'set_results',
+      results: null,
+    });
+
+    navigate(`/search/anime?search=${input}`);
   };
 
   useEffect(() => {

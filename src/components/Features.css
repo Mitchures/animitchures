@@ -5,6 +5,11 @@
   overflow-y: auto;
 }
 
+.features > h1 {
+  margin-left: var(--left-spacing);
+  margin-bottom: var(--y-axis-spacing);
+}
+
 .features > div {
   margin-bottom: 1.25rem;
 }

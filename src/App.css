@@ -4,6 +4,8 @@
   --accent-primary: #f345ae;
   --accent-primary-light: rgba(246, 76, 186, 0.15);
   --accent-secondary: #9b50f4;
+  --success: #26AE7F;
+  --success-light: rgba(38, 174, 127, 0.15);
   --action: #6366f1;
   --action-light: rgba(99, 102, 241, 0.15);
   --action-secondary: #ff5657;
@@ -11,6 +13,7 @@
   --border-radius: 20px;
   /* Margins and padding of left and right content spacing */
   --x-axis-spacing: 2rem;
+  --y-axis-spacing: 1.25rem;
   --left-spacing: 2rem;
   --right-spacing: 2rem;
 }
@@ -56,11 +59,7 @@ a {
   transition: all 0.3s;
 }
 
-a svg {
-  transition: all 0.3s;
-}
-
-a span {
+a * {
   transition: all 0.3s;
 }
 
@@ -72,12 +71,24 @@ a.logout:hover {
   color: var(--action-secondary) !important;
 }
 
+a.logout:hover div {
+  background-color: var(--action-secondary) !important;
+}
+
 a.active {
   color: var(--action) !important;
 }
 
 a.active span {
   color: var(--primary);
+}
+
+a.active svg {
+  fill: white;
+}
+
+a.active div {
+  background-color: var(--action) !important;
 }
 
 button {
@@ -88,6 +99,7 @@ button {
   font-weight: 800;
   border: none;
   border-radius: var(--border-radius);
+  color: white;
   background-color: var(--action);
   transition: all 0.3s;
 }
@@ -97,7 +109,7 @@ button[type='submit'] {
 }
 
 button:hover {
-  opacity: 0.75;
+  opacity: 0.65;
 }
 
 input {

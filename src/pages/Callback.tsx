@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import Loader from 'components/Loader';
 
-import { authActions, anilistActions } from 'actions';
+import { getAccessToken, fetchAnilistUser } from 'actions';
 import { useStateValue } from 'context';
 
 // TODO: Clean this up.
 function Callback() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
   const [code, setCode] = useState('');
   const [{ user }, dispatch] = useStateValue();
@@ -25,9 +25,9 @@ function Callback() {
 
   useEffect(() => {
     if (code && user) {
-      authActions.getAccessToken(code, dispatch).then(() => {
-        anilistActions.fetchUser(user.uid, dispatch).then(() => {
-          history.push('/settings');
+      getAccessToken(code, dispatch).then(() => {
+        fetchAnilistUser(user.uid, dispatch).then(() => {
+          navigate('/settings');
         });
       });
     }

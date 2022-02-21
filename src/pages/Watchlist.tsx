@@ -6,7 +6,7 @@ import Card from 'components/Card';
 import Loader from 'components/Loader';
 
 import { useStateValue } from 'context';
-import { anilistActions } from 'actions';
+import { getAnilistMediaListCollection } from 'actions';
 
 function Watchlist() {
   const [{ watchlist, anilist_user }] = useStateValue();
@@ -16,7 +16,7 @@ function Watchlist() {
   useEffect(() => {
     if (anilist_user) {
       const { id, name } = anilist_user;
-      anilistActions.getMediaListCollection(id, name).then((collection) => {
+      getAnilistMediaListCollection(id, name).then((collection) => {
         console.log(collection);
         const completedList = collection.lists
           .find((item: any) => item.name === 'Completed')

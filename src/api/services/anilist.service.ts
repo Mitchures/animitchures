@@ -1,7 +1,7 @@
 import { db } from 'config';
 import { api } from 'api';
 import { authHeader } from 'helpers'
-import { ANILIST_VIEWER_QUERY, ANILIST_USER_MEDIA_LIST_COLLECTION_QUERY } from 'utils';
+import { ANILIST_VIEWER_QUERY, ANILIST_USER_MEDIA_LIST_COLLECTION_QUERY, ANILIST_USER_DETAILS_QUERY, ANILIST_USER_ACTIVITY_QUERY } from 'utils';
 
 const collectionRef = db.collection('anilist');
 
@@ -29,6 +29,28 @@ export const anilistService = {
     console.log(data);
     const { MediaListCollection } = data;
     return MediaListCollection;
+  },
+  fetchUserDetails: async (userName: string) => {
+    const { data } = await api.fetch({
+      query: ANILIST_USER_DETAILS_QUERY,
+      variables: {
+        name: userName,
+      },
+    });
+    console.log(data);
+    const { User } = data;
+    return User;
+  },
+  fetchUserActivity: async (anilistUserId: number) => {
+    const { data } = await api.fetch({
+      query: ANILIST_USER_ACTIVITY_QUERY,
+      variables: {
+        userId: anilistUserId,
+      },
+    });
+    console.log(data);
+    const { Page } = data;
+    return Page;
   },
   // database queries
   saveUser: async (userId: string, anilistUser: any) => {

@@ -7,7 +7,7 @@ import ToggleSwitch from 'components/ToggleSwitch';
 import AnilistLogoImage from 'images/anilist-logo.png';
 
 import { useStateValue } from 'context';
-import { userActions } from 'actions';
+import { updateProfile } from 'actions';
 import { IUser } from 'context/types';
 
 function Settings() {
@@ -15,7 +15,7 @@ function Settings() {
 
   const updateIsAdult = (isAdult: boolean) => {
     const updatedUser = { ...user, isAdult } as IUser;
-    userActions.updateProfile(updatedUser, dispatch).then(() => {
+    updateProfile(updatedUser, dispatch).then(() => {
       // Clear to refresh content based on isAdult setting.
       dispatch({
         type: 'clear_featured',

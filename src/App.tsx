@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
 
 import './App.css';
 
@@ -19,7 +19,7 @@ import Callback from 'pages/Callback';
 import { auth, db } from 'config';
 import { useStateValue } from 'context';
 import { IUser } from 'context/types';
-import { watchlistActions, anilistActions } from 'actions';
+import { getWatchlist, getAnilistUserFromFirestore } from 'actions';
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -42,10 +42,10 @@ function App() {
                 // update db if any new information exists.
                 docRef.set(user).catch((error) => alert(error.message));
                 // get user watchlist.
-                watchlistActions.getWatchlist(uid, dispatch);
+                getWatchlist(uid, dispatch);
                 // get anilist user if linked.
                 if (user.anilistLinked) {
-                  anilistActions.getUser(uid, dispatch);
+                  getAnilistUserFromFirestore(uid, dispatch);
                 }
                 // set current user to existing user.
                 dispatch({
@@ -88,26 +88,30 @@ function App() {
   return (
     <div className="app">
       <Router>
-        <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/sign-up" component={SignUp} />
-          <div className="app__container">
-            <Navigation />
-            <div className="app__body">
-              <Header />
-              <Route path="/callback" component={Callback} />
-              <Route path="/settings" component={Settings} />
-              <Route path="/watchlist" component={Watchlist} />
-              <Route path="/search/anime" component={Results} />
-              <Route path="/anime/:id/:title" component={Details} />
-              {user && <Route path="/profile" component={Profile} />}
-              <Route exact path="/">
-                <Features />
-              </Route>
-              {/* <Route render={() => <Redirect to="/" />} /> */}
-            </div>
-          </div>
-        </Switch>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route
+            element={
+              <div className="app__container">
+                <Navigation />
+                <div className="app__body">
+                  <Header />
+                  <Outlet />
+                </div>
+              </div>
+            }
+          >
+            <Route path="/callback" element={<Callback />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/watchlist" element={<Watchlist />} />
+            <Route path="/search/anime" element={<Results />} />
+            <Route path="/anime/:id/:title" element={<Details />} />
+            {user && <Route path="/profile" element={<Profile />} />}
+            <Route path="/" element={<Features />} />
+            {/* <Route render={() => <Redirect to="/" />} /> */}
+          </Route>
+        </Routes>
       </Router>
     </div>
   );

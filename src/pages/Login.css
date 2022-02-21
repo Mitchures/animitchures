@@ -92,6 +92,7 @@
 
 .login__withGoogle:hover,
 .login__withApple:hover {
+  color: rgba(17, 24, 39, 1);
   background-color: #f3f4f6;
 }
 
@@ -139,6 +140,7 @@
 
   .login__withGoogle:hover,
   .login__withApple:hover {
+    color: white;
     background-color: #222;
   }
 }

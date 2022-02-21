@@ -1,4 +1,4 @@
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import './SignUp.css';
 
@@ -10,7 +10,7 @@ function SignUp() {
   const email = useInput('');
   const password = useInput('');
   const confirmPassword = useInput('');
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSignUp = (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -32,7 +32,7 @@ function SignUp() {
             })
             .then(() => {
               // On success route to home
-              history.push('/');
+              navigate('/');
             });
         })
         .catch((error) => alert(error.message));

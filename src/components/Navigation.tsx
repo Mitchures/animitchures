@@ -28,22 +28,28 @@ function Navigation() {
         <h5>Menu</h5>
         <ul>
           <li>
-            <NavLink exact to="/">
-              <Explore />
+            <NavLink to="/">
+              <div className="navigation__icon">
+                <Explore />
+              </div>
               <span>Discover</span>
             </NavLink>
           </li>
           {user && (
             <li>
               <NavLink to="/watchlist">
-                <Favorite />
+                <div className="navigation__icon">
+                  <Favorite />
+                </div>
                 <span>Watchlist</span>
               </NavLink>
             </li>
           )}
           <li>
             <NavLink to="/coming-soon">
-              <CalendarToday />
+              <div className="navigation__icon">
+                <CalendarToday />
+              </div>
               <span>Coming Soon</span>
             </NavLink>
           </li>
@@ -52,7 +58,9 @@ function Navigation() {
         <ul>
           <li>
             <NavLink to="/community">
-              <Groups />
+              <div className="navigation__icon">
+                <Groups />
+              </div>
               <span>Community</span>
             </NavLink>
           </li>
@@ -61,21 +69,27 @@ function Navigation() {
         <ul>
           <li>
             <NavLink to="/settings">
-              <Settings />
+              <div className="navigation__icon">
+                <Settings />
+              </div>
               <span>Settings</span>
             </NavLink>
           </li>
           {user ? (
             <li>
               <Link to="/" className="logout" onClick={logout}>
-                <Logout />
+                <div className="navigation__icon">
+                  <Logout />
+                </div>
                 <span>Logout</span>
               </Link>
             </li>
           ) : (
             <li>
               <Link to="/login">
-                <Login />
+                <div className="navigation__icon">
+                  <Login />
+                </div>
                 <span>Login</span>
               </Link>
             </li>

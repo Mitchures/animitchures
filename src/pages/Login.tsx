@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import './Login.css';
 
@@ -9,13 +9,13 @@ import { useInput } from 'utils/hooks';
 function Login() {
   const email = useInput('');
   const password = useInput('');
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const signInWithProvider = (provider: firebase.auth.AuthProvider) => {
     auth
       .signInWithPopup(provider)
       .then(({ user }) => {
-        history.push('/');
+        navigate('/');
       })
       .catch((error) => alert(error.message));
   };
@@ -27,7 +27,7 @@ function Login() {
       auth
         .signInWithEmailAndPassword(email.value, password.value)
         .then(({ user }) => {
-          history.push('/');
+          navigate('/');
         })
         .catch((error) => alert(error.message));
     }

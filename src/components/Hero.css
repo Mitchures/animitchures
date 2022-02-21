@@ -71,7 +71,7 @@
   margin-bottom: 0.5rem;
   padding: 0.35rem 0.875rem;
   font-size: 12px;
-  border-radius: 999px;
+  border-radius: 10px;
   color: white;
   background-color: rgba(0, 0, 0, 0.5);
 }
