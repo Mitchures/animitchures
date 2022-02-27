@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search as SearchIcon } from '@mui/icons-material';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import { useStateValue } from 'context';
 import './Search.css';
 
@@ -9,6 +9,7 @@ function Search() {
   const [input, setInput] = useState<string>('');
   const navigate = useNavigate();
   const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -20,17 +21,14 @@ function Search() {
       results: null,
     });
 
+    setSearchParams({ search: input });
+
     navigate(`/search/anime?search=${input}`);
   };
 
   useEffect(() => {
-    //TODO: this seems weird, probably should fix
-    const search = location.search;
-    const params = new URLSearchParams(search);
-    const query = params.get('search');
-
-    if (search && query) setInput(query);
-
+    const query = searchParams.get('search');
+    if (searchParams && query) setInput(query);
     return () => {
       if (input.length > 0) setInput('');
     };

@@ -38,6 +38,11 @@
   /* font-size: 40px; */
 }
 
+.login__header > a > img {
+  width: 50px;
+  margin-right: 0.875rem;
+}
+
 .login__container {
   height: calc(100% - 80px);
   display: grid;

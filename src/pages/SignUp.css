@@ -38,6 +38,11 @@
   /* font-size: 40px; */
 }
 
+.signUp__header > a > img {
+  width: 50px;
+  margin-right: 0.875rem;
+}
+
 .signUp__container {
   height: calc(100% - 80px);
   display: grid;

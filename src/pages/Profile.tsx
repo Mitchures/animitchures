@@ -26,12 +26,14 @@ function Profile() {
     <div className="profile">
       {user && (
         <div className="profile__container">
-          <Avatar
-            className="profile__avatar"
-            alt={`${user.displayName || user.email}`}
-            src={`${user.photoURL}`}
-          />
-          <h1>{user.displayName}</h1>
+          <div className="profile__card">
+            <Avatar
+              className="profile__avatar"
+              alt={`${user.displayName || user.email}`}
+              src={`${user.photoURL}`}
+            />
+            <h1>{user.displayName}</h1>
+          </div>
         </div>
       )}
     </div>

@@ -5,6 +5,8 @@ import './SignUp.css';
 import { auth } from 'config';
 import { useInput } from 'utils/hooks';
 
+import Logo from '../images/animitchures-logo.svg';
+
 function SignUp() {
   const name = useInput('');
   const email = useInput('');
@@ -46,7 +48,8 @@ function SignUp() {
       <div className="signUp__left">
         <div className="signUp__header">
           <Link to="/">
-            animitchures<span>.</span>
+            <img src={Logo} alt="animitchures" />
+            animitchures<span></span>
           </Link>
         </div>
         <div className="signUp__container">

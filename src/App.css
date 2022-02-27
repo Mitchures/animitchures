@@ -31,7 +31,7 @@
 }
 
 .app__body {
-  flex: 0.82;
+  flex: 0.80;
   /* height: calc(100vh - 80px); */
   height: 100vh;
   width: 100%;

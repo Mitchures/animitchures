@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import './Results.css';
 
@@ -8,11 +9,12 @@ import { useStateValue } from 'context';
 import { SEARCH_QUERY } from 'utils';
 import { api } from 'api';
 
-function Results({ location }: any) {
+function Results() {
   const [{ results, user }, dispatch] = useStateValue();
   const [currentPage, setCurrentPage] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(false);
   const [querySearched, setQuerySearched] = useState('');
+  const location = useLocation();
   const search = location.search;
   const params = new URLSearchParams(search);
   const query = params.get('search');

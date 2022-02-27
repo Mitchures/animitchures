@@ -11,6 +11,7 @@ import {
 import './Navigation.css';
 import { auth } from 'config';
 import { useStateValue } from 'context';
+import Logo from '../images/animitchures-logo.svg';
 
 function Navigation() {
   const [{ user }] = useStateValue();
@@ -22,7 +23,8 @@ function Navigation() {
   return (
     <div className="navigation">
       <Link to="/" className="navigation__logo">
-        animitchures<span>.</span>
+        <img src={Logo} alt="animitchures" />
+        animitchures<span></span>
       </Link>
       <div className="navigation__container">
         <h5>Menu</h5>

@@ -6,6 +6,8 @@ import './Login.css';
 import { auth, appleProvider, googleProvider } from 'config';
 import { useInput } from 'utils/hooks';
 
+import Logo from '../images/animitchures-logo.svg';
+
 function Login() {
   const email = useInput('');
   const password = useInput('');
@@ -38,7 +40,8 @@ function Login() {
       <div className="login__left">
         <div className="login__header">
           <Link to="/">
-            animitchures<span>.</span>
+            <img src={Logo} alt="animitchures" />
+            animitchures<span></span>
           </Link>
         </div>
         <div className="login__container">
