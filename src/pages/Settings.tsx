@@ -7,7 +7,7 @@ import ToggleSwitch from 'components/ToggleSwitch';
 import AnilistLogoImage from 'images/anilist-logo.png';
 
 import { useStateValue } from 'context';
-import { updateProfile } from 'actions';
+import { updateProfile } from 'api';
 import { IUser } from 'context/types';
 
 function Settings() {
@@ -15,12 +15,19 @@ function Settings() {
 
   const updateIsAdult = (isAdult: boolean) => {
     const updatedUser = { ...user, isAdult } as IUser;
-    updateProfile(updatedUser, dispatch).then(() => {
-      // Clear to refresh content based on isAdult setting.
-      dispatch({
-        type: 'clear_featured',
+    updateProfile(updatedUser)
+      .then((user) => {
+        dispatch({
+          type: 'set_user',
+          user: user as IUser,
+        });
+      })
+      .then(() => {
+        // Clear to refresh content based on isAdult setting.
+        dispatch({
+          type: 'clear_featured',
+        });
       });
-    });
   };
 
   return (
@@ -32,7 +39,7 @@ function Settings() {
         {user && (
           <>
             <h2>Profile</h2>
-            {/* <div className="settings__row">
+            <div className="settings__row">
               <div className="settings__column">
                 <h4>Show Explicit Content</h4>
                 <p>Enable or disable 18+ content.</p>
@@ -43,7 +50,7 @@ function Settings() {
                   onToggle={() => updateIsAdult(!user.isAdult)}
                 />
               </div>
-            </div> */}
+            </div>
             <div className="settings__row">
               <div className="settings__column">
                 <h4>Link Anilist Account</h4>

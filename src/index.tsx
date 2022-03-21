@@ -1,16 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { ApolloProvider } from '@apollo/client';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import reportWebVitals from './reportWebVitals';
 import { StateProvider, initialState } from './context';
+import { apolloClient } from './config';
 
 ReactDOM.render(
   <React.StrictMode>
-    <StateProvider initialState={initialState}>
-      <App />
-    </StateProvider>
+    <ApolloProvider client={apolloClient}>
+      <StateProvider initialState={initialState}>
+        <App />
+      </StateProvider>
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

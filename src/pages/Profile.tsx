@@ -1,26 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
+import { useQuery } from '@apollo/client';
 
 import './Profile.css';
 
 import { useStateValue } from 'context';
-import { getAnilistUserDetails, getAnilistUserActivity } from 'actions';
+import { ANILIST_USER_AND_ACTIVITY_QUERY } from 'utils';
 
 function Profile() {
-  const [{ user, anilist_user }, dispatch] = useStateValue();
-  const [activity, setActivity] = useState(null);
-  const [details, setDetails] = useState(null);
+  const [{ user, anilist_user }] = useStateValue();
+  const { loading, error, data } = useQuery(ANILIST_USER_AND_ACTIVITY_QUERY, {
+    variables: {
+      id: anilist_user?.id,
+      name: anilist_user?.name,
+    },
+    skip: !user?.anilistLinked,
+  });
 
   useEffect(() => {
-    const fetchData = async () => {
-      const { id, name } = anilist_user;
-      const detailsData = await getAnilistUserDetails(name, dispatch);
-      const activityData = await getAnilistUserActivity(id, dispatch);
-      setDetails(detailsData);
-      setActivity(activityData);
-    };
-    if (anilist_user) fetchData();
-  }, [anilist_user]);
+    if (data) {
+      console.log(data);
+    }
+  }, [data]);
 
   return (
     <div className="profile">

@@ -1,4 +1,6 @@
-export const FEATURED_QUERY = `
+import { gql } from "@apollo/client";
+
+export const FEATURED_QUERY = gql`
   query ($season: MediaSeason, $seasonYear: Int, $nextSeason: MediaSeason, $nextYear: Int, $isAdult: Boolean = false) {
     trending: Page(page: 1, perPage: 15) {
       media(sort: TRENDING_DESC, type: ANIME, isAdult: $isAdult) {
@@ -83,7 +85,7 @@ export const FEATURED_QUERY = `
   }
 `;
 
-export const SEARCH_QUERY = `
+export const SEARCH_QUERY = gql`
   query ($page: Int, $perPage: Int, $id: Int, $type: MediaType, $isAdult: Boolean = false, $search: String, $format: [MediaFormat], $status: MediaStatus, $countryOfOrigin: CountryCode, $source: MediaSource, $season: MediaSeason, $seasonYear: Int, $year: String, $onList: Boolean, $yearLesser: FuzzyDateInt, $yearGreater: FuzzyDateInt, $episodeLesser: Int, $episodeGreater: Int, $durationLesser: Int, $durationGreater: Int, $chapterLesser: Int, $chapterGreater: Int, $volumeLesser: Int, $volumeGreater: Int, $licensedBy: [String], $genres: [String], $excludedGenres: [String], $tags: [String], $excludedTags: [String], $minimumTagRank: Int, $sort: [MediaSort] = [POPULARITY_DESC, SCORE_DESC]) {
     Page(page: $page, perPage: $perPage) {
       pageInfo {
@@ -151,7 +153,7 @@ export const SEARCH_QUERY = `
   }
 `
 
-export const DETAILS_QUERY = `
+export const DETAILS_QUERY = gql`
   query media($id: Int, $type: MediaType) {
     Media(id: $id, type: $type) {
       id
@@ -170,7 +172,7 @@ export const DETAILS_QUERY = `
   }
 `;
 
-export const DETAILS_EXTENDED_QUERY = `
+export const DETAILS_EXTENDED_QUERY = gql`
   query media($id: Int, $type: MediaType, $isAdult: Boolean) {
     Media(id: $id, type: $type, isAdult: $isAdult) {
       id
@@ -398,8 +400,8 @@ export const DETAILS_EXTENDED_QUERY = `
 
 // Unique to AniList queries.
 
-export const ANILIST_USER_ACTIVITY_QUERY = `
-  query ($id: Int, $type: ActivityType, $page: Int = 1) {
+export const ANILIST_USER_AND_ACTIVITY_QUERY = gql`
+  query ($id: Int, $name: String, $type: ActivityType, $page: Int = 1) {
     Page(page: $page, perPage: 25) {
       pageInfo {
         total
@@ -486,11 +488,6 @@ export const ANILIST_USER_ACTIVITY_QUERY = `
         }
       }
     }
-  }
-`
-
-export const ANILIST_USER_DETAILS_QUERY = `
-  query ($id: Int, $name: String) {
     User(id: $id, name: $name) {
       id
       name
@@ -634,7 +631,8 @@ export const ANILIST_USER_DETAILS_QUERY = `
     }
   }
 `
-export const ANILIST_USER_MEDIA_LIST_COLLECTION_QUERY = `
+
+export const ANILIST_USER_MEDIA_LIST_COLLECTION_QUERY = gql`
   query ($userId: Int, $userName: String, $type: MediaType) {
     MediaListCollection(userId: $userId, userName: $userName, type: $type) {
       lists {
@@ -729,7 +727,7 @@ export const ANILIST_USER_MEDIA_LIST_COLLECTION_QUERY = `
   }
 `
 // Viewer query requires anilist authentication.
-export const ANILIST_VIEWER_QUERY = `
+export const ANILIST_VIEWER_QUERY = gql`
   query {
     Viewer {
       id

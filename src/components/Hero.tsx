@@ -11,7 +11,7 @@ import {
   ArtTrack,
 } from '@mui/icons-material';
 import { useStateValue } from 'context';
-import { addItemToWatchlist, removeItemFromWatchlist } from 'actions';
+import { addItemToWatchlist, removeItemFromWatchlist } from 'api';
 import { useNavigate } from 'react-router-dom';
 
 interface IData {

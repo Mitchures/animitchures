@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Outlet, Navigate } from 'react-router-dom';
 
 import './App.css';
 
@@ -15,11 +15,17 @@ import Results from 'pages/Results';
 import Watchlist from 'pages/Watchlist';
 import Settings from 'pages/Settings';
 import Callback from 'pages/Callback';
+import ComingSoon from 'pages/ComingSoon';
+import Community from 'pages/Community';
 
 import { auth, db } from 'config';
 import { useStateValue } from 'context';
 import { IUser } from 'context/types';
-import { getWatchlist, getAnilistUserFromFirestore } from 'actions';
+import { getWatchlist } from 'api';
+
+interface IData {
+  [key: string]: any;
+}
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -45,7 +51,21 @@ function App() {
                 getWatchlist(uid, dispatch);
                 // get anilist user if linked.
                 if (user.anilistLinked) {
-                  getAnilistUserFromFirestore(uid, dispatch);
+                  const anilistDocRef = db.collection('anilist').doc(uid);
+                  anilistDocRef
+                    .get()
+                    .then((docSnapshot) => {
+                      if (docSnapshot.exists) {
+                        const data = docSnapshot.data();
+                        if (data) {
+                          dispatch({
+                            type: 'set_anilist_user',
+                            anilist_user: data,
+                          });
+                        }
+                      }
+                    })
+                    .catch((error) => alert(error.message));
                 }
                 // set current user to existing user.
                 dispatch({
@@ -104,12 +124,15 @@ function App() {
           >
             <Route path="/callback" element={<Callback />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/coming-soon" element={<ComingSoon />} />
+            <Route path="/community" element={<Community />} />
             <Route path="/watchlist" element={<Watchlist />} />
             <Route path="/search/anime" element={<Results />} />
             <Route path="/anime/:id/:title" element={<Details />} />
             {user && <Route path="/profile" element={<Profile />} />}
             <Route path="/" element={<Features />} />
-            {/* <Route render={() => <Redirect to="/" />} /> */}
+            {/* Redirect unknown routes to root */}
+            <Route path="*" element={<Navigate to="/" />} />
           </Route>
         </Routes>
       </Router>

@@ -1,37 +1,72 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
 
 import Loader from 'components/Loader';
 
-import { getAccessToken, fetchAnilistUser } from 'actions';
 import { useStateValue } from 'context';
+import { ANILIST_VIEWER_QUERY } from 'utils';
+import { authHeader } from 'helpers';
+import { db } from 'config';
 
-// TODO: Clean this up.
 function Callback() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const [code, setCode] = useState('');
+  const { code } = useParams();
   const [{ user }, dispatch] = useStateValue();
+  const { loading, error, data } = useQuery(ANILIST_VIEWER_QUERY, {
+    context: {
+      headers: authHeader(),
+    },
+    skip: !authHeader(),
+  });
 
-  useEffect(() => {
-    if (location.pathname === '/callback') {
-      const search = location.search;
-      const params = new URLSearchParams(search);
-      const query = params.get('code');
-      setCode(`${query}`);
-      console.log(location, query);
-    }
-  }, [location]);
+  const handleAccessToken = async () => {
+    // proxy stuff: https://stackoverflow.com/questions/36878255/allow-access-control-allow-origin-header-using-html5-fetch-api
+    // https://anilist.co/api/v2/oauth/token
+    const request = await fetch('http://localhost:8010/proxy', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        grant_type: 'authorization_code',
+        client_id: process.env.REACT_APP_ANILIST_CLIENT_ID,
+        client_secret: process.env.REACT_APP_ANILIST_CLIENT_SECRET,
+        redirect_uri: process.env.REACT_APP_ANILIST_CALLBACK_URI,
+        code,
+      }),
+    });
+    const { access_token } = await request.json();
+    // Persist access token.
+    localStorage.setItem('token', JSON.stringify(access_token));
+  };
 
-  useEffect(() => {
-    if (code && user) {
-      getAccessToken(code, dispatch).then(() => {
-        fetchAnilistUser(user.uid, dispatch).then(() => {
-          navigate('/settings');
+  const handleAnilistUser = async (anilist_user: any, userId: string) => {
+    const collectionRef = db.collection('anilist');
+    const docRef = collectionRef.doc(`${userId}`);
+    docRef
+      .set(anilist_user)
+      .then(() => {
+        dispatch({
+          type: 'set_anilist_user',
+          anilist_user,
         });
-      });
+      })
+      .then(() => navigate('/settings'))
+      .catch((error) => alert(error.message));
+  };
+
+  useEffect(() => {
+    if (code) handleAccessToken();
+  }, [code]);
+
+  useEffect(() => {
+    if (data && user) {
+      const { Viewer } = data;
+      handleAnilistUser(Viewer, user.uid);
     }
-  }, [code, user]);
+  }, [data, user]);
 
   return <Loader />;
 }

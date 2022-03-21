@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Add, Remove } from '@mui/icons-material';
+import { useQuery } from '@apollo/client';
 import moment from 'moment';
 
 import './Details.css';
@@ -8,8 +9,7 @@ import './Details.css';
 import Card from 'components/Card';
 
 import { DETAILS_EXTENDED_QUERY } from 'utils';
-import { api } from 'api';
-import { addItemToWatchlist, removeItemFromWatchlist } from 'actions';
+import { addItemToWatchlist, removeItemFromWatchlist } from 'api';
 import { useStateValue } from 'context';
 
 interface IData {
@@ -23,25 +23,22 @@ interface IDate {
 }
 
 function Details() {
-  const [{ selected, user, watchlist }, dispatch] = useStateValue();
   const { id } = useParams<any>();
+  const { error, loading, data } = useQuery(DETAILS_EXTENDED_QUERY, {
+    variables: {
+      id,
+      type: 'ANIME',
+    },
+  });
+  const [{ selected, user, watchlist }, dispatch] = useStateValue();
 
   useEffect(() => {
-    const getItems = async () => {
-      const { data } = await api.fetch({
-        query: DETAILS_EXTENDED_QUERY,
-        variables: {
-          id,
-          type: 'ANIME',
-        },
-      });
-      console.log(data);
+    if (!loading && data) {
       dispatch({
         type: 'set_selected',
         selected: data.Media,
       });
-    };
-    getItems();
+    }
 
     return () => {
       dispatch({
@@ -49,7 +46,7 @@ function Details() {
         selected: null,
       });
     };
-  }, [id]);
+  }, [data]);
 
   // Convert text that may come back UpperCase.
   const convertText = (text: string) => {
@@ -76,9 +73,6 @@ function Details() {
     const animeRelations = relations.edges.filter(
       (relation: any) => relation.node.type === 'ANIME',
     );
-    animeRelations.forEach((relation: any) => {
-      relation.node.relationType = convertText(relation.relationType);
-    });
     return animeRelations;
   };
 
@@ -233,7 +227,11 @@ function Details() {
                 <h3>Relations</h3>
                 <div className="details__relations">
                   {getRelations(selected.relations).map((relation: any) => (
-                    <Card key={relation.id} {...relation.node} />
+                    <Card
+                      key={relation.id}
+                      {...relation.node}
+                      relationType={relation.relationType}
+                    />
                   ))}
                 </div>
               </>

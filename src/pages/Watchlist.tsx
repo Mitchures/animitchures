@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useQuery } from '@apollo/client';
 
 import './Watchlist.css';
 
@@ -6,29 +7,35 @@ import Card from 'components/Card';
 import Loader from 'components/Loader';
 
 import { useStateValue } from 'context';
-import { getAnilistMediaListCollection } from 'actions';
+import { ANILIST_USER_MEDIA_LIST_COLLECTION_QUERY } from 'utils';
 
 function Watchlist() {
   const [{ watchlist, anilist_user }] = useStateValue();
   const [completed, setCompleted] = useState([]);
   const [watching, setWatching] = useState([]);
+  const { loading, error, data } = useQuery(ANILIST_USER_MEDIA_LIST_COLLECTION_QUERY, {
+    variables: {
+      userId: anilist_user?.id,
+      userName: anilist_user?.name,
+      type: 'ANIME',
+    },
+    skip: !anilist_user,
+  });
 
   useEffect(() => {
-    if (anilist_user) {
-      const { id, name } = anilist_user;
-      getAnilistMediaListCollection(id, name).then((collection) => {
-        console.log(collection);
-        const completedList = collection.lists
-          .find((item: any) => item.name === 'Completed')
-          .entries.map((item: any) => item.media);
-        const watchingList = collection.lists
-          .find((item: any) => item.name === 'Watching')
-          .entries.map((item: any) => item.media);
-        setCompleted(completedList);
-        setWatching(watchingList);
-      });
+    if (data) {
+      const { MediaListCollection } = data;
+      console.log(MediaListCollection);
+      const completedList = MediaListCollection.lists
+        .find((item: any) => item.name === 'Completed')
+        .entries.map((item: any) => item.media);
+      const watchingList = MediaListCollection.lists
+        .find((item: any) => item.name === 'Watching')
+        .entries.map((item: any) => item.media);
+      setCompleted(completedList);
+      setWatching(watchingList);
     }
-  }, [anilist_user]);
+  }, [data]);
 
   return (
     <div className="watchlist">

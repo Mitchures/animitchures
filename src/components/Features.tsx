@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import './Features.css';
 import { FEATURED_QUERY } from 'utils';
-import { api } from 'api';
 import { useStateValue } from 'context';
 import Hero from './Hero';
 import Card from './Card';
 import Loader from './Loader';
+import { useQuery } from '@apollo/client';
 
 interface ITitles {
   [key: string]: string;
@@ -59,28 +59,26 @@ function Features() {
       .filter((item) => item)[0];
   };
 
-  const getItems = async () => {
-    const { data } = await api.fetch({
-      query: FEATURED_QUERY,
-      variables: {
-        type: 'ANIME',
-        season: getSeason(currentMonth),
-        seasonYear: currentYear,
-        nextSeason: getNextSeason(currentMonth),
-        // Pass next year only when the season is FALL towards the end of the current year.
-        nextYear: currentMonth <= 9 ? currentYear : currentYear + 1,
-        isAdult: user?.isAdult || false,
-      },
-    });
-    dispatch({
-      type: 'set_featured',
-      featured: data,
-    });
-  };
+  const { error, loading, data } = useQuery(FEATURED_QUERY, {
+    variables: {
+      type: 'ANIME',
+      season: getSeason(currentMonth),
+      seasonYear: currentYear,
+      nextSeason: getNextSeason(currentMonth),
+      // Pass next year only when the season is FALL towards the end of the current year.
+      nextYear: currentMonth <= 9 ? currentYear : currentYear + 1,
+      isAdult: user?.isAdult || false,
+    },
+  });
 
   useEffect(() => {
-    getItems();
-  }, []);
+    if (data) {
+      dispatch({
+        type: 'set_featured',
+        featured: data,
+      });
+    }
+  }, [data]);
 
   return (
     <div className="features">

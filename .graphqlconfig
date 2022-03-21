@@ -1,0 +1,15 @@
+{
+    "name": "Anilist Schema",
+    "schemaPath": "https://anilist.github.io/ApiV2-GraphQL-Docs/",
+    "extensions": {
+        "endpoints": {
+            "Anilist": {
+                "url": "https://graphql.anilist.co",
+                "headers": {
+                    "user-agent": "JS GraphQL"
+                },
+                "introspect": true
+            }
+        }
+    }
+}
