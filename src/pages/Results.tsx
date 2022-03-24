@@ -7,7 +7,7 @@ import './Results.css';
 import Card from 'components/Card';
 
 import { useStateValue } from 'context';
-import { SEARCH_QUERY } from 'utils';
+import { SEARCH_QUERY } from 'graphql/queries';
 
 // TODO: search logic still needs fixing.
 function Results() {
@@ -19,7 +19,7 @@ function Results() {
   const [currentPage, setCurrentPage] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(false);
   const [querySearched, setQuerySearched] = useState('');
-  const { loading, error, data, refetch } = useQuery(SEARCH_QUERY, {
+  const { data, refetch } = useQuery(SEARCH_QUERY, {
     variables: {
       search: querySearched,
       sort: 'SEARCH_MATCH',

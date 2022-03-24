@@ -1,10 +1,7 @@
 import { Dispatch } from 'react';
 import { Action } from 'context/types';
 import { db } from 'config';
-
-interface IData {
-  [key: string]: any;
-}
+import { Media } from 'graphql/types';
 
 const collectionRef = db.collection('watchlists');
 
@@ -15,7 +12,7 @@ export const getWatchlist = async (userId: string, dispatch: Dispatch<Action>) =
     .then((docSnapshot) => {
       if (docSnapshot.exists) {
         const data = docSnapshot.data();
-        if (data) return data as IData[];
+        if (data) return data as Media[];
       }
     })
     .then(({ watchlist }: any) => {
@@ -28,7 +25,7 @@ export const getWatchlist = async (userId: string, dispatch: Dispatch<Action>) =
 };
 
 export const addItemToWatchlist = async (
-  media: IData,
+  media: Media,
   userId: string,
   dispatch: Dispatch<Action>,
 ) => {
@@ -61,7 +58,7 @@ export const addItemToWatchlist = async (
 };
 
 export const removeItemFromWatchlist = async (
-  media: IData,
+  media: Media,
   userId: string,
   dispatch: Dispatch<Action>,
 ) => {
@@ -74,7 +71,7 @@ export const removeItemFromWatchlist = async (
         if (data) {
           const { watchlist } = data;
           const newWatchlist = {
-            watchlist: watchlist.filter((item: IData) => item.id !== media.id),
+            watchlist: watchlist.filter((item: Media) => item.id !== media.id),
           };
           return collectionRef
             .doc(`${userId}`)

@@ -1,4 +1,5 @@
 import { Check } from '@mui/icons-material';
+import { motion } from 'framer-motion';
 
 import './Settings.css';
 
@@ -8,18 +9,18 @@ import AnilistLogoImage from 'images/anilist-logo.png';
 
 import { useStateValue } from 'context';
 import { updateProfile } from 'api';
-import { IUser } from 'context/types';
+import { User } from 'context/types';
 
 function Settings() {
   const [{ user, anilist_user }, dispatch] = useStateValue();
 
   const updateIsAdult = (isAdult: boolean) => {
-    const updatedUser = { ...user, isAdult } as IUser;
+    const updatedUser = { ...user, isAdult } as User;
     updateProfile(updatedUser)
       .then((user) => {
         dispatch({
           type: 'set_user',
-          user: user as IUser,
+          user: user as User,
         });
       })
       .then(() => {
@@ -31,7 +32,12 @@ function Settings() {
   };
 
   return (
-    <div className="settings">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="settings"
+    >
       <div className="settings__header">
         <h1>Settings</h1>
       </div>
@@ -54,10 +60,12 @@ function Settings() {
             <div className="settings__row">
               <div className="settings__column">
                 <h4>Link Anilist Account</h4>
+                <p>Connect your Anilist account to enable more features.</p>
                 <p>
-                  Connect your Anilist account to enable more features. Keep in mind, once you've
-                  linked your Anilist account with Animitchures, your Anilist settings will take
-                  precedence over your Animitchures settings.
+                  <em>
+                    Note: Once you've linked your Anilist account, your Anilist settings will take
+                    precedence over your Animitchures settings.
+                  </em>
                 </p>
               </div>
               <div className="settings__column">
@@ -79,10 +87,34 @@ function Settings() {
                 )}
               </div>
             </div>
+            {/* TODO: Implement this ... maybe ... */}
+            {/* {anilist_user && (
+              <>
+                <h2>Anilist</h2>
+                <div className="settings__row">
+                  <div className="settings__column">
+                    <h4>Preferred Watchlist</h4>
+                    <p>
+                      Switch between which Watchlist you prefer using. If Enabled, your Anilist
+                      Watchlist will be used. If Disabled, your Animitchures Watchlist will be used.
+                    </p>
+                    <p>
+                      <em>
+                        Note: Once your Anilist account is linked, your preferred Watchlist defaults
+                        to your Anilist Watchlist.
+                      </em>
+                    </p>
+                  </div>
+                  <div className="settings__column">
+                    <ToggleSwitch isToggled={true} onToggle={() => {}} />
+                  </div>
+                </div>
+              </>
+            )} */}
           </>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }
 

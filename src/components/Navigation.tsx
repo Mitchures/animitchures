@@ -7,14 +7,17 @@ import {
   Groups,
   Logout,
   Login,
+  PlaylistPlay,
 } from '@mui/icons-material';
 import './Navigation.css';
+
 import { auth } from 'config';
 import { useStateValue } from 'context';
+
 import Logo from '../images/animitchures-logo.svg';
 
 function Navigation() {
-  const [{ user }] = useStateValue();
+  const [{ user, anilist_user }] = useStateValue();
 
   const logout = () => {
     auth.signOut();
@@ -67,6 +70,21 @@ function Navigation() {
             </NavLink>
           </li>
         </ul>
+        {user && anilist_user && (
+          <>
+            <h5>Anilist</h5>
+            <ul>
+              <li>
+                <NavLink to="/anilist-watchlist">
+                  <div className="navigation__icon">
+                    <PlaylistPlay />
+                  </div>
+                  <span>Watchlist</span>
+                </NavLink>
+              </li>
+            </ul>
+          </>
+        )}
         <h5>General</h5>
         <ul>
           <li>

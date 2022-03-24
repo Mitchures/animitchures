@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Outlet, Navigate } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 
 import './App.css';
 
@@ -13,6 +14,7 @@ import Details from 'pages/Details';
 import Profile from 'pages/Profile';
 import Results from 'pages/Results';
 import Watchlist from 'pages/Watchlist';
+import AnilistWatchlist from 'pages/AnilistWatchlist';
 import Settings from 'pages/Settings';
 import Callback from 'pages/Callback';
 import ComingSoon from 'pages/ComingSoon';
@@ -20,12 +22,8 @@ import Community from 'pages/Community';
 
 import { auth, db } from 'config';
 import { useStateValue } from 'context';
-import { IUser } from 'context/types';
-import { getWatchlist } from 'api';
-
-interface IData {
-  [key: string]: any;
-}
+import { User, AnilistUser } from 'context/types';
+import { getWatchlist, getAccessToken } from 'api';
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -44,13 +42,19 @@ function App() {
               // get existing user data.
               const data = doc.data();
               if (data) {
-                const user = { ...data } as IUser;
+                const user = { ...data } as User;
                 // update db if any new information exists.
                 docRef.set(user).catch((error) => alert(error.message));
                 // get user watchlist.
                 getWatchlist(uid, dispatch);
                 // get anilist user if linked.
                 if (user.anilistLinked) {
+                  // get access token from database and store in local storage.
+                  if (!localStorage.getItem('token'))
+                    getAccessToken(uid).then((token) =>
+                      localStorage.setItem('token', JSON.stringify(token)),
+                    );
+                  // Get anilist user from database.
                   const anilistDocRef = db.collection('anilist').doc(uid);
                   anilistDocRef
                     .get()
@@ -60,7 +64,7 @@ function App() {
                         if (data) {
                           dispatch({
                             type: 'set_anilist_user',
-                            anilist_user: data,
+                            anilist_user: data as AnilistUser,
                           });
                         }
                       }
@@ -108,33 +112,36 @@ function App() {
   return (
     <div className="app">
       <Router>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route
-            element={
-              <div className="app__container">
-                <Navigation />
-                <div className="app__body">
-                  <Header />
-                  <Outlet />
+        <AnimatePresence exitBeforeEnter>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route
+              element={
+                <div className="app__container">
+                  <Navigation />
+                  <div className="app__body">
+                    <Header />
+                    <Outlet />
+                  </div>
                 </div>
-              </div>
-            }
-          >
-            <Route path="/callback" element={<Callback />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/coming-soon" element={<ComingSoon />} />
-            <Route path="/community" element={<Community />} />
-            <Route path="/watchlist" element={<Watchlist />} />
-            <Route path="/search/anime" element={<Results />} />
-            <Route path="/anime/:id/:title" element={<Details />} />
-            {user && <Route path="/profile" element={<Profile />} />}
-            <Route path="/" element={<Features />} />
-            {/* Redirect unknown routes to root */}
-            <Route path="*" element={<Navigate to="/" />} />
-          </Route>
-        </Routes>
+              }
+            >
+              <Route path="/callback" element={<Callback />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/coming-soon" element={<ComingSoon />} />
+              <Route path="/community" element={<Community />} />
+              <Route path="/watchlist" element={<Watchlist />} />
+              <Route path="/anilist-watchlist" element={<AnilistWatchlist />} />
+              <Route path="/search/anime" element={<Results />} />
+              <Route path="/anime/:id/:title" element={<Details />} />
+              {user && <Route path="/profile" element={<Profile />} />}
+              <Route path="/" element={<Features />} />
+              {/* Redirect unknown routes to root */}
+              <Route path="*" element={<Navigate to="/" />} />
+            </Route>
+          </Routes>
+        </AnimatePresence>
       </Router>
     </div>
   );

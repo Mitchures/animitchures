@@ -1,26 +1,28 @@
 import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import Loader from 'components/Loader';
 
 import { useStateValue } from 'context';
-import { ANILIST_VIEWER_QUERY } from 'utils';
+import { ANILIST_VIEWER_QUERY } from 'graphql/queries';
 import { authHeader } from 'helpers';
 import { db } from 'config';
+import { AccessToken } from 'context/types';
+import { saveAccessToken } from 'api';
 
 function Callback() {
   const navigate = useNavigate();
-  const { code } = useParams();
+  const location = useLocation();
   const [{ user }, dispatch] = useStateValue();
-  const { loading, error, data } = useQuery(ANILIST_VIEWER_QUERY, {
+  const { data } = useQuery(ANILIST_VIEWER_QUERY, {
     context: {
       headers: authHeader(),
     },
     skip: !authHeader(),
   });
 
-  const handleAccessToken = async () => {
+  const handleAccessToken = async (code: string, userId: string) => {
     // proxy stuff: https://stackoverflow.com/questions/36878255/allow-access-control-allow-origin-header-using-html5-fetch-api
     // https://anilist.co/api/v2/oauth/token
     const request = await fetch('http://localhost:8010/proxy', {
@@ -37,9 +39,12 @@ function Callback() {
         code,
       }),
     });
-    const { access_token } = await request.json();
+    const token: AccessToken = await request.json();
+    console.log(token);
     // Persist access token.
-    localStorage.setItem('token', JSON.stringify(access_token));
+    localStorage.setItem('token', JSON.stringify(token));
+    // Save access token to database.
+    saveAccessToken(token, userId);
   };
 
   const handleAnilistUser = async (anilist_user: any, userId: string) => {
@@ -58,8 +63,13 @@ function Callback() {
   };
 
   useEffect(() => {
-    if (code) handleAccessToken();
-  }, [code]);
+    if (location.pathname === '/callback' && user) {
+      const search = location.search;
+      const params = new URLSearchParams(search);
+      const query = params.get('code');
+      handleAccessToken(`${query}`, user.uid);
+    }
+  }, [location, user]);
 
   useEffect(() => {
     if (data && user) {

@@ -18,11 +18,6 @@ export const reducer = (state: State, action: Action): State => {
         ...state,
         featured: action.featured,
       };
-    case 'set_selected':
-      return {
-        ...state,
-        selected: action.selected,
-      };
     case 'set_user':
     case 'update_user':
     case 'login_user':

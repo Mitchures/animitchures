@@ -1,19 +1,37 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const FEATURED_QUERY = gql`
-  query ($season: MediaSeason, $seasonYear: Int, $nextSeason: MediaSeason, $nextYear: Int, $isAdult: Boolean = false) {
+  query (
+    $season: MediaSeason
+    $seasonYear: Int
+    $nextSeason: MediaSeason
+    $nextYear: Int
+    $isAdult: Boolean = false
+  ) {
     trending: Page(page: 1, perPage: 15) {
       media(sort: TRENDING_DESC, type: ANIME, isAdult: $isAdult) {
         ...media
       }
     }
     season: Page(page: 1, perPage: 15) {
-      media(season: $season, seasonYear: $seasonYear, sort: POPULARITY_DESC, type: ANIME, isAdult: $isAdult) {
+      media(
+        season: $season
+        seasonYear: $seasonYear
+        sort: POPULARITY_DESC
+        type: ANIME
+        isAdult: $isAdult
+      ) {
         ...media
       }
     }
     nextSeason: Page(page: 1, perPage: 15) {
-      media(season: $nextSeason, seasonYear: $nextYear, sort: POPULARITY_DESC, type: ANIME, isAdult: $isAdult) {
+      media(
+        season: $nextSeason
+        seasonYear: $nextYear
+        sort: POPULARITY_DESC
+        type: ANIME
+        isAdult: $isAdult
+      ) {
         ...media
       }
     }
@@ -86,7 +104,39 @@ export const FEATURED_QUERY = gql`
 `;
 
 export const SEARCH_QUERY = gql`
-  query ($page: Int, $perPage: Int, $id: Int, $type: MediaType, $isAdult: Boolean = false, $search: String, $format: [MediaFormat], $status: MediaStatus, $countryOfOrigin: CountryCode, $source: MediaSource, $season: MediaSeason, $seasonYear: Int, $year: String, $onList: Boolean, $yearLesser: FuzzyDateInt, $yearGreater: FuzzyDateInt, $episodeLesser: Int, $episodeGreater: Int, $durationLesser: Int, $durationGreater: Int, $chapterLesser: Int, $chapterGreater: Int, $volumeLesser: Int, $volumeGreater: Int, $licensedBy: [String], $genres: [String], $excludedGenres: [String], $tags: [String], $excludedTags: [String], $minimumTagRank: Int, $sort: [MediaSort] = [POPULARITY_DESC, SCORE_DESC]) {
+  query (
+    $page: Int
+    $perPage: Int
+    $id: Int
+    $type: MediaType
+    $isAdult: Boolean = false
+    $search: String
+    $format: [MediaFormat]
+    $status: MediaStatus
+    $countryOfOrigin: CountryCode
+    $source: MediaSource
+    $season: MediaSeason
+    $seasonYear: Int
+    $year: String
+    $onList: Boolean
+    $yearLesser: FuzzyDateInt
+    $yearGreater: FuzzyDateInt
+    $episodeLesser: Int
+    $episodeGreater: Int
+    $durationLesser: Int
+    $durationGreater: Int
+    $chapterLesser: Int
+    $chapterGreater: Int
+    $volumeLesser: Int
+    $volumeGreater: Int
+    $licensedBy: [String]
+    $genres: [String]
+    $excludedGenres: [String]
+    $tags: [String]
+    $excludedTags: [String]
+    $minimumTagRank: Int
+    $sort: [MediaSort] = [POPULARITY_DESC, SCORE_DESC]
+  ) {
     Page(page: $page, perPage: $perPage) {
       pageInfo {
         total
@@ -95,7 +145,37 @@ export const SEARCH_QUERY = gql`
         lastPage
         hasNextPage
       }
-      media(id: $id, type: $type, season: $season, format_in: $format, status: $status, countryOfOrigin: $countryOfOrigin, source: $source, search: $search, onList: $onList, seasonYear: $seasonYear, startDate_like: $year, startDate_lesser: $yearLesser, startDate_greater: $yearGreater, episodes_lesser: $episodeLesser, episodes_greater: $episodeGreater, duration_lesser: $durationLesser, duration_greater: $durationGreater, chapters_lesser: $chapterLesser, chapters_greater: $chapterGreater, volumes_lesser: $volumeLesser, volumes_greater: $volumeGreater, licensedBy_in: $licensedBy, genre_in: $genres, genre_not_in: $excludedGenres, tag_in: $tags, tag_not_in: $excludedTags, minimumTagRank: $minimumTagRank, sort: $sort, isAdult: $isAdult) {
+      media(
+        id: $id
+        type: $type
+        season: $season
+        format_in: $format
+        status: $status
+        countryOfOrigin: $countryOfOrigin
+        source: $source
+        search: $search
+        onList: $onList
+        seasonYear: $seasonYear
+        startDate_like: $year
+        startDate_lesser: $yearLesser
+        startDate_greater: $yearGreater
+        episodes_lesser: $episodeLesser
+        episodes_greater: $episodeGreater
+        duration_lesser: $durationLesser
+        duration_greater: $durationGreater
+        chapters_lesser: $chapterLesser
+        chapters_greater: $chapterGreater
+        volumes_lesser: $volumeLesser
+        volumes_greater: $volumeGreater
+        licensedBy_in: $licensedBy
+        genre_in: $genres
+        genre_not_in: $excludedGenres
+        tag_in: $tags
+        tag_not_in: $excludedTags
+        minimumTagRank: $minimumTagRank
+        sort: $sort
+        isAdult: $isAdult
+      ) {
         id
         title {
           english
@@ -151,7 +231,7 @@ export const SEARCH_QUERY = gql`
       }
     }
   }
-`
+`;
 
 export const DETAILS_QUERY = gql`
   query media($id: Int, $type: MediaType) {
@@ -247,7 +327,7 @@ export const DETAILS_EXTENDED_QUERY = gql`
           }
         }
       }
-      characterPreview: characters(perPage: 6, sort: [ROLE, RELEVANCE, ID]) {
+      characters(perPage: 6, sort: [ROLE, RELEVANCE, ID]) {
         edges {
           id
           role
@@ -273,7 +353,7 @@ export const DETAILS_EXTENDED_QUERY = gql`
           }
         }
       }
-      staffPreview: staff(perPage: 8, sort: [RELEVANCE, ID]) {
+      staff(perPage: 8, sort: [RELEVANCE, ID]) {
         edges {
           id
           role
@@ -298,7 +378,7 @@ export const DETAILS_EXTENDED_QUERY = gql`
           }
         }
       }
-      reviewPreview: reviews(perPage: 2, sort: [RATING_DESC, ID]) {
+      reviews(perPage: 2, sort: [RATING_DESC, ID]) {
         pageInfo {
           total
         }
@@ -382,6 +462,7 @@ export const DETAILS_EXTENDED_QUERY = gql`
       mediaListEntry {
         id
         status
+        progress
         score
       }
       stats {
@@ -396,7 +477,7 @@ export const DETAILS_EXTENDED_QUERY = gql`
       }
     }
   }
-`
+`;
 
 // Unique to AniList queries.
 
@@ -630,7 +711,7 @@ export const ANILIST_USER_AND_ACTIVITY_QUERY = gql`
       }
     }
   }
-`
+`;
 
 export const ANILIST_USER_MEDIA_LIST_COLLECTION_QUERY = gql`
   query ($userId: Int, $userName: String, $type: MediaType) {
@@ -725,7 +806,7 @@ export const ANILIST_USER_MEDIA_LIST_COLLECTION_QUERY = gql`
       }
     }
   }
-`
+`;
 // Viewer query requires anilist authentication.
 export const ANILIST_VIEWER_QUERY = gql`
   query {
@@ -772,5 +853,286 @@ export const ANILIST_VIEWER_QUERY = gql`
       }
     }
   }
-`
+`;
 
+export const ANILIST_USER_NOTIFICATIONS_QUERY = gql`
+  query ($page: Int, $types: [NotificationType]) {
+    Page(page: $page, perPage: 15) {
+      pageInfo {
+        total
+        perPage
+        currentPage
+        lastPage
+        hasNextPage
+      }
+      notifications(type_in: $types, resetNotificationCount: true) {
+        ... on AiringNotification {
+          id
+          type
+          episode
+          contexts
+          media {
+            id
+            type
+            bannerImage
+            title {
+              userPreferred
+            }
+            coverImage {
+              large
+            }
+          }
+          createdAt
+        }
+        ... on RelatedMediaAdditionNotification {
+          id
+          type
+          context
+          media {
+            id
+            type
+            bannerImage
+            title {
+              userPreferred
+            }
+            coverImage {
+              large
+            }
+          }
+          createdAt
+        }
+        ... on FollowingNotification {
+          id
+          type
+          context
+          user {
+            id
+            name
+            avatar {
+              large
+            }
+          }
+          createdAt
+        }
+        ... on ActivityMessageNotification {
+          id
+          type
+          context
+          activityId
+          user {
+            id
+            name
+            avatar {
+              large
+            }
+          }
+          createdAt
+        }
+        ... on ActivityMentionNotification {
+          id
+          type
+          context
+          activityId
+          user {
+            id
+            name
+            avatar {
+              large
+            }
+          }
+          createdAt
+        }
+        ... on ActivityReplyNotification {
+          id
+          type
+          context
+          activityId
+          user {
+            id
+            name
+            avatar {
+              large
+            }
+          }
+          createdAt
+        }
+        ... on ActivityReplySubscribedNotification {
+          id
+          type
+          context
+          activityId
+          user {
+            id
+            name
+            avatar {
+              large
+            }
+          }
+          createdAt
+        }
+        ... on ActivityLikeNotification {
+          id
+          type
+          context
+          activityId
+          user {
+            id
+            name
+            avatar {
+              large
+            }
+          }
+          createdAt
+        }
+        ... on ActivityReplyLikeNotification {
+          id
+          type
+          context
+          activityId
+          user {
+            id
+            name
+            avatar {
+              large
+            }
+          }
+          createdAt
+        }
+        ... on ThreadCommentMentionNotification {
+          id
+          type
+          context
+          commentId
+          thread {
+            id
+            title
+          }
+          user {
+            id
+            name
+            avatar {
+              large
+            }
+          }
+          createdAt
+        }
+        ... on ThreadCommentReplyNotification {
+          id
+          type
+          context
+          commentId
+          thread {
+            id
+            title
+          }
+          user {
+            id
+            name
+            avatar {
+              large
+            }
+          }
+          createdAt
+        }
+        ... on ThreadCommentSubscribedNotification {
+          id
+          type
+          context
+          commentId
+          thread {
+            id
+            title
+          }
+          user {
+            id
+            name
+            avatar {
+              large
+            }
+          }
+          createdAt
+        }
+        ... on ThreadCommentLikeNotification {
+          id
+          type
+          context
+          commentId
+          thread {
+            id
+            title
+          }
+          user {
+            id
+            name
+            avatar {
+              large
+            }
+          }
+          createdAt
+        }
+        ... on ThreadLikeNotification {
+          id
+          type
+          context
+          thread {
+            id
+            title
+          }
+          user {
+            id
+            name
+            avatar {
+              large
+            }
+          }
+          createdAt
+        }
+        ... on MediaDataChangeNotification {
+          id
+          type
+          context
+          media {
+            id
+            type
+            bannerImage
+            title {
+              userPreferred
+            }
+            coverImage {
+              large
+            }
+          }
+          reason
+          createdAt
+        }
+        ... on MediaMergeNotification {
+          id
+          type
+          context
+          media {
+            id
+            type
+            bannerImage
+            title {
+              userPreferred
+            }
+            coverImage {
+              large
+            }
+          }
+          deletedMediaTitles
+          reason
+          createdAt
+        }
+        ... on MediaDeletionNotification {
+          id
+          type
+          context
+          deletedMediaTitle
+          reason
+          createdAt
+        }
+      }
+    }
+  }
+`;

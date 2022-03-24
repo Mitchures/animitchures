@@ -1,16 +1,12 @@
-interface IData {
-  [key: string]: any;
-}
-
-interface IMedia {
-  media: IData[];
-}
+import { Media, User as ALUser } from 'graphql/types';
 
 interface IFeatured {
-  [key: string]: IMedia;
+  [key: string]: { [key: string]: Media[] };
 }
 
-export type IUser = {
+export type AnilistUser = ALUser;
+
+export type User = {
   uid: string;
   displayName: string | null;
   photoURL: string | null;
@@ -27,18 +23,17 @@ export type AccessToken = {
 };
 
 export type State = {
-  user: IUser | null;
-  selected: IData | null;
+  user: User | null;
   featured: IFeatured | null;
-  results: IData | null;
-  watchlist: IData[];
-  anilist_user: any;
+  results: Media[] | null;
+  watchlist: Media[];
+  anilist_user: AnilistUser | null;
 };
 
 export type Action =
   | {
       type: 'set_anilist_user';
-      anilist_user: any;
+      anilist_user: AnilistUser;
     }
   | {
       type: 'clear_featured';
@@ -48,40 +43,36 @@ export type Action =
     }
   | {
       type: 'remove_from_watchlist';
-      watchlist: IData[];
+      watchlist: Media[];
     }
   | {
       type: 'add_to_watchlist';
-      watchlist: IData[];
+      watchlist: Media[];
     }
   | {
       type: 'set_watchlist';
-      watchlist: IData[];
+      watchlist: Media[];
     }
   | {
       type: 'set_results';
-      results: IData | null;
+      results: Media[] | null;
     }
   | {
       type: 'set_featured';
       featured: IFeatured;
     }
   | {
-      type: 'set_selected';
-      selected: IData | null;
-    }
-  | {
       type: 'update_user';
-      user: IUser;
+      user: User;
     }
   | {
       type: 'login_user';
-      user: IUser;
+      user: User;
     }
   | {
       type: 'logout_user';
     }
   | {
       type: 'set_user';
-      user: IUser | null;
+      user: User | null;
     };

@@ -1,46 +1,52 @@
 import { useEffect } from 'react';
+import { useQuery } from '@apollo/client';
+import { motion } from 'framer-motion';
+
 import './Features.css';
-import { FEATURED_QUERY } from 'utils';
-import { useStateValue } from 'context';
+
 import Hero from './Hero';
 import Card from './Card';
 import Loader from './Loader';
-import { useQuery } from '@apollo/client';
+
+import { Media } from 'graphql/types';
+import { FEATURED_QUERY } from 'graphql/queries';
+import { useStateValue } from 'context';
 
 interface ITitles {
   [key: string]: string;
 }
 
+const currentYear = new Date().getFullYear();
+const currentMonth = new Date().getMonth() + 1;
+
+const titles: ITitles = {
+  trending: 'Trending Now',
+  season: 'Popular This Season',
+  nextSeason: 'Upcoming Next Season',
+  popular: 'All Time Popular',
+  top: 'Top Ranked',
+};
+const seasons = [
+  {
+    name: 'WINTER',
+    months: [1, 2, 12],
+  },
+  {
+    name: 'SPRING',
+    months: [3, 4, 5],
+  },
+  {
+    name: 'SUMMER',
+    months: [6, 7, 8],
+  },
+  {
+    name: 'FALL',
+    months: [9, 10, 11],
+  },
+];
+
 function Features() {
   const [{ featured, user }, dispatch] = useStateValue();
-  const currentYear = new Date().getFullYear();
-  const currentMonth = new Date().getMonth() + 1;
-  const seasons = [
-    {
-      name: 'WINTER',
-      months: [1, 2, 12],
-    },
-    {
-      name: 'SPRING',
-      months: [3, 4, 5],
-    },
-    {
-      name: 'SUMMER',
-      months: [6, 7, 8],
-    },
-    {
-      name: 'FALL',
-      months: [9, 10, 11],
-    },
-  ];
-
-  const titles: ITitles = {
-    trending: 'Trending Now',
-    season: 'Popular This Season',
-    nextSeason: 'Upcoming Next Season',
-    popular: 'All Time Popular',
-    top: 'Top Ranked',
-  };
 
   const getSeason = (month: number) => {
     return seasons.find((season) => season.months.includes(month))?.name;
@@ -59,7 +65,7 @@ function Features() {
       .filter((item) => item)[0];
   };
 
-  const { error, loading, data } = useQuery(FEATURED_QUERY, {
+  const { data } = useQuery(FEATURED_QUERY, {
     variables: {
       type: 'ANIME',
       season: getSeason(currentMonth),
@@ -69,6 +75,7 @@ function Features() {
       nextYear: currentMonth <= 9 ? currentYear : currentYear + 1,
       isAdult: user?.isAdult || false,
     },
+    pollInterval: 300000, // 5 minutes
   });
 
   useEffect(() => {
@@ -81,28 +88,36 @@ function Features() {
   }, [data]);
 
   return (
-    <div className="features">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="features"
+    >
       {featured ? (
         <>
           <h1>Discover</h1>
           <Hero {...featured} />
-          {Object.keys(featured).map((key, index) => (
-            <div key={index}>
-              <div className="features__header">
-                <h3>{titles[key]}</h3>
-              </div>
-              <div className={`features__body features__${key}`}>
-                {featured[key].media.map((mediaItem) => (
-                  <Card key={mediaItem.id} {...mediaItem} />
-                ))}
-              </div>
-            </div>
-          ))}
+          {Object.keys(featured).map(
+            (key, index) =>
+              featured[key].media.length > 0 && (
+                <div key={index}>
+                  <div className="features__header">
+                    <h3>{titles[key]}</h3>
+                  </div>
+                  <div className={`features__body features__${key}`}>
+                    {featured[key].media.map((mediaItem: Media) => (
+                      <Card key={mediaItem.id} {...mediaItem} />
+                    ))}
+                  </div>
+                </div>
+              ),
+          )}
         </>
       ) : (
         <Loader />
       )}
-    </div>
+    </motion.div>
   );
 }
 

@@ -1,5 +1,5 @@
 import { db } from 'config';
-import { IUser } from 'context/types';
+import { User } from 'context/types';
 
 const collectionRef = db.collection('users');
 
@@ -10,13 +10,13 @@ export const getProfile = async (userId: string) => {
     .then((docSnapshot) => {
       if (docSnapshot.exists) {
         const data = docSnapshot.data();
-        if (data) return data as IUser;
+        if (data) return data as User;
       }
     })
     .catch((error) => alert(error.message));
 };
 
-export const updateProfile = async (user: IUser) => {
+export const updateProfile = async (user: User) => {
   return await collectionRef
     .doc(`${user.uid}`)
     .set(user)

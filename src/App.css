@@ -157,3 +157,6 @@ button:focus {
     color: white;
   }
 }
+
+@media screen and (max-width: 960px) {
+}

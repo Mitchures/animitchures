@@ -1,0 +1,26 @@
+# reference https://blog.logrocket.com/build-graphql-react-app-typescript/
+# https://www.the-guild.dev/blog/graphql-codegen-best-practices
+# https://danilowoz.com/blog/generating-typescript-types-and-react-hooks-based-on-graphql-endpoint
+overwrite: true
+schema: "https://graphql.anilist.co/graphql"
+# documents: "src/**/*.graphql"
+generates:
+  src/graphql/types.ts:
+    plugins:
+      - "typescript"
+
+  # src/graphql/generated/operations.ts:
+  #   preset: import-types
+  #   presetConfig:
+  #     typesPath: ./types
+  #   plugins:
+  #     - "typescript-operations"
+
+  # src/graphql/generated/hooks.ts:
+  #   preset: import-types
+  #   presetConfig:
+  #     typesPath: ./operations
+  #   plugins:
+  #     - "typescript-react-apollo"
+  #   config:
+  #     withHooks: true

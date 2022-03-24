@@ -4,8 +4,9 @@
   padding: 0 2rem;
 }
 
-.settings__container {
+.settings__container h2 {
   margin-top: 1.25rem;
+  font-weight: 500;
 }
 
 .settings__success {
