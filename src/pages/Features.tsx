@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 
 import './Features.css';
 
-import Hero from './Hero';
-import Card from './Card';
-import Loader from './Loader';
+import Hero from 'components/Hero';
+import Card from 'components/Card';
+import Loader from 'components/Loader';
 
 import { Media } from 'graphql/types';
 import { FEATURED_QUERY } from 'graphql/queries';

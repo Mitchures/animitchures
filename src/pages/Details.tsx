@@ -15,6 +15,7 @@ import { DETAILS_EXTENDED_QUERY } from 'graphql/queries';
 import { addItemToWatchlist, removeItemFromWatchlist } from 'api';
 import { useStateValue } from 'context';
 import { authHeader } from 'helpers';
+import SplitButton from 'components/SplitButton';
 
 interface IData {
   [key: string]: any;
@@ -48,7 +49,7 @@ const getRelations = (relations: any) => {
 
 function Details() {
   const { id } = useParams<any>();
-  const [{ user, watchlist }, dispatch] = useStateValue();
+  const [{ user, watchlist, anilist_user }, dispatch] = useStateValue();
   const [selected, setSelected] = useState<Media | null>(null);
   const [removeButtonText, updateRemoveButtonText] = useState('Added to Watchlist');
   const { loading, data } = useQuery(DETAILS_EXTENDED_QUERY, {
@@ -110,6 +111,12 @@ function Details() {
               )}
             </div>
           )}
+          {anilist_user && (
+            <div className="details__actions">
+              <SplitButton value={selected.mediaListEntry?.status as string} />
+            </div>
+          )}
+
           <div className="details__dataContainer">
             {selected.nextAiringEpisode && (
               <div className="details__data details__data--active">

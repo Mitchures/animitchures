@@ -6,12 +6,12 @@ import './App.css';
 
 import Header from 'components/Header';
 import Navigation from 'components/Navigation';
-import Features from 'components/Features';
 
 import Login from 'pages/Login';
 import SignUp from 'pages/SignUp';
 import Details from 'pages/Details';
 import Profile from 'pages/Profile';
+import Features from 'pages/Features';
 import Results from 'pages/Results';
 import Watchlist from 'pages/Watchlist';
 import AnilistWatchlist from 'pages/AnilistWatchlist';

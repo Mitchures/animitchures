@@ -23,6 +23,7 @@ function Callback() {
   });
 
   const handleAccessToken = async (code: string, userId: string) => {
+    // lcp --proxyUrl https://anilist.co/api/v2/oauth/token
     // proxy stuff: https://stackoverflow.com/questions/36878255/allow-access-control-allow-origin-header-using-html5-fetch-api
     // https://anilist.co/api/v2/oauth/token
     const request = await fetch('http://localhost:8010/proxy', {
