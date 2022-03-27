@@ -43,7 +43,8 @@ export default function SplitButton({ value }: { value: string }) {
   };
 
   const handleText = (text: string) => {
-    if (text === 'PLANNING') text = 'Plan to Watch';
+    if (!text) text = 'Add to Watchlist';
+    else if (text === 'PLANNING') text = 'Plan to Watch';
     else if (text === 'CURRENT') text = 'Watching';
     else if (text === 'REPEATING') text = 'Rewatching';
     else text = text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
