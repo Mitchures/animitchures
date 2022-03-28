@@ -5,7 +5,7 @@ admin.initializeApp();
 
 const db = admin.firestore();
 
-export const createProfile = functions.auth.user().onCreate(async (userRecord, context) => {
+export const createProfile = functions.auth.user().onCreate(async (userRecord, _) => {
   const { uid, email, photoURL, displayName } = userRecord;
   const profile = {
     uid,
@@ -18,7 +18,7 @@ export const createProfile = functions.auth.user().onCreate(async (userRecord, c
   return await db.collection('users').doc(uid).set(profile).catch(console.error);
 });
 
-export const createWatchlist = functions.auth.user().onCreate(async (userRecord, context) => {
+export const createWatchlist = functions.auth.user().onCreate(async (userRecord, _) => {
   const { uid } = userRecord;
   const watchlist = {
     watchlist: [],
@@ -28,7 +28,7 @@ export const createWatchlist = functions.auth.user().onCreate(async (userRecord,
 
 export const linkedAnilistAccount = functions.firestore
   .document('anilist/{docId}')
-  .onCreate(async (change, context) => {
+  .onCreate(async (_, context) => {
     const userId = context.params.docId;
     // Get User.
     const getUserPromise = admin.firestore().collection('users').doc(userId).get();

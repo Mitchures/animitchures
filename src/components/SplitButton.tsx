@@ -88,7 +88,7 @@ export default function SplitButton({ value }: { value: string }) {
                       selected={index === selectedIndex}
                       onClick={(event) => handleMenuItemClick(event, index)}
                     >
-                      {handleText(option)}
+                      Set as {handleText(option)}
                     </MenuItem>
                   ))}
                 </MenuList>
