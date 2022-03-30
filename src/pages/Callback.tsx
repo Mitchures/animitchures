@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
@@ -14,12 +14,13 @@ import { saveAccessToken } from 'api';
 function Callback() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [skipQuery, setSkipQuery] = useState(true);
   const [{ user }, dispatch] = useStateValue();
   const { data } = useQuery(ANILIST_VIEWER_QUERY, {
+    skip: skipQuery,
     context: {
       headers: authHeader(),
     },
-    skip: !authHeader(),
   });
 
   const handleAccessToken = async (code: string, userId: string) => {
@@ -46,6 +47,8 @@ function Callback() {
     localStorage.setItem('token', JSON.stringify(token));
     // Save access token to database.
     saveAccessToken(token, userId);
+    // Update skipQuery.
+    setSkipQuery(false);
   };
 
   const handleAnilistUser = async (anilist_user: any, userId: string) => {
