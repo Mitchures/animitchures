@@ -1,5 +1,11 @@
+import { useState, useEffect } from 'react';
 import { Check } from '@mui/icons-material';
 import { motion } from 'framer-motion';
+import Box from '@mui/material/Box';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
 
 import './Settings.css';
 
@@ -9,10 +15,17 @@ import AnilistLogoImage from 'images/anilist-logo.png';
 
 import { useStateValue } from 'context';
 import { updateProfile } from 'api';
-import { User } from 'context/types';
+import { User, WatchlistFormat } from 'context/types';
 
 function Settings() {
   const [{ user, anilist_user }, dispatch] = useStateValue();
+  const [selectedWatchlist, setSelectedWatchlist] = useState<WatchlistFormat>();
+
+  useEffect(() => {
+    if (user) {
+      setSelectedWatchlist(user.preferredWatchlist);
+    }
+  }, [user]);
 
   const updateIsAdult = (isAdult: boolean) => {
     const updatedUser = { ...user, isAdult } as User;
@@ -29,6 +42,28 @@ function Settings() {
           type: 'clear_featured',
         });
       });
+  };
+
+  const updatePreferredWatchlist = (preferredWatchlist: WatchlistFormat) => {
+    const updatedUser = { ...user, preferredWatchlist } as User;
+    updateProfile(updatedUser)
+      .then((user) => {
+        dispatch({
+          type: 'set_user',
+          user: user as User,
+        });
+      })
+      .then(() => {
+        // Clear to refresh content based on isAdult setting.
+        dispatch({
+          type: 'clear_featured',
+        });
+      });
+  };
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setSelectedWatchlist(event.target.value as WatchlistFormat);
+    updatePreferredWatchlist(event.target.value as WatchlistFormat);
   };
 
   return (
@@ -95,18 +130,33 @@ function Settings() {
                   <div className="settings__column">
                     <h4>Preferred Watchlist</h4>
                     <p>
-                      Switch between which Watchlist you prefer using. If Enabled, your Anilist
-                      Watchlist will be used. If Disabled, your Animitchures Watchlist will be used.
+                      Switch between which watchlist you prefer using. If Enabled, your Anilist
+                      watchlist will be used. If Disabled, your Animitchures default watchlist will
+                      be used.
                     </p>
                     <p>
                       <em>
-                        Note: Once your Anilist account is linked, your preferred Watchlist defaults
-                        to your Anilist Watchlist.
+                        Note: Once your Anilist account is linked, your preferred watchlist defaults
+                        to your Anilist watchlist.
                       </em>
                     </p>
                   </div>
                   <div className="settings__column">
-                    <ToggleSwitch isToggled={true} onToggle={() => {}} />
+                    <Box sx={{ minWidth: 200 }}>
+                      <FormControl variant="filled" fullWidth>
+                        <InputLabel id="preferredWatchlist__label">Preferred Watchlist</InputLabel>
+                        <Select
+                          labelId="preferredWatchlist__label"
+                          id="preferredWatchlist__select"
+                          value={selectedWatchlist}
+                          label="Preferred Watchlist"
+                          onChange={handleChange}
+                        >
+                          <MenuItem value="DEFAULT">Default</MenuItem>
+                          <MenuItem value="ANILIST">Anilist</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Box>
                   </div>
                 </div>
               </>
