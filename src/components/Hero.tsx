@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   SentimentVerySatisfied,
@@ -22,6 +22,15 @@ function Hero({ trending }: any) {
   const [featured] = useState(trending?.media.slice(0, 3));
   const [selected, setSelected] = useState(trending?.media[0]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const index = featured.findIndex((f: any) => f.id === selected.id);
+      if (index === featured.length - 1) setSelected(featured[0]);
+      else setSelected(featured[index + 1]);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [featured, selected]);
 
   return (
     <div className="hero">

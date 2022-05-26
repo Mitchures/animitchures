@@ -19,14 +19,14 @@ interface ITitles {
 const currentYear = new Date().getFullYear();
 const currentMonth = new Date().getMonth() + 1;
 
-const titles: ITitles = {
+const TITLES: ITitles = {
   trending: 'Trending Now',
   season: 'Popular This Season',
   nextSeason: 'Upcoming Next Season',
   popular: 'All Time Popular',
   top: 'Top Ranked',
 };
-const seasons = [
+const SEASONS = [
   {
     name: 'WINTER',
     months: [1, 2, 12],
@@ -49,20 +49,18 @@ function Features() {
   const [{ featured, user }, dispatch] = useStateValue();
 
   const getSeason = (month: number) => {
-    return seasons.find((season) => season.months.includes(month))?.name;
+    return SEASONS.find((season) => season.months.includes(month))?.name;
   };
 
   const getNextSeason = (month: number) => {
     const currentSeason = getSeason(month);
-    return seasons
-      .map(
-        (season, index) =>
-          season.name === currentSeason &&
-          index >= 0 &&
-          index < seasons.length - 1 &&
-          seasons[index + 1].name,
-      )
-      .filter((item) => item)[0];
+    return SEASONS.map(
+      (season, index) =>
+        season.name === currentSeason &&
+        index >= 0 &&
+        index < SEASONS.length - 1 &&
+        SEASONS[index + 1].name,
+    ).filter((item) => item)[0];
   };
 
   const { data } = useQuery(FEATURED_QUERY, {
@@ -103,7 +101,7 @@ function Features() {
               featured[key].media.length > 0 && (
                 <div key={index}>
                   <div className="features__header">
-                    <h3>{titles[key]}</h3>
+                    <h3>{TITLES[key]}</h3>
                   </div>
                   <div className={`features__body features__${key}`}>
                     {featured[key].media.map((mediaItem: Media) => (
