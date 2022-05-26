@@ -38,6 +38,7 @@ export const linkedAnilistAccount = functions.firestore
     const updatedUser = {
       ...USER,
       anilistLinked: true,
+      preferredWatchlist: 'ANILIST',
     };
     return await db.collection('users').doc(userId).set(updatedUser).catch(console.error);
   });
