@@ -10,6 +10,8 @@ import './Details.css';
 import Card from 'components/Card';
 import SplitButton from 'components/SplitButton';
 import Loader from 'components/Loader';
+import Characters from 'components/details/Characters';
+import Staff from 'components/details/Staff';
 
 import { FuzzyDate, Media, MediaEdge } from 'graphql/types';
 import { DETAILS_EXTENDED_QUERY } from 'graphql/queries';
@@ -244,63 +246,8 @@ function Details() {
               </div>
             </>
           )}
-          {selected.characters?.edges && selected.characters.edges.length > 0 && (
-            <>
-              <h3>Characters</h3>
-              <div className="details__blockContainer">
-                {selected.characters.edges.slice(0, 6).map((character: any) => (
-                  <div key={character.id} className="details__block">
-                    <div className="details__blockLeft">
-                      <div className="details__blockImageContainer">
-                        <img
-                          src={character.node.image.large}
-                          alt={character.node.name.userPreferred}
-                        />
-                      </div>
-                      <div className="details__blockBody">
-                        <h5>{character.node.name.userPreferred}</h5>
-                        <p>{convertText(character.role)}</p>
-                      </div>
-                    </div>
-                    {character.voiceActors.length > 0 && (
-                      <div className="details__blockRight">
-                        <div className="details__blockBody">
-                          <h5>{character.voiceActors[0].name.userPreferred}</h5>
-                          <p>{character.voiceActors[0].language}</p>
-                        </div>
-                        <div className="details__blockImageContainer">
-                          <img
-                            src={character.voiceActors[0].image.large}
-                            alt={character.voiceActors[0].name.userPreferred}
-                          />
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
-          {selected.staff?.edges && selected.staff.edges.length > 0 && (
-            <>
-              <h3>Staff</h3>
-              <div className="details__blockContainer">
-                {selected.staff.edges.slice(0, 6).map((staff: any) => (
-                  <div key={staff.id} className="details__block">
-                    <div className="details__blockLeft">
-                      <div className="details__blockImageContainer">
-                        <img src={staff.node.image.large} alt={staff.node.name.userPreferred} />
-                      </div>
-                      <div className="details__blockBody">
-                        <h5>{staff.node.name.userPreferred}</h5>
-                        <p>{staff.role}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
+          <Characters characters={selected.characters} />
+          <Staff staff={selected.staff} />
           {selected.trailer && (
             <>
               <h3>Trailer</h3>
