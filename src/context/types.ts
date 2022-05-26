@@ -6,6 +6,11 @@ interface IFeatured {
 
 export type AnilistUser = ALUser;
 
+export enum WatchlistFormat {
+  Default = 'DEFAULT',
+  Anilist = 'ANILIST',
+}
+
 export type User = {
   uid: string;
   displayName: string | null;
@@ -13,6 +18,7 @@ export type User = {
   email: string | null;
   isAdult?: boolean;
   anilistLinked?: boolean;
+  preferredWatchlist?: WatchlistFormat;
 };
 
 export type AccessToken = {

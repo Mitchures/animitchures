@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import './Details.css';
 
 import Card from 'components/Card';
+import SplitButton from 'components/SplitButton';
 import Loader from 'components/Loader';
 
 import { FuzzyDate, Media, MediaEdge } from 'graphql/types';
@@ -15,11 +16,6 @@ import { DETAILS_EXTENDED_QUERY } from 'graphql/queries';
 import { addItemToWatchlist, removeItemFromWatchlist } from 'api';
 import { useStateValue } from 'context';
 import { authHeader } from 'helpers';
-import SplitButton from 'components/SplitButton';
-
-interface IData {
-  [key: string]: any;
-}
 
 // Convert text that may come back UpperCase.
 const convertText = (text: string) => {
@@ -94,7 +90,7 @@ function Details() {
           />
           {user && (
             <div className="details__actions">
-              {watchlist.filter(({ id }: IData) => id === selected.id).length > 0 ? (
+              {watchlist.filter(({ id }: Media) => id === selected.id).length > 0 ? (
                 <button
                   onClick={() => removeItemFromWatchlist(selected, user.uid, dispatch)}
                   onMouseEnter={() => updateRemoveButtonText('Remove from Watchlist')}
@@ -111,9 +107,13 @@ function Details() {
               )}
             </div>
           )}
+          {/* TODO: implement anilist save entry feature */}
           {anilist_user && (
             <div className="details__actions">
-              <SplitButton value={selected.mediaListEntry?.status as string} />
+              <SplitButton
+                value={selected.mediaListEntry?.status as string}
+                mediaId={selected.id}
+              />
             </div>
           )}
 

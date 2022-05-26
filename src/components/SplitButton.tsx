@@ -1,4 +1,6 @@
 import { useState, useRef, Fragment } from 'react';
+import { useMutation } from '@apollo/client';
+
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -11,22 +13,31 @@ import MenuList from '@mui/material/MenuList';
 
 import './SplitButton.css';
 
-const OPTIONS = ['COMPLETED', 'CURRENT', 'DROPPED', 'PLANNING', 'PAUSED', 'REPEATING'];
+import { SAVE_MEDIA_LIST_ENTRY_SIMPLE_MUTATION } from 'graphql/mutations';
+import { authHeader } from 'helpers';
 
-export default function SplitButton({ value }: { value: string }) {
+const OPTIONS = ['COMPLETED', 'CURRENT', 'DROPPED', 'PLANNING', 'REPEATING'];
+
+export default function SplitButton({ value, mediaId }: { value: string; mediaId: number }) {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = useState(OPTIONS.indexOf(value));
-
-  const handleClick = () => {
-    console.info(`You clicked ${OPTIONS[selectedIndex]}`);
-  };
+  const [saveMediaListEntry] = useMutation(SAVE_MEDIA_LIST_ENTRY_SIMPLE_MUTATION);
 
   const handleMenuItemClick = (
     event: React.MouseEvent<HTMLLIElement, MouseEvent>,
     index: number,
   ) => {
     setSelectedIndex(index);
+    saveMediaListEntry({
+      variables: {
+        mediaId,
+        status: OPTIONS[index],
+      },
+      context: {
+        headers: authHeader(),
+      },
+    });
     setOpen(false);
   };
 
@@ -38,7 +49,6 @@ export default function SplitButton({ value }: { value: string }) {
     if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
       return;
     }
-
     setOpen(false);
   };
 
@@ -59,7 +69,7 @@ export default function SplitButton({ value }: { value: string }) {
         ref={anchorRef}
         aria-label="split button"
       >
-        <Button onClick={handleClick}>{handleText(OPTIONS[selectedIndex])}</Button>
+        <Button>{handleText(OPTIONS[selectedIndex])}</Button>
         <Button
           size="small"
           aria-controls={open ? 'split-button-menu' : undefined}

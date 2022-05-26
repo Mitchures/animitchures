@@ -26,10 +26,10 @@ function SignUp() {
     ) {
       auth
         .createUserWithEmailAndPassword(email.value, password.value)
-        .then(({ user }) => {
+        .then(({ user }: any) => {
           console.log(user);
-          return user
-            ?.updateProfile({
+          user
+            .updateProfile({
               displayName: name.value,
             })
             .then(() => {

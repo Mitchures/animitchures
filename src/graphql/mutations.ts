@@ -1,5 +1,14 @@
 import { gql } from '@apollo/client';
 
+export const SAVE_MEDIA_LIST_ENTRY_SIMPLE_MUTATION = gql`
+  mutation ($mediaId: Int, $status: MediaListStatus) {
+    SaveMediaListEntry(mediaId: $mediaId, status: $status) {
+      id
+      status
+    }
+  }
+`;
+
 export const SAVE_MEDIA_LIST_ENTRY_MUTATION = gql`
   mutation (
     $id: Int
