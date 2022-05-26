@@ -1,6 +1,6 @@
 import './Header.css';
 import Avatar from '@material-ui/core/Avatar';
-import { Notifications } from '@mui/icons-material';
+import { IoNotifications } from 'react-icons/io5';
 
 import { Link } from 'react-router-dom';
 import { useStateValue } from 'context';
@@ -19,7 +19,7 @@ function Header() {
         {user && (
           <>
             <Link to="/">
-              <Notifications />
+              <IoNotifications />
             </Link>
             <Link to="/profile">
               <Avatar
