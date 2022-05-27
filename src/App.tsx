@@ -7,18 +7,18 @@ import './App.css';
 import Header from 'components/Header';
 import Navigation from 'components/Navigation';
 
-import Login from 'pages/Login';
-import SignUp from 'pages/SignUp';
-import Details from 'pages/Details';
-import Profile from 'pages/Profile';
-import Features from 'pages/Features';
-import Results from 'pages/Results';
-import Watchlist from 'pages/Watchlist';
-import AnilistWatchlist from 'pages/AnilistWatchlist';
-import Settings from 'pages/Settings';
-import Callback from 'pages/Callback';
-import ComingSoon from 'pages/ComingSoon';
-import Community from 'pages/Community';
+import Login from 'views/Login';
+import SignUp from 'views/SignUp';
+import Details from 'views/Details';
+import Profile from 'views/Profile';
+import Features from 'views/Features';
+import Results from 'views/Results';
+import Watchlist from 'views/Watchlist';
+import AnilistWatchlist from 'views/AnilistWatchlist';
+import Settings from 'views/Settings';
+import Callback from 'views/Callback';
+import ComingSoon from 'views/ComingSoon';
+import Community from 'views/Community';
 
 import { auth, db } from 'config';
 import { useStateValue } from 'context';
@@ -127,15 +127,20 @@ function App() {
                 </div>
               }
             >
-              <Route path="/callback" element={<Callback />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="/coming-soon" element={<ComingSoon />} />
-              <Route path="/community" element={<Community />} />
-              <Route path="/watchlist" element={<Watchlist />} />
-              <Route path="/anilist-watchlist" element={<AnilistWatchlist />} />
               <Route path="/search/anime" element={<Results />} />
               <Route path="/anime/:id/:title" element={<Details />} />
-              {user && <Route path="/profile" element={<Profile />} />}
+              {/* Private Routes */}
+              {user && (
+                <>
+                  <Route path="/callback" element={<Callback />} />
+                  <Route path="/settings" element={<Settings />} />
+                  <Route path="/coming-soon" element={<ComingSoon />} />
+                  <Route path="/community" element={<Community />} />
+                  <Route path="/watchlist" element={<Watchlist />} />
+                  <Route path="/anilist-watchlist" element={<AnilistWatchlist />} />
+                  <Route path="/profile" element={<Profile />} />
+                </>
+              )}
               <Route path="/" element={<Features />} />
               {/* Redirect unknown routes to root */}
               <Route path="*" element={<Navigate to="/" />} />

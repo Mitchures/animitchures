@@ -87,14 +87,16 @@ function Navigation() {
         )}
         <h5>General</h5>
         <ul>
-          <li>
-            <NavLink to="/settings">
-              <div className="navigation__icon">
-                <Settings />
-              </div>
-              <span>Settings</span>
-            </NavLink>
-          </li>
+          {user && (
+            <li>
+              <NavLink to="/settings">
+                <div className="navigation__icon">
+                  <Settings />
+                </div>
+                <span>Settings</span>
+              </NavLink>
+            </li>
+          )}
           {user ? (
             <li>
               <Link to="/" className="logout" onClick={logout}>
