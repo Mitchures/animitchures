@@ -9,6 +9,7 @@ import './Details.css';
 
 import SplitButton from 'components/SplitButton';
 import Loader from 'components/Loader';
+import Summary from 'components/details/Summary';
 import Relations from 'components/details/Relations';
 import Characters from 'components/details/Characters';
 import Staff from 'components/details/Staff';
@@ -37,12 +38,6 @@ const formatDate = (date: FuzzyDate) => {
 
 const getStudio = (studios: any) => {
   return studios.edges.map((studio: any) => studio.isMain && studio.node.name);
-};
-
-// Determine if media has related anime, no book related relations.
-const getRelations = (relations: any) => {
-  const animeRelations = relations.edges.filter((relation: any) => relation.node.type === 'ANIME');
-  return animeRelations;
 };
 
 function Details() {
@@ -217,25 +212,7 @@ function Details() {
           </div>
         </div>
         <div className="details__right">
-          <div className="details__rightHeader">
-            <h1>
-              {selected.title?.english ? selected.title?.english : selected.title?.userPreferred}
-            </h1>
-            <div className="details__tags">
-              {selected.genres?.map((genre, index) => (
-                <div key={`${genre}__${index}`} className="details__tag">
-                  {genre}
-                </div>
-              ))}
-            </div>
-          </div>
-          <p
-            dangerouslySetInnerHTML={{
-              __html: `${
-                selected.description !== null ? selected.description : 'No description available'
-              }`,
-            }}
-          ></p>
+          <Summary media={selected} />
           <Relations relations={selected.relations} />
           <Characters characters={selected.characters} />
           <Staff staff={selected.staff} />
