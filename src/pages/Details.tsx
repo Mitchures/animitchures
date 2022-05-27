@@ -7,13 +7,13 @@ import { motion } from 'framer-motion';
 
 import './Details.css';
 
-import Card from 'components/Card';
 import SplitButton from 'components/SplitButton';
 import Loader from 'components/Loader';
+import Relations from 'components/details/Relations';
 import Characters from 'components/details/Characters';
 import Staff from 'components/details/Staff';
 
-import { FuzzyDate, Media, MediaEdge } from 'graphql/types';
+import { FuzzyDate, Media } from 'graphql/types';
 import { DETAILS_EXTENDED_QUERY } from 'graphql/queries';
 import { addItemToWatchlist, removeItemFromWatchlist } from 'api';
 import { useStateValue } from 'context';
@@ -236,16 +236,7 @@ function Details() {
               }`,
             }}
           ></p>
-          {getRelations(selected.relations).length > 0 && (
-            <>
-              <h3>Relations</h3>
-              <div className="details__relations">
-                {getRelations(selected.relations).map((relation: MediaEdge) => (
-                  <Card key={relation.id} {...relation.node} relationType={relation.relationType} />
-                ))}
-              </div>
-            </>
-          )}
+          <Relations relations={selected.relations} />
           <Characters characters={selected.characters} />
           <Staff staff={selected.staff} />
           {selected.trailer && (

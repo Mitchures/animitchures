@@ -1,0 +1,28 @@
+.relations__container {
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: var(--border-radius);
+  padding: 1.25rem 0 0.875rem;
+  margin-top: 0.875rem;
+  margin-bottom: 1.25rem;
+}
+
+.relations__container::-webkit-scrollbar { 
+  width: 0 !important 
+}
+
+.relations__container > .card:first-child {
+  padding-left: var(--left-spacing);
+}
+
+.relations__container > .card:last-child {
+  padding-right: var(--right-spacing);
+}
+
+@media (prefers-color-scheme: dark) {
+  .relations__container {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+}

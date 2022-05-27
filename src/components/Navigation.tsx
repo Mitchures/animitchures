@@ -50,16 +50,16 @@ function Navigation() {
               </NavLink>
             </li>
           )}
-          <li>
+          {/* <li>
             <NavLink to="/coming-soon">
               <div className="navigation__icon">
                 <CalendarToday />
               </div>
               <span>Coming Soon</span>
             </NavLink>
-          </li>
+          </li> */}
         </ul>
-        <h5>Social</h5>
+        {/* <h5>Social</h5>
         <ul>
           <li>
             <NavLink to="/community">
@@ -69,7 +69,7 @@ function Navigation() {
               <span>Community</span>
             </NavLink>
           </li>
-        </ul>
+        </ul> */}
         {user && anilist_user && (
           <>
             <h5>Anilist</h5>

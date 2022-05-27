@@ -140,29 +140,6 @@
   color: var(--action);
 }
 
-.details__relations {
-  display: flex;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: var(--border-radius);
-  padding: 1.25rem 0 0;
-  margin-top: 0.875rem;
-  margin-bottom: 1.25rem;
-}
-
-.details__relations::-webkit-scrollbar { 
-  width: 0 !important 
-}
-
-.details__relations > .card:first-child {
-  padding-left: var(--left-spacing);
-}
-
-.details__relations > .card:last-child {
-  padding-right: var(--right-spacing);
-}
-
 .details__blockContainer {
   display: grid;
   grid-row-gap: 0.875rem;
@@ -262,7 +239,6 @@
   }
 
   .details__dataContainer,
-  .details__relations,
   .details__block {
     background-color: rgba(0, 0, 0, 0.15);
   }
