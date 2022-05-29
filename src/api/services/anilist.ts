@@ -1,24 +1,25 @@
 import { AccessToken } from 'context/types';
 import { db } from 'config';
+import { collection, setDoc, doc, getDoc, DocumentSnapshot } from 'firebase/firestore';
+import { FirebaseError } from 'firebase/app';
 
-const collectionRef = db.collection('tokens');
+const collectionRef = collection(db, 'tokens');
 
 export const saveAccessToken = async (token: AccessToken, userId: string) => {
-  return await collectionRef
-    .doc(`${userId}`)
-    .set(token)
-    .catch((error) => alert(error.message));
+  const docRef = doc(collectionRef, `${userId}`);
+  return await setDoc(docRef, token)
+    .then(() => token)
+    .catch((error: FirebaseError) => alert(error.message));
 };
 
 export const getAccessToken = async (userId: string) => {
-  return await collectionRef
-    .doc(`${userId}`)
-    .get()
-    .then((docSnapshot) => {
-      if (docSnapshot.exists) {
+  const docRef = doc(collectionRef, `${userId}`);
+  return await getDoc(docRef)
+    .then((docSnapshot: DocumentSnapshot) => {
+      if (docSnapshot.exists()) {
         const data = docSnapshot.data();
         if (data) return data as AccessToken;
       }
     })
-    .catch((error) => alert(error.message));
-}
+    .catch((error: FirebaseError) => alert(error.message));
+};

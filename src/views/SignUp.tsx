@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 import './SignUp.css';
 
@@ -24,8 +25,7 @@ function SignUp() {
       confirmPassword.value &&
       password.value === confirmPassword.value
     ) {
-      auth
-        .createUserWithEmailAndPassword(email.value, password.value)
+      createUserWithEmailAndPassword(auth, email.value, password.value)
         .then(({ user }: any) => {
           console.log(user);
           user

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import { collection, setDoc, doc } from 'firebase/firestore';
 
 import Loader from 'components/Loader';
 
@@ -52,10 +53,9 @@ function Callback() {
   };
 
   const handleAnilistUser = async (anilist_user: any, userId: string) => {
-    const collectionRef = db.collection('anilist');
-    const docRef = collectionRef.doc(`${userId}`);
-    docRef
-      .set(anilist_user)
+    const collectionRef = collection(db, 'anilist');
+    const docRef = doc(collectionRef, `${userId}`);
+    setDoc(docRef, anilist_user)
       .then(() => {
         dispatch({
           type: 'set_anilist_user',

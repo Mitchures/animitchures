@@ -1,5 +1,5 @@
-import firebase from 'firebase';
 import { Link, useNavigate } from 'react-router-dom';
+import { signInWithPopup, signInWithEmailAndPassword, AuthProvider } from 'firebase/auth';
 
 import './Login.css';
 
@@ -13,9 +13,8 @@ function Login() {
   const password = useInput('');
   const navigate = useNavigate();
 
-  const signInWithProvider = (provider: firebase.auth.AuthProvider) => {
-    auth
-      .signInWithPopup(provider)
+  const signInWithProvider = (provider: AuthProvider) => {
+    signInWithPopup(auth, provider)
       .then(({ user }) => {
         navigate('/');
       })
@@ -26,8 +25,7 @@ function Login() {
     event?.preventDefault();
 
     if (email.value && password.value) {
-      auth
-        .signInWithEmailAndPassword(email.value, password.value)
+      signInWithEmailAndPassword(auth, email.value, password.value)
         .then(({ user }) => {
           navigate('/');
         })

@@ -2,15 +2,16 @@ import { Dispatch } from 'react';
 import { Action } from 'context/types';
 import { db } from 'config';
 import { Media } from 'graphql/types';
+import { collection, updateDoc, doc, getDoc, DocumentSnapshot } from 'firebase/firestore';
+import { FirebaseError } from 'firebase/app';
 
-const collectionRef = db.collection('watchlists');
+const collectionRef = collection(db, 'watchlists');
 
 export const getWatchlist = async (userId: string, dispatch: Dispatch<Action>) => {
-  return await collectionRef
-    .doc(`${userId}`)
-    .get()
-    .then((docSnapshot) => {
-      if (docSnapshot.exists) {
+  const docRef = doc(collectionRef, `${userId}`);
+  return await getDoc(docRef)
+    .then((docSnapshot: DocumentSnapshot) => {
+      if (docSnapshot.exists()) {
         const data = docSnapshot.data();
         if (data) return data as Media[];
       }
@@ -21,7 +22,7 @@ export const getWatchlist = async (userId: string, dispatch: Dispatch<Action>) =
         watchlist,
       });
     })
-    .catch((error) => alert(error.message));
+    .catch((error: FirebaseError) => alert(error.message));
 };
 
 export const addItemToWatchlist = async (
@@ -29,22 +30,19 @@ export const addItemToWatchlist = async (
   userId: string,
   dispatch: Dispatch<Action>,
 ) => {
-  return await collectionRef
-    .doc(`${userId}`)
-    .get()
-    .then((docSnapshot) => {
-      if (docSnapshot.exists) {
+  const docRef = doc(collectionRef, `${userId}`);
+  return await getDoc(docRef)
+    .then((docSnapshot: DocumentSnapshot) => {
+      if (docSnapshot.exists()) {
         const data = docSnapshot.data();
         if (data) {
           const { watchlist } = data;
           const newWatchlist = {
             watchlist: [...watchlist, media],
           };
-          return collectionRef
-            .doc(`${userId}`)
-            .update(newWatchlist)
+          return updateDoc(docRef, newWatchlist)
             .then(() => newWatchlist)
-            .catch((error) => alert(error.message));
+            .catch((error: FirebaseError) => alert(error.message));
         }
       }
     })
@@ -54,7 +52,7 @@ export const addItemToWatchlist = async (
         watchlist,
       });
     })
-    .catch((error) => alert(error.message));
+    .catch((error: FirebaseError) => alert(error.message));
 };
 
 export const removeItemFromWatchlist = async (
@@ -62,22 +60,19 @@ export const removeItemFromWatchlist = async (
   userId: string,
   dispatch: Dispatch<Action>,
 ) => {
-  return await collectionRef
-    .doc(`${userId}`)
-    .get()
-    .then((docSnapshot) => {
-      if (docSnapshot.exists) {
+  const docRef = doc(collectionRef, `${userId}`);
+  return await getDoc(docRef)
+    .then((docSnapshot: DocumentSnapshot) => {
+      if (docSnapshot.exists()) {
         const data = docSnapshot.data();
         if (data) {
           const { watchlist } = data;
           const newWatchlist = {
             watchlist: watchlist.filter((item: Media) => item.id !== media.id),
           };
-          return collectionRef
-            .doc(`${userId}`)
-            .update(newWatchlist)
+          return updateDoc(docRef, newWatchlist)
             .then(() => newWatchlist)
-            .catch((error) => alert(error.message));
+            .catch((error: FirebaseError) => alert(error.message));
         }
       }
     })
@@ -87,5 +82,5 @@ export const removeItemFromWatchlist = async (
         watchlist,
       });
     })
-    .catch((error) => alert(error.message));
+    .catch((error: FirebaseError) => alert(error.message));
 };

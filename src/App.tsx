@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import { FirebaseError } from 'firebase/app';
+import { collection, setDoc, doc, getDoc, DocumentSnapshot } from 'firebase/firestore';
 
 import './App.css';
 
@@ -29,22 +31,21 @@ function App() {
   const [{ user }, dispatch] = useStateValue();
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+    const unsubscribe = auth.onAuthStateChanged((authUser: any) => {
       if (authUser) {
         // user has logged in...
         const { uid, photoURL, displayName, email } = authUser;
         // check if user already exists in db.
-        const docRef = db.collection('users').doc(uid);
-        docRef
-          .get()
-          .then((doc) => {
-            if (doc.exists) {
+        const docRef = doc(collection(db, 'users'), uid);
+        getDoc(docRef)
+          .then((docSnapshot: DocumentSnapshot) => {
+            if (docSnapshot.exists()) {
               // get existing user data.
-              const data = doc.data();
+              const data = docSnapshot.data();
               if (data) {
                 const user = { ...data } as User;
                 // update db if any new information exists.
-                docRef.set(user).catch((error) => alert(error.message));
+                setDoc(docRef, user).catch((error: FirebaseError) => alert(error.message));
                 // get user watchlist.
                 getWatchlist(uid, dispatch);
                 // get anilist user if linked.
@@ -55,11 +56,10 @@ function App() {
                       localStorage.setItem('token', JSON.stringify(token)),
                     );
                   // Get anilist user from database.
-                  const anilistDocRef = db.collection('anilist').doc(uid);
-                  anilistDocRef
-                    .get()
-                    .then((docSnapshot) => {
-                      if (docSnapshot.exists) {
+                  const anilistDocRef = doc(collection(db, 'anilist'), uid);
+                  getDoc(anilistDocRef)
+                    .then((docSnapshot: DocumentSnapshot) => {
+                      if (docSnapshot.exists()) {
                         const data = docSnapshot.data();
                         if (data) {
                           dispatch({
@@ -69,7 +69,7 @@ function App() {
                         }
                       }
                     })
-                    .catch((error) => alert(error.message));
+                    .catch((error: FirebaseError) => alert(error.message));
                 }
                 // set current user to existing user.
                 dispatch({
@@ -85,7 +85,7 @@ function App() {
                 email,
               };
               // save new user to db.
-              docRef.set(user).catch((error) => alert(error.message));
+              setDoc(docRef, user).catch((error: FirebaseError) => alert(error.message));
               // set current user to new user.
               dispatch({
                 type: 'login_user',
@@ -93,7 +93,7 @@ function App() {
               });
             }
           })
-          .catch((error) => alert(error.message));
+          .catch((error: FirebaseError) => alert(error.message));
       } else {
         // user has logged out...
         dispatch({

@@ -20,7 +20,7 @@
     "@types/react-dom": "^17.0.14",
     "@types/react-router": "^5.1.18",
     "dotenv": "^10.0.0",
-    "firebase": "^8.6.7",
+    "firebase": "^9.8.2",
     "firebase-admin": "^10.0.0",
     "firebase-functions": "^3.16.0",
     "framer-motion": "4.1.17",

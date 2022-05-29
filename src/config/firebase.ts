@@ -1,10 +1,10 @@
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/storage';
+import { initializeApp } from 'firebase/app';
+import { getAuth, OAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { getStorage } from 'firebase/storage';
 import 'firebase/database';
-import 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
 
-const firebaseApp = firebase.initializeApp({
+const firebaseApp = initializeApp({
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
   projectId: process.env.REACT_APP_PROJECT_ID,
@@ -14,15 +14,15 @@ const firebaseApp = firebase.initializeApp({
 });
 
 // Sign in with Apple
-const appleProvider = new firebase.auth.OAuthProvider('apple.com');
+const appleProvider = new OAuthProvider('apple.com');
 appleProvider.addScope('email');
 appleProvider.addScope('name');
 
 // Sign in with Google
-const googleProvider = new firebase.auth.GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
 
-const db = firebaseApp.firestore();
-const auth = firebase.auth();
-const storage = firebase.storage();
+const db = getFirestore(firebaseApp);
+const auth = getAuth(firebaseApp);
+const storage = getStorage(firebaseApp);
 
 export { db, auth, storage, appleProvider, googleProvider };
