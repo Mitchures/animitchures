@@ -2,14 +2,14 @@ import './Relations.css';
 
 import Card from '../Card';
 
-import { Maybe, MediaConnection, MediaEdge } from 'graphql/types';
+import { Media, MediaEdge } from 'graphql/types';
 
 // Determine if media has related anime, no book related relations.
 const getRelations = (relations: any) => {
   return relations.edges.filter((relation: any) => relation.node.type === 'ANIME');
 };
 
-function Relations({ relations }: { relations: Maybe<MediaConnection> | undefined }) {
+function Relations({ relations }: Media) {
   return (
     <div className="relations">
       {relations && relations.edges && getRelations(relations).length > 0 && (

@@ -1,6 +1,6 @@
 import './Characters.css';
 
-import { CharacterConnection, Maybe } from 'graphql/types';
+import { Media } from 'graphql/types';
 
 // Convert text that may come back UpperCase.
 const convertText = (text: string) => {
@@ -10,7 +10,7 @@ const convertText = (text: string) => {
   return text.charAt(0).toUpperCase() + text.substring(1).toLowerCase();
 };
 
-function Characters({ characters }: { characters: Maybe<CharacterConnection> | undefined }) {
+function Characters({ characters }: Media) {
   return (
     <div className="characters">
       {characters && characters.edges && characters.edges.length > 0 && (

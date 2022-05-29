@@ -1,0 +1,16 @@
+.actions {
+  display: flex;
+  flex-direction: column;
+  margin: 1.25rem 0 0;
+}
+
+.actions > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.actions > button span {
+  margin-left: 0.875rem;
+}

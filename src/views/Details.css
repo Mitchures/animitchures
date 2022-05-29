@@ -47,21 +47,6 @@
   padding: 0 0 0 1.875rem;
 }
 
-.details__actions {
-  display: flex;
-  margin: 1.25rem 0 0;
-}
-
-.details__actions > button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.details__actions > button span {
-  margin-left: 0.875rem;
-}
-
 .details__iframeWrapper {
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */

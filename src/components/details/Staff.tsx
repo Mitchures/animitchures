@@ -1,8 +1,8 @@
 import './Staff.css';
 
-import { Maybe, StaffConnection } from 'graphql/types';
+import { Media } from 'graphql/types';
 
-function Staff({ staff }: { staff: Maybe<StaffConnection> | undefined }) {
+function Staff({ staff }: Media) {
   return (
     <div className="staff">
       {staff && staff.edges && staff.edges.length > 0 && (
