@@ -17,7 +17,7 @@
 .card > img {
   position: relative;
   height: 300px;
-  width: 200px;
+  aspect-ratio: 2 / 3;
   object-fit: cover;
   border-radius: var(--border-radius);
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
