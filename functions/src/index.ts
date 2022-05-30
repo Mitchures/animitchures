@@ -18,12 +18,12 @@ export const createProfile = functions.auth.user().onCreate(async (userRecord, _
   return await db.collection('users').doc(uid).set(profile).catch(console.error);
 });
 
-export const createWatchlist = functions.auth.user().onCreate(async (userRecord, _) => {
+export const createFavorites = functions.auth.user().onCreate(async (userRecord, _) => {
   const { uid } = userRecord;
-  const watchlist = {
-    watchlist: [],
+  const favorites = {
+    favorites: [],
   };
-  return await db.collection('watchlists').doc(uid).set(watchlist).catch(console.error);
+  return await db.collection('favorites').doc(uid).set(favorites).catch(console.error);
 });
 
 export const linkedAnilistAccount = functions.firestore
@@ -38,7 +38,6 @@ export const linkedAnilistAccount = functions.firestore
     const updatedUser = {
       ...USER,
       anilistLinked: true,
-      preferredWatchlist: 'ANILIST',
     };
     return await db.collection('users').doc(userId).set(updatedUser).catch(console.error);
   });
