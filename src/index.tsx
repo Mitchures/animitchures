@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import { ApolloProvider } from '@apollo/client';
 import './index.css';
 import App from './App';
@@ -8,15 +8,16 @@ import reportWebVitals from './reportWebVitals';
 import { StateProvider, initialState } from './context';
 import { apolloClient } from './config';
 
-ReactDOM.render(
-  <React.StrictMode>
+const container = document.getElementById('root');
+const root = createRoot(container as Element);
+root.render(
+  <StrictMode>
     <ApolloProvider client={apolloClient}>
       <StateProvider initialState={initialState}>
         <App />
       </StateProvider>
     </ApolloProvider>
-  </React.StrictMode>,
-  document.getElementById('root'),
+  </StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function
