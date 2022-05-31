@@ -6,7 +6,7 @@ export const reducer = (state: State, action: Action): State => {
     case 'set_anilist_user':
       return {
         ...state,
-        anilist_user: action.anilist_user
+        anilist_user: action.anilist_user,
       };
     case 'clear_featured':
       return {
@@ -29,7 +29,7 @@ export const reducer = (state: State, action: Action): State => {
       return {
         ...state,
         user: null,
-        watchlist: [],
+        favorites: [],
         anilist_user: null,
         // featured: null
       };
@@ -38,14 +38,14 @@ export const reducer = (state: State, action: Action): State => {
         ...state,
         results: action.results,
       };
-    case 'set_watchlist':
-    case 'add_to_watchlist':
-    case 'remove_from_watchlist':
+    case 'set_favorites':
+    case 'add_to_favorites':
+    case 'remove_from_favorites':
       return {
         ...state,
-        watchlist: action.watchlist,
+        favorites: action.favorites,
       };
-    case 'init_watchlist':
+    case 'init_favorites':
       return state;
     default:
       return state;

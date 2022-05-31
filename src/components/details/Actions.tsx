@@ -1,34 +1,32 @@
-import { useState } from 'react';
-import { Add, Check, Remove } from '@mui/icons-material';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 import './Actions.css';
 
 import SplitButton from 'components/SplitButton';
 
 import { useStateValue } from 'context';
-import { addItemToWatchlist, removeItemFromWatchlist } from 'api';
+import { addItemToFavorites, removeItemFromFavorites } from 'api';
 import { Media } from 'graphql/types';
 
 function Actions({ media }: { media: Media }) {
-  const [{ user, watchlist, anilist_user }, dispatch] = useStateValue();
-  const [removeButtonText, updateRemoveButtonText] = useState('Added to Watchlist');
+  const [{ user, favorites, anilist_user }, dispatch] = useStateValue();
 
   return (
     user && (
       <div className="actions">
-        {watchlist.filter(({ id }: Media) => id === media.id).length > 0 ? (
+        {favorites.filter((id: number) => id === media.id).length > 0 ? (
           <button
-            onClick={() => removeItemFromWatchlist(media, user.uid, dispatch)}
-            onMouseEnter={() => updateRemoveButtonText('Remove from Watchlist')}
-            onMouseLeave={() => updateRemoveButtonText('Added to Watchlist')}
+            className="actions__favoriteButton"
+            onClick={() => removeItemFromFavorites(media.id, user.uid, dispatch)}
           >
-            {removeButtonText === 'Added to Watchlist' ? <Check /> : <Remove />}
-            <span>{removeButtonText}</span>
+            <AiFillHeart />
           </button>
         ) : (
-          <button onClick={() => addItemToWatchlist(media, user.uid, dispatch)}>
-            <Add />
-            <span>Add to Watchlist</span>
+          <button
+            className="actions__favoriteButton"
+            onClick={() => addItemToFavorites(media.id, user.uid, dispatch)}
+          >
+            <AiOutlineHeart />
           </button>
         )}
         {/* TODO: implement anilist save entry feature */}

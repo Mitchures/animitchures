@@ -42,11 +42,11 @@ function Navigation() {
           </li>
           {user && (
             <li>
-              <NavLink to="/watchlist">
+              <NavLink to="/favorites">
                 <div className="navigation__icon">
                   <Favorite />
                 </div>
-                <span>Watchlist</span>
+                <span>Favorites</span>
               </NavLink>
             </li>
           )}

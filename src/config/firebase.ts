@@ -1,7 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, OAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
-import 'firebase/database';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseApp = initializeApp({

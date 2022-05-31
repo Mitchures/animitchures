@@ -32,7 +32,7 @@ export type State = {
   user: User | null;
   featured: IFeatured | null;
   results: Media[] | null;
-  watchlist: Media[];
+  favorites: number[];
   anilist_user: AnilistUser | null;
 };
 
@@ -45,19 +45,19 @@ export type Action =
       type: 'clear_featured';
     }
   | {
-      type: 'init_watchlist';
+      type: 'init_favorites';
     }
   | {
-      type: 'remove_from_watchlist';
-      watchlist: Media[];
+      type: 'remove_from_favorites';
+      favorites: number[];
     }
   | {
-      type: 'add_to_watchlist';
-      watchlist: Media[];
+      type: 'add_to_favorites';
+      favorites: number[];
     }
   | {
-      type: 'set_watchlist';
-      watchlist: Media[];
+      type: 'set_favorites';
+      favorites: number[];
     }
   | {
       type: 'set_results';

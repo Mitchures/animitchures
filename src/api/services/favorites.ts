@@ -5,9 +5,9 @@ import { Media } from 'graphql/types';
 import { collection, updateDoc, doc, getDoc, DocumentSnapshot } from 'firebase/firestore';
 import { FirebaseError } from 'firebase/app';
 
-const collectionRef = collection(db, 'watchlists');
+const collectionRef = collection(db, 'favorites');
 
-export const getWatchlist = async (userId: string, dispatch: Dispatch<Action>) => {
+export const getFavorites = async (userId: string, dispatch: Dispatch<Action>) => {
   const docRef = doc(collectionRef, `${userId}`);
   return await getDoc(docRef)
     .then((docSnapshot: DocumentSnapshot) => {
@@ -16,17 +16,17 @@ export const getWatchlist = async (userId: string, dispatch: Dispatch<Action>) =
         if (data) return data as Media[];
       }
     })
-    .then(({ watchlist }: any) => {
+    .then(({ favorites }: any) => {
       dispatch({
-        type: 'set_watchlist',
-        watchlist,
+        type: 'set_favorites',
+        favorites,
       });
     })
     .catch((error: FirebaseError) => alert(error.message));
 };
 
-export const addItemToWatchlist = async (
-  media: Media,
+export const addItemToFavorites = async (
+  mediaId: number,
   userId: string,
   dispatch: Dispatch<Action>,
 ) => {
@@ -36,27 +36,27 @@ export const addItemToWatchlist = async (
       if (docSnapshot.exists()) {
         const data = docSnapshot.data();
         if (data) {
-          const { watchlist } = data;
-          const newWatchlist = {
-            watchlist: [...watchlist, media],
+          const { favorites } = data;
+          const newFavorites = {
+            favorites: [...favorites, mediaId],
           };
-          return updateDoc(docRef, newWatchlist)
-            .then(() => newWatchlist)
+          return updateDoc(docRef, newFavorites)
+            .then(() => newFavorites)
             .catch((error: FirebaseError) => alert(error.message));
         }
       }
     })
-    .then(({ watchlist }: any) => {
+    .then(({ favorites }: any) => {
       dispatch({
-        type: 'add_to_watchlist',
-        watchlist,
+        type: 'add_to_favorites',
+        favorites,
       });
     })
     .catch((error: FirebaseError) => alert(error.message));
 };
 
-export const removeItemFromWatchlist = async (
-  media: Media,
+export const removeItemFromFavorites = async (
+  mediaId: number,
   userId: string,
   dispatch: Dispatch<Action>,
 ) => {
@@ -66,20 +66,20 @@ export const removeItemFromWatchlist = async (
       if (docSnapshot.exists()) {
         const data = docSnapshot.data();
         if (data) {
-          const { watchlist } = data;
-          const newWatchlist = {
-            watchlist: watchlist.filter((item: Media) => item.id !== media.id),
+          const { favorites } = data;
+          const newFavorites = {
+            favorites: favorites.filter((item: number) => item !== mediaId),
           };
-          return updateDoc(docRef, newWatchlist)
-            .then(() => newWatchlist)
+          return updateDoc(docRef, newFavorites)
+            .then(() => newFavorites)
             .catch((error: FirebaseError) => alert(error.message));
         }
       }
     })
-    .then(({ watchlist }: any) => {
+    .then(({ favorites }: any) => {
       dispatch({
-        type: 'remove_from_watchlist',
-        watchlist,
+        type: 'remove_from_favorites',
+        favorites,
       });
     })
     .catch((error: FirebaseError) => alert(error.message));

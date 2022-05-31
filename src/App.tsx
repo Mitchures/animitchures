@@ -15,7 +15,7 @@ import Details from 'views/Details';
 import Profile from 'views/Profile';
 import Features from 'views/Features';
 import Results from 'views/Results';
-import Watchlist from 'views/Watchlist';
+import Favorites from 'views/Favorites';
 import AnilistWatchlist from 'views/AnilistWatchlist';
 import Settings from 'views/Settings';
 import Callback from 'views/Callback';
@@ -25,7 +25,7 @@ import Community from 'views/Community';
 import { auth, db } from 'config';
 import { useStateValue } from 'context';
 import { User, AnilistUser } from 'context/types';
-import { getWatchlist, getAccessToken } from 'api';
+import { getFavorites, getAccessToken } from 'api';
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -46,8 +46,8 @@ function App() {
                 const user = { ...data } as User;
                 // update db if any new information exists.
                 setDoc(docRef, user).catch((error: FirebaseError) => alert(error.message));
-                // get user watchlist.
-                getWatchlist(uid, dispatch);
+                // get user favorites.
+                getFavorites(uid, dispatch);
                 // get anilist user if linked.
                 if (user.anilistLinked) {
                   // get access token from database and store in local storage.
@@ -136,7 +136,7 @@ function App() {
                   <Route path="/settings" element={<Settings />} />
                   <Route path="/coming-soon" element={<ComingSoon />} />
                   <Route path="/community" element={<Community />} />
-                  <Route path="/watchlist" element={<Watchlist />} />
+                  <Route path="/favorites" element={<Favorites />} />
                   <Route path="/anilist-watchlist" element={<AnilistWatchlist />} />
                   <Route path="/profile" element={<Profile />} />
                 </>

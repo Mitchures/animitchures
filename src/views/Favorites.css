@@ -1,14 +1,14 @@
-.watchlist {
+.favorites {
   height: calc(100vh - 116px); /* 100vh - header height */
   overflow-y: auto;
   padding: 0 var(--x-axis-spacing);
 }
 
-.watchlist h3 {
+.favorites h3 {
   margin-top: 0.875rem;
 }
 
-.watchlist__grid {
+.favorites__grid {
   display: grid;
   grid-row-gap: 1.25rem;
   grid-column-gap: 1.25rem;
@@ -17,14 +17,14 @@
   padding: 0.875rem 0;
 }
 
-.watchlist__placeholder {
+.favorites__placeholder {
   display: grid;
   place-content: center;
   height: 100%;
   color: var(--secondary);
 }
 
-.watchlist__placeholder > img {
+.favorites__placeholder > img {
   border-radius: var(--border-radius);
   object-fit: contain;
   margin-bottom: 0.875rem;

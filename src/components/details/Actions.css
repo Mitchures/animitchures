@@ -1,6 +1,5 @@
 .actions {
   display: flex;
-  flex-direction: column;
   margin: 1.25rem 0 0;
 }
 
@@ -13,4 +12,13 @@
 
 .actions > button span {
   margin-left: 0.875rem;
+}
+
+.actions__favoriteButton {
+  margin-right: 0.875rem;
+  font-size: 24px;
+  border-radius: 999px;
+  width: 54px;
+  min-width: 54px;
+  background-color: var(--accent-primary);
 }

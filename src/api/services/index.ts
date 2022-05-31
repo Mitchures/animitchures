@@ -1,3 +1,3 @@
-export * from './watchlist'
-export * from './profile'
-export * from './anilist'
+export * from './favorites';
+export * from './profile';
+export * from './anilist';

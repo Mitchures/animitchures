@@ -233,6 +233,34 @@ export const SEARCH_QUERY = gql`
   }
 `;
 
+export const DETAILS_LIST_QUERY = gql`
+  query ($id_in: [Int], $type: MediaType, $page: Int, $perPage: Int) {
+    Page(page: $page, perPage: $perPage) {
+      pageInfo {
+        total
+        perPage
+        currentPage
+        lastPage
+        hasNextPage
+      }
+      media(id_in: $id_in, type: $type) {
+        id
+        isAdult
+        title {
+          userPreferred
+          english
+          romaji
+        }
+        coverImage {
+          extraLarge
+          large
+        }
+        bannerImage
+      }
+    }
+  }
+`;
+
 export const DETAILS_QUERY = gql`
   query media($id: Int, $type: MediaType) {
     Media(id: $id, type: $type) {
