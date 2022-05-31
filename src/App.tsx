@@ -127,12 +127,12 @@ function App() {
                 </div>
               }
             >
+              <Route path="/callback" element={<Callback />} />
               <Route path="/search/anime" element={<Results />} />
               <Route path="/anime/:id/:title" element={<Details />} />
               {/* Private Routes */}
               {user && (
                 <>
-                  <Route path="/callback" element={<Callback />} />
                   <Route path="/settings" element={<Settings />} />
                   <Route path="/coming-soon" element={<ComingSoon />} />
                   <Route path="/community" element={<Community />} />
