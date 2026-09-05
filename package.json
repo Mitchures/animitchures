@@ -56,6 +56,7 @@
     "@playwright/test": "^1.63.0",
     "@types/lodash": "^4.14.182",
     "@vitejs/plugin-react": "6.1.1",
+    "dotenv": "^17.4.2",
     "eslint": "10.10.0",
     "eslint-plugin-react-hooks": "7.1.1",
     "globals": "17.12.0",

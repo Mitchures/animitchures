@@ -39,3 +39,6 @@ storage.rules
 /test-results
 /playwright-report
 /blob-report
+
+# playwright saved auth state (contains a real session token)
+/e2e/.auth
