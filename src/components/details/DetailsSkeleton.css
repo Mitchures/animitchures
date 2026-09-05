@@ -52,6 +52,44 @@
   min-width: 0;
 }
 
+/* Mirrors .details__overviewSide: facts block, links, tags. */
+.detailsSkeleton__side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  min-width: 0;
+}
+
+/* Mirrors the cast chip grid — same three-across track and 72px portrait. */
+.detailsSkeleton__chips {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 0.75rem;
+}
+
+.detailsSkeleton__chip {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem 0.75rem 0.75rem;
+  border-radius: var(--border-radius);
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.detailsSkeleton__chipBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .detailsSkeleton__chip {
+    background-color: rgba(255, 255, 255, 0.04);
+  }
+}
+
 @media screen and (max-width: 960px) {
   .detailsSkeleton__panel {
     grid-template-columns: minmax(0, 1fr);
