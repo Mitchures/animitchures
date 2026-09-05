@@ -6,7 +6,13 @@
   /* border-bottom: 1px solid rgba(0, 0, 0, 0.05); */
   height: var(--header-height);
   width: 100%;
+  /* Sticky so search and profile stay reachable. Translucent so the Details
+     banner passes beneath rather than colliding with it. */
+  position: sticky;
+  top: 0;
   z-index: 99;
+  background-color: rgba(237, 238, 247, 0.72);
+  backdrop-filter: blur(16px);
   /* backdrop-filter: blur(20px); */
 }
 
@@ -94,6 +100,7 @@
 
 @media (prefers-color-scheme: dark) {
   .header {
+    background-color: rgba(11, 22, 33, 0.72);
     /* border-bottom: 1px solid rgba(255, 255, 255, 0.15); */
   }
 

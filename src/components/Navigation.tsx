@@ -14,7 +14,9 @@ function Navigation({ sections, onLogout }: Props) {
     <div className="navigation">
       <Link to="/" className="navigation__logo">
         <img src={Logo} alt="animitchures" />
-        animitchures<span></span>
+        <span className="navigation__wordmark">
+          animitchures<span></span>
+        </span>
       </Link>
       <div className="navigation__container">
         {sections.map((section) => (
@@ -23,15 +25,17 @@ function Navigation({ sections, onLogout }: Props) {
             <ul>
               {section.items.map(({ id, label, to, Icon, end, isLogout }) => (
                 <li key={id}>
+                  {/* aria-label is required, not decoration: collapsed to a rail
+                      the visible label is hidden, leaving only an icon. */}
                   {isLogout ? (
-                    <Link to={to} className="logout" onClick={onLogout}>
+                    <Link to={to} className="logout" aria-label={label} onClick={onLogout}>
                       <div className="navigation__icon">
                         <Icon />
                       </div>
                       <span>{label}</span>
                     </Link>
                   ) : (
-                    <NavLink to={to} end={end}>
+                    <NavLink to={to} end={end} aria-label={label}>
                       <div className="navigation__icon">
                         <Icon />
                       </div>

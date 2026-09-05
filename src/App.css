@@ -21,6 +21,9 @@
   --header-height: 116px;
   /* Poster height for Card. Card width derives from it at a 2:3 ratio. */
   --card-poster-height: 300px;
+  /* Sidebar rail: collapsed by default, expands on hover as an overlay. */
+  --rail-width: 72px;
+  --rail-width-expanded: 240px;
 }
 
 /* Breakpoints. Custom properties cannot be used in media query conditions,
@@ -61,10 +64,16 @@
 
 .app__container {
   display: flex;
+  /* Anchors the expanded sidebar overlay. */
+  position: relative;
 }
 
 .app__body {
-  flex: 0.8;
+  flex: 1;
+  min-width: 0;
+  /* Reserves the rail's width; the rail itself is absolutely positioned so that
+     expanding it on hover cannot shift this. */
+  margin-left: var(--rail-width);
   /* height: calc(100vh - 80px); */
   height: 100vh;
   height: 100dvh;
@@ -196,5 +205,7 @@ button:focus {
 @media screen and (max-width: 960px) {
   .app__body {
     flex: 1;
+    /* The sidebar is display:none here — reclaim its reserved width. */
+    margin-left: 0;
   }
 }
