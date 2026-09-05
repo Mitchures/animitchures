@@ -30,7 +30,7 @@ function AppShell() {
 
   return (
     <div className="app__container">
-      <Navigation sections={sections} onLogout={handleLogout} />
+      <Navigation sections={sections} user={user} onLogout={handleLogout} />
       <div className="app__body">
         <Header menuOpen={menuOpen} onMenuToggle={() => setMenuOpen((open) => !open)} />
         <Outlet />

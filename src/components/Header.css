@@ -68,36 +68,6 @@
   fill: #3f4963;
 }
 
-.header__right {
-  flex: 0.5;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.header__right > a {
-  display: flex;
-  align-items: center;
-  margin-left: 2rem;
-  font-weight: 600;
-}
-
-.header__right > a > span {
-  margin-left: 1rem;
-  color: var(--primary);
-}
-
-.header__avatar {
-  height: 52px !important;
-  width: 52px !important;
-  transition: all 0.3s;
-  border: 2px solid var(--secondary);
-}
-
-.header__right a:hover .header__avatar {
-  border-color: var(--action);
-}
-
 @media (prefers-color-scheme: dark) {
   .header {
     background-color: rgba(11, 22, 33, 0.72);
@@ -110,14 +80,6 @@
 
   .header__left > a > svg {
     /* fill: white; */
-  }
-
-  .header__right > a {
-    color: white;
-  }
-
-  .header__right > a > span {
-    color: white;
   }
 }
 
@@ -142,11 +104,7 @@
   }
 
   /* Notifications, avatar and name move into the overlay's footer. */
-  .header__right {
-    display: none;
-  }
-
-  /* Matches .navigation__icon in the sidebar so the two read as one system. */
+    /* Matches .navigation__icon in the sidebar so the two read as one system. */
   .header__menuButton {
     display: flex;
     align-items: center;

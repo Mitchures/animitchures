@@ -36,10 +36,22 @@ async function navigateVia(page: import('@playwright/test').Page, label: string)
 test.describe('signed-in shell', () => {
   test.use({ viewport: { width: 1280, height: 900 } });
 
-  test('header shows the avatar and display name', async ({ page }) => {
+  test('the rail footer carries account controls and the signed-in identity', async ({ page }) => {
     await gotoSignedInHome(page);
-    await expect(page.locator('.header__avatar')).toBeVisible();
-    await expect(page.locator('.header__right').getByText(DISPLAY_NAME)).toBeVisible();
+    const footer = page.locator('.navigation__footer');
+
+    // Account controls moved out of the header into the bottom of the rail.
+    await expect(page.locator('.navigation__avatar')).toBeVisible();
+    await expect(footer.getByRole('button', { name: 'Notifications' })).toHaveCount(1);
+    await expect(footer.getByRole('link', { name: 'Settings' })).toHaveCount(1);
+    await expect(footer.getByRole('link', { name: 'Profile' })).toHaveCount(1);
+    await expect(footer.getByRole('link', { name: 'Logout' })).toHaveCount(1);
+
+    // The test account has no photoURL, so MUI's Avatar falls back to the first
+    // letter of its alt rather than rendering an <img>. Asserting that keeps the
+    // check honest about what is actually on screen; the full name is asserted in
+    // the mobile overlay test.
+    await expect(page.locator('.navigation__avatar')).toHaveText(DISPLAY_NAME[0]);
   });
 
   test('sidebar offers the signed-in destinations, not Login', async ({ page }) => {
@@ -53,6 +65,7 @@ test.describe('signed-in shell', () => {
     for (const name of ['Discover', 'Favorites', 'Watchlist', 'Settings', 'Logout']) {
       await expect(nav.getByRole('link', { name })).toHaveCount(1);
     }
+    await expect(nav.getByRole('link', { name: 'Profile' })).toHaveCount(1);
     await expect(nav.getByRole('link', { name: 'Login' })).toHaveCount(0);
   });
 
@@ -61,7 +74,7 @@ test.describe('signed-in shell', () => {
     await navigateVia(page, 'Logout');
 
     // Signed out: the avatar goes and Login reappears in the sidebar.
-    await expect(page.locator('.header__avatar')).toHaveCount(0, { timeout: 20_000 });
+    await expect(page.locator('.navigation__avatar')).toHaveCount(0, { timeout: 20_000 });
     await expect(page.locator('.navigation').getByText('Login')).toBeVisible();
   });
 });
@@ -101,12 +114,17 @@ test.describe('signed-in views', () => {
     await expect(page.locator('.favorites__grid .card')).toHaveCount(3, { timeout: 20_000 });
   });
 
-  test('settings renders', async ({ page }) => {
+  test('settings renders and marks its rail item active', async ({ page }) => {
     await gotoSignedInHome(page);
     await navigateVia(page, 'Settings');
 
     await expect(page).toHaveURL(/\/settings$/);
     await expect(page.locator('.settings')).toBeVisible({ timeout: 20_000 });
+
+    // The footer items are NavLinks, so they take the same .active treatment as
+    // the destinations above them rather than staying inert on their own page.
+    await expect(page.locator('.navigation__footer a[href="/settings"]')).toHaveClass(/active/);
+    await expect(page.locator('.navigation__footer a[href="/profile"]')).not.toHaveClass(/active/);
   });
 
   test('watchlist renders when the AniList profile is unavailable', async ({ page }) => {
@@ -123,7 +141,7 @@ test.describe('signed-in views', () => {
 
   test('profile renders when the AniList profile is unavailable', async ({ page }) => {
     await gotoSignedInHome(page);
-    await page.locator('.header__right a[href="/profile"]').click();
+    await page.locator('.navigation__footer a[href="/profile"]').click();
 
     await expect(page).toHaveURL(/\/profile$/);
     await expect(page.locator('.profile')).toBeVisible({ timeout: 20_000 });

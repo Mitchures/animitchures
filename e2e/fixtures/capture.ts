@@ -74,7 +74,9 @@ async function captureFavorites(browser: Browser, seen: Set<string>): Promise<vo
   // Reached via the UI: direct navigation to a private route redirects to '/'
   // (the known auth-timing bug).
   await page.goto('http://localhost:3000/', { waitUntil: 'domcontentloaded' });
-  await page.locator('.header__avatar').waitFor({ timeout: 25_000 });
+  await page
+    .locator('.navigation a:has-text("Logout")')
+    .waitFor({ state: 'attached', timeout: 25_000 });
   await page.locator('.navigation a', { hasText: 'Favorites' }).click();
   await page.locator('.favorites__grid .card').first().waitFor({ timeout: 25_000 });
   await page.waitForTimeout(2500);

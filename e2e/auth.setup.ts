@@ -1,4 +1,4 @@
-import { test as setup, expect } from '@playwright/test';
+import { test as setup } from '@playwright/test';
 import { mockAniList } from './anilist-mock';
 
 const AUTH_FILE = 'e2e/.auth/user.json';
@@ -31,11 +31,17 @@ setup('authenticate', async ({ page }) => {
   await page.fill('#login-password', password);
   await page.click('button[type="submit"]');
 
-  // Signing in navigates to '/', but the avatar only renders once App.tsx's
+  // Signing in navigates to '/', but nav only reflects the user once App.tsx's
   // onAuthStateChanged effect has resolved the Firestore user document. Waiting
   // for it means we save genuinely signed-in state, not just a URL change.
+  //
+  // Waits on the rail's Logout link being *attached* rather than the avatar:
+  // the link exists only when signed in, is present at every viewport width, and
+  // survives the avatar moving between the header and the rail.
   await page.waitForURL('http://localhost:3000/');
-  await expect(page.locator('.header__avatar')).toBeVisible({ timeout: 20_000 });
+  await page
+    .locator('.navigation a:has-text("Logout")')
+    .waitFor({ state: 'attached', timeout: 20_000 });
 
   // indexedDB is required: Firebase Auth persists its session there, not in
   // localStorage. Without this flag the saved state looks fine and silently
