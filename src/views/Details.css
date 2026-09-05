@@ -3,7 +3,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   height: 400px;
-  margin-top: -116px; /* header height */
+  margin-top: calc(-1 * var(--header-height));
   background-color: rgba(0, 0, 0, 0.15);
 }
 
@@ -80,5 +80,21 @@
 
   .details__right {
     padding-left: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .details__banner {
+    height: 220px;
+  }
+
+  .details__left {
+    /* Full width at this breakpoint would make a 2:3 poster ~515px tall. */
+    max-width: 180px;
+    margin: -100px auto 1.25rem;
+  }
+
+  .details__right {
+    padding: 0;
   }
 }

@@ -1,5 +1,6 @@
 .favorites {
-  height: calc(100vh - 116px); /* 100vh - header height */
+  height: calc(100vh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
   overflow-y: auto;
   padding: 0 var(--x-axis-spacing);
 }
@@ -29,4 +30,12 @@
   object-fit: contain;
   margin-bottom: 0.875rem;
   opacity: 0.5;
+}
+
+@media screen and (max-width: 480px) {
+  .favorites__grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    grid-row-gap: 0.875rem;
+    grid-column-gap: 0.875rem;
+  }
 }

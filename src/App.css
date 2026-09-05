@@ -16,11 +16,44 @@
   --y-axis-spacing: 1.25rem;
   --left-spacing: 2rem;
   --right-spacing: 2rem;
+  /* Height of the fixed header. Consumed by Features, Favorites, Results and
+     Details. Was hardcoded as 116px in four files. */
+  --header-height: 116px;
+  /* Poster height for Card. Card width derives from it at a 2:3 ratio. */
+  --card-poster-height: 300px;
+}
+
+/* Breakpoints. Custom properties cannot be used in media query conditions,
+   so these values are literals — keep them in sync with this comment.
+     960px  sidebar becomes the overlay menu; header switches to mobile layout,
+            and content sizing compacts to match. These must move together: a
+            mobile header above desktop-sized content reads as broken.
+     480px  phone compaction */
+
+@media (max-width: 960px) {
+  :root {
+    --header-height: 72px;
+    --x-axis-spacing: 1.5rem;
+    --left-spacing: 1.5rem;
+    --right-spacing: 1.5rem;
+    --card-poster-height: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --x-axis-spacing: 1rem;
+    --left-spacing: 1rem;
+    --right-spacing: 1rem;
+    --border-radius: 14px;
+    --card-poster-height: 180px;
+  }
 }
 
 .app {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   color: var(--secondary);
   background: rgb(237, 238, 247);
   background: linear-gradient(-90deg, rgba(237, 238, 247, 1) 65%, rgba(240, 225, 233, 1) 100%);
@@ -34,6 +67,7 @@
   flex: 0.8;
   /* height: calc(100vh - 80px); */
   height: 100vh;
+  height: 100dvh;
   width: 100%;
   overflow: hidden;
   overflow-y: auto;
@@ -115,7 +149,8 @@ button:hover {
 input {
   margin-top: 0.5rem;
   border-radius: 0.5rem;
-  font-size: 14px;
+  /* 16px minimum: iOS Safari zooms the viewport when focusing a smaller input. */
+  font-size: 16px;
   padding: 1rem;
   width: 100%;
   -webkit-appearance: none;

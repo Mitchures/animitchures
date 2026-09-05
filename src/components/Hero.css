@@ -137,3 +137,85 @@
 @media (prefers-color-scheme: dark) {
 
 }
+
+/* Stacks as soon as the sidebar goes away. The two-column split needs desktop
+   width to work: below 960px the title column is too narrow to read. */
+@media screen and (max-width: 960px) {
+  .hero {
+    height: 460px;
+    min-height: 460px;
+  }
+
+  .hero__bannerBody {
+    flex-direction: column;
+    /* Score/title/tags ride the top, thumbnails the bottom. Without this the
+       stacked columns bunch at the top and leave the lower half empty — the
+       row layout got that for free from .hero__rowBottom's margin-top:auto. */
+    justify-content: space-between;
+    padding: 2rem;
+  }
+
+  .hero__bannerBody h1 {
+    font-size: clamp(26px, 4.5vw, 45px);
+  }
+
+  .hero__column {
+    flex: none;
+  }
+
+  .hero__column:last-child .hero__row:empty {
+    display: none;
+  }
+
+  /* The tags already carry margin-bottom for a second row; without wrap the
+     last genre just gets clipped at the banner edge. */
+  .hero__tags {
+    flex-wrap: wrap;
+  }
+
+  .hero__selectGroup {
+    justify-content: flex-start;
+    margin-top: 1rem;
+  }
+
+  .hero__selectItem {
+    width: 100px;
+    height: 64px;
+    margin: 0 0.625rem;
+  }
+
+  .hero__selectItem.active {
+    width: 120px;
+    height: 78px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero {
+    height: 380px;
+    min-height: 380px;
+  }
+
+  .hero__bannerBody {
+    padding: 1.25rem;
+  }
+
+  .hero__bannerBody h1 {
+    font-size: clamp(22px, 6vw, 32px);
+  }
+
+  .hero__selectGroup {
+    margin-top: 0.875rem;
+  }
+
+  .hero__selectItem {
+    width: 72px;
+    height: 48px;
+    margin: 0 0.5rem;
+  }
+
+  .hero__selectItem.active {
+    width: 88px;
+    height: 58px;
+  }
+}

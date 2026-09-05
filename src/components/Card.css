@@ -16,7 +16,7 @@
 
 .card > img {
   position: relative;
-  height: 300px;
+  height: var(--card-poster-height);
   aspect-ratio: 2 / 3;
   object-fit: cover;
   border-radius: var(--border-radius);
@@ -26,7 +26,9 @@
 .card__label {
   display: -webkit-box;
   color: rgb(116,136,153);
-  max-width: 200px; /* Same width as image */
+  /* Derived from the poster height at the image's 2:3 ratio, so the label can
+     never disagree with the image width the way two literals could. */
+  max-width: calc(var(--card-poster-height) * 2 / 3);
   font-size: 14px;
   padding-top: 0.625rem;
   font-weight: 600;

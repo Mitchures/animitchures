@@ -12,7 +12,7 @@
 
 .summary__header > h1 {
   font-weight: 800;
-  font-size: 40px;
+  font-size: clamp(24px, 6vw, 40px);
   color: var(--primary);
   /* -webkit-text-fill-color: white;  */
   /* -webkit-text-stroke-width: 2px; */

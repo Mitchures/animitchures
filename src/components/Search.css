@@ -51,6 +51,32 @@
   }
 }
 
+/* Lighter search to sit beside the compact mobile header. The desktop
+   52px/18px/3px treatment is too heavy once the header drops to 72px. */
 @media screen and (max-width: 960px) {
+  .search {
+    border-width: 2px;
+  }
 
+  .search > form > input {
+    height: 44px;
+    /* Stays >= 16px: iOS Safari zooms the viewport on smaller inputs. */
+    font-size: 16px;
+    padding: 0 0.75rem;
+  }
+
+  .search > form > svg {
+    margin-left: 0.875rem;
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .search > form > input {
+    height: 40px;
+  }
+
+  .search > form > svg {
+    margin-left: 0.75rem;
+  }
 }

@@ -2,7 +2,9 @@
   display: grid;
   grid-row-gap: 0.875rem;
   grid-column-gap: 0.875rem;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  /* min() lets the track shrink below 400px on narrow viewports. A bare
+     minmax(400px, 1fr) keeps its 400px floor and overflows the page. */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr));
   padding: 0.875rem 0;
   margin-bottom: 1.25rem;
 }
@@ -72,5 +74,25 @@
 @media (prefers-color-scheme: dark) {
   .staff__block {
     background-color: rgba(0, 0, 0, 0.15);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .staff__blockImageContainer {
+    max-height: 56px;
+    max-width: 56px;
+  }
+
+  .staff__blockImageContainer > img {
+    height: 56px;
+    width: 56px;
+  }
+
+  .staff__blockBody {
+    padding: 0.625rem;
+  }
+
+  .staff__blockBody > p {
+    font-size: 12px;
   }
 }
