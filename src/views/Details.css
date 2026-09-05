@@ -128,6 +128,22 @@
   min-width: 0;
 }
 
+/* One rhythm for every section in the column, rather than each component
+   carrying its own trailing margin and disagreeing with its neighbours. */
+.details__overviewMain > * + * {
+  margin-top: 2rem;
+}
+
+/* Stats and tags share the right column. No sticky here: with the tag list in
+   it the column is taller than the viewport, and sticky on something that does
+   not fit does nothing except pin its top edge. */
+.details__overviewSide {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-width: 0;
+}
+
 .details__iframeWrapper {
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */

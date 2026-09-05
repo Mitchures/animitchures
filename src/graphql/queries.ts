@@ -355,7 +355,7 @@ export const DETAILS_EXTENDED_QUERY = gql`
           }
         }
       }
-      characters(perPage: 6, sort: [ROLE, RELEVANCE, ID]) {
+      characters(perPage: 24, sort: [ROLE, RELEVANCE, ID]) {
         edges {
           id
           role
@@ -381,7 +381,7 @@ export const DETAILS_EXTENDED_QUERY = gql`
           }
         }
       }
-      staff(perPage: 8, sort: [RELEVANCE, ID]) {
+      staff(perPage: 16, sort: [RELEVANCE, ID]) {
         edges {
           id
           role

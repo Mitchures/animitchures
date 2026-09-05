@@ -12,6 +12,11 @@ import Characters from 'components/details/Characters';
 import Staff from 'components/details/Staff';
 import Actions from 'components/details/Actions';
 import HeroMeta from 'components/details/HeroMeta';
+import HeroRankings from 'components/details/HeroRankings';
+import WhereToWatch from 'components/details/WhereToWatch';
+import MediaTags from 'components/details/MediaTags';
+import MediaStats from 'components/details/MediaStats';
+import Recommendations from 'components/details/Recommendations';
 import DetailsSkeleton from 'components/details/DetailsSkeleton';
 import DetailsTabs, { DetailsTab } from 'components/details/DetailsTabs';
 
@@ -83,6 +88,10 @@ function Details() {
   const animeRelations =
     selected.relations?.edges?.filter((edge) => edge?.node?.type === 'ANIME') ?? [];
 
+  const animeRecommendations = (selected.recommendations?.nodes ?? []).filter(
+    (node) => node?.mediaRecommendation?.type === 'ANIME',
+  );
+
   const tabs = [
     {
       id: 'overview',
@@ -91,6 +100,8 @@ function Details() {
         <div className="details__overview">
           <div className="details__overviewMain">
             <Summary {...selected} />
+            <Characters {...selected} />
+            <Staff {...selected} />
             {selected.trailer && (
               <>
                 <h3>Trailer</h3>
@@ -106,24 +117,30 @@ function Details() {
               </>
             )}
           </div>
-          <Sidebar {...selected} />
+          {/* Facts, links and tags — the reference column. The main column
+              keeps what you actually read and watch. */}
+          <div className="details__overviewSide">
+            <Sidebar {...selected} />
+            <WhereToWatch {...selected} />
+            <MediaTags {...selected} />
+          </div>
         </div>
       ),
     },
-    selected.characters?.edges?.length && {
-      id: 'characters',
-      label: 'Characters',
-      content: <Characters {...selected} />,
-    },
-    selected.staff?.edges?.length && {
-      id: 'staff',
-      label: 'Staff',
-      content: <Staff {...selected} />,
+    (selected.stats?.scoreDistribution?.length || selected.stats?.statusDistribution?.length) && {
+      id: 'community',
+      label: 'Community',
+      content: <MediaStats {...selected} />,
     },
     animeRelations.length > 0 && {
       id: 'relations',
       label: 'Relations',
       content: <Relations {...selected} />,
+    },
+    animeRecommendations.length > 0 && {
+      id: 'recommendations',
+      label: 'More like this',
+      content: <Recommendations {...selected} />,
     },
   ].filter(Boolean) as DetailsTab[];
 
@@ -164,6 +181,7 @@ function Details() {
             />
           </div>
           <div className="details__heroBody">
+            <HeroRankings {...selected} />
             <h1 className="details__title">{selected.title?.userPreferred}</h1>
             {altTitles.length > 0 && <p className="details__altTitles">{altTitles.join(' · ')}</p>}
             {selected.genres && selected.genres.length > 0 && (

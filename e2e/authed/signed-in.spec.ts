@@ -179,5 +179,4 @@ test.describe('private routes', () => {
     await expect(page).toHaveURL(/\/favorites$/, { timeout: 20_000 });
     await expect(page.locator('.favorites__grid .card')).toHaveCount(3, { timeout: 20_000 });
   });
-
 });

@@ -20,13 +20,13 @@ test.describe('details tabs', () => {
     await page.goto(DETAILS);
     await expect(page.locator('.details__hero')).toBeVisible({ timeout: 20_000 });
 
-    await page.getByRole('tab', { name: 'Characters' }).click();
-    await expect(page).toHaveURL(/tab=characters/);
+    await page.getByRole('tab', { name: 'Relations' }).click();
+    await expect(page).toHaveURL(/tab=relations/);
   });
 
   test('a direct link opens the requested tab', async ({ page }) => {
-    await page.goto(`${DETAILS}?tab=characters`);
-    await expect(page.getByRole('tab', { name: 'Characters' })).toHaveAttribute(
+    await page.goto(`${DETAILS}?tab=relations`);
+    await expect(page.getByRole('tab', { name: 'Relations' })).toHaveAttribute(
       'aria-selected',
       'true',
       { timeout: 20_000 },
@@ -48,8 +48,8 @@ test.describe('details tabs', () => {
     await page.goto(DETAILS);
     await expect(page.locator('.details__hero')).toBeVisible({ timeout: 20_000 });
 
-    await page.getByRole('tab', { name: 'Characters' }).click();
-    await page.getByRole('tab', { name: 'Staff' }).click();
+    await page.getByRole('tab', { name: 'Relations' }).click();
+    await page.getByRole('tab', { name: 'More like this' }).click();
 
     // Tab changes replace rather than push, so one back leaves the page
     // entirely instead of walking back through each tab.
