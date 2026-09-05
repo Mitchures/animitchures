@@ -168,19 +168,16 @@ test.describe('SplitButton', () => {
   });
 });
 
-test.describe('known bugs', () => {
+test.describe('private routes', () => {
   test.use({ viewport: { width: 1280, height: 900 } });
 
-  // Documents the private-route auth-timing bug. `user` is null on first render,
-  // so the '*' catch-all matches before Firebase resolves the session and the
-  // app redirects to '/'.
-  //
-  // test.fail() means Playwright expects this to fail and will complain if it
-  // ever passes — so this is the regression signal for the eventual fix. Do not
-  // delete it, and do not rewrite it to assert the redirect as correct.
-  test.fail();
-  test('direct navigation to a private route should work when signed in', async ({ page }) => {
+  // Was a documented bug with test.fail(): `user` is null on first render, so
+  // the '*' catch-all matched before Firebase resolved the session and the app
+  // redirected to '/'. App.tsx now holds the catch-all back until auth settles.
+  test('direct navigation to a private route works when signed in', async ({ page }) => {
     await page.goto('/favorites');
-    await expect(page).toHaveURL(/\/favorites$/, { timeout: 15_000 });
+    await expect(page).toHaveURL(/\/favorites$/, { timeout: 20_000 });
+    await expect(page.locator('.favorites__grid .card')).toHaveCount(3, { timeout: 20_000 });
   });
+
 });

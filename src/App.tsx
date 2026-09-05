@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { FirebaseError } from 'firebase/app';
@@ -7,6 +7,7 @@ import { collection, setDoc, doc, getDoc, DocumentSnapshot } from 'firebase/fire
 import './App.css';
 
 import AppShell from 'components/AppShell';
+import Loader from 'components/Loader';
 
 import Login from 'views/Login';
 import SignUp from 'views/SignUp';
@@ -28,11 +29,23 @@ import { getFavorites, getAccessToken } from 'api';
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
+  // Firebase resolves the session asynchronously, so `user` is null on the
+  // first render even for a signed-in visitor. Without this the '*' catch-all
+  // matched before that resolved and a hard refresh on any private route
+  // bounced to '/'.
+  const [signedOut, setSignedOut] = useState(false);
+
+  // Settled means routing can be trusted: either Firebase reported no session,
+  // or it reported one and the user document has finished loading. Waiting for
+  // `user` matters — the private routes are gated on it, so treating "Firebase
+  // says signed in" as settled would still lose the race against Firestore.
+  const authSettled = signedOut || !!user;
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser: any) => {
       if (authUser) {
         // user has logged in...
+        setSignedOut(false);
         const { uid, photoURL, displayName, email } = authUser;
         // check if user already exists in db.
         const docRef = doc(collection(db, 'users'), uid);
@@ -95,6 +108,7 @@ function App() {
           .catch((error: FirebaseError) => alert(error.message));
       } else {
         // user has logged out...
+        setSignedOut(true);
         dispatch({
           type: 'logout_user',
         });
@@ -131,8 +145,10 @@ function App() {
                 </>
               )}
               <Route path="/" element={<Features />} />
-              {/* Redirect unknown routes to root */}
-              <Route path="*" element={<Navigate to="/" />} />
+              {/* Unknown routes go to root — but only once auth has settled.
+                  Redirecting while it is still resolving is what threw signed-in
+                  visitors off their own private routes on a refresh. */}
+              <Route path="*" element={authSettled ? <Navigate to="/" replace /> : <Loader />} />
             </Route>
           </Routes>
         </AnimatePresence>
