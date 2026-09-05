@@ -3,6 +3,7 @@ import moment from 'moment';
 import './Sidebar.css';
 
 import { FuzzyDate, Media } from 'graphql/types';
+import { scoreTier } from 'helpers';
 
 // Convert text that may come back UpperCase.
 const convertText = (text: string) => {
@@ -24,19 +25,27 @@ const getStudio = (studios: any) => {
   return studios.edges.map((studio: any) => studio.isMain && studio.node.name);
 };
 
+/**
+ * The metadata that did not earn a place in the hero.
+ *
+ * Format, Episodes, Episode Duration and Status are HeroMeta chips now, and the
+ * romaji/native/english titles sit under the heading as alternative names — they
+ * are what the show is called, not facts about it. `format` is still read here
+ * to tell a movie's single release date from a series' start/end pair.
+ */
 function Sidebar({
-  title,
   status,
   nextAiringEpisode,
   format,
-  episodes,
-  duration,
   startDate,
   endDate,
   season,
   seasonYear,
   averageScore,
   studios,
+  source,
+  popularity,
+  favourites,
 }: Media) {
   return (
     <div className="sidebar">
@@ -47,30 +56,6 @@ function Sidebar({
             Episode {nextAiringEpisode.episode}{' '}
             {moment(moment.unix(nextAiringEpisode.airingAt)).fromNow()}
           </p>
-        </div>
-      )}
-      {format && (
-        <div className="sidebar__data">
-          <h5>Format</h5>
-          <p>{convertText(format)}</p>
-        </div>
-      )}
-      {episodes && (
-        <div className="sidebar__data">
-          <h5>Episodes</h5>
-          <p>{episodes}</p>
-        </div>
-      )}
-      {duration && (
-        <div className="sidebar__data">
-          <h5>Episode Duration</h5>
-          <p>{duration} minutes</p>
-        </div>
-      )}
-      {status && (
-        <div className="sidebar__data">
-          <h5>Status</h5>
-          <p>{convertText(status)}</p>
         </div>
       )}
       {startDate && endDate && (
@@ -88,7 +73,8 @@ function Sidebar({
               </div>
               <div className="sidebar__data">
                 <h5>End Date</h5>
-                <p>{formatDate(endDate)}</p>
+                {/* An unfinished show has no end date to report yet. */}
+                <p>{status === 'RELEASING' ? 'Ongoing' : formatDate(endDate)}</p>
               </div>
             </>
           )}
@@ -103,7 +89,16 @@ function Sidebar({
       {averageScore && (
         <div className="sidebar__data">
           <h5>Average Score</h5>
-          <p>{averageScore}%</p>
+          {/* Same tiers as the Discover hero badge. */}
+          <p className={`sidebar__score sidebar__score--${scoreTier(averageScore)}`}>
+            {averageScore}%
+          </p>
+        </div>
+      )}
+      {source && (
+        <div className="sidebar__data">
+          <h5>Source</h5>
+          <p>{convertText(source)}</p>
         </div>
       )}
       {studios && (
@@ -112,27 +107,17 @@ function Sidebar({
           <p>{getStudio(studios)}</p>
         </div>
       )}
-      {title && (
-        <>
-          {title.romaji && (
-            <div className="sidebar__data">
-              <h5>Romaji</h5>
-              <p title={title.romaji}>{title.romaji}</p>
-            </div>
-          )}
-          {title.native && (
-            <div className="sidebar__data">
-              <h5>Native</h5>
-              <p title={title.native}>{title.native}</p>
-            </div>
-          )}
-          {title.english && (
-            <div className="sidebar__data">
-              <h5>English</h5>
-              <p title={title.english}>{title.english}</p>
-            </div>
-          )}
-        </>
+      {popularity && (
+        <div className="sidebar__data">
+          <h5>Popularity</h5>
+          <p>{popularity.toLocaleString()}</p>
+        </div>
+      )}
+      {favourites && (
+        <div className="sidebar__data">
+          <h5>Favorites</h5>
+          <p>{favourites.toLocaleString()}</p>
+        </div>
       )}
     </div>
   );

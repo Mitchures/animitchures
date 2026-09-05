@@ -5,7 +5,10 @@ import { motion } from 'framer-motion';
 import './Features.css';
 
 import Hero from 'components/Hero';
+import AiringThisWeek from 'components/AiringThisWeek';
+import GenreTiles from 'components/GenreTiles';
 import Card from 'components/Card';
+import Rail from 'components/Rail';
 import Loader from 'components/Loader';
 
 import { Media } from 'graphql/types';
@@ -94,23 +97,21 @@ function Features() {
     >
       {featured ? (
         <>
-          <h1>Discover</h1>
+          {/* No "Discover" heading: the rail already says where you are, and it
+              only pushed the artwork down the page. */}
           <Hero {...featured} />
+          <AiringThisWeek featured={featured} />
           {Object.keys(featured).map(
-            (key, index) =>
+            (key) =>
               featured[key].media.length > 0 && (
-                <div key={index}>
-                  <div className="features__header">
-                    <h3>{TITLES[key]}</h3>
-                  </div>
-                  <div className={`features__body features__${key}`}>
-                    {featured[key].media.map((mediaItem: Media) => (
-                      <Card key={mediaItem.id} {...mediaItem} />
-                    ))}
-                  </div>
-                </div>
+                <Rail key={key} title={TITLES[key]}>
+                  {featured[key].media.map((mediaItem: Media) => (
+                    <Card key={mediaItem.id} {...mediaItem} />
+                  ))}
+                </Rail>
               ),
           )}
+          <GenreTiles featured={featured} />
         </>
       ) : (
         <Loader />

@@ -1,0 +1,30 @@
+.heroMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.875rem;
+}
+
+.heroMeta__chip {
+  display: flex;
+  flex-direction: column;
+  padding: 0.35rem 0.75rem;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+}
+
+.heroMeta__chip b {
+  font-size: 14px;
+  font-weight: 800;
+  color: white;
+  line-height: 1.2;
+}
+
+.heroMeta__chip span {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}

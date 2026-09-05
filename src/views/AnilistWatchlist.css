@@ -1,5 +1,6 @@
 .watchlist {
-  height: calc(100vh - 116px); /* 100vh - header height */
+  height: calc(100vh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
   overflow-y: auto;
   padding: 0 var(--x-axis-spacing);
 }

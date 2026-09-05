@@ -16,20 +16,26 @@ function Results() {
   const search = location.search;
   const params = new URLSearchParams(search);
   const query = params.get('search');
+  // Browsing a genre is the same query with a different filter, so it lands
+  // here rather than in a view of its own.
+  const genre = params.get('genre');
   const [currentPage, setCurrentPage] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(false);
   const [querySearched, setQuerySearched] = useState('');
   const { data, refetch } = useQuery(SEARCH_QUERY, {
     variables: {
-      search: querySearched,
-      sort: 'SEARCH_MATCH',
+      search: querySearched || undefined,
+      genres: genre ? [genre] : undefined,
+      // SEARCH_MATCH ranks by how well a title matches the typed text, which is
+      // meaningless when nothing was typed.
+      sort: genre && !query ? 'POPULARITY_DESC' : 'SEARCH_MATCH',
       type: 'ANIME',
       isAdult: user?.isAdult || false,
       page: currentPage,
       perPage: 20,
     },
     notifyOnNetworkStatusChange: true,
-    skip: !query,
+    skip: !query && !genre,
   });
 
   const getSearchResults = () => {
@@ -57,6 +63,13 @@ function Results() {
     refetch();
   };
 
+  // Switching genre keeps the same (empty) search term, so paging has to be
+  // reset here or page 3 of the last genre is requested for the new one.
+  useEffect(() => {
+    setCurrentPage(1);
+    setHasNextPage(false);
+  }, [genre]);
+
   useEffect(() => {
     if (query) {
       if (query !== querySearched) {
@@ -75,7 +88,7 @@ function Results() {
         results: null,
       });
     };
-  }, [query]);
+  }, [query, genre]);
 
   useEffect(() => {
     if (data) {
@@ -85,6 +98,7 @@ function Results() {
 
   return (
     <div className="results">
+      {genre && <h3 className="results__heading">{genre}</h3>}
       {results && results?.length > 0 && (
         <>
           <div className="results__container">

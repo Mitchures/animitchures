@@ -1,11 +1,9 @@
 import { useEffect } from 'react';
-import Avatar from '@material-ui/core/Avatar';
+import Avatar from '@mui/material/Avatar';
 import { useQuery } from '@apollo/client';
 import { motion } from 'framer-motion';
 
 import './Profile.css';
-
-// import ActivityMap from 'components/ActivityMap';
 
 import { useStateValue } from 'context';
 import { ANILIST_USER_AND_ACTIVITY_QUERY } from 'graphql/queries';
@@ -44,16 +42,6 @@ function Profile() {
             />
             <h1>{user.displayName}</h1>
           </div>
-          {/* {data && (
-            <ActivityMap
-              activity={data.User.stats.activityHistory}
-              color={['#ebedf0', '#c6e48b', '#40c463', '#30a14e', '#216e39']}
-              squareNumber={185}
-              count={data.User.stats.activityHistory.map((item: any) => item.amount)}
-              squareGap="4px"
-              squareSize="15px"
-            />
-          )} */}
         </div>
       )}
     </motion.div>

@@ -1,0 +1,241 @@
+/* ---- the overlay --------------------------------------------------------- */
+.spotlight__scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 11vh 1.5rem 1.5rem;
+  background-color: rgba(6, 12, 20, 0.62);
+  backdrop-filter: blur(7px);
+}
+
+.spotlight__panel {
+  width: 100%;
+  max-width: 760px;
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
+}
+
+.spotlight__field {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(11, 22, 33, 0.09);
+}
+
+.spotlight__field svg {
+  font-size: 26px;
+  color: var(--secondary);
+  flex: none;
+}
+
+.spotlight__field input {
+  flex: 1;
+  min-width: 0;
+  height: auto;
+  padding: 0;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--primary);
+  background: none;
+  border: none;
+  outline: none;
+}
+
+/* App.css gives every focused input a blue ring. In here the panel itself is
+   the search field and the caret is already in it on open, so the ring is noise
+   rather than a signal. */
+.spotlight__field input:focus {
+  box-shadow: none;
+}
+
+.spotlight__field input::placeholder {
+  color: var(--secondary);
+  font-weight: 600;
+}
+
+.spotlight__esc {
+  width: auto;
+  height: auto;
+  flex: none;
+  min-width: 52px;
+  height: 36px;
+  padding: 0 0.8rem;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--secondary);
+  background: none;
+  border: 1px solid rgba(11, 22, 33, 0.16);
+  border-radius: 10px;
+}
+
+.spotlight__esc:hover {
+  color: white;
+  background-color: var(--secondary);
+}
+
+.spotlight__empty {
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--secondary);
+}
+
+.spotlight__results {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.75rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.spotlight__result {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  text-align: left;
+  background: none;
+  border-radius: 12px;
+  color: inherit;
+}
+
+.spotlight__result img,
+.spotlight__posterSkeleton {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  background-color: rgba(11, 22, 33, 0.06);
+  box-shadow: 0 4px 14px rgba(11, 22, 33, 0.18);
+  transition: transform 0.18s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.spotlight__result--active img {
+  outline: 2px solid var(--action);
+  outline-offset: 2px;
+  transform: translateY(-3px);
+}
+
+.spotlight__resultTitle {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-top: 0.5rem;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--primary);
+}
+
+.spotlight__resultMeta {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--secondary);
+}
+
+.spotlight__foot {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1.5rem;
+  border-top: 1px solid rgba(11, 22, 33, 0.09);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--secondary);
+}
+
+/* Each hint is its own inline row so the two arrow keycaps are not touching. */
+.spotlight__foot > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.spotlight__foot kbd {
+  font-family: inherit;
+  font-size: 11px;
+  padding: 0.15rem 0.35rem;
+  border: 1px solid rgba(11, 22, 33, 0.16);
+  border-radius: 6px;
+}
+
+.spotlight__all {
+  width: auto;
+  height: auto;
+  margin-left: auto;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--action);
+  background: none;
+  border-radius: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spotlight__all:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 760px) {
+  .spotlight__results {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spotlight__result img {
+    transition: none;
+  }
+
+  .spotlight__result--active img {
+    transform: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .spotlight__panel {
+    background-color: #121c2b;
+  }
+
+  .spotlight__field,
+  .spotlight__foot {
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .spotlight__field input,
+  .spotlight__resultTitle {
+    color: white;
+  }
+
+  .spotlight__esc,
+  .spotlight__foot kbd {
+    border-color: rgba(255, 255, 255, 0.22);
+  }
+
+  .spotlight__esc:hover {
+    color: var(--primary);
+    background-color: rgba(255, 255, 255, 0.88);
+  }
+
+  .spotlight__result img,
+  .spotlight__posterSkeleton {
+    background-color: rgba(255, 255, 255, 0.07);
+  }
+
+  /* The trigger stays light in both schemes deliberately. It floats over
+     artwork rather than over a surface, and a dark chip disappeared into dark
+     banners — the one thing the theme should not be allowed to do to it. */
+}

@@ -1,0 +1,112 @@
+.mobileMenu {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem var(--x-axis-spacing);
+  overflow-y: auto;
+  background: linear-gradient(160deg, #0b1621, #241a3d 60%, #3b1f4a);
+}
+
+.mobileMenu__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.mobileMenu__logo {
+  width: 56px;
+}
+
+/* Same treatment as .navigation__icon and .header__menuButton — the close
+   button sits exactly where the hamburger was, so it must look like it. */
+.mobileMenu__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  min-width: 48px;
+  height: 48px;
+  padding: 0.75rem;
+  color: var(--secondary);
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.mobileMenu__close svg {
+  font-size: 24px;
+}
+
+.mobileMenu__close:hover {
+  color: white;
+  background-color: var(--action);
+}
+
+.mobileMenu__section h5 {
+  margin: 1.25rem 0 0.5rem;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8b8ff5;
+}
+
+.mobileMenu__section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.mobileMenu__item {
+  display: block;
+  padding: 0.5rem 0;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.mobileMenu__item.active {
+  color: white !important;
+}
+
+.mobileMenu__item--logout {
+  color: var(--action-secondary);
+}
+
+.mobileMenu__user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mobileMenu__user img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.mobileMenu__user span {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.mobileMenu__user b {
+  font-size: 14px;
+  color: white;
+}
+
+/* Safety net: the overlay must never be reachable on desktop. */
+@media (min-width: 961px) {
+  .mobileMenu {
+    display: none;
+  }
+}

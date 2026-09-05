@@ -28,3 +28,17 @@ firebase.json
 firestore*
 ./firebase
 storage.rules
+# superpowers brainstorming companion
+.superpowers/
+
+# local design docs (specs, plans)
+/docs
+
+.vscode/
+# playwright
+/test-results
+/playwright-report
+/blob-report
+
+# playwright saved auth state (contains a real session token)
+/e2e/.auth

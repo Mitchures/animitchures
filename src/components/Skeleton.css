@@ -1,0 +1,41 @@
+.skeleton {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  flex: none;
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+/* For placeholders sitting on a dark surface, where the default is invisible. */
+.skeleton--onDark {
+  background-color: rgba(255, 255, 255, 0.09);
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.13), transparent);
+  animation: skeletonShimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes skeletonShimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .skeleton {
+    background-color: rgba(255, 255, 255, 0.07);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after {
+    animation: none;
+  }
+}

@@ -1,5 +1,6 @@
 .results {
-  height: calc(100vh - 116px); /* 100vh - header height */
+  height: calc(100vh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
   overflow-y: auto;
   padding: 0 var(--x-axis-spacing);
 }
@@ -19,4 +20,17 @@
   justify-content: center;
   margin: 1.25rem auto;
   max-width: 300px;
+}
+
+@media screen and (max-width: 480px) {
+  .results__container {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    grid-row-gap: 0.875rem;
+    grid-column-gap: 0.875rem;
+  }
+}
+
+.results__heading {
+  padding: 1.5rem var(--x-axis-spacing) 0;
+  font-weight: 800;
 }

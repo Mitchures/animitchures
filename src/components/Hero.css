@@ -1,139 +1,238 @@
+/* Full-bleed to the top edge, like the Details banner. The old hero sat inside
+   the page padding as a rounded card, which wasted the artwork. */
 .hero {
-  padding: 0 var(--right-spacing) 2rem var(--left-spacing);
-  height: 600px;
-  min-height: 600px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 560px;
+  padding: calc(var(--header-height) + 2rem) var(--x-axis-spacing) 2.5rem;
+  overflow: hidden;
   color: white;
+  background-color: #0b1621;
 }
 
-.hero h1 {
-  cursor: pointer;
-  text-shadow: 2px 3px 12px rgba(0,0,0,0.5);
-  transition: all 0.2s;
-}
-
-.hero h1:hover {
-  opacity: 0.65;
-}
-
-.hero__banner {
-  width: 100%;
-  height: 100%;
-  border-radius: var(--border-radius);
-  background-position: 50% 35%;
+.hero__image {
+  position: absolute;
+  inset: 0;
+  background-position: 50% 32%;
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
-  transition: all 0.3s;
-  overflow: hidden;
+  will-change: transform;
 }
 
-.hero__bannerBody {
+/* Sideways rather than upward: the copy sits on the left, and a bottom-up
+   gradient would darken the artwork without protecting the text. */
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(11, 22, 33, 0.96) 0%,
+      rgba(11, 22, 33, 0.72) 46%,
+      rgba(11, 22, 33, 0.08) 100%
+    ),
+    linear-gradient(0deg, rgba(11, 22, 33, 0.7) 0%, rgba(11, 22, 33, 0) 45%);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
   display: flex;
-  height: 100%;
+  align-items: flex-end;
+  gap: 1.75rem;
   width: 100%;
-  padding: 3.5rem 4rem;
+}
+
+.hero__poster {
+  width: 200px;
+  flex: none;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
   border-radius: var(--border-radius);
-  background: linear-gradient(-80deg, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0.5));
-  /* background-color: rgba(0, 0, 0, 0.5); */
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
 }
 
-.hero__bannerBody h1 {
-  font-size: 45px;
+.hero__body {
+  flex: 1;
+  min-width: 0;
 }
 
-.hero__bannerBody h3 {
-  font-weight: 500;
-}
-
-.hero__column {
-  flex: 0.5;
+.hero__badges {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
 }
 
-.hero__row {
-  flex: 0.5;
+.hero__badge {
+  padding: 0.25rem 0.65rem;
+  font-size: 11px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.92);
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
 }
 
-.hero__rowBottom {
-  margin-top: auto;
+/* Same chip treatment as the ranking badges on Details: the accent colour, a
+   matching border, and a tint of itself behind it. Both the border and the fill
+   are mixed from currentColor, so setting one tier variable below recolours the
+   whole chip — the four tiers cannot drift apart. */
+.hero__badge--score {
+  color: var(--score-good);
+  border: 1px solid color-mix(in srgb, currentColor 45%, transparent);
+  background-color: color-mix(in srgb, currentColor 16%, transparent);
+}
+
+.hero__badge--great {
+  color: var(--score-great);
+}
+
+.hero__badge--good {
+  color: var(--score-good);
+}
+
+.hero__badge--mixed {
+  color: var(--score-mixed);
+}
+
+.hero__badge--poor {
+  color: var(--score-poor);
+}
+
+.hero__title {
+  font-size: clamp(28px, 3.6vw, 46px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.65);
 }
 
 .hero__tags {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin: 1rem 0;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
 }
 
 .hero__tag {
-  font-weight: 600;
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-  padding: 0.35rem 0.875rem;
-  font-size: 12px;
-  border-radius: 10px;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.75);
+  padding: 0.3rem 0.7rem;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+  background-color: rgba(0, 0, 0, 0.55);
+  border-radius: 8px;
+  backdrop-filter: blur(6px);
 }
 
-.hero__score {
+.hero__actions {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+
+/* Width and height are set because App.css gives every button 100%/54px. */
+.hero__cta {
+  display: inline-flex;
   align-items: center;
-  text-shadow: 2px 3px 12px rgba(0,0,0,0.5);
+  gap: 0.5rem;
+  width: auto;
+  height: auto;
+  padding: 0.65rem 1.35rem;
+  font-size: 13px;
+  font-weight: 800;
+  color: white !important;
+  text-decoration: none;
+  background-color: var(--action);
+  border-radius: 999px;
+  /* Matches the global `button` rule so these feel like every other button. */
+  transition: all 0.3s;
 }
 
-.hero__score svg {
-  width: 28px;
-  height: 28px;
+/* The app's buttons fade on hover (`button:hover { opacity: 0.65 }`), so these
+   do too rather than inventing a lift. "View details" is an anchor and never
+   matched that rule, which is why it behaved differently.
+
+   The colour is restated because App.css sets
+   `a:hover { color: var(--action) !important }`, and among !important
+   declarations `a:hover` (0,1,1) outranks a plain `.hero__cta` (0,1,0) — so the
+   label turned the same indigo as its own background. */
+.hero__cta:hover {
+  color: white !important;
+  opacity: 0.65;
 }
 
-.hero__score span {
-  margin-left: 0.5rem;
-  font-weight: 500;
-  font-size: 20px;
+/* Pink, matching the favourite button on Details — the same action should not
+   be a different colour depending on which page you press it from. */
+.hero__cta--favorite {
+  background-color: var(--accent-primary);
 }
 
-.hero__selectGroup {
+.hero__cta svg {
+  font-size: 16px;
+}
+
+.hero__dots {
   display: flex;
-  justify-content: flex-end;
-  align-items: baseline;
-  width: 100%;
+  align-self: flex-end;
+  gap: 0.4rem;
+  flex: none;
+  margin-bottom: 0.35rem;
 }
 
-.hero__selectItem {
-  cursor: pointer;
-  width: 125px;
-  height: 80px;
-  margin: 0 0.875rem;
-  border-radius: var(--border-radius);
-  background-position: 50% 35%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+.hero__dot {
+  width: 22px;
+  height: 4px;
+  min-width: 0;
+  padding: 0;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.35);
+  transition:
+    width 0.24s cubic-bezier(0.2, 0.7, 0.3, 1),
+    background-color 0.24s;
 }
 
-.hero__selectItem:first-child {
-  margin-left: 0;
+.hero__dot--active {
+  width: 38px;
+  background-color: white;
 }
 
-.hero__selectItem:last-child {
-  margin-right: 0;
+@media (prefers-reduced-motion: reduce) {
+  .hero__cta,
+  .hero__dot {
+    transition: none;
+  }
 }
 
-.hero__selectItem:hover {
-  transform: scale(1.1) translateZ(0px);
+@media screen and (max-width: 960px) {
+  .hero {
+    min-height: 460px;
+    padding-bottom: 2rem;
+  }
+
+  .hero__poster {
+    width: 150px;
+  }
 }
 
-.hero__selectItem.active {
-  width: 150px;
-  height: 100px;
-  cursor: default;
-  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.25);
-  transform: scale(1.05) translateZ(0px);
-}
+@media screen and (max-width: 640px) {
+  .hero {
+    min-height: 420px;
+  }
 
-@media (prefers-color-scheme: dark) {
+  .hero__content {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
 
+  .hero__poster {
+    width: 110px;
+  }
+
+  .hero__dots {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
 }

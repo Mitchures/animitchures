@@ -4,7 +4,7 @@
   width: 50px;
   height: 25px;
 }
-.toggleSwitch input[type="checkbox"] {
+.toggleSwitch input[type='checkbox'] {
   display: none;
 }
 .toggleSwitch .toggleSwitch__switch {
@@ -20,7 +20,7 @@
 }
 .toggleSwitch .toggleSwitch__switch::before {
   position: absolute;
-  content: "";
+  content: '';
   left: 2px;
   top: 2px;
   width: 21px;
@@ -29,10 +29,10 @@
   border-radius: 50%;
   transition: transform 0.3s ease;
 }
-.toggleSwitch input[type="checkbox"]:checked + .toggleSwitch__switch::before {
+.toggleSwitch input[type='checkbox']:checked + .toggleSwitch__switch::before {
   transform: translateX(25px);
   background-color: rgba(255, 255, 255, 0.5);
 }
-.toggleSwitch input[type="checkbox"]:checked + .toggleSwitch__switch {
+.toggleSwitch input[type='checkbox']:checked + .toggleSwitch__switch {
   background-color: var(--action);
 }

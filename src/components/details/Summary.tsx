@@ -2,19 +2,14 @@ import './Summary.css';
 
 import { Media } from 'graphql/types';
 
-function Summary({ title, description, genres }: Media) {
+/**
+ * The synopsis alone. The title and genres this used to repeat are the hero's
+ * now — rendering them here as well showed the same title twice on one screen.
+ */
+function Summary({ description }: Media) {
   return (
     <div className="summary">
-      <div className="summary__header">
-        <h1>{title?.english ? title?.english : title?.userPreferred}</h1>
-        <div className="summary__tags">
-          {genres?.map((genre, index) => (
-            <div key={`${genre}__${index}`} className="summary__tag">
-              {genre}
-            </div>
-          ))}
-        </div>
-      </div>
+      <h3>Synopsis</h3>
       <p
         dangerouslySetInnerHTML={{
           __html: `${description !== null ? description : 'No description available'}`,

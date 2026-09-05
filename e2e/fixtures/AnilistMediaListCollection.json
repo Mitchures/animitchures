@@ -1,0 +1,17 @@
+{
+  "errors": [
+    {
+      "message": "User not found",
+      "status": 404,
+      "locations": [
+        {
+          "line": 3,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "data": {
+    "MediaListCollection": null
+  }
+}

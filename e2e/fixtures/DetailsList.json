@@ -1,0 +1,68 @@
+{
+  "data": {
+    "Page": {
+      "pageInfo": {
+        "total": 3,
+        "perPage": 15,
+        "currentPage": 1,
+        "lastPage": 1,
+        "hasNextPage": false,
+        "__typename": "PageInfo"
+      },
+      "media": [
+        {
+          "id": 1,
+          "isAdult": false,
+          "title": {
+            "userPreferred": "Cowboy Bebop",
+            "english": "Cowboy Bebop",
+            "romaji": "Cowboy Bebop",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1-GCsPm7waJ4kS.png",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1-GCsPm7waJ4kS.png",
+            "__typename": "MediaCoverImage"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/1-OquNCNB6srGe.jpg",
+          "__typename": "Media"
+        },
+        {
+          "id": 5114,
+          "isAdult": false,
+          "title": {
+            "userPreferred": "Hagane no Renkinjutsushi: FULLMETAL ALCHEMIST",
+            "english": "Fullmetal Alchemist: Brotherhood",
+            "romaji": "Hagane no Renkinjutsushi: FULLMETAL ALCHEMIST",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx5114-nSWCgQlmOMtj.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx5114-nSWCgQlmOMtj.jpg",
+            "__typename": "MediaCoverImage"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/5114-q0V5URebphSG.jpg",
+          "__typename": "Media"
+        },
+        {
+          "id": 9253,
+          "isAdult": false,
+          "title": {
+            "userPreferred": "Steins;Gate",
+            "english": "Steins;Gate",
+            "romaji": "Steins;Gate",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx9253-tIUXF2gfU8Sg.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx9253-tIUXF2gfU8Sg.jpg",
+            "__typename": "MediaCoverImage"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/n9253-JIhmKgBKsWUN.jpg",
+          "__typename": "Media"
+        }
+      ],
+      "__typename": "Page"
+    }
+  }
+}
