@@ -1,0 +1,89 @@
+/* Mirrors the real hero's metrics so the swap is not a jump: same banner
+   min-height, same negative header offset, same poster width and gaps. */
+.detailsSkeleton__banner {
+  display: flex;
+  align-items: flex-end;
+  min-height: 520px;
+  margin-top: calc(-1 * var(--header-height));
+  padding: calc(var(--header-height) + 1rem) var(--x-axis-spacing) 2rem;
+  background-color: #101a28;
+}
+
+.detailsSkeleton__hero {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.75rem;
+  width: 100%;
+}
+
+.detailsSkeleton__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.detailsSkeleton__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.detailsSkeleton__bar {
+  display: flex;
+  gap: 2rem;
+  padding: 1.125rem var(--x-axis-spacing);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.detailsSkeleton__panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 2rem;
+  align-items: start;
+  padding: 1.5rem var(--x-axis-spacing) 2rem;
+}
+
+.detailsSkeleton__main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  min-width: 0;
+}
+
+@media screen and (max-width: 960px) {
+  .detailsSkeleton__panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .detailsSkeleton__hero {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .detailsSkeleton__banner {
+    min-height: 380px;
+    padding-bottom: 1.5rem;
+  }
+
+  .detailsSkeleton__hero {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .detailsSkeleton__hero > .skeleton:first-child {
+    width: 150px !important;
+    height: 211px !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .detailsSkeleton__bar {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+  }
+}

@@ -5,7 +5,6 @@ import { motion, useMotionValue, useTransform, useReducedMotion } from 'framer-m
 
 import './Details.css';
 
-import Loader from 'components/Loader';
 import Sidebar from 'components/details/Sidebar';
 import Summary from 'components/details/Summary';
 import Relations from 'components/details/Relations';
@@ -13,6 +12,7 @@ import Characters from 'components/details/Characters';
 import Staff from 'components/details/Staff';
 import Actions from 'components/details/Actions';
 import HeroMeta from 'components/details/HeroMeta';
+import DetailsSkeleton from 'components/details/DetailsSkeleton';
 import DetailsTabs, { DetailsTab } from 'components/details/DetailsTabs';
 
 import { useScrollContainer } from 'context';
@@ -74,7 +74,7 @@ function Details() {
     return () => setSelected(null);
   }, [data]);
 
-  if (loading || !selected) return <Loader />;
+  if (loading || !selected) return <DetailsSkeleton />;
 
   // The other titles this show goes by, minus whichever one is already the
   // heading. Deduped because romaji and userPreferred are frequently identical.
