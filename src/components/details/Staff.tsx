@@ -8,7 +8,7 @@ function Staff({ staff }: Media) {
       {staff && staff.edges && staff.edges.length > 0 && (
         <>
           <div className="staff__container">
-            {staff.edges.slice(0, 6).map((staff: any) => (
+            {staff.edges.map((staff: any) => (
               <div key={staff.id} className="staff__block">
                 <div className="staff__blockLeft">
                   <div className="staff__blockImageContainer">
