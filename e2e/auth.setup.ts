@@ -17,7 +17,7 @@ setup('authenticate', async ({ page }) => {
       'E2E_EMAIL and E2E_PASSWORD must be set. They belong in .env.test.local, which ' +
         'playwright.config.ts loads and .gitignore excludes — so a fresh clone will not ' +
         'have it. Create it with the credentials of a Firebase account that exists in ' +
-        'this project, then run `yarn e2e:seed` to populate that account\'s Firestore ' +
+        "this project, then run `yarn e2e:seed` to populate that account's Firestore " +
         'documents.',
     );
   }

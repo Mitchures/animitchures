@@ -27,6 +27,9 @@ async function gotoDiscover(page: Page) {
 /**
  * Loads Discover but waits only for the app shell.
  *
+ * Waits on .app__body rather than .header: the header is desktop-hidden now
+ * that search is the spotlight overlay, so it is not a width-agnostic signal.
+ *
  * Prefer this for assertions about layout and navigation, which are pure CSS
  * and do not depend on media data. AniList rate-limits aggressively (429 with
  * no CORS header, which surfaces in the browser as a misleading CORS error), so
@@ -34,7 +37,7 @@ async function gotoDiscover(page: Page) {
  */
 async function gotoShell(page: Page) {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
-  await page.locator('.header').waitFor({ state: 'visible', timeout: 20_000 });
+  await page.locator('.app__body').waitFor({ state: 'visible', timeout: 20_000 });
 }
 
 test.describe('no horizontal overflow', () => {

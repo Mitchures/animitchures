@@ -194,7 +194,7 @@
   border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-.navigation__footerLink {
+.navigation__action {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -212,14 +212,14 @@
   white-space: nowrap;
 }
 
-.navigation__footerLink:hover {
+.navigation__action:hover {
   opacity: 1;
   color: var(--action);
 }
 
 /* .navigation__icon is otherwise scoped to the nav list, so the footer icon would
    render bare without this. */
-.navigation__footer .navigation__icon {
+.navigation__action .navigation__icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -230,22 +230,22 @@
   transition: all 0.3s;
 }
 
-.navigation__footer .navigation__icon svg {
+.navigation__action .navigation__icon svg {
   font-size: 24px;
 }
 
-.navigation:hover .navigation__footerLink {
+.navigation:hover .navigation__action {
   justify-content: flex-start;
   padding-left: 1.375rem;
 }
 
 /* Hidden while collapsed for the same reason as the nav labels: at opacity 0 they
    would still occupy space and push the icon off-centre. */
-.navigation__footerLink span {
+.navigation__action span {
   display: none;
 }
 
-.navigation:hover .navigation__footerLink span {
+.navigation:hover .navigation__action span {
   display: inline;
   margin-left: 1rem;
   overflow: hidden;
@@ -263,11 +263,11 @@
   transition: border-color 0.3s;
 }
 
-.navigation__footerLink:hover .navigation__avatar {
+.navigation__action:hover .navigation__avatar {
   border-color: var(--action);
 }
 
-.navigation__footerLink:hover .navigation__icon {
+.navigation__action:hover .navigation__icon {
   background-color: var(--action);
   color: white;
 }
@@ -277,7 +277,7 @@
     border-top-color: rgba(255, 255, 255, 0.08);
   }
 
-  .navigation__footer .navigation__icon {
+  .navigation__action .navigation__icon {
     background-color: rgba(255, 255, 255, 0.05);
   }
 }
@@ -289,7 +289,36 @@
    `a.active`) lands on an action-coloured circle and disappears. Forcing the
    glyph white matches how the icon pills already render when active, and the
    ring keeps the state legible for avatars that do have a photo. */
-.navigation__footerLink.active .navigation__avatar {
+.navigation__action.active .navigation__avatar {
   color: #fff !important;
   border-color: var(--action);
+}
+
+/* Search is a tool, not a destination, so it sits above the Menu heading with a
+   rule under it rather than joining the list. Anchored in the rail — which
+   already reserves its own width — it cannot overlap content, collide with the
+   sticky tab bar, or need to move when the rail expands. */ /* Three states, matching the destinations above it: grey at rest, action colour
+   on hover, and the selected treatment while the spotlight is open — the rail
+   shows you where you are, and search being open is one of those places.
+   Written out rather than relying on App.css's `a.active`, which only targets
+   anchors; this is a button. */
+.navigation__search.active .navigation__icon {
+  color: white;
+  background-color: var(--action);
+}
+
+.navigation__search.active span {
+  color: var(--primary);
+}
+
+.navigation__search {
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.875rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  .navigation__search {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+  }
 }

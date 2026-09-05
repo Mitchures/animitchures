@@ -52,11 +52,17 @@ async function capturePublic(browser: Browser, seen: Set<string>): Promise<void>
   await page.locator('.details__hero').waitFor({ timeout: 25_000 });
   await page.waitForTimeout(2500);
 
-  // Type into the real search box so a populated query fires, rather than the
+  // Search through the spotlight, then follow it to the full results page. Both
+  // fire the same `Search` operation, and responses overwrite — so finishing on
+  // Results leaves the fixture holding its larger page rather than the
+  // spotlight's six. Typing rather than navigating directly also avoids the
   // empty-string query Results issues on mount.
   await page.goto('http://localhost:3000/', { waitUntil: 'domcontentloaded' });
-  await page.fill('.search input', 'frieren');
-  await page.press('.search input', 'Enter');
+  await page.locator('.navigation__search').click();
+  await page.fill('.spotlight__field input', 'frieren');
+  await page.locator('.spotlight__result').first().waitFor({ timeout: 25_000 });
+  await page.waitForTimeout(1500);
+  await page.locator('.spotlight__all').click();
   await page.locator('.results__container .card').first().waitFor({ timeout: 25_000 });
   await page.waitForTimeout(2500);
 

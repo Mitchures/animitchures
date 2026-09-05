@@ -1,9 +1,10 @@
 import { NavLink, Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
-import { IoNotifications } from 'react-icons/io5';
+import { IoNotifications, IoSearch } from 'react-icons/io5';
 import './Navigation.css';
 
 import { NavSection } from './nav-items';
+import { SEARCH_SHORTCUT } from './SearchSpotlight';
 import { User } from 'context/types';
 import Logo from '../images/animitchures-logo.svg';
 
@@ -11,9 +12,11 @@ interface Props {
   sections: NavSection[];
   user: User | null;
   onLogout: () => void;
+  onSearchOpen: () => void;
+  searchOpen: boolean;
 }
 
-function Navigation({ sections, user, onLogout }: Props) {
+function Navigation({ sections, user, onLogout, onSearchOpen, searchOpen }: Props) {
   // The rail splits the same nav data two ways: destinations in the list,
   // account actions pinned to the footer without their "General" heading.
   // nav-items is left intact because MobileMenu renders all sections as-is.
@@ -34,6 +37,19 @@ function Navigation({ sections, user, onLogout }: Props) {
           animitchures<span></span>
         </span>
       </Link>
+      {/* The shortcut is a tooltip rather than a visible keycap. */}
+      <button
+        type="button"
+        className={`navigation__action navigation__search${searchOpen ? ' active' : ''}`}
+        aria-label="Search anime"
+        title={`Search (${SEARCH_SHORTCUT})`}
+        onClick={onSearchOpen}
+      >
+        <div className="navigation__icon">
+          <IoSearch />
+        </div>
+        <span>Search</span>
+      </button>
       <div className="navigation__container">
         {destinations.map((section) => (
           <div key={section.id}>
@@ -69,7 +85,7 @@ function Navigation({ sections, user, onLogout }: Props) {
             previously navigated to '/' — which silently took you home. It is
             inert until there is a panel to open. */}
         {user && (
-          <button type="button" className="navigation__footerLink" aria-label="Notifications">
+          <button type="button" className="navigation__action" aria-label="Notifications">
             <div className="navigation__icon">
               <IoNotifications />
             </div>
@@ -77,7 +93,7 @@ function Navigation({ sections, user, onLogout }: Props) {
           </button>
         )}
         {settingsItems.map(({ id, label, to, Icon, end }) => (
-          <NavLink key={id} to={to} end={end} className="navigation__footerLink" aria-label={label}>
+          <NavLink key={id} to={to} end={end} className="navigation__action" aria-label={label}>
             <div className="navigation__icon">
               <Icon />
             </div>
@@ -85,7 +101,7 @@ function Navigation({ sections, user, onLogout }: Props) {
           </NavLink>
         ))}
         {user && (
-          <NavLink to="/profile" className="navigation__footerLink" aria-label="Profile">
+          <NavLink to="/profile" className="navigation__action" aria-label="Profile">
             {/* src is undefined rather than `${user.photoURL}`, which stringifies
                 null into "null" and sends the browser after a file of that name.
                 The initial is passed as children because MUI only derives one from
@@ -107,7 +123,7 @@ function Navigation({ sections, user, onLogout }: Props) {
         {logoutItem && (
           <Link
             to={logoutItem.to}
-            className="navigation__footerLink logout"
+            className="navigation__action logout"
             aria-label={logoutItem.label}
             onClick={onLogout}
           >

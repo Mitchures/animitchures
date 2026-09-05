@@ -4,6 +4,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import Header from 'components/Header';
 import Navigation from 'components/Navigation';
 import MobileMenu from 'components/MobileMenu';
+import SearchSpotlight from 'components/SearchSpotlight';
 import { getNavSections } from 'components/nav-items';
 
 import { auth } from 'config';
@@ -18,6 +19,7 @@ import { useStateValue, ScrollContainerProvider } from 'context';
 function AppShell() {
   const [{ user, anilist_user }] = useStateValue();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   // Handed to views that animate on scroll — this is the element that scrolls,
   // not the window.
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -33,7 +35,14 @@ function AppShell() {
 
   return (
     <div className="app__container">
-      <Navigation sections={sections} user={user} onLogout={handleLogout} />
+      <Navigation
+        sections={sections}
+        user={user}
+        onLogout={handleLogout}
+        onSearchOpen={() => setSearchOpen(true)}
+        searchOpen={searchOpen}
+      />
+      <SearchSpotlight open={searchOpen} onOpenChange={setSearchOpen} />
       <div className="app__body" ref={scrollContainerRef}>
         <Header menuOpen={menuOpen} onMenuToggle={() => setMenuOpen((open) => !open)} />
         <ScrollContainerProvider value={scrollContainerRef}>

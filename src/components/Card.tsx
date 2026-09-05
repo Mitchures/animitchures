@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 
 import './Card.css';
 
+import { mediaPath } from 'helpers';
+
 interface IMediaItem {
   [key: string]: any;
 }
@@ -16,12 +18,7 @@ function Card({ id, title, coverImage, bannerImage, relationType }: IMediaItem) 
   };
 
   return (
-    <Link
-      to={`/anime/${id}/${encodeURIComponent(
-        title.userPreferred.replace(/,?[ ]/g, '-').toLowerCase(),
-      )}`}
-      className="card"
-    >
+    <Link to={mediaPath(id, title.userPreferred)} className="card">
       <img src={coverImage.large ? coverImage.large : bannerImage} alt={title.userPreferred} />
       <span className="card__label">
         <span className="card__labelTitle">

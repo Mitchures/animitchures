@@ -16,9 +16,12 @@
   --y-axis-spacing: 1.25rem;
   --left-spacing: 2rem;
   --right-spacing: 2rem;
-  /* Height of the fixed header. Consumed by Features, Favorites, Results and
-     Details. Was hardcoded as 116px in four files. */
-  --header-height: 116px;
+  /* Height of the header. Zero on desktop: search moved into the spotlight
+     overlay and the header had nothing left to hold, so it is display:none
+     there. Everything that offsets against it — the Details banner pull-up,
+     the sticky tab bar, the 100vh view heights — follows from this token.
+     Below 960px the header returns for the logo and menu button. */
+  --header-height: 0px;
   /* Poster height for Card. Card width derives from it at a 2:3 ratio. */
   --card-poster-height: 300px;
   /* Sidebar rail: collapsed by default, expands on hover as an overlay. */

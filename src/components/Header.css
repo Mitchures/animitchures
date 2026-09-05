@@ -1,5 +1,8 @@
+/* Desktop has no header: search is the spotlight overlay, and the logo and
+   account controls live in the rail. It returns below 960px, where the rail is
+   hidden and the logo and menu button have nowhere else to go. */
 .header {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: space-between;
   padding: 0 2rem;
@@ -85,6 +88,7 @@
 
 @media screen and (max-width: 960px) {
   .header {
+    display: flex;
     gap: 0.75rem;
     padding: 0 1rem;
   }
