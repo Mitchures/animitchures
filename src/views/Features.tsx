@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import './Features.css';
 
 import Hero from 'components/Hero';
+import AiringThisWeek from 'components/AiringThisWeek';
 import Card from 'components/Card';
 import Loader from 'components/Loader';
 
@@ -94,8 +95,10 @@ function Features() {
     >
       {featured ? (
         <>
-          <h1>Discover</h1>
+          {/* No "Discover" heading: the rail already says where you are, and it
+              only pushed the artwork down the page. */}
           <Hero {...featured} />
+          <AiringThisWeek featured={featured} />
           {Object.keys(featured).map(
             (key, index) =>
               featured[key].media.length > 0 && (

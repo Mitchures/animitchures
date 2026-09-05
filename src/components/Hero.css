@@ -1,220 +1,207 @@
+/* Full-bleed to the top edge, like the Details banner. The old hero sat inside
+   the page padding as a rounded card, which wasted the artwork. */
 .hero {
-  padding: 0 var(--right-spacing) 2rem var(--left-spacing);
-  height: 600px;
-  min-height: 600px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 560px;
+  padding: calc(var(--header-height) + 2rem) var(--x-axis-spacing) 2.5rem;
+  overflow: hidden;
   color: white;
+  background-color: #0b1621;
 }
 
-.hero h1 {
-  cursor: pointer;
-  text-shadow: 2px 3px 12px rgba(0, 0, 0, 0.5);
-  transition: all 0.2s;
-}
-
-.hero h1:hover {
-  opacity: 0.65;
-}
-
-.hero__banner {
-  width: 100%;
-  height: 100%;
-  border-radius: var(--border-radius);
-  background-position: 50% 35%;
+.hero__image {
+  position: absolute;
+  inset: 0;
+  background-position: 50% 32%;
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
-  transition: all 0.3s;
-  overflow: hidden;
+  will-change: transform;
 }
 
-.hero__bannerBody {
+/* Sideways rather than upward: the copy sits on the left, and a bottom-up
+   gradient would darken the artwork without protecting the text. */
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(11, 22, 33, 0.96) 0%,
+      rgba(11, 22, 33, 0.72) 46%,
+      rgba(11, 22, 33, 0.08) 100%
+    ),
+    linear-gradient(0deg, rgba(11, 22, 33, 0.7) 0%, rgba(11, 22, 33, 0) 45%);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
   display: flex;
-  height: 100%;
+  align-items: flex-end;
+  gap: 1.75rem;
   width: 100%;
-  padding: 3.5rem 4rem;
+}
+
+.hero__poster {
+  width: 200px;
+  flex: none;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
   border-radius: var(--border-radius);
-  background: linear-gradient(-80deg, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0.5));
-  /* background-color: rgba(0, 0, 0, 0.5); */
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
 }
 
-.hero__bannerBody h1 {
-  font-size: 45px;
+.hero__body {
+  flex: 1;
+  min-width: 0;
 }
 
-.hero__bannerBody h3 {
-  font-weight: 500;
-}
-
-.hero__column {
-  flex: 0.5;
+.hero__badges {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
 }
 
-.hero__row {
-  flex: 0.5;
+.hero__badge {
+  padding: 0.25rem 0.65rem;
+  font-size: 11px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.92);
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
 }
 
-.hero__rowBottom {
-  margin-top: auto;
+.hero__badge--score {
+  color: #facc15;
+  border: 1px solid rgba(250, 204, 21, 0.45);
+  background-color: rgba(250, 204, 21, 0.14);
+}
+
+.hero__title {
+  font-size: clamp(28px, 3.6vw, 46px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.65);
 }
 
 .hero__tags {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin: 1rem 0;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
 }
 
 .hero__tag {
-  font-weight: 600;
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-  padding: 0.35rem 0.875rem;
-  font-size: 12px;
-  border-radius: 10px;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.75);
+  padding: 0.3rem 0.7rem;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+  background-color: rgba(0, 0, 0, 0.55);
+  border-radius: 8px;
+  backdrop-filter: blur(6px);
 }
 
-.hero__score {
+.hero__actions {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+
+/* Width and height are set because App.css gives every button 100%/54px. */
+.hero__cta {
+  display: inline-flex;
   align-items: center;
-  text-shadow: 2px 3px 12px rgba(0, 0, 0, 0.5);
+  gap: 0.5rem;
+  width: auto;
+  height: auto;
+  padding: 0.65rem 1.35rem;
+  font-size: 13px;
+  font-weight: 800;
+  color: white !important;
+  text-decoration: none;
+  background-color: var(--action);
+  border-radius: 999px;
+  transition: transform 0.16s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
 
-.hero__score svg {
-  width: 28px;
-  height: 28px;
+.hero__cta:hover {
+  transform: translateY(-2px);
 }
 
-.hero__score span {
-  margin-left: 0.5rem;
-  font-weight: 500;
-  font-size: 20px;
+.hero__cta--ghost {
+  background-color: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(8px);
 }
 
-.hero__selectGroup {
+.hero__cta svg {
+  font-size: 16px;
+}
+
+.hero__dots {
   display: flex;
-  justify-content: flex-end;
-  align-items: baseline;
-  width: 100%;
+  align-self: flex-end;
+  gap: 0.4rem;
+  flex: none;
+  margin-bottom: 0.35rem;
 }
 
-.hero__selectItem {
-  cursor: pointer;
-  width: 125px;
-  height: 80px;
-  margin: 0 0.875rem;
-  border-radius: var(--border-radius);
-  background-position: 50% 35%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+.hero__dot {
+  width: 22px;
+  height: 4px;
+  min-width: 0;
+  padding: 0;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.35);
+  transition:
+    width 0.24s cubic-bezier(0.2, 0.7, 0.3, 1),
+    background-color 0.24s;
 }
 
-.hero__selectItem:first-child {
-  margin-left: 0;
+.hero__dot--active {
+  width: 38px;
+  background-color: white;
 }
 
-.hero__selectItem:last-child {
-  margin-right: 0;
+@media (prefers-reduced-motion: reduce) {
+  .hero__cta,
+  .hero__dot {
+    transition: none;
+  }
 }
 
-.hero__selectItem:hover {
-  transform: scale(1.1) translateZ(0px);
-}
-
-.hero__selectItem.active {
-  width: 150px;
-  height: 100px;
-  cursor: default;
-  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.25);
-  transform: scale(1.05) translateZ(0px);
-}
-
-@media (prefers-color-scheme: dark) {
-}
-
-/* Stacks as soon as the sidebar goes away. The two-column split needs desktop
-   width to work: below 960px the title column is too narrow to read. */
 @media screen and (max-width: 960px) {
   .hero {
-    height: 460px;
     min-height: 460px;
+    padding-bottom: 2rem;
   }
 
-  .hero__bannerBody {
-    flex-direction: column;
-    /* Score/title/tags ride the top, thumbnails the bottom. Without this the
-       stacked columns bunch at the top and leave the lower half empty — the
-       row layout got that for free from .hero__rowBottom's margin-top:auto. */
-    justify-content: space-between;
-    padding: 2rem;
-  }
-
-  .hero__bannerBody h1 {
-    font-size: clamp(26px, 4.5vw, 45px);
-  }
-
-  .hero__column {
-    flex: none;
-  }
-
-  .hero__column:last-child .hero__row:empty {
-    display: none;
-  }
-
-  /* The tags already carry margin-bottom for a second row; without wrap the
-     last genre just gets clipped at the banner edge. */
-  .hero__tags {
-    flex-wrap: wrap;
-  }
-
-  .hero__selectGroup {
-    justify-content: flex-start;
-    margin-top: 1rem;
-  }
-
-  .hero__selectItem {
-    width: 100px;
-    height: 64px;
-    margin: 0 0.625rem;
-  }
-
-  .hero__selectItem.active {
-    width: 120px;
-    height: 78px;
+  .hero__poster {
+    width: 150px;
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 640px) {
   .hero {
-    height: 380px;
-    min-height: 380px;
+    min-height: 420px;
   }
 
-  .hero__bannerBody {
-    padding: 1.25rem;
+  .hero__content {
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 
-  .hero__bannerBody h1 {
-    font-size: clamp(22px, 6vw, 32px);
+  .hero__poster {
+    width: 110px;
   }
 
-  .hero__selectGroup {
-    margin-top: 0.875rem;
-  }
-
-  .hero__selectItem {
-    width: 72px;
-    height: 48px;
-    margin: 0 0.5rem;
-  }
-
-  .hero__selectItem.active {
-    width: 88px;
-    height: 58px;
+  .hero__dots {
+    width: 100%;
+    margin-top: 0.5rem;
   }
 }

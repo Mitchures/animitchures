@@ -1,105 +1,156 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {
-  SentimentVerySatisfied,
-  SentimentVeryDissatisfied,
-  SentimentDissatisfied,
-  SentimentNeutral,
-  SentimentSatisfiedAlt,
-} from '@mui/icons-material';
+import { Link } from 'react-router-dom';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 import './Hero.css';
 
-const getScoreStatus = (score: number) => {
-  if (score >= 90) return <SentimentVerySatisfied htmlColor="lightgreen" />;
-  else if (score >= 75 && score < 90) return <SentimentSatisfiedAlt htmlColor="lightgreen" />;
-  else if (score >= 60 && score < 75) return <SentimentNeutral htmlColor="orange" />;
-  else if (score >= 25 && score < 60) return <SentimentDissatisfied htmlColor="red" />;
-  else return <SentimentVeryDissatisfied htmlColor="red" />;
+import { useStateValue } from 'context';
+import { addItemToFavorites, removeItemFromFavorites } from 'api';
+import { mediaPath } from 'helpers';
+
+const ROTATE_MS = 7000;
+const FEATURE_COUNT = 5;
+
+/** Rounds to the largest unit that still says something useful. */
+const untilAiring = (seconds: number) => {
+  if (seconds <= 0) return 'airing now';
+  const days = Math.floor(seconds / 86400);
+  if (days >= 1) return `in ${days}d`;
+  const hours = Math.floor(seconds / 3600);
+  if (hours >= 1) return `in ${hours}h`;
+  return `in ${Math.max(1, Math.floor(seconds / 60))}m`;
 };
 
 function Hero({ trending }: any) {
-  const [featured] = useState(trending?.media.slice(0, 3));
-  const [selected, setSelected] = useState(trending?.media[0]);
-  const navigate = useNavigate();
+  const [{ user, favorites }, dispatch] = useStateValue();
+  const [featured] = useState(() => trending?.media.slice(0, FEATURE_COUNT) ?? []);
+  const [index, setIndex] = useState(0);
+  const reduceMotion = useReducedMotion();
+
+  const selected = featured[index];
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const index = featured.findIndex((f: any) => f.id === selected.id);
-      if (index === featured.length - 1) setSelected(featured[0]);
-      else setSelected(featured[index + 1]);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, [featured, selected]);
+    if (featured.length < 2) return;
+    const timer = setInterval(() => setIndex((i) => (i + 1) % featured.length), ROTATE_MS);
+    return () => clearInterval(timer);
+  }, [featured.length]);
+
+  if (!selected) return null;
+
+  const title = selected.title.english ?? selected.title.userPreferred;
+  const isFavorite = favorites?.some((id: number) => id === selected.id);
 
   return (
     <div className="hero">
-      {selected && (
-        <div
-          className="hero__banner"
+      {/* The image is its own layer so it can drift without moving the scrim or
+          the content sitting on it. */}
+      <AnimatePresence initial={false}>
+        <motion.div
+          key={selected.id}
+          className="hero__image"
           style={{
-            backgroundImage: `url(${
-              selected.bannerImage ? selected.bannerImage : selected.coverImage.extraLarge
-            })`,
+            backgroundImage: `url(${selected.bannerImage ?? selected.coverImage.extraLarge})`,
           }}
-        >
-          <div className="hero__bannerBody">
-            <div className="hero__column">
-              <div className="hero__row">
-                {selected.averageScore && (
-                  <div className="hero__score">
-                    {getScoreStatus(selected.averageScore)}{' '}
-                    <span>{`${selected.averageScore}%`}</span>
-                  </div>
-                )}
-              </div>
-              <div className="hero__row hero__column">
-                <div className="hero__rowBottom">
-                  <h1
-                    onClick={() =>
-                      navigate(
-                        `/anime/${selected.id}/${encodeURIComponent(
-                          selected.title.userPreferred.replace(/,?[ ]/g, '-').toLowerCase(),
-                        )}`,
-                      )
-                    }
-                  >
-                    {selected.title.english ? selected.title.english : selected.title.userPreferred}
-                  </h1>
-                  <div className="hero__tags">
-                    {selected.genres.map((genre: string, index: number) => (
-                      <div key={`${genre}__${index}`} className="hero__tag">
-                        {genre}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+          initial={{ opacity: 0, scale: reduceMotion ? 1 : 1.02 }}
+          animate={{ opacity: 1, scale: reduceMotion ? 1 : 1.09 }}
+          exit={{ opacity: 0 }}
+          transition={{
+            opacity: { duration: 0.9 },
+            // Slow drift across the whole slide, so the still image never sits
+            // completely dead.
+            scale: { duration: ROTATE_MS / 1000 + 1, ease: 'linear' },
+          }}
+        />
+      </AnimatePresence>
+
+      <div className="hero__scrim" />
+
+      <div className="hero__content">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={selected.id}
+            className="hero__poster"
+            src={selected.coverImage.extraLarge ?? selected.coverImage.large}
+            alt={title}
+            initial={reduceMotion ? undefined : { opacity: 0, y: 14 }}
+            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            exit={reduceMotion ? undefined : { opacity: 0, y: -14 }}
+            transition={{ duration: 0.35, ease: [0.2, 0.7, 0.3, 1] }}
+          />
+        </AnimatePresence>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={selected.id}
+            className="hero__body"
+            initial={reduceMotion ? undefined : { opacity: 0, y: 12 }}
+            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            exit={reduceMotion ? undefined : { opacity: 0, y: -12 }}
+            transition={{ duration: 0.35, ease: [0.2, 0.7, 0.3, 1] }}
+          >
+            <div className="hero__badges">
+              {selected.averageScore && (
+                <span className="hero__badge hero__badge--score">★ {selected.averageScore}</span>
+              )}
+              <span className="hero__badge">#{index + 1} Trending</span>
+              {selected.nextAiringEpisode && (
+                <span className="hero__badge">
+                  Ep {selected.nextAiringEpisode.episode}{' '}
+                  {untilAiring(selected.nextAiringEpisode.timeUntilAiring)}
+                </span>
+              )}
             </div>
-            <div className="hero__column">
-              <div className="hero__row"></div>
-              <div className="hero__row hero__column">
-                <div className="hero__rowBottom">
-                  <div className="hero__selectGroup">
-                    {featured.map((item: any) => (
-                      <div
-                        key={item.id}
-                        className={`hero__selectItem ${selected.id === item.id && 'active'}`}
-                        onClick={() => setSelected(item)}
-                        style={{
-                          backgroundImage: `url(${
-                            item.bannerImage ? item.bannerImage : item.coverImage.extraLarge
-                          })`,
-                        }}
-                      ></div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+
+            <h1 className="hero__title">{title}</h1>
+
+            <div className="hero__tags">
+              {selected.genres.slice(0, 4).map((genre: string) => (
+                <span key={genre} className="hero__tag">
+                  {genre}
+                </span>
+              ))}
             </div>
-          </div>
+
+            <div className="hero__actions">
+              <Link className="hero__cta" to={mediaPath(selected.id, selected.title.userPreferred)}>
+                View details
+              </Link>
+              {user && (
+                <button
+                  type="button"
+                  className="hero__cta hero__cta--ghost"
+                  aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+                  onClick={() =>
+                    isFavorite
+                      ? removeItemFromFavorites(selected.id, user.uid, dispatch)
+                      : addItemToFavorites(selected.id, user.uid, dispatch)
+                  }
+                >
+                  {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
+                  {isFavorite ? 'Favorited' : 'Favorite'}
+                </button>
+              )}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Indicators rather than the old banner thumbnails: the poster now
+            carries the artwork, and five thumbnails competed with it. */}
+        <div className="hero__dots" role="tablist" aria-label="Featured anime">
+          {featured.map((item: any, itemIndex: number) => (
+            <button
+              key={item.id}
+              type="button"
+              role="tab"
+              aria-selected={itemIndex === index}
+              aria-label={item.title.english ?? item.title.userPreferred}
+              className={`hero__dot${itemIndex === index ? ' hero__dot--active' : ''}`}
+              onClick={() => setIndex(itemIndex)}
+            />
+          ))}
         </div>
-      )}
+      </div>
     </div>
   );
 }
