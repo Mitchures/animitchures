@@ -9,8 +9,8 @@ Guidance for working in this repo.
 favorites in Firestore, and optionally link an AniList account (OAuth) to read your AniList
 watchlist and write list-status updates back.
 
-Vite + TypeScript, React 18, Apollo Client, Firebase v9 (Auth, Firestore, Cloud Functions),
-deployed to Firebase Hosting. Migrated off Create React App on 2026-09-05 — `react-scripts`
+Vite + TypeScript 6, React 19, Apollo Client 3, Firebase v12 (Auth, Firestore, Cloud
+Functions), deployed to Firebase Hosting. Migrated off Create React App on 2026-09-05 — `react-scripts`
 had been unmaintained since 2022.
 
 ## Commands
@@ -74,7 +74,7 @@ e2e/                 Playwright specs (.spec.ts) — outside src so vitest ignor
 public/              static files copied verbatim: favicon, manifest, logos, robots.txt
 src/
   App.tsx            Router + the auth-state listener that hydrates global state on login
-  index.tsx          React 18 createRoot; wraps App in ApolloProvider + StateProvider
+  index.tsx          React 19 createRoot; wraps App in ApolloProvider + StateProvider
   vite-env.d.ts      /// <reference types="vite/client" /> — types the asset imports
   test-utils.tsx     renderWithProviders() — RTL render wrapped in the app's providers
   api/services/      Firestore reads/writes: favorites.ts, profile.ts, anilist.ts (tokens)
@@ -149,10 +149,28 @@ Known rough edges worth knowing before touching related code:
   token exchange into a Cloud Function, which would also make OAuth work in production rather
   than dev only.
 - **`firestore.rules` allows any signed-in user to read/write any document.**
-- **MUI migration is half-done**: `@material-ui/core` v4 (`Avatar` in `Header.tsx`, `Profile.tsx`)
-  and `@mui/material` v5 coexist. New code should use `@mui/*`.
-- **`@emotion/react` and `@emotion/styled` look unused but must stay** — MUI v5 requires them
+- **MUI is fully on v9** as of 2026-09-05; `@material-ui` v4 is gone. Note MUI requires
+  `@emotion/*` at 11.14+ — 11.8 satisfies the peer range on paper but throws
+  `emStyled is not a function` at runtime under vitest.
+- **`@emotion/react` and `@emotion/styled` look unused but must stay** — MUI requires them
   as peer dependencies. Styling is otherwise plain CSS files.
+- **`@apollo/client` is deliberately held at 3.6.** A v4 upgrade was attempted on
+  2026-09-05 and reverted. v4 needs `rxjs` as a new peer, moves hooks to
+  `@apollo/client/react` and `MockedProvider` to `@apollo/client/testing/react`, changes
+  the `onError` callback to a single `error` argument, and moves `useLazyQuery` variables
+  to the execute call. The blocker was typing: v4 returns `data` as `{}` rather than `any`,
+  so every call site needs a generic — and AniList's generated types are fully `Maybe<>`
+  wrapped, which cascades null-handling changes into Favorites, Profile, AnilistWatchlist
+  and Results. Three of those need sign-in to exercise, so the changes could not be
+  verified. Worth doing, but as its own task with a way to test signed-in views.
+- **`react-icons` is held at 4.3.1.** v5 types assume React 19 semantics and were
+  bundled into the React 19 upgrade attempt; they now work, but were reverted alongside
+  Apollo. Safe to bump independently.
+- **`typescript` must stay below 6.1.** `typescript-eslint` declares
+  `typescript: ">=4.8.4 <6.1.0"`, so TypeScript 7 would break `yarn lint`.
+- **`@types/react` is pinned via `resolutions`** in `package.json`. MUI drags in
+  `@types/react-is` and `@types/react-transition-group`, which pin `@types/react` 18; two
+  copies produce `TS2786: cannot be used as a JSX component` on every icon.
 - **`yarn lint` reports 53 pre-existing warnings and exits 0.** Severities are tuned in
   `eslint.config.mjs` to match what CRA's `react-app` preset reported, so this is the same debt
   that was always there — not a new gate. Note Vite does **not** lint during `build`, unlike CRA.
