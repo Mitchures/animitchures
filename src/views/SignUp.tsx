@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 
 import './SignUp.css';
 
@@ -26,16 +26,14 @@ function SignUp() {
       password.value === confirmPassword.value
     ) {
       createUserWithEmailAndPassword(auth, email.value, password.value)
-        .then(({ user }: any) => {
-          console.log(user);
-          user
-            .updateProfile({
-              displayName: name.value,
-            })
-            .then(() => {
-              // On success route to home
-              navigate('/');
-            });
+        .then(({ user }) => {
+          // Modular SDK: updateProfile is a standalone function, not a method on
+          // user. The v8 form (user.updateProfile) throws TypeError, which is why
+          // signup used to alert and never navigate.
+          updateProfile(user, { displayName: name.value }).then(() => {
+            // On success route to home
+            navigate('/');
+          });
         })
         .catch((error) => alert(error.message));
     } else {
