@@ -7,14 +7,21 @@
 }
 
 .card:hover {
-  transform: scale(1.05) translateZ(0px);
+  transform: scale(1.03) translateZ(0px);
+}
+
+/* Holds the perspective the poster rotates in. Without it useTilt's rotation
+   renders flat and the effect is invisible. */
+.card__poster {
+  perspective: 700px;
 }
 
 .card:hover .card__label {
   color: var(--action);
 }
 
-.card > img {
+.card__poster > img {
+  display: block;
   position: relative;
   height: var(--card-poster-height);
   aspect-ratio: 2 / 3;

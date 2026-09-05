@@ -16,6 +16,7 @@ import DetailsSkeleton from 'components/details/DetailsSkeleton';
 import DetailsTabs, { DetailsTab } from 'components/details/DetailsTabs';
 
 import { useScrollContainer } from 'context';
+import { useTilt } from 'utils/hooks';
 import { Media } from 'graphql/types';
 import { DETAILS_EXTENDED_QUERY } from 'graphql/queries';
 import { authHeader } from 'helpers';
@@ -38,7 +39,7 @@ function Details() {
   // The title reappears in the tab bar as the hero's copy leaves.
   const compactOpacity = useTransform(scrollY, [280, 440], [0, 1]);
   const [selected, setSelected] = useState<Media | null>(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const { tilt, tiltProps, tiltTransition } = useTilt();
   const { loading, data } = useQuery(DETAILS_EXTENDED_QUERY, {
     variables: {
       id,
@@ -48,16 +49,6 @@ function Details() {
       headers: authHeader(),
     },
   });
-
-  // Tilts the poster toward the pointer. Read from the wrapper's box so the
-  // rotation itself cannot feed back into the measurement.
-  const handlePosterMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (reduceMotion) return;
-    const bounds = event.currentTarget.getBoundingClientRect();
-    const px = (event.clientX - bounds.left) / bounds.width - 0.5;
-    const py = (event.clientY - bounds.top) / bounds.height - 0.5;
-    setTilt({ x: -py * 12, y: px * 12 });
-  };
 
   useEffect(() => {
     const element = scrollContainerRef?.current;
@@ -163,15 +154,11 @@ function Details() {
             opacity: reduceMotion ? undefined : heroOpacity,
           }}
         >
-          <div
-            className="details__posterWrap"
-            onMouseMove={handlePosterMove}
-            onMouseLeave={() => setTilt({ x: 0, y: 0 })}
-          >
+          <div className="details__posterWrap" {...tiltProps}>
             <motion.img
               className="details__poster"
               animate={{ rotateX: tilt.x, rotateY: tilt.y }}
-              transition={{ type: 'spring', stiffness: 220, damping: 18 }}
+              transition={tiltTransition}
               src={selected.coverImage?.extraLarge || ''}
               alt={selected.title?.userPreferred || 'No Image'}
             />
