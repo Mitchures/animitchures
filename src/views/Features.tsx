@@ -6,6 +6,7 @@ import './Features.css';
 
 import Hero from 'components/Hero';
 import AiringThisWeek from 'components/AiringThisWeek';
+import GenreTiles from 'components/GenreTiles';
 import Card from 'components/Card';
 import Rail from 'components/Rail';
 import Loader from 'components/Loader';
@@ -110,6 +111,7 @@ function Features() {
                 </Rail>
               ),
           )}
+          <GenreTiles featured={featured} />
         </>
       ) : (
         <Loader />

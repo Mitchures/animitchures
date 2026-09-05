@@ -29,3 +29,8 @@
     grid-column-gap: 0.875rem;
   }
 }
+
+.results__heading {
+  padding: 1.5rem var(--x-axis-spacing) 0;
+  font-weight: 800;
+}
