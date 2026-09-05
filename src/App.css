@@ -9,6 +9,11 @@
   --action: #6366f1;
   --action-light: rgba(99, 102, 241, 0.15);
   --action-secondary: #ff5657;
+  /* Score severity tiers. See helpers/scoreTier for where the cuts fall. */
+  --score-great: #26ae7f;
+  --score-good: #facc15;
+  --score-mixed: #f59e0b;
+  --score-poor: #ff5657;
   /* Border radius of all block elements */
   --border-radius: 20px;
   /* Margins and padding of left and right content spacing */

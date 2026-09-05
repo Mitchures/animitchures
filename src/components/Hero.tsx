@@ -7,7 +7,7 @@ import './Hero.css';
 
 import { useStateValue } from 'context';
 import { addItemToFavorites, removeItemFromFavorites } from 'api';
-import { mediaPath } from 'helpers';
+import { mediaPath, scoreTier } from 'helpers';
 
 const ROTATE_MS = 7000;
 const FEATURE_COUNT = 5;
@@ -91,7 +91,13 @@ function Hero({ trending }: any) {
           >
             <div className="hero__badges">
               {selected.averageScore && (
-                <span className="hero__badge hero__badge--score">★ {selected.averageScore}</span>
+                <span
+                  className={`hero__badge hero__badge--score hero__badge--${scoreTier(
+                    selected.averageScore,
+                  )}`}
+                >
+                  ★ {selected.averageScore}
+                </span>
               )}
               <span className="hero__badge">#{index + 1} Trending</span>
               {selected.nextAiringEpisode && (
@@ -119,7 +125,7 @@ function Hero({ trending }: any) {
               {user && (
                 <button
                   type="button"
-                  className="hero__cta hero__cta--ghost"
+                  className="hero__cta hero__cta--favorite"
                   aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
                   onClick={() =>
                     isFavorite

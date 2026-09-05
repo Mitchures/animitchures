@@ -75,10 +75,30 @@
   backdrop-filter: blur(6px);
 }
 
+/* Same chip treatment as the ranking badges on Details: the accent colour, a
+   matching border, and a tint of itself behind it. Both the border and the fill
+   are mixed from currentColor, so setting one tier variable below recolours the
+   whole chip — the four tiers cannot drift apart. */
 .hero__badge--score {
-  color: #facc15;
-  border: 1px solid rgba(250, 204, 21, 0.45);
-  background-color: rgba(250, 204, 21, 0.14);
+  color: var(--score-good);
+  border: 1px solid color-mix(in srgb, currentColor 45%, transparent);
+  background-color: color-mix(in srgb, currentColor 16%, transparent);
+}
+
+.hero__badge--great {
+  color: var(--score-great);
+}
+
+.hero__badge--good {
+  color: var(--score-good);
+}
+
+.hero__badge--mixed {
+  color: var(--score-mixed);
+}
+
+.hero__badge--poor {
+  color: var(--score-poor);
 }
 
 .hero__title {
@@ -127,16 +147,27 @@
   text-decoration: none;
   background-color: var(--action);
   border-radius: 999px;
-  transition: transform 0.16s cubic-bezier(0.2, 0.7, 0.3, 1);
+  /* Matches the global `button` rule so these feel like every other button. */
+  transition: all 0.3s;
 }
 
+/* The app's buttons fade on hover (`button:hover { opacity: 0.65 }`), so these
+   do too rather than inventing a lift. "View details" is an anchor and never
+   matched that rule, which is why it behaved differently.
+
+   The colour is restated because App.css sets
+   `a:hover { color: var(--action) !important }`, and among !important
+   declarations `a:hover` (0,1,1) outranks a plain `.hero__cta` (0,1,0) — so the
+   label turned the same indigo as its own background. */
 .hero__cta:hover {
-  transform: translateY(-2px);
+  color: white !important;
+  opacity: 0.65;
 }
 
-.hero__cta--ghost {
-  background-color: rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(8px);
+/* Pink, matching the favourite button on Details — the same action should not
+   be a different colour depending on which page you press it from. */
+.hero__cta--favorite {
+  background-color: var(--accent-primary);
 }
 
 .hero__cta svg {

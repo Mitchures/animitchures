@@ -7,6 +7,7 @@ import './Features.css';
 import Hero from 'components/Hero';
 import AiringThisWeek from 'components/AiringThisWeek';
 import Card from 'components/Card';
+import Rail from 'components/Rail';
 import Loader from 'components/Loader';
 
 import { Media } from 'graphql/types';
@@ -100,18 +101,13 @@ function Features() {
           <Hero {...featured} />
           <AiringThisWeek featured={featured} />
           {Object.keys(featured).map(
-            (key, index) =>
+            (key) =>
               featured[key].media.length > 0 && (
-                <div key={index}>
-                  <div className="features__header">
-                    <h3>{TITLES[key]}</h3>
-                  </div>
-                  <div className={`features__body features__${key}`}>
-                    {featured[key].media.map((mediaItem: Media) => (
-                      <Card key={mediaItem.id} {...mediaItem} />
-                    ))}
-                  </div>
-                </div>
+                <Rail key={key} title={TITLES[key]}>
+                  {featured[key].media.map((mediaItem: Media) => (
+                    <Card key={mediaItem.id} {...mediaItem} />
+                  ))}
+                </Rail>
               ),
           )}
         </>

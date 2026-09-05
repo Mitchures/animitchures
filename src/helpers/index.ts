@@ -1,2 +1,3 @@
 export * from './auth-header';
 export * from './media-path';
+export * from './score-tier';

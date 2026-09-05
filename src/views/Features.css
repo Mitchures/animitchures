@@ -9,39 +9,3 @@
 .features > div {
   margin-bottom: 1.25rem;
 }
-
-.features__header {
-  padding: 0 var(--x-axis-spacing);
-}
-
-.features__header > h3 {
-  font-weight: 800;
-}
-
-.features__body::-webkit-scrollbar {
-  width: 0 !important;
-}
-
-.features__body {
-  display: flex;
-  overflow-x: scroll;
-  overflow-y: hidden;
-}
-
-.features__body > .card:first-child {
-  padding-left: var(--left-spacing);
-}
-
-.features__body > .card:last-child {
-  padding-right: var(--right-spacing);
-}
-
-.features__body > .card {
-  padding: 1.25rem 1.125rem;
-}
-
-@media screen and (max-width: 480px) {
-  .features__body > .card {
-    padding: 0.875rem 0.5rem;
-  }
-}

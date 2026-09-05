@@ -3,6 +3,7 @@ import moment from 'moment';
 import './Sidebar.css';
 
 import { FuzzyDate, Media } from 'graphql/types';
+import { scoreTier } from 'helpers';
 
 // Convert text that may come back UpperCase.
 const convertText = (text: string) => {
@@ -88,7 +89,10 @@ function Sidebar({
       {averageScore && (
         <div className="sidebar__data">
           <h5>Average Score</h5>
-          <p>{averageScore}%</p>
+          {/* Same tiers as the Discover hero badge. */}
+          <p className={`sidebar__score sidebar__score--${scoreTier(averageScore)}`}>
+            {averageScore}%
+          </p>
         </div>
       )}
       {source && (
