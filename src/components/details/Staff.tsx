@@ -7,7 +7,6 @@ function Staff({ staff }: Media) {
     <div className="staff">
       {staff && staff.edges && staff.edges.length > 0 && (
         <>
-          <h3>Staff</h3>
           <div className="staff__container">
             {staff.edges.slice(0, 6).map((staff: any) => (
               <div key={staff.id} className="staff__block">

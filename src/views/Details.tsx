@@ -13,6 +13,7 @@ import Characters from 'components/details/Characters';
 import Staff from 'components/details/Staff';
 import Actions from 'components/details/Actions';
 import HeroMeta from 'components/details/HeroMeta';
+import DetailsTabs, { DetailsTab } from 'components/details/DetailsTabs';
 
 import { Media } from 'graphql/types';
 import { DETAILS_EXTENDED_QUERY } from 'graphql/queries';
@@ -37,19 +38,69 @@ function Details() {
     return () => setSelected(null);
   }, [data]);
 
+  if (loading || !selected) return <Loader />;
+
   // The other titles this show goes by, minus whichever one is already the
   // heading. Deduped because romaji and userPreferred are frequently identical.
-  const altTitles = selected
-    ? [
-        ...new Set(
-          [selected.title?.romaji, selected.title?.english, selected.title?.native].filter(
-            (title): title is string => Boolean(title) && title !== selected.title?.userPreferred,
-          ),
-        ),
-      ]
-    : [];
+  const altTitles = [
+    ...new Set(
+      [selected.title?.romaji, selected.title?.english, selected.title?.native].filter(
+        (title): title is string => Boolean(title) && title !== selected.title?.userPreferred,
+      ),
+    ),
+  ];
 
-  return !loading && selected ? (
+  // Relations renders anime only, so the tab has to be gated on the same filter:
+  // a title whose relations are all manga has edges but nothing to show, and
+  // would otherwise open an empty tab.
+  const animeRelations =
+    selected.relations?.edges?.filter((edge) => edge?.node?.type === 'ANIME') ?? [];
+
+  const tabs = [
+    {
+      id: 'overview',
+      label: 'Overview',
+      content: (
+        <div className="details__overview">
+          <div className="details__overviewMain">
+            <Summary {...selected} />
+            {selected.trailer && (
+              <>
+                <h3>Trailer</h3>
+                <div className="details__iframeWrapper">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${selected.trailer.id}`}
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                    title="video"
+                    className="details__iframe"
+                  />
+                </div>
+              </>
+            )}
+          </div>
+          <Sidebar {...selected} />
+        </div>
+      ),
+    },
+    selected.characters?.edges?.length && {
+      id: 'characters',
+      label: 'Characters',
+      content: <Characters {...selected} />,
+    },
+    selected.staff?.edges?.length && {
+      id: 'staff',
+      label: 'Staff',
+      content: <Staff {...selected} />,
+    },
+    animeRelations.length > 0 && {
+      id: 'relations',
+      label: 'Relations',
+      content: <Relations {...selected} />,
+    },
+  ].filter(Boolean) as DetailsTab[];
+
+  return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -88,35 +139,8 @@ function Details() {
           <Actions media={selected} />
         </div>
       </div>
-      <div className="details__container">
-        <div className="details__left">
-          <Sidebar {...selected} />
-        </div>
-        <div className="details__right">
-          <Summary {...selected} />
-          <Relations {...selected} />
-          <Characters {...selected} />
-          <Staff {...selected} />
-          {selected.trailer && (
-            <>
-              <h3>Trailer</h3>
-              <div className="details__iframeWrapper">
-                <iframe
-                  src={`https://www.youtube.com/embed/${selected.trailer.id}`}
-                  allow="autoplay; encrypted-media"
-                  frameBorder="0"
-                  allowFullScreen
-                  title="video"
-                  className="details__iframe"
-                />
-              </div>
-            </>
-          )}
-        </div>
-      </div>
+      <DetailsTabs tabs={tabs} />
     </motion.div>
-  ) : (
-    <Loader />
   );
 }
 

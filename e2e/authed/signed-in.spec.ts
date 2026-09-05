@@ -155,7 +155,7 @@ test.describe('SplitButton', () => {
   test('dropdown opens on a details page', async ({ page }) => {
     // /anime/:id/:title is public, so direct navigation is fine here.
     await page.goto('/anime/1/cowboy-bebop');
-    await expect(page.locator('.details__container')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.details__hero')).toBeVisible({ timeout: 20_000 });
 
     // Only rendered when anilist_user is set, which the seeded state provides.
     // Opening the dropdown does not fire SaveMediaListEntry — that happens only

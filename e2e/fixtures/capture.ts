@@ -49,7 +49,7 @@ async function capturePublic(browser: Browser, seen: Set<string>): Promise<void>
   await page.waitForTimeout(2500);
 
   await page.goto('http://localhost:3000/anime/1/cowboy-bebop', { waitUntil: 'domcontentloaded' });
-  await page.locator('.details__container').waitFor({ timeout: 25_000 });
+  await page.locator('.details__hero').waitFor({ timeout: 25_000 });
   await page.waitForTimeout(2500);
 
   // Type into the real search box so a populated query fires, rather than the

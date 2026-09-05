@@ -14,7 +14,6 @@ function Relations({ relations }: Media) {
     <div className="relations">
       {relations && relations.edges && getRelations(relations).length > 0 && (
         <>
-          <h3>Relations</h3>
           <div className="relations__container">
             {getRelations(relations).map((relation: MediaEdge) => (
               <Card key={relation.id} {...relation.node} relationType={relation.relationType} />

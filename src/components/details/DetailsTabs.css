@@ -1,0 +1,54 @@
+/* `button` carries aggressive global styles in App.css (width: 100%, height:
+   54px, indigo background) — the resets below are deliberate, not redundant. */
+.detailsTabs__bar {
+  position: sticky;
+  /* Below the sticky header, not underneath it. */
+  top: var(--header-height);
+  z-index: 50;
+  display: flex;
+  gap: 0.25rem;
+  padding: 0 var(--x-axis-spacing);
+  background-color: rgba(237, 238, 247, 0.82);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
+}
+
+.detailsTabs__tab {
+  width: auto;
+  height: auto;
+  padding: 0.875rem 1rem;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--secondary);
+  background: none;
+  border-radius: 0;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+
+.detailsTabs__tab--active {
+  color: var(--primary);
+  border-bottom-color: var(--action);
+}
+
+.detailsTabs__tab:hover {
+  opacity: 1;
+  color: var(--primary);
+}
+
+.detailsTabs__panel {
+  padding: 1.5rem var(--x-axis-spacing) 2rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .detailsTabs__bar {
+    background-color: rgba(11, 22, 33, 0.82);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .detailsTabs__tab--active,
+  .detailsTabs__tab:hover {
+    color: white;
+  }
+}

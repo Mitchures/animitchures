@@ -93,23 +93,17 @@
   margin-bottom: 0;
 }
 
-.details__container {
-  display: flex;
-  position: relative;
-  padding: 2rem var(--x-axis-spacing);
-  z-index: 10;
-  height: 100%;
+/* Overview keeps the old two-column shape — prose on the left, stats on the
+   right — while the other tabs run full width. */
+.details__overview {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 2rem;
+  align-items: start;
 }
 
-.details__left {
-  flex: 0.3;
-}
-
-.details__right {
-  flex: 0.7;
-  position: relative;
-  overflow-x: hidden;
-  padding: 0 0 0 1.875rem;
+.details__overviewMain {
+  min-width: 0;
 }
 
 .details__iframeWrapper {
@@ -121,6 +115,7 @@
 
 .details__iframe {
   position: absolute;
+  border: 0;
   top: 0;
   left: 0;
   width: 100%;
@@ -129,16 +124,10 @@
 }
 
 @media screen and (max-width: 960px) {
-  .details__container {
-    flex-direction: column;
-  }
-
-  .details__left {
-    margin-bottom: 1.25rem;
-  }
-
-  .details__right {
-    padding-left: 0;
+  /* Stats drop below the prose rather than squeezing it. */
+  .details__overview {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
   }
 }
 
@@ -172,9 +161,5 @@
   .details__poster {
     /* A 2:3 poster at full width would be ~515px tall at this breakpoint. */
     width: 150px;
-  }
-
-  .details__right {
-    padding: 0;
   }
 }

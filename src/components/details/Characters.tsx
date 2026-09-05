@@ -15,7 +15,6 @@ function Characters({ characters }: Media) {
     <div className="characters">
       {characters && characters.edges && characters.edges.length > 0 && (
         <>
-          <h3>Characters</h3>
           <div className="characters__container">
             {characters.edges.slice(0, 6).map((character: any) => (
               <div key={character.id} className="characters__block">
