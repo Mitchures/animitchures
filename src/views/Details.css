@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   align-items: flex-end;
-  min-height: 520px;
+  min-height: 620px;
   margin-top: calc(-1 * var(--header-height));
   padding: calc(var(--header-height) + 1rem) var(--x-axis-spacing) 2rem;
   background-color: rgba(0, 0, 0, 0.15);
@@ -11,10 +11,10 @@
 
 /* Extended 200px past the top of the banner so the parallax translation never
    drags the image's edge into view. Must exceed the largest translate value in
-   Details.tsx (180px). Only the top needs it: the image translates downward. */
+   Details.tsx (210px). Only the top needs it: the image translates downward. */
 .details__bannerImage {
   position: absolute;
-  top: -200px;
+  top: -260px;
   right: 0;
   bottom: 0;
   left: 0;
@@ -52,8 +52,8 @@
    moves here too, since the img is now 100% of it. */
 .details__posterWrap {
   flex: none;
-  width: 260px;
-  perspective: 900px;
+  width: 320px;
+  perspective: 1100px;
 }
 
 .details__poster {
@@ -111,7 +111,7 @@
   margin: 0;
 }
 
-.details__hero .actions > button {
+.details__hero .actions button {
   margin-bottom: 0;
 }
 
@@ -160,7 +160,7 @@
   }
 
   .details__posterWrap {
-    width: 200px;
+    width: 240px;
   }
 
   .details__hero .actions {
@@ -170,7 +170,7 @@
 
 @media screen and (max-width: 480px) {
   .details__banner {
-    min-height: 380px;
+    min-height: 420px;
     padding-bottom: 1.5rem;
   }
 
@@ -182,6 +182,6 @@
 
   .details__posterWrap {
     /* A 2:3 poster at full width would be ~515px tall at this breakpoint. */
-    width: 150px;
+    width: 170px;
   }
 }

@@ -28,15 +28,15 @@ function Details() {
   // here, and a MotionValue keeps scroll updates out of React's render path.
   const scrollY = useMotionValue(0);
 
-  // Banner drifts at ~35% of scroll speed while the hero moves against it and
-  // fades out. Input ranges are px of scroll, matched to the 520px banner;
+  // Banner drifts at ~34% of scroll speed while the hero moves against it and
+  // fades out. Input ranges are px of scroll, matched to the 620px banner;
   // useTransform clamps, so a taller banner cannot push the translation past
   // the over-extension that hides the image's top edge.
-  const bannerY = useTransform(scrollY, [0, 520], [0, 180]);
-  const heroY = useTransform(scrollY, [0, 520], [0, -60]);
-  const heroOpacity = useTransform(scrollY, [150, 380], [1, 0]);
+  const bannerY = useTransform(scrollY, [0, 620], [0, 210]);
+  const heroY = useTransform(scrollY, [0, 620], [0, -60]);
+  const heroOpacity = useTransform(scrollY, [200, 460], [1, 0]);
   // The title reappears in the tab bar as the hero's copy leaves.
-  const compactOpacity = useTransform(scrollY, [220, 360], [0, 1]);
+  const compactOpacity = useTransform(scrollY, [280, 440], [0, 1]);
   const [selected, setSelected] = useState<Media | null>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const { loading, data } = useQuery(DETAILS_EXTENDED_QUERY, {
@@ -56,7 +56,7 @@ function Details() {
     const bounds = event.currentTarget.getBoundingClientRect();
     const px = (event.clientX - bounds.left) / bounds.width - 0.5;
     const py = (event.clientY - bounds.top) / bounds.height - 0.5;
-    setTilt({ x: -py * 14, y: px * 14 });
+    setTilt({ x: -py * 12, y: px * 12 });
   };
 
   useEffect(() => {

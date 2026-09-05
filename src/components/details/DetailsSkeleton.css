@@ -3,7 +3,7 @@
 .detailsSkeleton__banner {
   display: flex;
   align-items: flex-end;
-  min-height: 520px;
+  min-height: 620px;
   margin-top: calc(-1 * var(--header-height));
   padding: calc(var(--header-height) + 1rem) var(--x-axis-spacing) 2rem;
   background-color: #101a28;
@@ -66,7 +66,7 @@
 
 @media screen and (max-width: 480px) {
   .detailsSkeleton__banner {
-    min-height: 380px;
+    min-height: 420px;
     padding-bottom: 1.5rem;
   }
 
@@ -77,8 +77,8 @@
   }
 
   .detailsSkeleton__hero > .skeleton:first-child {
-    width: 150px !important;
-    height: 211px !important;
+    width: 170px !important;
+    height: 240px !important;
   }
 }
 

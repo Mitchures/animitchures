@@ -3,31 +3,41 @@
   margin: 1.25rem 0 0;
 }
 
-.actions > button {
+/* Descendant, not child: the favourite button sits inside .actions__favoriteWrap
+   so the burst ring has something to position against. As a child selector this
+   stopped matching it, and the icon lost its centring. */
+.actions button {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
 }
 
-.actions > button span {
+.actions button span {
   margin-left: 0.875rem;
 }
 
-.actions__favoriteButton {
-  margin-right: 0.875rem;
-  font-size: 24px;
-  border-radius: 999px;
-  width: 54px;
-  min-width: 54px;
-  background-color: var(--accent-primary);
-}
-
+/* The gap belongs to the wrapper. On the button it padded the wrapper out to
+   68px, and the burst — centred on the wrapper — sat off-centre from the button
+   it is supposed to radiate from. */
 .actions__favoriteWrap {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: none;
+  margin-right: 0.875rem;
+}
+
+.actions__favoriteButton {
+  font-size: 24px;
+  border-radius: 999px;
+  width: 54px;
+  min-width: 54px;
+  height: 54px;
+  margin-bottom: 0;
+  padding: 0;
+  background-color: var(--accent-primary);
 }
 
 /* Expands and fades out from under the button on each click. */

@@ -15,7 +15,7 @@ function DetailsSkeleton() {
     <div className="detailsSkeleton">
       <div className="detailsSkeleton__banner">
         <div className="detailsSkeleton__hero">
-          <Skeleton className="skeleton--onDark" width="260px" height="366px" radius="20px" />
+          <Skeleton className="skeleton--onDark" width="320px" height="452px" radius="20px" />
           <div className="detailsSkeleton__body">
             <Skeleton className="skeleton--onDark" width="min(420px, 60%)" height="44px" />
             <Skeleton className="skeleton--onDark" width="min(260px, 40%)" height="13px" />
