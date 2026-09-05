@@ -5,10 +5,23 @@
   min-height: 520px;
   margin-top: calc(-1 * var(--header-height));
   padding: calc(var(--header-height) + 1rem) var(--x-axis-spacing) 2rem;
+  background-color: rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+/* Extended 200px past the top of the banner so the parallax translation never
+   drags the image's edge into view. Must exceed the largest translate value in
+   Details.tsx (180px). Only the top needs it: the image translates downward. */
+.details__bannerImage {
+  position: absolute;
+  top: -200px;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background-position: 50% 35%;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: rgba(0, 0, 0, 0.15);
+  will-change: transform;
 }
 
 /* Deliberately heavy. Text sits directly on the image here, and a light or busy

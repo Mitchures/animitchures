@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const FEATURED_QUERY = gql`
-  query Featured (
+  query Featured(
     $season: MediaSeason
     $seasonYear: Int
     $nextSeason: MediaSeason
@@ -104,7 +104,7 @@ export const FEATURED_QUERY = gql`
 `;
 
 export const SEARCH_QUERY = gql`
-  query Search (
+  query Search(
     $page: Int
     $perPage: Int
     $id: Int
@@ -234,7 +234,7 @@ export const SEARCH_QUERY = gql`
 `;
 
 export const DETAILS_LIST_QUERY = gql`
-  query DetailsList ($id_in: [Int], $type: MediaType, $page: Int, $perPage: Int) {
+  query DetailsList($id_in: [Int], $type: MediaType, $page: Int, $perPage: Int) {
     Page(page: $page, perPage: $perPage) {
       pageInfo {
         total
@@ -510,7 +510,7 @@ export const DETAILS_EXTENDED_QUERY = gql`
 // Unique to AniList queries.
 
 export const ANILIST_USER_AND_ACTIVITY_QUERY = gql`
-  query AnilistUserAndActivity ($id: Int, $name: String, $type: ActivityType, $page: Int = 1) {
+  query AnilistUserAndActivity($id: Int, $name: String, $type: ActivityType, $page: Int = 1) {
     Page(page: $page, perPage: 25) {
       pageInfo {
         total
@@ -742,7 +742,7 @@ export const ANILIST_USER_AND_ACTIVITY_QUERY = gql`
 `;
 
 export const ANILIST_USER_MEDIA_LIST_COLLECTION_QUERY = gql`
-  query AnilistMediaListCollection ($userId: Int, $userName: String, $type: MediaType) {
+  query AnilistMediaListCollection($userId: Int, $userName: String, $type: MediaType) {
     MediaListCollection(userId: $userId, userName: $userName, type: $type) {
       lists {
         name
@@ -884,7 +884,7 @@ export const ANILIST_VIEWER_QUERY = gql`
 `;
 
 export const ANILIST_USER_NOTIFICATIONS_QUERY = gql`
-  query AnilistUserNotifications ($page: Int, $types: [NotificationType]) {
+  query AnilistUserNotifications($page: Int, $types: [NotificationType]) {
     Page(page: $page, perPage: 15) {
       pageInfo {
         total

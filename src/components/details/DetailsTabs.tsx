@@ -15,7 +15,7 @@ export interface DetailsTab {
  *
  * No transition on switching — instant swaps were an explicit design decision.
  */
-function DetailsTabs({ tabs }: { tabs: DetailsTab[] }) {
+function DetailsTabs({ tabs, trailing }: { tabs: DetailsTab[]; trailing?: ReactNode }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const requested = searchParams.get('tab');
   // An unknown ?tab= value falls back to the first tab rather than rendering
@@ -45,6 +45,7 @@ function DetailsTabs({ tabs }: { tabs: DetailsTab[] }) {
             {tab.label}
           </button>
         ))}
+        {trailing}
       </div>
       <div className="detailsTabs__panel" role="tabpanel">
         {active.content}

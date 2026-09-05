@@ -37,6 +37,28 @@
   color: var(--primary);
 }
 
+/* Sits at the trailing edge so the tabs never shift when it fades in. */
+.detailsTabs__title {
+  align-self: center;
+  margin-left: auto;
+  padding-left: 1rem;
+  max-width: 40%;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
+
+/* No room for it beside the tabs on a phone, where the bar already scrolls. */
+@media screen and (max-width: 768px) {
+  .detailsTabs__title {
+    display: none;
+  }
+}
+
 .detailsTabs__panel {
   padding: 1.5rem var(--x-axis-spacing) 2rem;
 }
@@ -48,7 +70,8 @@
   }
 
   .detailsTabs__tab--active,
-  .detailsTabs__tab:hover {
+  .detailsTabs__tab:hover,
+  .detailsTabs__title {
     color: white;
   }
 }

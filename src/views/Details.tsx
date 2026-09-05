@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform, useReducedMotion } from 'framer-motion';
 
 import './Details.css';
 
@@ -15,12 +15,28 @@ import Actions from 'components/details/Actions';
 import HeroMeta from 'components/details/HeroMeta';
 import DetailsTabs, { DetailsTab } from 'components/details/DetailsTabs';
 
+import { useScrollContainer } from 'context';
 import { Media } from 'graphql/types';
 import { DETAILS_EXTENDED_QUERY } from 'graphql/queries';
 import { authHeader } from 'helpers';
 
 function Details() {
   const { id } = useParams<any>();
+  const reduceMotion = useReducedMotion();
+  const scrollContainerRef = useScrollContainer();
+  // Read in an effect rather than via useScroll(): the window never scrolls
+  // here, and a MotionValue keeps scroll updates out of React's render path.
+  const scrollY = useMotionValue(0);
+
+  // Banner drifts at ~35% of scroll speed while the hero moves against it and
+  // fades out. Input ranges are px of scroll, matched to the 520px banner;
+  // useTransform clamps, so a taller banner cannot push the translation past
+  // the over-extension that hides the image's top edge.
+  const bannerY = useTransform(scrollY, [0, 520], [0, 180]);
+  const heroY = useTransform(scrollY, [0, 520], [0, -60]);
+  const heroOpacity = useTransform(scrollY, [150, 380], [1, 0]);
+  // The title reappears in the tab bar as the hero's copy leaves.
+  const compactOpacity = useTransform(scrollY, [220, 360], [0, 1]);
   const [selected, setSelected] = useState<Media | null>(null);
   const { loading, data } = useQuery(DETAILS_EXTENDED_QUERY, {
     variables: {
@@ -31,6 +47,15 @@ function Details() {
       headers: authHeader(),
     },
   });
+
+  useEffect(() => {
+    const element = scrollContainerRef?.current;
+    if (!element) return;
+    const update = () => scrollY.set(element.scrollTop);
+    update();
+    element.addEventListener('scroll', update, { passive: true });
+    return () => element.removeEventListener('scroll', update);
+  }, [scrollContainerRef, scrollY]);
 
   useEffect(() => {
     console.log(data);
@@ -107,16 +132,26 @@ function Details() {
       exit={{ opacity: 0 }}
       className="details"
     >
-      <div
-        className="details__banner"
-        style={{
-          backgroundImage: `url(${
-            selected.bannerImage ? selected.bannerImage : selected.coverImage?.extraLarge
-          })`,
-        }}
-      >
+      <div className="details__banner">
+        {/* The image is its own layer so it can translate independently of the
+            scrim and the content sitting on top of it. */}
+        <motion.div
+          className="details__bannerImage"
+          style={{
+            backgroundImage: `url(${
+              selected.bannerImage ? selected.bannerImage : selected.coverImage?.extraLarge
+            })`,
+            y: reduceMotion ? undefined : bannerY,
+          }}
+        />
         <div className="details__bannerScrim"></div>
-        <div className="details__hero">
+        <motion.div
+          className="details__hero"
+          style={{
+            y: reduceMotion ? undefined : heroY,
+            opacity: reduceMotion ? undefined : heroOpacity,
+          }}
+        >
           <img
             className="details__poster"
             src={selected.coverImage?.extraLarge || ''}
@@ -137,9 +172,22 @@ function Details() {
             <HeroMeta media={selected} />
           </div>
           <Actions media={selected} />
-        </div>
+        </motion.div>
       </div>
-      <DetailsTabs tabs={tabs} />
+      <DetailsTabs
+        tabs={tabs}
+        trailing={
+          // aria-hidden: it repeats the <h1> already in the hero, and announcing
+          // the same title twice helps nobody.
+          <motion.span
+            className="detailsTabs__title"
+            style={{ opacity: reduceMotion ? 1 : compactOpacity }}
+            aria-hidden="true"
+          >
+            {selected.title?.userPreferred}
+          </motion.span>
+        }
+      />
     </motion.div>
   );
 }

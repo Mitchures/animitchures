@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
 import Header from 'components/Header';
@@ -7,7 +7,7 @@ import MobileMenu from 'components/MobileMenu';
 import { getNavSections } from 'components/nav-items';
 
 import { auth } from 'config';
-import { useStateValue } from 'context';
+import { useStateValue, ScrollContainerProvider } from 'context';
 
 /**
  * The signed-in app shell: sidebar + header + routed content.
@@ -18,6 +18,9 @@ import { useStateValue } from 'context';
 function AppShell() {
   const [{ user, anilist_user }] = useStateValue();
   const [menuOpen, setMenuOpen] = useState(false);
+  // Handed to views that animate on scroll — this is the element that scrolls,
+  // not the window.
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
   const sections = getNavSections({ user, anilistUser: anilist_user });
@@ -31,9 +34,11 @@ function AppShell() {
   return (
     <div className="app__container">
       <Navigation sections={sections} user={user} onLogout={handleLogout} />
-      <div className="app__body">
+      <div className="app__body" ref={scrollContainerRef}>
         <Header menuOpen={menuOpen} onMenuToggle={() => setMenuOpen((open) => !open)} />
-        <Outlet />
+        <ScrollContainerProvider value={scrollContainerRef}>
+          <Outlet />
+        </ScrollContainerProvider>
       </div>
       <MobileMenu
         open={menuOpen}

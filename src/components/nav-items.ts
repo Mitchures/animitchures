@@ -44,7 +44,9 @@ export function getNavSections({ user, anilistUser }: Args): NavSection[] {
       heading: 'Menu',
       items: [
         { id: 'discover', label: 'Discover', to: '/', Icon: Explore, end: true },
-        ...(user ? [{ id: 'favorites', label: 'Favorites', to: '/favorites', Icon: Favorite }] : []),
+        ...(user
+          ? [{ id: 'favorites', label: 'Favorites', to: '/favorites', Icon: Favorite }]
+          : []),
       ],
     },
     {
