@@ -26,7 +26,7 @@ setup('authenticate', async ({ page }) => {
   // setup makes zero live AniList requests, same as every other spec.
   await mockAniList(page);
 
-  await page.goto('/login');
+  await page.goto('/login', { waitUntil: 'domcontentloaded' });
   await page.fill('#login-username', email);
   await page.fill('#login-password', password);
   await page.click('button[type="submit"]');

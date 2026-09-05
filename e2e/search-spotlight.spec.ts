@@ -4,11 +4,18 @@
  */
 import { test, expect } from './anilist-mock';
 
+/**
+ * Navigations use `domcontentloaded` rather than Playwright's default `load`.
+ * Only GraphQL is mocked — poster images still come from AniList's CDN, and
+ * waiting for every one of them made these time out under parallel load. Each
+ * test waits on the specific element it asserts against instead.
+ */
+
 test.describe('search spotlight', () => {
   test.use({ viewport: { width: 1280, height: 900 } });
 
   test('desktop has no header and the banner starts at the top', async ({ page }) => {
-    await page.goto('/anime/1/cowboy-bebop');
+    await page.goto('/anime/1/cowboy-bebop', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.details__hero')).toBeVisible({ timeout: 20_000 });
 
     await expect(page.locator('.header')).toBeHidden();
@@ -27,7 +34,7 @@ test.describe('search spotlight', () => {
   });
 
   test('opens with the keyboard and closes with escape', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.hero__banner')).toBeVisible({ timeout: 20_000 });
 
     await page.keyboard.press('ControlOrMeta+k');
@@ -40,7 +47,7 @@ test.describe('search spotlight', () => {
   });
 
   test('"/" opens it, but not while typing in a field', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.hero__banner')).toBeVisible({ timeout: 20_000 });
 
     await page.keyboard.press('/');
@@ -52,7 +59,7 @@ test.describe('search spotlight', () => {
   });
 
   test('typing shows poster results and enter opens one', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.hero__banner')).toBeVisible({ timeout: 20_000 });
 
     await page.locator('.navigation__search').click();
@@ -74,7 +81,7 @@ test.describe('search spotlight', () => {
   });
 
   test('reopening does not show the previous search', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.hero__banner')).toBeVisible({ timeout: 20_000 });
 
     await page.locator('.navigation__search').click();
@@ -90,7 +97,7 @@ test.describe('search spotlight', () => {
   });
 
   test('see-all goes to the full results page', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.hero__banner')).toBeVisible({ timeout: 20_000 });
 
     await page.locator('.navigation__search').click();
@@ -106,7 +113,7 @@ test.describe('search on mobile', () => {
   test.use({ viewport: { width: 500, height: 900 } });
 
   test('keeps the header bar and its inline search', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.header')).toBeVisible({ timeout: 20_000 });
     await expect(page.locator('.header .search input')).toBeVisible();
     // The rail carries the spotlight trigger and the rail is hidden here.

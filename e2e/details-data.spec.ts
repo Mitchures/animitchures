@@ -5,13 +5,20 @@
  */
 import { test, expect } from './anilist-mock';
 
+/**
+ * Navigations use `domcontentloaded` rather than Playwright's default `load`.
+ * Only GraphQL is mocked — poster images still come from AniList's CDN, and
+ * waiting for every one of them made these time out under parallel load. Each
+ * test waits on the specific element it asserts against instead.
+ */
+
 const DETAILS = '/anime/1/cowboy-bebop';
 
 test.describe('details data sections', () => {
   test.use({ viewport: { width: 1280, height: 900 } });
 
   test.beforeEach(async ({ page }) => {
-    await page.goto(DETAILS);
+    await page.goto(DETAILS, { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.details__hero')).toBeVisible({ timeout: 20_000 });
   });
 

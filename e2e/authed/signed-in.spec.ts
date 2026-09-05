@@ -22,7 +22,10 @@ const DISPLAY_NAME = process.env.E2E_DISPLAY_NAME ?? 'E2E Test User';
  * exists at all when `user` is set — which is exactly the condition to wait for.
  */
 async function gotoSignedInHome(page: import('@playwright/test').Page) {
-  await page.goto('/');
+  // domcontentloaded, not the default `load`: only GraphQL is mocked, so
+  // waiting for every poster image from AniList's CDN to finish is what made
+  // these time out under parallel load.
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
   await page
     .locator('.navigation a:has-text("Logout")')
     .waitFor({ state: 'attached', timeout: 20_000 });
@@ -154,7 +157,7 @@ test.describe('SplitButton', () => {
 
   test('dropdown opens on a details page', async ({ page }) => {
     // /anime/:id/:title is public, so direct navigation is fine here.
-    await page.goto('/anime/1/cowboy-bebop');
+    await page.goto('/anime/1/cowboy-bebop', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.details__hero')).toBeVisible({ timeout: 20_000 });
 
     // Only rendered when anilist_user is set, which the seeded state provides.
@@ -175,7 +178,7 @@ test.describe('private routes', () => {
   // the '*' catch-all matched before Firebase resolved the session and the app
   // redirected to '/'. App.tsx now holds the catch-all back until auth settles.
   test('direct navigation to a private route works when signed in', async ({ page }) => {
-    await page.goto('/favorites');
+    await page.goto('/favorites', { waitUntil: 'domcontentloaded' });
     await expect(page).toHaveURL(/\/favorites$/, { timeout: 20_000 });
     await expect(page.locator('.favorites__grid .card')).toHaveCount(3, { timeout: 20_000 });
   });

@@ -7,6 +7,13 @@
  */
 import { test, expect } from './anilist-mock';
 
+/**
+ * Navigations use `domcontentloaded` rather than Playwright's default `load`.
+ * Only GraphQL is mocked — poster images still come from AniList's CDN, and
+ * waiting for every one of them made these time out under parallel load. Each
+ * test waits on the specific element it asserts against instead.
+ */
+
 const DETAILS = '/anime/1/cowboy-bebop';
 
 /** The element that scrolls — .app__body is a fixed-height overflow-y:auto box. */
@@ -25,7 +32,7 @@ test.describe('details tabs', () => {
   });
 
   test('a direct link opens the requested tab', async ({ page }) => {
-    await page.goto(`${DETAILS}?tab=relations`);
+    await page.goto(`${DETAILS}?tab=relations`, { waitUntil: 'domcontentloaded' });
     await expect(page.getByRole('tab', { name: 'Relations' })).toHaveAttribute(
       'aria-selected',
       'true',
@@ -34,7 +41,7 @@ test.describe('details tabs', () => {
   });
 
   test('an unknown tab falls back to Overview', async ({ page }) => {
-    await page.goto(`${DETAILS}?tab=nonsense`);
+    await page.goto(`${DETAILS}?tab=nonsense`, { waitUntil: 'domcontentloaded' });
     await expect(page.getByRole('tab', { name: 'Overview' })).toHaveAttribute(
       'aria-selected',
       'true',
@@ -43,7 +50,7 @@ test.describe('details tabs', () => {
   });
 
   test('switching tabs does not stack history entries', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.hero__banner')).toBeVisible({ timeout: 20_000 });
     await page.goto(DETAILS);
     await expect(page.locator('.details__hero')).toBeVisible({ timeout: 20_000 });
@@ -154,7 +161,7 @@ test.describe('sidebar rail', () => {
   test.use({ viewport: { width: 1280, height: 900 } });
 
   test('expands on hover without shifting the content', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.navigation')).toBeVisible({ timeout: 20_000 });
 
     const before = await page.locator('.app__body').boundingBox();
@@ -169,7 +176,7 @@ test.describe('sidebar rail', () => {
   });
 
   test('collapsed rail links still have accessible names', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.getByRole('link', { name: 'Discover' })).toHaveCount(1, { timeout: 20_000 });
   });
 });
