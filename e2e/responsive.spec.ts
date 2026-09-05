@@ -1,4 +1,5 @@
-import { test, expect, Page } from '@playwright/test';
+import { test, expect } from './anilist-mock';
+import type { Page } from '@playwright/test';
 
 /**
  * Guards the invariants established when the app was made responsive.

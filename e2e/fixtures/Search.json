@@ -1,0 +1,380 @@
+{
+  "data": {
+    "Page": {
+      "pageInfo": {
+        "total": 6,
+        "perPage": 20,
+        "currentPage": 1,
+        "lastPage": 1,
+        "hasNextPage": false,
+        "__typename": "PageInfo"
+      },
+      "media": [
+        {
+          "id": 154587,
+          "title": {
+            "english": "Frieren: Beyond Journey’s End",
+            "userPreferred": "Sousou no Frieren",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx154587-qQTzQnEJJ3oB.jpg",
+            "color": "#bbf1a1",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2023,
+            "month": 9,
+            "day": 29,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2024,
+            "month": 3,
+            "day": 22,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/154587-ivXNJ23SM1xB.jpg",
+          "season": "FALL",
+          "description": "The adventure is over but life goes on for an elf mage just beginning to learn what living is all about. Elf mage Frieren and her courageous fellow adventurers have defeated the Demon King and brought peace to the land. But Frieren will long outlive the rest of her former party. How will she come to understand what life means to the people around her? Decades after their victory, the funeral of one her friends confronts Frieren with her own near immortality. Frieren sets out to fulfill the last wishes of her comrades and finds herself beginning a new adventure…\n<br><br>\n(Source: Crunchyroll)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 28,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Adventure",
+            "Drama",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 91,
+          "popularity": 477014,
+          "nextAiringEpisode": null,
+          "mediaListEntry": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 11,
+                  "name": "MADHOUSE",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 209939,
+          "title": {
+            "english": null,
+            "userPreferred": "Sousou no Frieren 3rd Season",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx209939-g2Njkml1rheG.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx209939-g2Njkml1rheG.jpg",
+            "color": "#f1e4c9",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2027,
+            "month": 10,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": null,
+          "season": "FALL",
+          "description": "The third season of <i>Sousou no Frieren</i>.",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "NOT_YET_RELEASED",
+          "episodes": null,
+          "duration": null,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Adventure",
+            "Drama",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": null,
+          "popularity": 42207,
+          "nextAiringEpisode": null,
+          "mediaListEntry": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 11,
+                  "name": "MADHOUSE",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 182255,
+          "title": {
+            "english": "Frieren: Beyond Journey’s End Season 2",
+            "userPreferred": "Sousou no Frieren 2nd Season",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182255-butzrqd4I0aC.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx182255-butzrqd4I0aC.jpg",
+            "color": "#5dc9f1",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 1,
+            "day": 16,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 3,
+            "day": 27,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/182255-wyHvp6zJbWsO.jpg",
+          "season": "WINTER",
+          "description": "Following the First-Class Mage Exam, the trio—elven mage Frieren, warrior Stark, and first-class mage Fern—gains access to the dangerous Northern Plateau. As the party presses onward toward Aureole, formidable adversaries force Stark to confront his insecurities, solidifying his resolve and his role as the party's frontliner. Meanwhile, Fern continues to cherish the gifts she has been blessed with throughout her life, each a reminder of those she holds dear.<br><br>\n\nFrieren—still honoring her vow to understand humanity—revisits memories of her journey with the Hero's party and her fleeting encounter with a legendary figure. As she reflects on the passage of time, the elven mage quietly questions whether she has truly changed, yet in the small, almost subtle choices that she makes, there are signs that she might have become more human than she realizes.<br><br>\n\n(Source: MAL Rewrite)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 10,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Adventure",
+            "Drama",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 88,
+          "popularity": 222753,
+          "nextAiringEpisode": null,
+          "mediaListEntry": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 11,
+                  "name": "MADHOUSE",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 170068,
+          "title": {
+            "english": null,
+            "userPreferred": "Sousou no Frieren: ●● no Mahou",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx170068-ijY3tCP8KoWP.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx170068-ijY3tCP8KoWP.jpg",
+            "color": "#bbd678",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2023,
+            "month": 10,
+            "day": 11,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2024,
+            "month": 3,
+            "day": 24,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": null,
+          "season": "FALL",
+          "description": "Chibi shorts posted on the official YouTube account of TOHO animation and Twitter account of the main series.<br><br>\n<i>Note: Includes \"Tokubetsu-hen:「Shokutaku o Shiawase ni Suru Mahou」/ Mizkan Ajipon Collaboration\"</i>",
+          "type": "ANIME",
+          "format": "ONA",
+          "status": "FINISHED",
+          "episodes": 12,
+          "duration": 1,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Comedy",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 73,
+          "popularity": 10838,
+          "nextAiringEpisode": null,
+          "mediaListEntry": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 7368,
+                  "name": "TOHO animation STUDIO",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 189513,
+          "title": {
+            "english": null,
+            "userPreferred": "Sousou no Frieren: ●● no Mahou Part 2",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx189513-1R9Sryve0K53.png",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx189513-1R9Sryve0K53.png",
+            "color": "#aee45d",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2025,
+            "month": 4,
+            "day": 2,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2025,
+            "month": 9,
+            "day": 3,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/189513-HjE2qNupgfEe.jpg",
+          "season": "SPRING",
+          "description": "A second batch of the <i>●● no Mahou</i> shorts released monthly in the lead up to the TV anime's second season, starting with #12. Posted on the official YouTube account of TOHO animation, Frieren Twitter, and Frieren TikTok account.<br><br>\n\n<b>Includes:</b><br>\n• Shinchou ga Nobiru Mahou (身長が伸びる魔法), released Apr 2, 2025. <br>\n• Onaka-ippai ni Naru Mahou (おなかいっぱいになる魔法), released May 7, 2025. <br>\n• Daitai Nan demo Kiru Mahou (大体なんでも切る魔法), released Jun 4, 2025. <br>\n• Kousoku de Idou Suru Mahou (高速で移動する魔法), released Jul 2, 2025. <br>\n• Karada no Mawari wo Suzushiku Suru Mahou (体のまわりを涼しくする魔法), released Aug 6, 2025. <br>\n• Tokui Waza wo Fuujiru Mahou (得意技を封じる魔法), released Sep 3, 2025.<br>",
+          "type": "ANIME",
+          "format": "ONA",
+          "status": "FINISHED",
+          "episodes": 6,
+          "duration": 1,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Comedy",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 71,
+          "popularity": 4494,
+          "nextAiringEpisode": null,
+          "mediaListEntry": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 7368,
+                  "name": "TOHO animation STUDIO",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 206425,
+          "title": {
+            "english": null,
+            "userPreferred": "Sousou no Frieren: ●● no Mahou Part 3",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b206425-WOwXsfDbHZwb.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b206425-WOwXsfDbHZwb.jpg",
+            "color": "#d6d678",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 1,
+            "day": 19,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": null,
+          "season": "WINTER",
+          "description": "A third batch of the <i>●● no Mahou</i> shorts released alongside the airing of the TV anime's second season, starting with #18. Posted on the official YouTube account of TOHO animation, Frieren Twitter, and Frieren TikTok account.<br><br>\n\n<b>Includes:</b><br>\n• Mita Mono wo Kousoku Suru Mahou (見た者を拘束する魔法), released Jan 19, 2026. <br>\n• Doushin ni Kaeru Mahou (童心に還る魔法), released Feb 2, 2026.<br>\n• Kokoro to Karada ga Irekawaru Mahou (心と体が入れ替わる魔法), released Feb 17, 2026.<br>\n• Osentaku no Mahou (お洗濯の魔法), released Mar 2, 2026.<br>\n• Kangaeteiru Koto wo Itte Shimau Mahou Sono Ni (考えていることを言ってしまう魔法その2), released Mar 16, 2026.<br>\n• Akogare ni Hitareru Mahou (憧れにひたれる魔法), released on May 22, 2026.<br>",
+          "type": "ANIME",
+          "format": "ONA",
+          "status": "RELEASING",
+          "episodes": null,
+          "duration": 1,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Comedy",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 69,
+          "popularity": 2216,
+          "nextAiringEpisode": null,
+          "mediaListEntry": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 7368,
+                  "name": "TOHO animation STUDIO",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        }
+      ],
+      "__typename": "Page"
+    }
+  }
+}

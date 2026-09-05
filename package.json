@@ -33,9 +33,11 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint src e2e",
-    "e2e": "playwright test",
+    "e2e": "playwright test --grep-invert @live",
     "e2e:install": "playwright install chromium",
     "e2e:seed": "tsx e2e/seed.ts",
+    "e2e:capture": "tsx e2e/fixtures/capture.ts",
+    "e2e:live": "playwright test --project=live",
     "generate": "graphql-codegen --config codegen.yml"
   },
   "browserslist": {

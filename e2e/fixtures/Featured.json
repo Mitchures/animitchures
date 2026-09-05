@@ -1,0 +1,4843 @@
+{
+  "data": {
+    "trending": {
+      "media": [
+        {
+          "id": 182205,
+          "title": {
+            "english": "That Time I Got Reincarnated as a Slime Season 4",
+            "userPreferred": "Tensei Shitara Slime Datta Ken 4th Season",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182205-q2AeO1owuQbO.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx182205-q2AeO1owuQbO.jpg",
+            "color": "#1abbd6",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 4,
+            "day": 3,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 9,
+            "day": 25,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/182205-fRUoKv6f2JAq.jpg",
+          "season": "SPRING",
+          "description": "Demon Lord Rimuru's dream of creating an alliance between humans and monsters takes a step closer to being realized. As Tempest continues to prosper, Granville Rozzo and his granddaughter, Maribel Rozzo, clash with Demon Lord Rimuru over their plan to protect mankind by ruling over them. Meanwhile, in El Dorado, Demon Lord Leon works toward goals of his own. The awakening of a new Hero draws near!<br><br>\n\n(Source: Crunchyroll News)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "RELEASING",
+          "episodes": 24,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 83,
+          "popularity": 132388,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1789135200,
+            "timeUntilAiring": 531736,
+            "episode": 22,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 4418,
+                  "name": "8-bit",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 21,
+          "title": {
+            "english": "ONE PIECE",
+            "userPreferred": "ONE PIECE",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-ELSYx3yMPcKM.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21-ELSYx3yMPcKM.jpg",
+            "color": "#e49335",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 1999,
+            "month": 10,
+            "day": 20,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21-wf37VakJmZqs.jpg",
+          "season": "FALL",
+          "description": "Gold Roger was known as the Pirate King, the strongest and most infamous being to have sailed the Grand Line. The capture and death of Roger by the World Government brought a change throughout the world. His last words before his death revealed the location of the greatest treasure in the world, One Piece. It was this revelation that brought about the Grand Age of Pirates, men who dreamed of finding One Piece (which promises an unlimited amount of riches and fame), and quite possibly the most coveted of titles for the person who found it, the title of the Pirate King.<br><br>\nEnter Monkey D. Luffy, a 17-year-old boy that defies your standard definition of a pirate. Rather than the popular persona of a wicked, hardened, toothless pirate who ransacks villages for fun, Luffy’s reason for being a pirate is one of pure wonder; the thought of an exciting adventure and meeting new and intriguing people, along with finding One Piece, are his reasons of becoming a pirate. Following in the footsteps of his childhood hero, Luffy and his crew travel across the Grand Line, experiencing crazy adventures, unveiling dark mysteries and battling strong enemies, all in order to reach One Piece.<br><br>\n<b>*This includes the following special episodes:</b><br>\n- Chopperman to the Rescue! Protect the TV Station by the Shore! (Episode 336)<br>\n- The Strongest Tag-Team! Luffy and Toriko's Hard Struggle! (Episode 492)<br>\n- Team Formation! Save Chopper (Episode 542)<br>\n- History's Strongest Collaboration vs. Glutton of the Sea (Episode 590)<br>\n- 20th Anniversary! Special Romance Dawn (Episode 907)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "RELEASING",
+          "episodes": null,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Drama",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 87,
+          "popularity": 747774,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1788704160,
+            "timeUntilAiring": 100696,
+            "episode": 1177,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 18,
+                  "name": "Toei Animation",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 209983,
+          "title": {
+            "english": "HELL MODE: The Hardcore Gamer Dominates in Another World with Garbage Balancing Season 2",
+            "userPreferred": "Hell Mode: Yarikomi-zuki no Gamer wa Haisettei no Isekai de Musou Suru 2nd Season",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx209983-sFOcKyqMufxb.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx209983-sFOcKyqMufxb.jpg",
+            "color": "#0dbbf1",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 7,
+            "day": 4,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/209983-fJysbFB72IM9.jpg",
+          "season": "SUMMER",
+          "description": "The second season of <i>Hell Mode</i>.",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "RELEASING",
+          "episodes": 13,
+          "duration": 25,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 72,
+          "popularity": 37918,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1789142400,
+            "timeUntilAiring": 538936,
+            "episode": 11,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 6159,
+                  "name": "Yokohama Animation Lab",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 269,
+          "title": {
+            "english": "Bleach",
+            "userPreferred": "BLEACH",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx269-d2GmRkJbMopq.png",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx269-d2GmRkJbMopq.png",
+            "color": "#f1a150",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2004,
+            "month": 10,
+            "day": 5,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2012,
+            "month": 3,
+            "day": 27,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/269-08ar2HJOUAuL.jpg",
+          "season": "FALL",
+          "description": "Ichigo Kurosaki is a rather normal high school student apart from the fact he has the ability to see ghosts. This ability never impacted his life in a major way until the day he encounters the Shinigami Kuchiki Rukia, who saves him and his family's lives from a Hollow, a corrupt spirit that devours human souls. \n<br><br>\nWounded during the fight against the Hollow, Rukia chooses the only option available to defeat the monster and passes her Shinigami powers to Ichigo. Now forced to act as a substitute until Rukia recovers, Ichigo hunts down the Hollows that plague his town. \n\n\n",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 366,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Supernatural"
+          ],
+          "isAdult": false,
+          "averageScore": 79,
+          "popularity": 518381,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 1,
+                  "name": "Studio Pierrot",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 196218,
+          "title": {
+            "english": "The Frontier Lord Begins with Zero Subjects",
+            "userPreferred": "Ryoumin 0-Nin Start no Henkyou Ryoushu-sama",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx196218-UsdTTCrwpDIN.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx196218-UsdTTCrwpDIN.jpg",
+            "color": "#febb50",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 7,
+            "day": 3,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 9,
+            "day": 18,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/196218-lX0y9T76KQkC.jpg",
+          "season": "SUMMER",
+          "description": "The war is over, and hero Dias is finally rewarded with land of his own—only to discover it's a barren frontier with no people, no villages, and no sign of civilization. With nothing but endless grassland ahead of him, Dias sets out to build a domain from the ground up. But after meeting Alna, a mysterious girl with a blue horn, his lonely frontier is about to spring to life. \n<br><br>\n(Source: Crunchyroll)<br><br>\n\n<i>Note: Ryoumin 0-Nin Start no Henkyou Ryoushu-sama is streaming a week advance of the TV broadcast on Prime Video beginning July 3rd, 2026. Regular broadcasting began on July 10th, 2026.</i>",
+          "type": "ANIME",
+          "format": "ONA",
+          "status": "RELEASING",
+          "episodes": 12,
+          "duration": 25,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Comedy",
+            "Drama",
+            "Fantasy",
+            "Romance",
+            "Slice of Life"
+          ],
+          "isAdult": false,
+          "averageScore": 66,
+          "popularity": 30550,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1789133400,
+            "timeUntilAiring": 529936,
+            "episode": 11,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 7621,
+                  "name": "animation studio42",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 196187,
+          "title": {
+            "english": "Smoking Behind the Supermarket with You",
+            "userPreferred": "Super no Ura de Yani Suu Futari",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx196187-0dgFi2CPp3xn.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx196187-0dgFi2CPp3xn.jpg",
+            "color": "#f1c9bb",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 7,
+            "day": 10,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/196187-Z9dV6uotmKjM.jpg",
+          "season": "SUMMER",
+          "description": "Sasaki is an overworked salaryman drifting through the corporate grind, sustained by cigarettes and the cheerful service and smile of Yamada, the clerk at his favorite supermarket. But one night after a grueling shift, he arrives late to find Yamada nowhere to be seen. With nowhere left to smoke, his spirits sink—until a pierced young woman calls out to him: “You can smoke here.”\n<br><br>\n(Source: Crunchyroll)<br><br>\n\n<i>Note: Episodes 1-6 had an early release by ABEMA and Crunchyroll on June 3rd, 2026 in a mini-episode batch format that splits 6 episodes into 12, ahead of the TV broadcast which started on July 10th, 2026.</i>",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "RELEASING",
+          "episodes": 12,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+          ],
+          "isAdult": false,
+          "averageScore": 82,
+          "popularity": 115797,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1789052160,
+            "timeUntilAiring": 448696,
+            "episode": 10,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 406,
+                  "name": "Asahi Production",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 189046,
+          "title": {
+            "english": "Re:ZERO -Starting Life in Another World- Season 4",
+            "userPreferred": "Re:Zero kara Hajimeru Isekai Seikatsu 4th Season",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx189046-yaHWtS5FII46.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx189046-yaHWtS5FII46.jpg",
+            "color": "#e49350",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 4,
+            "day": 8,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 9,
+            "day": 30,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/189046-MDk2CaVuRWpb.jpg",
+          "season": "SPRING",
+          "description": "To save his stricken allies, Subaru faces a deadly desert to find the Sage at Pleiades Watchtower.<br><br>\n\n(Source: Crunchyroll News)\n\n<br><br>\n<i>Note: Lucca Comics & Games pre-screened episode 1 early on November 1, 2025, prior to the Japanese television broadcast on July 8th, 2026.",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "RELEASING",
+          "episodes": 19,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Drama",
+            "Fantasy",
+            "Psychological",
+            "Romance",
+            "Thriller"
+          ],
+          "isAdult": false,
+          "averageScore": 90,
+          "popularity": 136865,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1788958800,
+            "timeUntilAiring": 355336,
+            "episode": 16,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 314,
+                  "name": "WHITE FOX",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 199748,
+          "title": {
+            "english": "I Became a Legend After My 10 Year-Long Last Stand",
+            "userPreferred": "Koko wa Ore ni Makasete Saki ni Ike to Ittekara 10-nen ga Tattara Densetsu ni Natteita.",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx199748-PAFk9pGSUmFL.png",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx199748-PAFk9pGSUmFL.png",
+            "color": "#5dd6f1",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 7,
+            "day": 3,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/199748-H2JAicBqBq3b.jpg",
+          "season": "SUMMER",
+          "description": "Luck, an S-rank mage in the hero’s party, makes a last stand against the Demon King to save his companions. When he finally returns victorious, ten years have passed, and the world praises him as a legendary hero who died in battle. Unable to reclaim his former life, Luck conceals his identity and begins again as “Lock,” an F-rank adventurer forging a future in a world that moved on without him.<br><br>\n(Source: Crunchyroll)\n<br><br>\n\n<i>Note: Koko wa Ore ni Makasete Saki ni Ike to Ittekara 10-nen ga Tattara Densetsu ni Natteita is streaming 3 days in advance of the TV broadcast on Prime Video beginning July 3rd, 2026. Regular broadcasting began on July 6th, 2026.</i>",
+          "type": "ANIME",
+          "format": "ONA",
+          "status": "RELEASING",
+          "episodes": 12,
+          "duration": 23,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 63,
+          "popularity": 38390,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1789133400,
+            "timeUntilAiring": 529936,
+            "episode": 11,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 7284,
+                  "name": "Gekkou",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 180136,
+          "title": {
+            "english": "The Exiled Heavy Knight Knows How to Game the System",
+            "userPreferred": "Tsuihou Sareta Tensei Juukishi wa Game Chishiki de Musou Suru",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx180136-gtMTCRlOD4OE.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx180136-gtMTCRlOD4OE.jpg",
+            "color": "#50c9fe",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 7,
+            "day": 3,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 12,
+            "day": 25,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": null,
+          "season": "SUMMER",
+          "description": "Born into a prestigious family of master swordsmen, Elymas Edvaughn’s future shatters when he awakens the so-called “defective” Heavy Knight class. Disowned and cast out, he regains memories of another life—and realizes this world mirrors a VR game he once mastered. Armed with knowledge no one else possesses, he sets out to rewrite his fate and prove the strength of the “weakest” class.<br>\n<br>\n(Source: Crunchyroll)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "RELEASING",
+          "episodes": 26,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 66,
+          "popularity": 59249,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1789053960,
+            "timeUntilAiring": 450496,
+            "episode": 11,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 309,
+                  "name": "GoHands",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 178789,
+          "title": {
+            "english": "Mushoku Tensei: Jobless Reincarnation Season 3",
+            "userPreferred": "Mushoku Tensei III: Isekai Ittara Honki Dasu",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx178789-hNXjKFzUq7mk.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx178789-hNXjKFzUq7mk.jpg",
+            "color": "#28bbe4",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 7,
+            "day": 4,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 9,
+            "day": 27,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/178789-9nHWmoRLlcLu.jpg",
+          "season": "SUMMER",
+          "description": "The third season of <i>Mushoku Tensei: Isekai Ittara Honki Dasu</i>.",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "RELEASING",
+          "episodes": 14,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Adventure",
+            "Drama",
+            "Ecchi",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 84,
+          "popularity": 151946,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1788706800,
+            "timeUntilAiring": 103336,
+            "episode": 11,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 6309,
+                  "name": "Studio Bind",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 182616,
+          "title": {
+            "english": "The Elusive Samurai Season 2",
+            "userPreferred": "Nige Jouzu no Wakagimi 2nd Season",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182616-ZOCgArw9cgqI.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx182616-ZOCgArw9cgqI.jpg",
+            "color": "#e45050",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 7,
+            "day": 17,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/182616-kmIqMEUsLYrO.jpg",
+          "season": "SUMMER",
+          "description": "The second season of <i>Nige Jouzu no Wakagimi</i>.",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "RELEASING",
+          "episodes": 12,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure"
+          ],
+          "isAdult": false,
+          "averageScore": 76,
+          "popularity": 26216,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1789137000,
+            "timeUntilAiring": 533536,
+            "episode": 9,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 6222,
+                  "name": "CloverWorks",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 207141,
+          "title": {
+            "english": "Chainsmoker Cat",
+            "userPreferred": "Yani Neko",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx207141-h5q5KJPd6vaX.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx207141-h5q5KJPd6vaX.jpg",
+            "color": "#50a1f1",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 7,
+            "day": 3,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/207141-MvHAS2YVfJzL.jpg",
+          "season": "SUMMER",
+          "description": "Yani is a catgirl with a seriously bad smoking habit. She smokes so much that her apartment smells like ash and is littered with cigarette butts—and plenty of other trash! Every time she tries to quit, she becomes weak to the cravings and gives in almost instantly. Will she ever get her life together, or is she doomed to live as a chainsmoking slob forever? \n<BR><BR>\n(Source: Seven Seas Entertainment)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "RELEASING",
+          "episodes": null,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Comedy",
+            "Ecchi",
+            "Slice of Life"
+          ],
+          "isAdult": false,
+          "averageScore": 67,
+          "popularity": 70819,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1789054200,
+            "timeUntilAiring": 450736,
+            "episode": 10,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 6180,
+                  "name": "Bibury Animation Studios",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 208044,
+          "title": {
+            "english": "From Overshadowed to Overpowered: Second Reincarnation of a Talentless Sage",
+            "userPreferred": "Rakudai Kenja no Gakuin Musou: Nidome no Tensei, S-Rank Cheat Majutsushi Bouken-roku",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx208044-Pm2UhvApQFUh.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx208044-Pm2UhvApQFUh.jpg",
+            "color": "#f1d61a",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 6,
+            "day": 26,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/208044-JtlSTlmp5SmP.jpg",
+          "season": "SUMMER",
+          "description": "The great sage Ephtal dies in despair after failing to reach the peak of magic—but 400 years later, he’s reborn with all his memories and power intact! In a world where magic has decayed and ancient spells are treated as miracles, Ephtal storms into a prestigious magic academy to reclaim the true art of sorcery. As his power shakes the world, long-forgotten legends begin to awaken!<br><br>\n\n(Source: Crunchyroll)<br><br>\n\n<i>Note: Rakudai Kenja no Gakuin Musou: Nidome no Tensei, S-Rank Cheat Majutsushi Bouken-roku is streaming a week in advance of the TV broadcast on dAnimeStore, ABEMA, U-NEXT, and Anime Hodai beginning June 26th, 2026. Regular broadcasting began on July 2nd, 2026.</i>",
+          "type": "ANIME",
+          "format": "ONA",
+          "status": "RELEASING",
+          "episodes": null,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 62,
+          "popularity": 49058,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1789052400,
+            "timeUntilAiring": 448936,
+            "episode": 12,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 6125,
+                  "name": "EMT Squared",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 195600,
+          "title": {
+            "english": "Daemons of the Shadow Realm",
+            "userPreferred": "Yomi no Tsugai",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx195600-moI0UFArtOme.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx195600-moI0UFArtOme.jpg",
+            "color": "#e49335",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 4,
+            "day": 4,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/195600-UxHvDXwzJxlP.jpg",
+          "season": "SPRING",
+          "description": "In a remote mountain village under the watchful eyes of two stone guardians, the young Yuru contentedly lives off the land while staying close to the only family he has left—Asa, his precious twin sister. Asa, meanwhile, carries out a mysterious “duty” on behalf of the village while locked in a cage. Why is Asa a prisoner? And what other secrets does Yuru’s otherwise idyllic home hide?\n<br><br>(Source: Square Enix)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "RELEASING",
+          "episodes": 24,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Fantasy",
+            "Supernatural"
+          ],
+          "isAdult": false,
+          "averageScore": 78,
+          "popularity": 132926,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1788618600,
+            "timeUntilAiring": 15136,
+            "episode": 22,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 7585,
+                  "name": "bones film",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 185874,
+          "title": {
+            "english": "BLEACH: Thousand-Year Blood War - The Calamity",
+            "userPreferred": "BLEACH: Sennen Kessen-hen - Kashin-tan",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx185874-aU3e6tBT6wwA.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx185874-aU3e6tBT6wwA.jpg",
+            "color": null,
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 7,
+            "day": 25,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/185874-IdGyh1EBG91I.jpg",
+          "season": "SUMMER",
+          "description": "The fourth and final part of <i>BLEACH: Sennen Kessen-hen</i>. <br><br>\n\nDestruction looms at the end of the Thousand-Year Blood War between the Soul Reapers and Quincies… as the death of the Soul King mirrors the collapse of the Three Worlds, distortions and omens of destruction start to appear in all realms. \n<br><br>\nFierce battles erupt throughout the Wahr Welt between the Thirteen Court Guard Squads and the Royal Guard. Ichigo learns about Uryuu's true intentions and renews his determination to protect the world together, as friends who trust each other. Yhwach has surpassed even his own ability, The Almighty...\n<br><br>\nThe fierce battle for the survival of the Three Worlds approaches its end. Beyond the chaos of calamity, what lies in wait—despair or hope?<br><br>\n\n(Source: VIZ Media, edited)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "RELEASING",
+          "episodes": 10,
+          "duration": null,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Supernatural"
+          ],
+          "isAdult": false,
+          "averageScore": 90,
+          "popularity": 82887,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1788616800,
+            "timeUntilAiring": 13336,
+            "episode": 7,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 7517,
+                  "name": "PIERROT FILMS",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        }
+      ],
+      "__typename": "Page"
+    },
+    "season": {
+      "media": [
+        {
+          "id": 195516,
+          "title": {
+            "english": "The Apothecary Diaries Season 3",
+            "userPreferred": "Kusuriya no Hitorigoto 3rd Season",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx195516-MJpUZlOberqH.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx195516-MJpUZlOberqH.jpg",
+            "color": "#e4a128",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 10,
+            "day": 2,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": null,
+          "season": "FALL",
+          "description": "The third season of <i>Kusuriya no Hitorigoto</i>.\n<br><br>\nIn the aftermath of the Shi Clan’s rebellion, things have finally settled down, and Maomao has returned to her old life as a pharmacist in the pleasure district.\n<br><br>\nOne day, triggered by a breakfast served at the Verdigris House, Maomao senses an anomaly and begins investigating its true nature.\n<br><br>\nMeanwhile, Jinshi, who has revealed his true identity as the Imperial brother and begun to face his heavy responsibilities, is deeply troubled by the final message left by Loulan: a warning of an impending \"disaster that will strike the nation.\"\n<br><br>\nTo make matters worse, rumors of a mysterious shrine maiden who deceives the people begin to spread, casting a dark shadow over the country of Li once again.\n<br><br>\nFrom the depths of the inner court to the city streets, and across foreign borders—the world grows wider, and the stakes even higher for Maomao and Jinshi.<br><br>\n(Source: Crunchyroll News)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "NOT_YET_RELEASED",
+          "episodes": null,
+          "duration": null,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Drama",
+            "Mystery"
+          ],
+          "isAdult": false,
+          "averageScore": null,
+          "popularity": 65774,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1790949600,
+            "timeUntilAiring": 2346136,
+            "episode": 1,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 28,
+                  "name": "OLM",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 195604,
+          "title": {
+            "english": "Black Clover Season 2",
+            "userPreferred": "Black Clover 2nd Season",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx195604-8xUI10lVVhPY.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx195604-8xUI10lVVhPY.jpg",
+            "color": "#e4c9ae",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 10,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": null,
+          "season": "FALL",
+          "description": "The second season of <i>Black Clover</i>.",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "NOT_YET_RELEASED",
+          "episodes": null,
+          "duration": null,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": null,
+          "popularity": 58646,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 1,
+                  "name": "Studio Pierrot",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 195539,
+          "title": {
+            "english": "Cyberpunk: Edgerunners 2",
+            "userPreferred": "Cyberpunk: Edgerunners 2",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx195539-jaarfaxv6K0Z.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx195539-jaarfaxv6K0Z.jpg",
+            "color": "#1ac9e4",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 10,
+            "day": 20,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/195539-2obqrBzqrOSR.jpg",
+          "season": "FALL",
+          "description": "<i>Cyberpunk: Edgerunners 2</i> pulls you back into Night City, where lives become entangled to the extreme. Weak, a washed-up cyberpunk legend, is now forced to live without chrome as he searches for a sense of purpose in a world that’s passed him by. Meanwhile, the deadly nomad D sets out on a path to revenge that brings him close to corpo secrets never meant to be found. Across this ten-episode standalone series, uncover a story of family, obsession, legacy — and how your lens reflects the stories of the people around you..<br><br>\n\nWhen the world is blinded by spectacle, what extremes do you have to go to make your story matter?<br><br>\n(Source: Cyberpunk: Edgerunners 2 Official Site, Official Twitter)",
+          "type": "ANIME",
+          "format": "ONA",
+          "status": "NOT_YET_RELEASED",
+          "episodes": 10,
+          "duration": null,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Drama",
+            "Sci-Fi"
+          ],
+          "isAdult": false,
+          "averageScore": null,
+          "popularity": 58315,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 803,
+                  "name": "TRIGGER",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 160275,
+          "title": {
+            "english": null,
+            "userPreferred": "Made in Abyss: Mezameru Shinpi",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx160275-cBOWJpcCGeMq.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx160275-cBOWJpcCGeMq.jpg",
+            "color": "#e4d643",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 10,
+            "day": 23,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": null,
+          "season": "FALL",
+          "description": "Sequel to <i>Made in Abyss: Retsujitsu no Ougonkyou.</i><br><br>\n",
+          "type": "ANIME",
+          "format": "MOVIE",
+          "status": "NOT_YET_RELEASED",
+          "episodes": 1,
+          "duration": null,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Adventure",
+            "Drama",
+            "Fantasy",
+            "Horror",
+            "Mystery",
+            "Sci-Fi"
+          ],
+          "isAdult": false,
+          "averageScore": null,
+          "popularity": 37213,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1792681200,
+            "timeUntilAiring": 4077736,
+            "episode": 1,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 290,
+                  "name": "Kinema Citrus",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 159042,
+          "title": {
+            "english": "Reincarnated as a Sword Season 2",
+            "userPreferred": "Tensei Shitara Ken Deshita 2nd Season",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx159042-GGFwlDskc5vR.png",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx159042-GGFwlDskc5vR.png",
+            "color": "#f19328",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 10,
+            "day": 1,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/159042-X0mqyaUFBkms.jpg",
+          "season": "FALL",
+          "description": "The second season of <i>Tensei Shitara Ken Deshita</i>.<br><br>\n<i>Note: Each episode was streamed one week in advance of the TV broadcast starting on October 1, 2026 on Abema. Regular broadcasting began on October 8, 2026.</i>",
+          "type": "ANIME",
+          "format": "ONA",
+          "status": "NOT_YET_RELEASED",
+          "episodes": null,
+          "duration": null,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": null,
+          "popularity": 36016,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1790782200,
+            "timeUntilAiring": 2178736,
+            "episode": 1,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 6052,
+                  "name": "C2C",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 143103,
+          "title": {
+            "english": "Witch on the Holy Night",
+            "userPreferred": "Mahoutsukai no Yoru",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx143103-vvsaIpZPpIuE.png",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx143103-vvsaIpZPpIuE.png",
+            "color": "#f1d6ae",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 11,
+            "day": 20,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/143103-KwDRPfPl4OwL.jpg",
+          "season": "FALL",
+          "description": "Near the end of the Showa era in the late 1980s, in Misaki town, an old mansion is rumored to be the home of a witch. After moving into the mansion, Aoko Aozaki begins to learn sorcery from a young mage, Alice Kuonji, the rumored witch of the mansion. The Aozaki family oversees the land on which Misaki is built and the heir (Aoko) is tasked with protecting it.<br>\n<br>\nMysterious intruders have been disrupting the bounded field in Misaki, leading Alice and Aoko to investigate. A mannequin or puppet attacks them and is incinerated. As this happens, both of them spot someone running away, a civilian who must not get away having seen magic alive.<br>\n<br>\nUnexpectedly, a young boy named Soujuurou Shizuki is drawn to the mansion and comes to reside with them as well.",
+          "type": "ANIME",
+          "format": "MOVIE",
+          "status": "NOT_YET_RELEASED",
+          "episodes": 1,
+          "duration": null,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Drama",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": null,
+          "popularity": 33716,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1795100400,
+            "timeUntilAiring": 6496936,
+            "episode": 1,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 43,
+                  "name": "ufotable",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 189123,
+          "title": {
+            "english": "Blue Box Season 2",
+            "userPreferred": "Ao no Hako Season 2",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx189123-0secXELIhkIW.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx189123-0secXELIhkIW.jpg",
+            "color": "#e4ae50",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 10,
+            "day": 4,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/189123-s2oirY2r1Svy.jpg",
+          "season": "FALL",
+          "description": "The second season of <i>Ao no Hako</i>.\n",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "NOT_YET_RELEASED",
+          "episodes": null,
+          "duration": null,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Romance",
+            "Slice of Life",
+            "Sports"
+          ],
+          "isAdult": false,
+          "averageScore": null,
+          "popularity": 31781,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1791099000,
+            "timeUntilAiring": 2495536,
+            "episode": 1,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 7799,
+                  "name": "Electric Circus",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 199340,
+          "title": {
+            "english": "Rascal Does Not Dream of a Dear Friend",
+            "userPreferred": "Seishun Buta Yarou wa Dear Friend no Yume wo Minai",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx199340-YQlmzvmcJzyt.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx199340-YQlmzvmcJzyt.jpg",
+            "color": "#5da1f1",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 10,
+            "day": 16,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 10,
+            "day": 16,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": null,
+          "season": "FALL",
+          "description": "Theatrical follow-up to <i>Seishun Buta Yarou wa Santa Claus no Yume wo Minai</i>.<br><br>\n\n<i>\"Actually, I’m Touko Kirishima.\"</i>\n<br><br>\nThe audience erupted in excitement upon learning that the true identity of the mysterious, wildly popular internet singer was none other than the nation’s favorite actress, Mai Sakurajima. The scene was exactly the same as the dream Sakuta Azusagawa had seen on Christmas Eve.\n<br><br>\nStarting with Mai’s shocking confession on April 1, the impossible events that everyone once dreamed of keep happening one after another.\n\nThe social media hashtag \"#Yumemiru,\" where dreams come true, has vanished, and as Sakuta struggles with the disconnect between the reality before him and his own perception, he receives a message from a version of himself in an alternate reality.\n<br><br>\n<b>―Stop Touko Kirishima,\n<br>\n―Before reality is rewritten.</b>\n<br><br>\nTo restore the world to its original state, Sakuta sets out to find Touko Kirishima. This is a story about overcoming the \"Adolescent Syndrome\".<br><br>\n\n(Source: Crunchyroll News, edited)",
+          "type": "ANIME",
+          "format": "MOVIE",
+          "status": "NOT_YET_RELEASED",
+          "episodes": 1,
+          "duration": null,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Drama",
+            "Psychological",
+            "Romance",
+            "Supernatural"
+          ],
+          "isAdult": false,
+          "averageScore": null,
+          "popularity": 27733,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1792076400,
+            "timeUntilAiring": 3472936,
+            "episode": 1,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 6222,
+                  "name": "CloverWorks",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 200929,
+          "title": {
+            "english": null,
+            "userPreferred": "Kusuriya no Hitorigoto: Bouhi no Hihou",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx200929-ZnRFJbEqFbgJ.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx200929-ZnRFJbEqFbgJ.jpg",
+            "color": "#f19335",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 12,
+            "day": 11,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 12,
+            "day": 11,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": null,
+          "season": "FALL",
+          "description": "An original movie for <i>Kusuriya no Hitorigoto</i><br><br>\n\n<i>Note: Relations are provisional and subject to change.</i>",
+          "type": "ANIME",
+          "format": "MOVIE",
+          "status": "NOT_YET_RELEASED",
+          "episodes": 1,
+          "duration": null,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Drama",
+            "Mystery"
+          ],
+          "isAdult": false,
+          "averageScore": null,
+          "popularity": 22338,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1796914800,
+            "timeUntilAiring": 8311336,
+            "episode": 1,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 7368,
+                  "name": "TOHO animation STUDIO",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 210482,
+          "title": {
+            "english": "STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE",
+            "userPreferred": "JoJo no Kimyou na Bouken: Steel Ball Run - 2nd - 3rd STAGE",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx210482-P1VNKbqdJ6Zj.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx210482-P1VNKbqdJ6Zj.jpg",
+            "color": "#f1ae50",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 9,
+            "day": 25,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": null,
+          "season": "FALL",
+          "description": "The second race stage of <i>JoJo no Kimyou na Bouken: Steel Ball Run</i>.<br><br>\n\nIn the 2nd STAGE, a desert crossing spanning roughly 750 miles- the land that Johnny Joestar and Gyro Zeppeli must challenge, is home to the area that is feared as the \"Devil's Palm.\" In 1875, a threat lurking in said desert wiped out a cavalry of 26 people, eliciting fear from the local native people. As ominous incidents begin to unfold, they are forced to realize that this race is far more than a mere competition. The two press forward, where countless hidden motives collide. <br><br>\n\n(Source: Warner Bros. Japan Anime, Netflix Anime, edited)",
+          "type": "ANIME",
+          "format": "ONA",
+          "status": "NOT_YET_RELEASED",
+          "episodes": 11,
+          "duration": null,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Drama",
+            "Mystery",
+            "Supernatural"
+          ],
+          "isAdult": false,
+          "averageScore": null,
+          "popularity": 22296,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1790262000,
+            "timeUntilAiring": 1658536,
+            "episode": 1,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 287,
+                  "name": "david production",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 178083,
+          "title": {
+            "english": null,
+            "userPreferred": "Tokyo Revengers: Santen Sensou-hen",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx178083-bg7pg6TCHwtG.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx178083-bg7pg6TCHwtG.jpg",
+            "color": "#c99350",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 10,
+            "day": 3,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": null,
+          "season": "FALL",
+          "description": "Sequel to <i>Tokyo Revengers: Tenjiku-hen</i>.",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "NOT_YET_RELEASED",
+          "episodes": null,
+          "duration": null,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Drama",
+            "Romance",
+            "Supernatural"
+          ],
+          "isAdult": false,
+          "averageScore": null,
+          "popularity": 22136,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1790959980,
+            "timeUntilAiring": 2356516,
+            "episode": 1,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 839,
+                  "name": "LIDENFILMS",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 152677,
+          "title": {
+            "english": null,
+            "userPreferred": "Tantei wa mou, Shindeiru. Season 2",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx152677-xVKqY1rqKK75.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx152677-xVKqY1rqKK75.jpg",
+            "color": "#93a1e4",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 10,
+            "day": 7,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": null,
+          "season": "FALL",
+          "description": "The second season of <i>Tantei wa mou, Shindeiru.</i>",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "NOT_YET_RELEASED",
+          "episodes": null,
+          "duration": null,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Comedy",
+            "Drama",
+            "Mystery",
+            "Romance",
+            "Supernatural"
+          ],
+          "isAdult": false,
+          "averageScore": null,
+          "popularity": 19077,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1791376200,
+            "timeUntilAiring": 2772736,
+            "episode": 1,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 6292,
+                  "name": "ENGI",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 172192,
+          "title": {
+            "english": "A Returner's Magic Should be Special Season 2",
+            "userPreferred": "Kikansha no Mahou wa Tokubetsu desu 2nd Season",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx172192-UzIbLgOQPY6m.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx172192-UzIbLgOQPY6m.jpg",
+            "color": "#e4785d",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 10,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": null,
+          "season": "FALL",
+          "description": "The second season of <i>Kikansha no Mahou wa Tokubetsu desu</i>.",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "NOT_YET_RELEASED",
+          "episodes": null,
+          "duration": null,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": null,
+          "popularity": 18636,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 6239,
+                  "name": "Arvo Animation",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 213805,
+          "title": {
+            "english": "The Ramparts of Ice Season 2",
+            "userPreferred": "Koori no Jouheki 2nd Season",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx213805-Nokui3uWlIlw.png",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx213805-Nokui3uWlIlw.png",
+            "color": "#e4a143",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 10,
+            "day": 1,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": null,
+          "season": "FALL",
+          "description": "The second season of <i>Koori no Jouheki</i>.",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "NOT_YET_RELEASED",
+          "episodes": null,
+          "duration": null,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Comedy",
+            "Drama",
+            "Romance",
+            "Slice of Life"
+          ],
+          "isAdult": false,
+          "averageScore": null,
+          "popularity": 17552,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1790823360,
+            "timeUntilAiring": 2219896,
+            "episode": 1,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 6312,
+                  "name": "Studio KAI",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 205909,
+          "title": {
+            "english": "Firefly Wedding",
+            "userPreferred": "Hotaru no Yomeiri",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx205909-DM0fAzNQulod.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx205909-DM0fAzNQulod.jpg",
+            "color": "#aebb35",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 10,
+            "day": 9,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": null,
+          "season": "FALL",
+          "description": "On the surface, Satoko has it all—she’s beautiful, the daughter of a nobleman, and at a prime age for marriage. Unfortunately, she is also quite ill and only has a short time left to live. Before she can secure a marriage that will redeem her worth in her family’s eyes, she finds herself the target of the mysterious assassin Shinpei, and her plans are put in jeopardy. In order to save herself, she makes a desperate proposal—of marriage! When it comes to love, however, Shinpei takes “until death do we part” seriously.<br>\n<br>\n(Source: VIZ Media)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "NOT_YET_RELEASED",
+          "episodes": null,
+          "duration": null,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Drama",
+            "Romance"
+          ],
+          "isAdult": false,
+          "averageScore": null,
+          "popularity": 15403,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1791556200,
+            "timeUntilAiring": 2952736,
+            "episode": 1,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 287,
+                  "name": "david production",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        }
+      ],
+      "__typename": "Page"
+    },
+    "nextSeason": {
+      "media": [
+        {
+          "id": 172463,
+          "title": {
+            "english": "JUJUTSU KAISEN Season 3: The Culling Game Part 1",
+            "userPreferred": "Jujutsu Kaisen: Shimetsu Kaiyuu - Zenpen",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx172463-LnXqHzt74SJL.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx172463-LnXqHzt74SJL.jpg",
+            "color": "#78aee4",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 1,
+            "day": 9,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 3,
+            "day": 27,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/172463-3J2o3qQZadFJ.jpg",
+          "season": "WINTER",
+          "description": "After the Shibuya Incident, a deadly jujutsu battle known as the Culling Game orchestrated by Noritoshi Kamo erupts across ten colonies in Japan.<br><br>\nHaunted by guilt over the mass killings in Shibuya and wary of Sukuna’s interest in Fushiguro, Itadori chooses not to return to Jujutsu High. Instead, he teams up with Choso to exorcise the countless cursed spirits unleashed by Noritoshi Kamo.\nAmid this chaos, the Jujutsu Headquarters revokes Yuji Itadori’s suspended death sentence and appoints special-grade sorcerer Yuta Okkotsu as his executioner. <br><br>\nNewly awakened modern sorcerers and resurrected ancient ones,  now fighting as players in the Culling Game, collide with conflicting motives, driving the world once more toward an age ruled by jujutsu.<br><br>\n(Source: TOHO Animation)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 12,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Drama",
+            "Supernatural"
+          ],
+          "isAdult": false,
+          "averageScore": 86,
+          "popularity": 256435,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 569,
+                  "name": "MAPPA",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 182255,
+          "title": {
+            "english": "Frieren: Beyond Journey’s End Season 2",
+            "userPreferred": "Sousou no Frieren 2nd Season",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182255-butzrqd4I0aC.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx182255-butzrqd4I0aC.jpg",
+            "color": "#5dc9f1",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 1,
+            "day": 16,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 3,
+            "day": 27,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/182255-wyHvp6zJbWsO.jpg",
+          "season": "WINTER",
+          "description": "Following the First-Class Mage Exam, the trio—elven mage Frieren, warrior Stark, and first-class mage Fern—gains access to the dangerous Northern Plateau. As the party presses onward toward Aureole, formidable adversaries force Stark to confront his insecurities, solidifying his resolve and his role as the party's frontliner. Meanwhile, Fern continues to cherish the gifts she has been blessed with throughout her life, each a reminder of those she holds dear.<br><br>\n\nFrieren—still honoring her vow to understand humanity—revisits memories of her journey with the Hero's party and her fleeting encounter with a legendary figure. As she reflects on the passage of time, the elven mage quietly questions whether she has truly changed, yet in the small, almost subtle choices that she makes, there are signs that she might have become more human than she realizes.<br><br>\n\n(Source: MAL Rewrite)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 10,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Adventure",
+            "Drama",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 88,
+          "popularity": 222753,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 11,
+                  "name": "MADHOUSE",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 147105,
+          "title": {
+            "english": "Witch Hat Atelier",
+            "userPreferred": "Tongari Boushi no Atelier",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx147105-rwOX8qyUy8gV.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx147105-rwOX8qyUy8gV.jpg",
+            "color": "#0d8693",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 4,
+            "day": 6,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 6,
+            "day": 22,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/147105-fTjmRrILFixZ.jpg",
+          "season": "SPRING",
+          "description": "In a world where everyone takes wonders like magic spells and dragons for granted, Coco is a girl with a simple dream: she wants to be a witch. But everybody knows magicians are born, not made, and Coco was not born with a gift for magic. Resigned to her un-magical life, Coco is about to give up on her dream to become a witch … until the day she meets Qifrey, a mysterious, traveling magician. After secretly seeing Qifrey perform magic in a way she’s never seen before, Coco soon learns what everybody “knows” might not be the truth, and discovers that her magical dream may not be as far away as it may seem... <br>\n<br>\n(Source: Kodansha USA) <br><br>\n\n<i>Note: Tongari Boushi no Atelier episode 2 was streamed a week in advance on Crunchyroll, ABEMA, and Netflix, alongside episode 1. Streaming is one week ahead of the TV broadcast.</i>",
+          "type": "ANIME",
+          "format": "ONA",
+          "status": "FINISHED",
+          "episodes": 13,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Adventure",
+            "Drama",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 85,
+          "popularity": 222234,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 7348,
+                  "name": "BUG FILMS",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 166613,
+          "title": {
+            "english": "Hell’s Paradise Season 2",
+            "userPreferred": "Jigokuraku 2nd Season",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx166613-uHB8q3D4qbon.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx166613-uHB8q3D4qbon.jpg",
+            "color": "#e49328",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 1,
+            "day": 11,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 3,
+            "day": 29,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/166613-drS86exJlIjG.jpg",
+          "season": "WINTER",
+          "description": "Seeking the key to the elixir of immortality, the group arrives at the fortress of the island's monstrous ruler, the \"Tensen.\" To survive and escape the island, cooperation becomes essential—regardless of whether one is a condemned criminal or an executioner.<br>\n<br>\nMeanwhile, the shogunate orders additional landings on the island of the Immortal Realm, led by Shugen Yamada Asayemon. Among them are the Ishigakure clan, who share a past with Gabimaru.<br>\n<br>\nDesperate to find the elixir and escape the island, Gabimaru and his companions face the Tensen in a battle that escalates into an all-out confrontation between humans and immortals!<br>\n<br>\n(Source: Twin Engine, edited)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 12,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Mystery",
+            "Supernatural"
+          ],
+          "isAdult": false,
+          "averageScore": 82,
+          "popularity": 171999,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 569,
+                  "name": "MAPPA",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 167152,
+          "title": {
+            "english": "Sentenced to Be a Hero",
+            "userPreferred": "Yuusha Kei ni Shosu: Choubatsu Yuusha 9004-tai Keimu Kiroku",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx167152-O1pm6DWwifBD.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx167152-O1pm6DWwifBD.jpg",
+            "color": "#f1a15d",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 1,
+            "day": 3,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 3,
+            "day": 26,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/167152-6QxZG8Dmf1EL.jpg",
+          "season": "WINTER",
+          "description": "In a world where heroism is a punishment, Xylo Forbartz, a condemned goddess killer, battles endless hordes of monstrous abominations as part of Penal Hero Unit 9004. Death is no escape, only a cycle of resurrection and relentless combat. But when Xylo encounters a mysterious new goddess, their unlikely alliance sparks a rebellion that could shatter the chains of eternal punishment.<br>\n<br>\n(Source: Crunchyroll)\n<br><br>\n<i>Notes:<br>\n- The first episode aired with a runtime of ~58 minutes as opposed to the standard 24 minute long episode.<br>\n- Initially scheduled to air in October, 2025 </i>",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 12,
+          "duration": 25,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Drama",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 81,
+          "popularity": 159690,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 6312,
+                  "name": "Studio KAI",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 178789,
+          "title": {
+            "english": "Mushoku Tensei: Jobless Reincarnation Season 3",
+            "userPreferred": "Mushoku Tensei III: Isekai Ittara Honki Dasu",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx178789-hNXjKFzUq7mk.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx178789-hNXjKFzUq7mk.jpg",
+            "color": "#28bbe4",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 7,
+            "day": 4,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 9,
+            "day": 27,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/178789-9nHWmoRLlcLu.jpg",
+          "season": "SUMMER",
+          "description": "The third season of <i>Mushoku Tensei: Isekai Ittara Honki Dasu</i>.",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "RELEASING",
+          "episodes": 14,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Adventure",
+            "Drama",
+            "Ecchi",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 84,
+          "popularity": 151946,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1788706800,
+            "timeUntilAiring": 103336,
+            "episode": 11,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 6309,
+                  "name": "Studio Bind",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 189046,
+          "title": {
+            "english": "Re:ZERO -Starting Life in Another World- Season 4",
+            "userPreferred": "Re:Zero kara Hajimeru Isekai Seikatsu 4th Season",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx189046-yaHWtS5FII46.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx189046-yaHWtS5FII46.jpg",
+            "color": "#e49350",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 4,
+            "day": 8,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 9,
+            "day": 30,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/189046-MDk2CaVuRWpb.jpg",
+          "season": "SPRING",
+          "description": "To save his stricken allies, Subaru faces a deadly desert to find the Sage at Pleiades Watchtower.<br><br>\n\n(Source: Crunchyroll News)\n\n<br><br>\n<i>Note: Lucca Comics & Games pre-screened episode 1 early on November 1, 2025, prior to the Japanese television broadcast on July 8th, 2026.",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "RELEASING",
+          "episodes": 19,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Drama",
+            "Fantasy",
+            "Psychological",
+            "Romance",
+            "Thriller"
+          ],
+          "isAdult": false,
+          "averageScore": 90,
+          "popularity": 136865,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1788958800,
+            "timeUntilAiring": 355336,
+            "episode": 16,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 314,
+                  "name": "WHITE FOX",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 195600,
+          "title": {
+            "english": "Daemons of the Shadow Realm",
+            "userPreferred": "Yomi no Tsugai",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx195600-moI0UFArtOme.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx195600-moI0UFArtOme.jpg",
+            "color": "#e49335",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 4,
+            "day": 4,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/195600-UxHvDXwzJxlP.jpg",
+          "season": "SPRING",
+          "description": "In a remote mountain village under the watchful eyes of two stone guardians, the young Yuru contentedly lives off the land while staying close to the only family he has left—Asa, his precious twin sister. Asa, meanwhile, carries out a mysterious “duty” on behalf of the village while locked in a cage. Why is Asa a prisoner? And what other secrets does Yuru’s otherwise idyllic home hide?\n<br><br>(Source: Square Enix)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "RELEASING",
+          "episodes": 24,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Fantasy",
+            "Supernatural"
+          ],
+          "isAdult": false,
+          "averageScore": 78,
+          "popularity": 132926,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1788618600,
+            "timeUntilAiring": 15136,
+            "episode": 22,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 7585,
+                  "name": "bones film",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 182205,
+          "title": {
+            "english": "That Time I Got Reincarnated as a Slime Season 4",
+            "userPreferred": "Tensei Shitara Slime Datta Ken 4th Season",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182205-q2AeO1owuQbO.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx182205-q2AeO1owuQbO.jpg",
+            "color": "#1abbd6",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 4,
+            "day": 3,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 9,
+            "day": 25,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/182205-fRUoKv6f2JAq.jpg",
+          "season": "SPRING",
+          "description": "Demon Lord Rimuru's dream of creating an alliance between humans and monsters takes a step closer to being realized. As Tempest continues to prosper, Granville Rozzo and his granddaughter, Maribel Rozzo, clash with Demon Lord Rimuru over their plan to protect mankind by ruling over them. Meanwhile, in El Dorado, Demon Lord Leon works toward goals of his own. The awakening of a new Hero draws near!<br><br>\n\n(Source: Crunchyroll News)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "RELEASING",
+          "episodes": 24,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 83,
+          "popularity": 132388,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1789135200,
+            "timeUntilAiring": 531736,
+            "episode": 22,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 4418,
+                  "name": "8-bit",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 184951,
+          "title": {
+            "english": "You and I Are Polar Opposites",
+            "userPreferred": "Seihantai na Kimi to Boku",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx184951-s8Lg2muPBhdX.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx184951-s8Lg2muPBhdX.jpg",
+            "color": "#e4a135",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 1,
+            "day": 11,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 3,
+            "day": 29,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/184951-Rx1mZZfKa9IU.jpg",
+          "season": "WINTER",
+          "description": "Suzuki’s a high school girl in love, but the guy she’s fallen for is nothing like her! While she’s cheerful, outgoing, and always trying to fit in, her classmate Yusuke Tani is stoic, quiet, and doesn’t seem to care what people think of him. Will Suzuki be able to overcome her anxieties and ask him out, or will she discover that opposites really don’t attract?\n<br><br>\n(Source: Crunchyroll)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 12,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+          ],
+          "isAdult": false,
+          "averageScore": 83,
+          "popularity": 121437,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 6213,
+                  "name": "Lapin Track",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 182300,
+          "title": {
+            "english": "Wistoria: Wand and Sword Season 2",
+            "userPreferred": "Tsue to Tsurugi no Wistoria Season 2",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182300-IYkq5KrkQq1V.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx182300-IYkq5KrkQq1V.jpg",
+            "color": "#e4a150",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 4,
+            "day": 12,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 6,
+            "day": 28,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/182300-d1znfWKzn1bT.jpg",
+          "season": "SPRING",
+          "description": "Will, a washout student at a magical academy who is unable to use magic, is aiming to join the top tier of mages, the Magia Vander, to fulfill a promise to his childhood friend, Elfaria. Wielding a sword instead of a wand, his abilities are slowly recognized within the academy. During the all-student praxis dungeon training he undertakes with Lihanna and the other top students of his year, they are ambushed by a mysterious mage. Though they barely manage to survive the attack together, they go on to face the exit exam. Can Will reach the girl waiting for him in the tower?<br><br>\n(Source: Official Site)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 12,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Drama",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 82,
+          "popularity": 117567,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 60,
+                  "name": "Actas",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              },
+              {
+                "isMain": true,
+                "node": {
+                  "id": 6116,
+                  "name": "Bandai Namco Pictures",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 180745,
+          "title": {
+            "english": "Classroom of the Elite 4th Season: Second Year, First Semester",
+            "userPreferred": "Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e 4th Season 2-nensei-hen Ichi Gakki",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx180745-OEZaBeEdWozn.png",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx180745-OEZaBeEdWozn.png",
+            "color": "#aec9e4",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 4,
+            "day": 1,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 6,
+            "day": 24,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/180745-Iicz1F6Kuj4e.jpg",
+          "season": "SPRING",
+          "description": "The fourth season of <i>Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e</i>.<br><br>\nAs Ayanokouji and his classmates begin their second year at the Advanced Nurturing High School, they’re greeted by a fresh gauntlet of exams and a fresh batch of rather unique first-year students. They’ll have to get to know each other quickly, because the first special exam pairs the first-years with the second-years on a written test—with only the second-years facing expulsion if their team performs poorly! Worse yet? It seems one of the new first-years is also from the White Room. Can Ayanokouji avoid expulsion while sussing out the identity of this hidden foe?\n<br><br>\n(Source: Seven Seas)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 16,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Drama",
+            "Psychological"
+          ],
+          "isAdult": false,
+          "averageScore": 78,
+          "popularity": 116833,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 456,
+                  "name": "Lerche",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 196187,
+          "title": {
+            "english": "Smoking Behind the Supermarket with You",
+            "userPreferred": "Super no Ura de Yani Suu Futari",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx196187-0dgFi2CPp3xn.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx196187-0dgFi2CPp3xn.jpg",
+            "color": "#f1c9bb",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 7,
+            "day": 10,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/196187-Z9dV6uotmKjM.jpg",
+          "season": "SUMMER",
+          "description": "Sasaki is an overworked salaryman drifting through the corporate grind, sustained by cigarettes and the cheerful service and smile of Yamada, the clerk at his favorite supermarket. But one night after a grueling shift, he arrives late to find Yamada nowhere to be seen. With nowhere left to smoke, his spirits sink—until a pierced young woman calls out to him: “You can smoke here.”\n<br><br>\n(Source: Crunchyroll)<br><br>\n\n<i>Note: Episodes 1-6 had an early release by ABEMA and Crunchyroll on June 3rd, 2026 in a mini-episode batch format that splits 6 episodes into 12, ahead of the TV broadcast which started on July 10th, 2026.</i>",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "RELEASING",
+          "episodes": 12,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+          ],
+          "isAdult": false,
+          "averageScore": 82,
+          "popularity": 115797,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1789052160,
+            "timeUntilAiring": 448696,
+            "episode": 10,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 406,
+                  "name": "Asahi Production",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 182587,
+          "title": {
+            "english": "OSHI NO KO Season 3",
+            "userPreferred": "[Oshi no Ko] 3rd Season",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182587-fsU8LOjmd7oj.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx182587-fsU8LOjmd7oj.jpg",
+            "color": "#d643e4",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 1,
+            "day": 14,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 3,
+            "day": 25,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/182587-SLNmuinewbUF.jpg",
+          "season": "WINTER",
+          "description": "The story enters a new stage.\n<br><br>\nIt's been six months since \"POP IN 2\" was released. Thanks to MEM-Cho's hard work, B-Komachi is about to get their major break. Aqua is a multi-talented entertainer, and Akane's career as a talented actress is going smoothly. Meanwhile, Kana lost the cheerfulness she once had. To track down the truth behind Ai and Goro's deaths, Ruby keeps rising in the entertainment world—using lies as a weapon.\n<br><br>\n(Source: Crunchyroll)\n<br><br>\n<i>Note: The last episode has an extended runtime of ~54 minutes.</i>",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 11,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Drama",
+            "Mystery",
+            "Psychological",
+            "Supernatural"
+          ],
+          "isAdult": false,
+          "averageScore": 86,
+          "popularity": 108857,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 95,
+                  "name": "Doga Kobo",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 169580,
+          "title": {
+            "english": "I Made Friends with the Second Prettiest Girl in My Class",
+            "userPreferred": "Class de 2-banme ni Kawaii Onnanoko to Tomodachi ni Natta",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx169580-nXxpmqu6UVux.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx169580-nXxpmqu6UVux.jpg",
+            "color": "#f1bb50",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 4,
+            "day": 7,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 6,
+            "day": 23,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/169580-RUdWWw0j74HH.jpg",
+          "season": "SPRING",
+          "description": "Maki Maehara, the class outcast, finally makes his first friend: Umi Asanagi, the second-prettiest girl in class and the center of everyone’s attention. He’s convinced she’s out of his league, but as their unlikely friendship grows, Maki starts to wonder…could there be more than just friendship between them?<br>\n<br>\n(Source: Crunchyroll)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 12,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Comedy",
+            "Romance"
+          ],
+          "isAdult": false,
+          "averageScore": 80,
+          "popularity": 98599,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 957,
+                  "name": "CONNECT",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        }
+      ],
+      "__typename": "Page"
+    },
+    "popular": {
+      "media": [
+        {
+          "id": 16498,
+          "title": {
+            "english": "Attack on Titan",
+            "userPreferred": "Shingeki no Kyojin",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16498-buvcRTBx4NSm.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx16498-buvcRTBx4NSm.jpg",
+            "color": "#f1a143",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2013,
+            "month": 4,
+            "day": 7,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2013,
+            "month": 9,
+            "day": 28,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/16498-8jpFCOcDmneX.jpg",
+          "season": "SPRING",
+          "description": "Several hundred years ago, humans were nearly exterminated by titans. Titans are typically several stories tall, seem to have no intelligence, devour human beings and, worst of all, seem to do it for the pleasure rather than as a food source. A small percentage of humanity survived by walling themselves in a city protected by extremely high walls, even taller than the biggest of titans.<br><br>\r\nFlash forward to the present and the city has not seen a titan in over 100 years. Teenage boy Eren and his foster sister Mikasa witness something horrific as the city walls are destroyed by a colossal titan that appears out of thin air. As the smaller titans flood the city, the two kids watch in horror as their mother is eaten alive. Eren vows that he will murder every single titan and take revenge for all of mankind.<br><br>\r\n(Source: MangaHelpers)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 25,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Drama",
+            "Fantasy",
+            "Mystery"
+          ],
+          "isAdult": false,
+          "averageScore": 85,
+          "popularity": 1050648,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 858,
+                  "name": "WIT STUDIO",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 101922,
+          "title": {
+            "english": "Demon Slayer: Kimetsu no Yaiba",
+            "userPreferred": "Kimetsu no Yaiba",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101922-WBsBl0ClmgYL.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx101922-WBsBl0ClmgYL.jpg",
+            "color": "#f1c9ae",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2019,
+            "month": 4,
+            "day": 6,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2019,
+            "month": 9,
+            "day": 28,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/101922-33MtJGsUSxga.jpg",
+          "season": "SPRING",
+          "description": "It is the Taisho Period in Japan. Tanjiro, a kindhearted boy who sells charcoal for a living, finds his family slaughtered by a demon. To make matters worse, his younger sister Nezuko, the sole survivor, has been transformed into a demon herself. Though devastated by this grim reality, Tanjiro resolves to become a “demon slayer” so that he can turn his sister back into a human, and kill the demon that massacred his family.<br>\n<br>\n(Source: Crunchyroll)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 26,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Drama",
+            "Fantasy",
+            "Supernatural"
+          ],
+          "isAdult": false,
+          "averageScore": 83,
+          "popularity": 990926,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 43,
+                  "name": "ufotable",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 113415,
+          "title": {
+            "english": "JUJUTSU KAISEN",
+            "userPreferred": "Jujutsu Kaisen",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx113415-LHBAeoZDIsnF.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx113415-LHBAeoZDIsnF.jpg",
+            "color": "#e45d5d",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2020,
+            "month": 10,
+            "day": 3,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2021,
+            "month": 3,
+            "day": 27,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/113415-jQBSkxWAAk83.jpg",
+          "season": "FALL",
+          "description": "A boy fights... for \"the right death.\"<br>\n<br>\nHardship, regret, shame: the negative feelings that humans feel become Curses that lurk in our everyday lives. The Curses run rampant throughout the world, capable of leading people to terrible misfortune and even death. What's more, the Curses can only be exorcised by another Curse.<br>\n<br>\nItadori Yuji is a boy with tremendous physical strength, though he lives a completely ordinary high school life. One day, to save a friend who has been attacked by Curses, he eats the finger of the Double-Faced Specter, taking the Curse into his own soul. From then on, he shares one body with the Double-Faced Specter. Guided by the most powerful of sorcerers, Gojou Satoru, Itadori is admitted to the Tokyo Metropolitan Technical High School of Sorcery, an organization that fights the Curses... and thus begins the heroic tale of a boy who became a Curse to exorcise a Curse, a life from which he could never turn back.\n<br><br>\n(Source: Crunchyroll)<br>\n<br>\n<i>Note: The first episode received an early web premiere on September 19th, 2020. The regular TV broadcast started on October 3rd, 2020.</i>",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 24,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Drama",
+            "Supernatural"
+          ],
+          "isAdult": false,
+          "averageScore": 84,
+          "popularity": 968617,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 569,
+                  "name": "MAPPA",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 1535,
+          "title": {
+            "english": "Death Note",
+            "userPreferred": "DEATH NOTE",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1535-kUgkcrfOrkUM.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1535-kUgkcrfOrkUM.jpg",
+            "color": null,
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2006,
+            "month": 10,
+            "day": 4,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2007,
+            "month": 6,
+            "day": 27,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/1535.jpg",
+          "season": "FALL",
+          "description": "Light Yagami is a genius high school student who is about to learn about life through a book of death. When a bored shinigami, a God of Death, named Ryuk drops a black notepad called a <i>Death Note</i>, Light receives power over life and death with the stroke of a pen. Determined to use this dark gift for the best, Light sets out to rid the world of evil… namely, the people he believes to be evil. Should anyone hold such power?<br>\n<br>\nThe consequences of Light’s actions will set the world ablaze.<br>\n<br>\n(Source: VIZ Media)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 37,
+          "duration": 23,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Mystery",
+            "Psychological",
+            "Supernatural",
+            "Thriller"
+          ],
+          "isAdult": false,
+          "averageScore": 84,
+          "popularity": 958162,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 11,
+                  "name": "MADHOUSE",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 21459,
+          "title": {
+            "english": "My Hero Academia",
+            "userPreferred": "Boku no Hero Academia",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21459-nYh85uj2Fuwr.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21459-nYh85uj2Fuwr.jpg",
+            "color": "#f1d643",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2016,
+            "month": 4,
+            "day": 3,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2016,
+            "month": 6,
+            "day": 26,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21459-yeVkolGKdGUV.jpg",
+          "season": "SPRING",
+          "description": "What would the world be like if 80 percent of the population manifested extraordinary superpowers called “Quirks” at age four? Heroes and villains would be battling it out everywhere! Becoming a hero would mean learning to use your power, but where would you go to study? U.A. High's Hero Program of course! But what would you do if you were one of the 20 percent who were born Quirkless?<br><br>\n\nMiddle school student Izuku Midoriya wants to be a hero more than anything, but he hasn't got an ounce of power in him. With no chance of ever getting into the prestigious U.A. High School for budding heroes, his life is looking more and more like a dead end. Then an encounter with All Might, the greatest hero of them all gives him a chance to change his destiny…<br><br>\n\n(Source: VIZ Media)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 13,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy"
+          ],
+          "isAdult": false,
+          "averageScore": 77,
+          "popularity": 871370,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 4,
+                  "name": "bones",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 11061,
+          "title": {
+            "english": "Hunter x Hunter (2011)",
+            "userPreferred": "HUNTER×HUNTER (2011)",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx11061-y5gsT1hoHuHw.png",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx11061-y5gsT1hoHuHw.png",
+            "color": "#f1d65d",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2011,
+            "month": 10,
+            "day": 2,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2014,
+            "month": 9,
+            "day": 24,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/11061-8WkkTZ6duKpq.jpg",
+          "season": "FALL",
+          "description": "A new adaption of the manga of the same name by Togashi Yoshihiro.<br><br>\nA Hunter is one who travels the world doing all sorts of dangerous tasks. From capturing criminals to searching deep within uncharted lands for any lost treasures. Gon is a young boy whose father disappeared long ago, being a Hunter. He believes if he could also follow his father's path, he could one day reunite with him.<br><br>\nAfter becoming 12, Gon leaves his home and takes on the task of entering the Hunter exam, notorious for its low success rate and high probability of death to become an official Hunter. He befriends the revenge-driven Kurapika, the doctor-to-be Leorio and the rebellious ex-assassin Killua in the exam, with their friendship prevailing throughout the many trials and threats they come upon taking on the dangerous career of a Hunter.",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 148,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 89,
+          "popularity": 838114,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 11,
+                  "name": "MADHOUSE",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 21087,
+          "title": {
+            "english": "One-Punch Man",
+            "userPreferred": "One Punch Man",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21087-B5DHjqZ3kW4b.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21087-B5DHjqZ3kW4b.jpg",
+            "color": "#e4ae5d",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2015,
+            "month": 10,
+            "day": 5,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2015,
+            "month": 12,
+            "day": 21,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21087-sHb9zUZFsHe1.jpg",
+          "season": "FALL",
+          "description": "Saitama has a rather peculiar hobby, being a superhero, but despite his heroic deeds and superhuman abilities, a shadow looms over his life. He's become much too powerful, to the point that every opponent ends up defeated with a single punch.\n<br><br>\nThe lack of challenge has driven him into a state of apathy, as he watches his life pass by having lost all enthusiasm, at least until he's unwillingly thrust in the role of being a mentor to the young and revenge-driven Genos.   \n\n",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 12,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Comedy",
+            "Sci-Fi",
+            "Supernatural"
+          ],
+          "isAdult": false,
+          "averageScore": 83,
+          "popularity": 765069,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 11,
+                  "name": "MADHOUSE",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 21,
+          "title": {
+            "english": "ONE PIECE",
+            "userPreferred": "ONE PIECE",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-ELSYx3yMPcKM.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21-ELSYx3yMPcKM.jpg",
+            "color": "#e49335",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 1999,
+            "month": 10,
+            "day": 20,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21-wf37VakJmZqs.jpg",
+          "season": "FALL",
+          "description": "Gold Roger was known as the Pirate King, the strongest and most infamous being to have sailed the Grand Line. The capture and death of Roger by the World Government brought a change throughout the world. His last words before his death revealed the location of the greatest treasure in the world, One Piece. It was this revelation that brought about the Grand Age of Pirates, men who dreamed of finding One Piece (which promises an unlimited amount of riches and fame), and quite possibly the most coveted of titles for the person who found it, the title of the Pirate King.<br><br>\nEnter Monkey D. Luffy, a 17-year-old boy that defies your standard definition of a pirate. Rather than the popular persona of a wicked, hardened, toothless pirate who ransacks villages for fun, Luffy’s reason for being a pirate is one of pure wonder; the thought of an exciting adventure and meeting new and intriguing people, along with finding One Piece, are his reasons of becoming a pirate. Following in the footsteps of his childhood hero, Luffy and his crew travel across the Grand Line, experiencing crazy adventures, unveiling dark mysteries and battling strong enemies, all in order to reach One Piece.<br><br>\n<b>*This includes the following special episodes:</b><br>\n- Chopperman to the Rescue! Protect the TV Station by the Shore! (Episode 336)<br>\n- The Strongest Tag-Team! Luffy and Toriko's Hard Struggle! (Episode 492)<br>\n- Team Formation! Save Chopper (Episode 542)<br>\n- History's Strongest Collaboration vs. Glutton of the Sea (Episode 590)<br>\n- 20th Anniversary! Special Romance Dawn (Episode 907)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "RELEASING",
+          "episodes": null,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Drama",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 87,
+          "popularity": 747774,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1788704160,
+            "timeUntilAiring": 100696,
+            "episode": 1177,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 18,
+                  "name": "Toei Animation",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 20605,
+          "title": {
+            "english": "Tokyo Ghoul",
+            "userPreferred": "Tokyo Ghoul",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b20605-k665mVkSug8D.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b20605-k665mVkSug8D.jpg",
+            "color": "#ff6b35",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2014,
+            "month": 7,
+            "day": 4,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2014,
+            "month": 9,
+            "day": 19,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20605-RCJ7M71zLmrh.jpg",
+          "season": "SUMMER",
+          "description": "The suspense horror/dark fantasy story is set in Tokyo, which is haunted by mysterious \"ghouls\" who are devouring humans. People are gripped by the fear of these ghouls whose identities are masked in mystery. An ordinary college student named Kaneki encounters Rize, a girl who is an avid reader like him, at the café he frequents. Little does he realize that his fate will change overnight.\n<br><br>\n(Source: Anime News Network)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 12,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Drama",
+            "Horror",
+            "Mystery",
+            "Psychological",
+            "Supernatural"
+          ],
+          "isAdult": false,
+          "averageScore": 76,
+          "popularity": 737779,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 1,
+                  "name": "Studio Pierrot",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 20958,
+          "title": {
+            "english": "Attack on Titan Season 2",
+            "userPreferred": "Shingeki no Kyojin Season 2",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20958-HuFJyr54Mmir.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20958-HuFJyr54Mmir.jpg",
+            "color": "#e47850",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2017,
+            "month": 4,
+            "day": 1,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2017,
+            "month": 6,
+            "day": 17,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20958-Y7eQdz9VENBD.jpg",
+          "season": "SPRING",
+          "description": "Eren Jaeger swore to wipe out every last Titan, but in a battle for his life he wound up becoming the thing he hates most. With his new powers, he fights for humanity's freedom facing the monsters that threaten his home. After a bittersweet victory against the Female Titan, Eren finds no time to rest—a horde of Titans is approaching Wall Rose and the battle for humanity continues!<br><br>\n\n(Source: Funimation)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 12,
+          "duration": 25,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Drama",
+            "Fantasy",
+            "Mystery"
+          ],
+          "isAdult": false,
+          "averageScore": 85,
+          "popularity": 731481,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 858,
+                  "name": "WIT STUDIO",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 5114,
+          "title": {
+            "english": "Fullmetal Alchemist: Brotherhood",
+            "userPreferred": "Hagane no Renkinjutsushi: FULLMETAL ALCHEMIST",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx5114-nSWCgQlmOMtj.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx5114-nSWCgQlmOMtj.jpg",
+            "color": "#e4c993",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2009,
+            "month": 4,
+            "day": 5,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2010,
+            "month": 7,
+            "day": 4,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/5114-q0V5URebphSG.jpg",
+          "season": "SPRING",
+          "description": "\"In order for something to be obtained, something of equal value must be lost.\"\n<br><br>\nAlchemy is bound by this Law of Equivalent Exchange—something the young brothers Edward and Alphonse Elric only realize after attempting human transmutation: the one forbidden act of alchemy. They pay a terrible price for their transgression—Edward loses his left leg, Alphonse his physical body. It is only by the desperate sacrifice of Edward's right arm that he is able to affix Alphonse's soul to a suit of armor. Devastated and alone, it is the hope that they would both eventually return to their original bodies that gives Edward the inspiration to obtain metal limbs called \"automail\" and become a state alchemist, the Fullmetal Alchemist.\n<br><br>\nThree years of searching later, the brothers seek the Philosopher's Stone, a mythical relic that allows an alchemist to overcome the Law of Equivalent Exchange. Even with military allies Colonel Roy Mustang, Lieutenant Riza Hawkeye, and Lieutenant Colonel Maes Hughes on their side, the brothers find themselves caught up in a nationwide conspiracy that leads them not only to the true nature of the elusive Philosopher's Stone, but their country's murky history as well. In between finding a serial killer and racing against time, Edward and Alphonse must ask themselves if what they are doing will make them human again... or take away their humanity.\n<br><br>\n(Source: MAL Rewrite)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 64,
+          "duration": 25,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Drama",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 90,
+          "popularity": 726332,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 4,
+                  "name": "bones",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 20,
+          "title": {
+            "english": "Naruto",
+            "userPreferred": "NARUTO",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20-dE6UHbFFg1A5.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20-dE6UHbFFg1A5.jpg",
+            "color": "#e47850",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2002,
+            "month": 10,
+            "day": 3,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2007,
+            "month": 2,
+            "day": 8,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20-HHxhPj5JD13a.jpg",
+          "season": "FALL",
+          "description": "Naruto Uzumaki, a hyperactive and knuckle-headed ninja, lives in Konohagakure, the Hidden Leaf village. Moments prior to his birth, a huge demon known as the Kyuubi, the Nine-tailed Fox, attacked Konohagakure and wreaked havoc. In order to put an end to the Kyuubi's rampage, the leader of the village, the 4th Hokage, sacrificed his life and sealed the monstrous beast inside the newborn Naruto. <br><br>\nShunned because of the presence of the Kyuubi inside him, Naruto struggles to find his place in the village. He strives to become the Hokage of Konohagakure, and he meets many friends and foes along the way. <br><br>\n(Source: MAL Rewrite)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 220,
+          "duration": 23,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Drama",
+            "Fantasy",
+            "Supernatural"
+          ],
+          "isAdult": false,
+          "averageScore": 80,
+          "popularity": 723094,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 1,
+                  "name": "Studio Pierrot",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 11757,
+          "title": {
+            "english": "Sword Art Online",
+            "userPreferred": "Sword Art Online",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx11757-SxYDUzdr9rh2.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx11757-SxYDUzdr9rh2.jpg",
+            "color": "#e4bb5d",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2012,
+            "month": 7,
+            "day": 8,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2012,
+            "month": 12,
+            "day": 23,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/11757-TlEEV9weG4Ag.jpg",
+          "season": "SUMMER",
+          "description": "In the near future, a Virtual Reality Massive Multiplayer Online Role-Playing Game (VRMMORPG) called Sword Art Online has been released where players control their avatars with their bodies using a piece of technology called Nerve Gear. One day, players discover they cannot log out, as the game creator is holding them captive unless they reach the 100th floor of the game's tower and defeat the final boss. However, if they die in the game, they die in real life. Their struggle for survival starts now...<br><br>\n(Source: Crunchyroll)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 25,
+          "duration": 23,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy",
+            "Romance"
+          ],
+          "isAdult": false,
+          "averageScore": 70,
+          "popularity": 717036,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 561,
+                  "name": "A-1 Pictures",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 20954,
+          "title": {
+            "english": "A Silent Voice",
+            "userPreferred": "Koe no Katachi",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20954-sYRfE5jQRtSB.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20954-sYRfE5jQRtSB.jpg",
+            "color": "#5dbbe4",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2016,
+            "month": 9,
+            "day": 17,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2016,
+            "month": 9,
+            "day": 17,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20954-f30bHMXa5Qoe.jpg",
+          "season": "SUMMER",
+          "description": "After transferring into a new school, a deaf girl, Shouko Nishimiya, is bullied by the popular Shouya Ishida. As Shouya continues to bully Shouko, the class turns its back on him. Shouko transfers and Shouya grows up as an outcast. Alone and depressed, the regretful Shouya finds Shouko to make amends.\n<br><br>\n(Source: Eleven Arts)",
+          "type": "ANIME",
+          "format": "MOVIE",
+          "status": "FINISHED",
+          "episodes": 1,
+          "duration": 130,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Drama",
+            "Romance",
+            "Slice of Life"
+          ],
+          "isAdult": false,
+          "averageScore": 88,
+          "popularity": 713740,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 2,
+                  "name": "Kyoto Animation",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 21519,
+          "title": {
+            "english": "Your Name.",
+            "userPreferred": "Kimi no Na wa.",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21519-SUo3ZQuCbYhJ.png",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21519-SUo3ZQuCbYhJ.png",
+            "color": "#0da1e4",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2016,
+            "month": 8,
+            "day": 26,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2016,
+            "month": 8,
+            "day": 26,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21519-1ayMXgNlmByb.jpg",
+          "season": "SUMMER",
+          "description": "Mitsuha Miyamizu, a high school girl, yearns to live the life of a boy in the bustling city of Tokyo—a dream that stands in stark contrast to her present life in the countryside. Meanwhile in the city, Taki Tachibana lives a busy life as a high school student while juggling his part-time job and hopes for a future in architecture.<br>\n<br>\nOne day, Mitsuha awakens in a room that is not her own and suddenly finds herself living the dream life in Tokyo—but in Taki's body! Elsewhere, Taki finds himself living Mitsuha's life in the humble countryside. In pursuit of an answer to this strange phenomenon, they begin to search for one another.<br>\n<br>\n<i>Kimi no Na wa.</i> revolves around Mitsuha and Taki's actions, which begin to have a dramatic impact on each other's lives, weaving them into a fabric held together by fate and circumstance.<br>\n<br>\n(Source: MAL Rewrite)",
+          "type": "ANIME",
+          "format": "MOVIE",
+          "status": "FINISHED",
+          "episodes": 1,
+          "duration": 107,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Drama",
+            "Romance",
+            "Supernatural"
+          ],
+          "isAdult": false,
+          "averageScore": 86,
+          "popularity": 711951,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 291,
+                  "name": "CoMix Wave",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        }
+      ],
+      "__typename": "Page"
+    },
+    "top": {
+      "media": [
+        {
+          "id": 154587,
+          "title": {
+            "english": "Frieren: Beyond Journey’s End",
+            "userPreferred": "Sousou no Frieren",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx154587-qQTzQnEJJ3oB.jpg",
+            "color": "#bbf1a1",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2023,
+            "month": 9,
+            "day": 29,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2024,
+            "month": 3,
+            "day": 22,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/154587-ivXNJ23SM1xB.jpg",
+          "season": "FALL",
+          "description": "The adventure is over but life goes on for an elf mage just beginning to learn what living is all about. Elf mage Frieren and her courageous fellow adventurers have defeated the Demon King and brought peace to the land. But Frieren will long outlive the rest of her former party. How will she come to understand what life means to the people around her? Decades after their victory, the funeral of one her friends confronts Frieren with her own near immortality. Frieren sets out to fulfill the last wishes of her comrades and finds herself beginning a new adventure…\n<br><br>\n(Source: Crunchyroll)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 28,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Adventure",
+            "Drama",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 91,
+          "popularity": 477014,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 11,
+                  "name": "MADHOUSE",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 114129,
+          "title": {
+            "english": "Gintama: THE VERY FINAL",
+            "userPreferred": "Gintama: THE FINAL",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx114129-RLgSuh6YbeYx.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx114129-RLgSuh6YbeYx.jpg",
+            "color": "#e48643",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2021,
+            "month": 1,
+            "day": 8,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2021,
+            "month": 1,
+            "day": 8,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/114129-ZsLDkdwaYeJY.jpg",
+          "season": "WINTER",
+          "description": "<i>Gintama: THE FINAL</i> is the 3rd and final film adaptation of the remainder of the Silver Soul arc and is the series finale.\n<br><br>\nTwo years have passed following the Tendoshuu's invasion of the O-Edo Central Terminal. Since then, the Yorozuya have gone their separate ways. Foreseeing Utsuro's return, Gintoki Sakata begins surveying Earth's ley lines for traces of the other man's Altana. After an encounter with the remnants of the Tendoshuu—who continue to press on in search of immortality—Gintoki returns to Edo.\n<br><br>\nLater, the regrouped Shinsengumi and Yorozuya begin an attack on the occupied Central Terminal. With the Altana harvested by the wreckage of the Tendoshuu's ship in danger of detonating, the Yorozuya and their allies fight their enemies while the safety of Edo—and the rest of the world—hangs in the balance. Fulfilling the wishes of their teacher, Shouyou Yoshida's former students unite and relive their pasts one final time in an attempt to save their futures.",
+          "type": "ANIME",
+          "format": "MOVIE",
+          "status": "FINISHED",
+          "episodes": 1,
+          "duration": 104,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Comedy",
+            "Drama",
+            "Sci-Fi"
+          ],
+          "isAdult": false,
+          "averageScore": 91,
+          "popularity": 55370,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 6116,
+                  "name": "Bandai Namco Pictures",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 20996,
+          "title": {
+            "english": "Gintama Season 3",
+            "userPreferred": "Gintama°",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20996-kBEGEGdeK1r7.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20996-kBEGEGdeK1r7.jpg",
+            "color": "#e45d86",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2015,
+            "month": 4,
+            "day": 8,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2016,
+            "month": 3,
+            "day": 30,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20996-gaNJKtjmy3Pf.jpg",
+          "season": "SPRING",
+          "description": "Gintoki, Shinpachi, and Kagura return as the fun-loving but broke members of the Yorozuya team! Living in an alternate-reality Edo, where swords are prohibited and alien overlords have conquered Japan, they try to thrive on doing whatever work they can get their hands on. However, Shinpachi and Kagura still haven't been paid... Does Gin-chan really spend all that cash playing pachinko?\n\nMeanwhile, when Gintoki drunkenly staggers home one night, an alien spaceship crashes nearby. A fatally injured crew member emerges from the ship and gives Gintoki a strange, clock-shaped device, warning him that it is incredibly powerful and must be safeguarded. Mistaking it for his alarm clock, Gintoki proceeds to smash the device the next morning and suddenly discovers that the world outside his apartment has come to a standstill. With Kagura and Shinpachi at his side, he sets off to get the device fixed; though, as usual, nothing is ever that simple for the Yorozuya team.\n\nFilled with tongue-in-cheek humor and moments of heartfelt emotion, Gintama's fourth season finds Gintoki and his friends facing both their most hilarious misadventures and most dangerous crises yet.\n\n<br></br>(Source: MAL Rewrite)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 51,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Comedy",
+            "Drama",
+            "Sci-Fi"
+          ],
+          "isAdult": false,
+          "averageScore": 90,
+          "popularity": 119339,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 6116,
+                  "name": "Bandai Namco Pictures",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 185874,
+          "title": {
+            "english": "BLEACH: Thousand-Year Blood War - The Calamity",
+            "userPreferred": "BLEACH: Sennen Kessen-hen - Kashin-tan",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx185874-aU3e6tBT6wwA.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx185874-aU3e6tBT6wwA.jpg",
+            "color": null,
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 7,
+            "day": 25,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": null,
+            "month": null,
+            "day": null,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/185874-IdGyh1EBG91I.jpg",
+          "season": "SUMMER",
+          "description": "The fourth and final part of <i>BLEACH: Sennen Kessen-hen</i>. <br><br>\n\nDestruction looms at the end of the Thousand-Year Blood War between the Soul Reapers and Quincies… as the death of the Soul King mirrors the collapse of the Three Worlds, distortions and omens of destruction start to appear in all realms. \n<br><br>\nFierce battles erupt throughout the Wahr Welt between the Thirteen Court Guard Squads and the Royal Guard. Ichigo learns about Uryuu's true intentions and renews his determination to protect the world together, as friends who trust each other. Yhwach has surpassed even his own ability, The Almighty...\n<br><br>\nThe fierce battle for the survival of the Three Worlds approaches its end. Beyond the chaos of calamity, what lies in wait—despair or hope?<br><br>\n\n(Source: VIZ Media, edited)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "RELEASING",
+          "episodes": 10,
+          "duration": null,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Supernatural"
+          ],
+          "isAdult": false,
+          "averageScore": 90,
+          "popularity": 82887,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1788616800,
+            "timeUntilAiring": 13336,
+            "episode": 7,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 7517,
+                  "name": "PIERROT FILMS",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 189046,
+          "title": {
+            "english": "Re:ZERO -Starting Life in Another World- Season 4",
+            "userPreferred": "Re:Zero kara Hajimeru Isekai Seikatsu 4th Season",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx189046-yaHWtS5FII46.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx189046-yaHWtS5FII46.jpg",
+            "color": "#e49350",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2026,
+            "month": 4,
+            "day": 8,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2026,
+            "month": 9,
+            "day": 30,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/189046-MDk2CaVuRWpb.jpg",
+          "season": "SPRING",
+          "description": "To save his stricken allies, Subaru faces a deadly desert to find the Sage at Pleiades Watchtower.<br><br>\n\n(Source: Crunchyroll News)\n\n<br><br>\n<i>Note: Lucca Comics & Games pre-screened episode 1 early on November 1, 2025, prior to the Japanese television broadcast on July 8th, 2026.",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "RELEASING",
+          "episodes": 19,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Drama",
+            "Fantasy",
+            "Psychological",
+            "Romance",
+            "Thriller"
+          ],
+          "isAdult": false,
+          "averageScore": 90,
+          "popularity": 136865,
+          "mediaListEntry": null,
+          "nextAiringEpisode": {
+            "airingAt": 1788958800,
+            "timeUntilAiring": 355336,
+            "episode": 16,
+            "__typename": "AiringSchedule"
+          },
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 314,
+                  "name": "WHITE FOX",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 171627,
+          "title": {
+            "english": "Chainsaw Man – The Movie: Reze Arc",
+            "userPreferred": "Chainsaw Man: Reze-hen",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx171627-ZN9D7P46yHnw.png",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx171627-ZN9D7P46yHnw.png",
+            "color": "#e43550",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2025,
+            "month": 9,
+            "day": 19,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2025,
+            "month": 9,
+            "day": 19,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/171627-7esVHhgw69rn.jpg",
+          "season": "SUMMER",
+          "description": "Theatrical follow-up to <i>Chainsaw Man</i>.<br><br>\nDenji became “Chainsaw Man”, a boy with a devil’s heart, and is now part of Special Division 4’s devil hunters. After a date with Makima, the woman of his dreams, Denji takes shelter from the rain. There he meets Reze, a girl who works in a café.<br><br>\n\n(Source: MAPPA CHANNEL)\n\n",
+          "type": "ANIME",
+          "format": "MOVIE",
+          "status": "FINISHED",
+          "episodes": 1,
+          "duration": 100,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Drama",
+            "Horror",
+            "Romance",
+            "Supernatural"
+          ],
+          "isAdult": false,
+          "averageScore": 90,
+          "popularity": 235398,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 569,
+                  "name": "MAPPA",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 5114,
+          "title": {
+            "english": "Fullmetal Alchemist: Brotherhood",
+            "userPreferred": "Hagane no Renkinjutsushi: FULLMETAL ALCHEMIST",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx5114-nSWCgQlmOMtj.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx5114-nSWCgQlmOMtj.jpg",
+            "color": "#e4c993",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2009,
+            "month": 4,
+            "day": 5,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2010,
+            "month": 7,
+            "day": 4,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/5114-q0V5URebphSG.jpg",
+          "season": "SPRING",
+          "description": "\"In order for something to be obtained, something of equal value must be lost.\"\n<br><br>\nAlchemy is bound by this Law of Equivalent Exchange—something the young brothers Edward and Alphonse Elric only realize after attempting human transmutation: the one forbidden act of alchemy. They pay a terrible price for their transgression—Edward loses his left leg, Alphonse his physical body. It is only by the desperate sacrifice of Edward's right arm that he is able to affix Alphonse's soul to a suit of armor. Devastated and alone, it is the hope that they would both eventually return to their original bodies that gives Edward the inspiration to obtain metal limbs called \"automail\" and become a state alchemist, the Fullmetal Alchemist.\n<br><br>\nThree years of searching later, the brothers seek the Philosopher's Stone, a mythical relic that allows an alchemist to overcome the Law of Equivalent Exchange. Even with military allies Colonel Roy Mustang, Lieutenant Riza Hawkeye, and Lieutenant Colonel Maes Hughes on their side, the brothers find themselves caught up in a nationwide conspiracy that leads them not only to the true nature of the elusive Philosopher's Stone, but their country's murky history as well. In between finding a serial killer and racing against time, Edward and Alphonse must ask themselves if what they are doing will make them human again... or take away their humanity.\n<br><br>\n(Source: MAL Rewrite)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 64,
+          "duration": 25,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Drama",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 90,
+          "popularity": 726332,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 4,
+                  "name": "bones",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 182469,
+          "title": {
+            "english": "ONE PIECE FAN LETTER",
+            "userPreferred": "ONE PIECE FAN LETTER",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182469-JQ808NBPxmgn.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx182469-JQ808NBPxmgn.jpg",
+            "color": "#e4935d",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2024,
+            "month": 10,
+            "day": 20,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2024,
+            "month": 10,
+            "day": 20,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/182469-obNr7bznMzN7.jpg",
+          "season": "FALL",
+          "description": "To commemorate the 25th anniversary of the <i>ONE PIECE</i> TV anime: an animated adaptation of the \"ONE PIECE novel: Mugiwara Stories\". <br><br>\n\nTwo years after the Paramount War, the Straw Hats are about to reunite on the Sabaody Archipelago. At the same time, a girl who is head over heels for Nami is trying to hand a fan letter to her before the group leaves the island.<br><br>\n(Source: Crunchyroll)",
+          "type": "ANIME",
+          "format": "SPECIAL",
+          "status": "FINISHED",
+          "episodes": 1,
+          "duration": 25,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 90,
+          "popularity": 57821,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 18,
+                  "name": "Toei Animation",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 104578,
+          "title": {
+            "english": "Attack on Titan Season 3 Part 2",
+            "userPreferred": "Shingeki no Kyojin Season 3 Part 2",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx104578-k61nx3LPjvgd.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx104578-k61nx3LPjvgd.jpg",
+            "color": "#e49350",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2019,
+            "month": 4,
+            "day": 29,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2019,
+            "month": 7,
+            "day": 1,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/104578-z7SadpYEuAsy.jpg",
+          "season": "SPRING",
+          "description": "The battle to retake Wall Maria begins now! With Eren’s new hardening ability, the Scouts are confident they can seal the wall and take back Shiganshina District. If they succeed, Eren can finally unlock the secrets of the basement—and the world. But danger lies in wait as Reiner, Bertholdt, and the Beast Titan have plans of their own. Could this be humanity’s final battle for survival?<br>\n<br>\n(Source: Funimation)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 10,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Drama",
+            "Fantasy",
+            "Mystery"
+          ],
+          "isAdult": false,
+          "averageScore": 90,
+          "popularity": 609153,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 858,
+                  "name": "WIT STUDIO",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 124194,
+          "title": {
+            "english": "Fruits Basket The Final Season",
+            "userPreferred": "Fruits Basket: The Final",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx124194-TJlqMMR7BGn9.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx124194-TJlqMMR7BGn9.jpg",
+            "color": "#35bbf1",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2021,
+            "month": 4,
+            "day": 6,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/124194-IB2X2IdALUYB.jpg",
+          "season": "SPRING",
+          "description": "After last season’s revelations, the Soma family moves forward, but the emotional chains that bind them are not easily broken. Unable to admit why she wants the cure, Tohru wrestles with the truth, aware that time is running out for someone close.\n<br><br>\nAnd a secret still lurks that could break another’s heart. But hope is not lost—a clue to the curse is found. Could their imprisonment’s end be near?<br><br>\n(Source: Funimation)<br><br>\n<i>Note: This season premiered on Funimation and AnimeLab on March 20, 2021. The Japanese broadcast started two weeks later on April 6, 2021.</i>",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 13,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Comedy",
+            "Drama",
+            "Psychological",
+            "Romance",
+            "Slice of Life",
+            "Supernatural"
+          ],
+          "isAdult": false,
+          "averageScore": 89,
+          "popularity": 176444,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 73,
+                  "name": "TMS Entertainment",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 11061,
+          "title": {
+            "english": "Hunter x Hunter (2011)",
+            "userPreferred": "HUNTER×HUNTER (2011)",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx11061-y5gsT1hoHuHw.png",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx11061-y5gsT1hoHuHw.png",
+            "color": "#f1d65d",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2011,
+            "month": 10,
+            "day": 2,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2014,
+            "month": 9,
+            "day": 24,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/11061-8WkkTZ6duKpq.jpg",
+          "season": "FALL",
+          "description": "A new adaption of the manga of the same name by Togashi Yoshihiro.<br><br>\nA Hunter is one who travels the world doing all sorts of dangerous tasks. From capturing criminals to searching deep within uncharted lands for any lost treasures. Gon is a young boy whose father disappeared long ago, being a Hunter. He believes if he could also follow his father's path, he could one day reunite with him.<br><br>\nAfter becoming 12, Gon leaves his home and takes on the task of entering the Hunter exam, notorious for its low success rate and high probability of death to become an official Hunter. He befriends the revenge-driven Kurapika, the doctor-to-be Leorio and the rebellious ex-assassin Killua in the exam, with their friendship prevailing throughout the many trials and threats they come upon taking on the dangerous career of a Hunter.",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 148,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy"
+          ],
+          "isAdult": false,
+          "averageScore": 89,
+          "popularity": 838114,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 11,
+                  "name": "MADHOUSE",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 9253,
+          "title": {
+            "english": "Steins;Gate",
+            "userPreferred": "Steins;Gate",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx9253-tIUXF2gfU8Sg.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx9253-tIUXF2gfU8Sg.jpg",
+            "color": "#ffd6ae",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2011,
+            "month": 4,
+            "day": 6,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2011,
+            "month": 9,
+            "day": 14,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/n9253-JIhmKgBKsWUN.jpg",
+          "season": "SPRING",
+          "description": "Self-proclaimed mad scientist Okabe Rintarou lives in a small room in Akihabara, where he invents \"future gadgets\" with fellow lab members Shiina Mayuri, his air-headed childhood friend, and Hashida Itaru, an otaku hacker. The three pass the time by tinkering with their latest creation, a \"Phone Microwave\" that can be controlled through text messages. \n<br><br>\nThe lab members soon face a string of mysterious incidents that lead to a game-changing discovery: the Phone Microwave can send emails to the past and thus alter history. Adapted from the critically acclaimed visual novel by 5pb. and Nitroplus, Steins;Gate takes Okabe to the depths of scientific theory and human despair as he faces the dire consequences of changing the past.",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 24,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Drama",
+            "Psychological",
+            "Sci-Fi",
+            "Thriller"
+          ],
+          "isAdult": false,
+          "averageScore": 89,
+          "popularity": 592953,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 314,
+                  "name": "WHITE FOX",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 21745,
+          "title": {
+            "english": "Owarimonogatari Second Season",
+            "userPreferred": "Owarimonogatari (Ge)",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21745-VrhhJjZNdBXV.png",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21745-VrhhJjZNdBXV.png",
+            "color": "#5dbbe4",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2017,
+            "month": 8,
+            "day": 12,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2017,
+            "month": 8,
+            "day": 13,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21745-5psGR43Ck4RZ.jpg",
+          "season": "SUMMER",
+          "description": "Third and “Final Season” of the Monogatari Series, part 4/5. Contains the arcs Mayoi Hell, Hitagi Rendezvous, and Ougi Dark from the Owarimonogatari light novels.\n<br><br>\nKoyomi wakes up to see Mayoi Hachikuji before him, the girl who supposedly had gone to the afterlife. She tells Koyomi that they are currently in Avichi, the lowest levels of hell. Koyomi is dubious of how Mayoi knew about the exact timing of his death and which hell he would drop into, when Mayoi tells him that she was there to pick him up by the request of a certain individual.\n<br><br>\n(Source: Aniplex)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 7,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Comedy",
+            "Mystery",
+            "Psychological",
+            "Romance",
+            "Supernatural"
+          ],
+          "isAdult": false,
+          "averageScore": 89,
+          "popularity": 123498,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 44,
+                  "name": "Shaft",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 15417,
+          "title": {
+            "english": "Gintama Season 2 Part 2",
+            "userPreferred": "Gintama': Enchousen",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx15417-Uc2uNdWEixwi.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx15417-Uc2uNdWEixwi.jpg",
+            "color": "#50aed6",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2012,
+            "month": 10,
+            "day": 4,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2013,
+            "month": 3,
+            "day": 28,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/15417-0T9JCwFZM99Q.jpg",
+          "season": "FALL",
+          "description": "While Gintoki Sakata was away, the Yorozuya found themselves a new leader: Kintoki, Gintoki's golden-haired doppelganger. In order to regain his former position, Gintoki will need the help of those around him, a troubling feat when no one can remember him! Between Kintoki and Gintoki, who will claim the throne as the main character?\n<br><br>\nIn addition, Yorozuya make a trip back down to red-light district of Yoshiwara to aid an elderly courtesan in her search for her long-lost lover. Although the district is no longer in chains beneath the earth's surface, the trio soon learn of the tragic backstories of Yoshiwara's inhabitants that still haunt them. With flashback after flashback, this quest has Yorozuya witnessing everlasting love and protecting it as best they can with their hearts and souls.\n<br><br>\n<i>Gintama'</i>: Enchousen includes moments of action-packed intensity along with their usual lighthearted, slapstick humor for Gintoki and his friends.\n<br><br>\n(Source: MAL Rewrite)",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 13,
+          "duration": 24,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Action",
+            "Comedy",
+            "Drama",
+            "Sci-Fi"
+          ],
+          "isAdult": false,
+          "averageScore": 89,
+          "popularity": 84244,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 14,
+                  "name": "Sunrise",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        },
+        {
+          "id": 98478,
+          "title": {
+            "english": "March comes in like a lion Season 2",
+            "userPreferred": "3-gatsu no Lion 2nd Season",
+            "__typename": "MediaTitle"
+          },
+          "coverImage": {
+            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx98478-Yua5iL9zbrji.jpg",
+            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx98478-Yua5iL9zbrji.jpg",
+            "color": "#ffc993",
+            "__typename": "MediaCoverImage"
+          },
+          "startDate": {
+            "year": 2017,
+            "month": 10,
+            "day": 14,
+            "__typename": "FuzzyDate"
+          },
+          "endDate": {
+            "year": 2018,
+            "month": 3,
+            "day": 31,
+            "__typename": "FuzzyDate"
+          },
+          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/98478-BDH64RDmBlr8.jpg",
+          "season": "FALL",
+          "description": "The second season of <i>3-gatsu no Lion</i>.<br>\n<br>\nNow in his second year of high school, Rei Kiriyama continues pushing through his struggles in the professional shogi world as well as his personal life. Surrounded by vibrant personalities at the shogi hall, the school club, and in the local community, his solitary shell slowly begins to crack. Among them are the three Kawamoto sisters—Akari, Hinata, and Momo—who forge an affectionate and familial bond with Rei. Through these ties, he realizes that everyone is burdened by their own emotional hardships and begins learning how to rely on others while supporting them in return.<br>\n<br>\nNonetheless, the life of a professional is not easy. Between tournaments, championships, and title matches, the pressure mounts as Rei advances through the ranks and encounters incredibly skilled opponents. As he manages his relationships with those who have grown close to him, the shogi player continues to search for the reason he plays the game that defines his career.\n",
+          "type": "ANIME",
+          "format": "TV",
+          "status": "FINISHED",
+          "episodes": 22,
+          "duration": 25,
+          "chapters": null,
+          "volumes": null,
+          "genres": [
+            "Drama",
+            "Slice of Life"
+          ],
+          "isAdult": false,
+          "averageScore": 89,
+          "popularity": 129884,
+          "mediaListEntry": null,
+          "nextAiringEpisode": null,
+          "studios": {
+            "edges": [
+              {
+                "isMain": true,
+                "node": {
+                  "id": 44,
+                  "name": "Shaft",
+                  "__typename": "Studio"
+                },
+                "__typename": "StudioEdge"
+              }
+            ],
+            "__typename": "StudioConnection"
+          },
+          "__typename": "Media"
+        }
+      ],
+      "__typename": "Page"
+    }
+  }
+}

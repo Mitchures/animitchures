@@ -20,7 +20,17 @@ export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    files: ['**/*.{ts,tsx}'],
+    // Playwright specs and scripts: Node globals, and no React rules — there is
+    // no React here. Without this exclusion, react-hooks/rules-of-hooks flags
+    // Playwright's `use(page)` fixture callback as a misused React Hook purely
+    // because of the name.
+    files: ['e2e/**/*.ts'],
+    languageOptions: {
+      globals: { ...globals.node, ...globals.browser, ...globals.es2021 },
+    },
+  },
+  {
+    files: ['src/**/*.{ts,tsx}'],
     languageOptions: {
       globals: { ...globals.browser, ...globals.es2021 },
     },

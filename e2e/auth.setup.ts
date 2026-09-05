@@ -1,4 +1,5 @@
 import { test as setup, expect } from '@playwright/test';
+import { mockAniList } from './anilist-mock';
 
 const AUTH_FILE = 'e2e/.auth/user.json';
 
@@ -13,11 +14,17 @@ setup('authenticate', async ({ page }) => {
 
   if (!email || !password) {
     throw new Error(
-      'E2E_EMAIL and E2E_PASSWORD must be set. They live in .env.test.local, which ' +
-        'playwright.config.ts loads. See ' +
-        'docs/superpowers/specs/2026-09-05-signed-in-e2e-testing-design.md',
+      'E2E_EMAIL and E2E_PASSWORD must be set. They belong in .env.test.local, which ' +
+        'playwright.config.ts loads and .gitignore excludes — so a fresh clone will not ' +
+        'have it. Create it with the credentials of a Firebase account that exists in ' +
+        'this project, then run `yarn e2e:seed` to populate that account\'s Firestore ' +
+        'documents.',
     );
   }
+
+  // Signing in lands on '/', which fires the Featured query. Mock it so the
+  // setup makes zero live AniList requests, same as every other spec.
+  await mockAniList(page);
 
   await page.goto('/login');
   await page.fill('#login-username', email);

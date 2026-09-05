@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../anilist-mock';
 
 test('the saved session is signed in', async ({ page }) => {
   await page.goto('/');
