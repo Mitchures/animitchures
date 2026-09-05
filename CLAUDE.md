@@ -190,12 +190,23 @@ Known rough edges worth knowing before touching related code:
 - Unit tests are `src/**/*.test.{ts,tsx}` and run under vitest with `globals: true` — use
   `vi.fn()`, not `jest.fn()`, and render via `renderWithProviders` from `test-utils`.
   Playwright specs are `e2e/*.spec.ts`; vitest is scoped to `src` so it never picks them up.
-- **`yarn e2e` hits the live AniList API, which allows 30 requests/minute.** One run makes
-  roughly 17 page loads, so running the suite two or three times in quick succession will
-  trip the limit. AniList's 429 response carries no CORS header, so the browser reports it as
-  `blocked by CORS policy` — misleading, and not a bug in the app. Check with
-  `curl -sD- -o/dev/null -XPOST https://graphql.anilist.co -H 'Content-Type: application/json' -d '{"query":"{Media(id:1){id}}"}' | grep -i ratelimit`
-  before debugging a failure. Tests that only assert layout use `gotoShell()`, which skips
-  the API entirely; reserve `gotoDiscover()` for assertions that need real media.
+- **`yarn e2e` never touches the live AniList API.** Every request is answered from a
+  captured fixture in `e2e/fixtures/`; an unmatched operation throws rather than falling
+  through to the network. Verified by probing `x-ratelimit-remaining` around a full run.
+  `yarn e2e:live` is the opt-in drift check that does hit the real API — run it after any
+  AniList-facing change, or when a real bug appears the suite did not catch. Fixture drift
+  is now the main residual testing risk.
+- **Four Playwright projects.** `setup` signs in once and saves `e2e/.auth/user.json`;
+  `public` holds the signed-out specs and must never be given a storageState (they assert
+  signed-out behaviour); `authed` reuses the saved session; `live` is excluded from default
+  runs by the `@live` tag, since Playwright otherwise runs every project.
+- **Signed-in testing needs two local files, both gitignored.** `.env.test.local` holds
+  real credentials for a Firebase test account that exists in the production project, and
+  `e2e/.auth/` holds its saved session. A fresh clone has neither. Recreate with
+  `yarn e2e:seed` after putting credentials in place.
+- **Private routes cannot be reached with `page.goto()`.** `user` is null on first render,
+  so the `*` catch-all redirects to `/`. Navigate by clicking sidebar or overlay links.
+  `e2e/authed/signed-in.spec.ts` documents this with a `test.fail()` that will start
+  complaining when the bug is fixed.
 - `src/graphql/types.ts` is generated — change `codegen.yml` and rerun `yarn generate` instead of
   editing it.
