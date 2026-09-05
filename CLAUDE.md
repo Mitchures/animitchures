@@ -79,8 +79,10 @@ src/
   test-utils.tsx     renderWithProviders() — RTL render wrapped in the app's providers
   api/services/      Firestore reads/writes: favorites.ts, profile.ts, anilist.ts (tokens)
   components/        Shared UI; components/details/* are Details-page sections
+                     Skeleton.tsx is a shimmer primitive, currently used only by Details
   config/            firebase.ts (app, auth, db, storage, Apple/Google providers), apollo-client.ts
   context/           useReducer-based global store (StateProvider, reducer, types, initialState)
+                     ScrollContainer.tsx shares the scrolling element (see "Scrolling" below)
   graphql/           queries.ts, mutations.ts (handwritten), types.ts (GENERATED — don't edit)
   helpers/           authHeader() — reads the AniList token from localStorage
   utils/hooks/       useInput
@@ -114,13 +116,37 @@ the token.
 user creation; `linkedAnilistAccount` flips `users/{uid}.anilistLinked` when an `anilist/{uid}` doc
 appears.
 
+**Shell chrome.** `Navigation` is a 72px icon rail that expands to 240px on hover. It is
+absolutely positioned and `.app__body` reserves its width with a margin, so expanding it
+overlays the page instead of shifting it. Account controls — notifications, settings,
+profile, logout — sit in `.navigation__footer` at the bottom; the header holds only search
+and is sticky. Below 960px the rail is hidden and `MobileMenu` takes over.
+
+**Scrolling.** The window never scrolls: `.app__body` is a fixed-height `overflow-y: auto`
+box. So `useScroll()` from framer-motion silently produces zeros, and window scroll
+listeners never fire. `AppShell` publishes that element through `ScrollContainerProvider`;
+read it with `useScrollContainer()` and drive a `MotionValue` from its `scrollTop`
+(`Details.tsx` is the worked example). `useInView` is unaffected — IntersectionObserver
+still resolves against the viewport.
+
+**Details page.** A hero over the banner (poster, title, alternative titles, genres, four
+stat chips, actions) followed by tabs: Overview, Characters, Staff, Relations. The active
+tab lives in `?tab=`, written with `replace` so switching tabs does not stack history;
+an unknown value falls back to Overview. Tabs are only rendered when they have content —
+Relations is gated on the ANIME filter it applies internally, not on `edges.length`.
+The banner image is its own layer, extended 200px above the banner so its parallax
+translation (max 165px) never exposes an edge. Every effect is off under
+`prefers-reduced-motion`. `DetailsSkeleton` deliberately avoids the real `details__*`
+class names — the e2e suite waits on `.details__hero` to know data arrived.
+
 **Routing.** All routes except `/login` and `/sign-up` render inside a Navigation + Header shell.
 Private routes are rendered conditionally on `user` in the route tree, with `*` → `<Navigate to="/" />`.
 
 ## Current state — what's done and what isn't
 
-Working: discover/featured page, search, details page, favorites, Firebase auth
-(email+password, Google, Apple), settings, AniList linking, AniList watchlist view.
+Working: discover/featured page, search, details page (hero + tabs, parallax, skeleton
+loading), favorites, Firebase auth (email+password, Google, Apple), settings, AniList
+linking, AniList watchlist view. Responsive down to 320px.
 
 Unfinished or parked — mostly deliberate, don't "fix" without asking:
 - `views/ComingSoon.tsx` and `views/Community.tsx` are one-line stubs. Their links now live
