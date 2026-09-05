@@ -1,6 +1,15 @@
 import './Characters.css';
 
+import CastChip from './CastChip';
+
 import { Media } from 'graphql/types';
+
+/** The shape this component actually reads off an edge's voiceActors. */
+type VoiceActor = {
+  language?: string | null;
+  name?: { userPreferred?: string | null } | null;
+  image?: { large?: string | null } | null;
+};
 
 // Convert text that may come back UpperCase.
 const convertText = (text: string) => {
@@ -17,33 +26,24 @@ function Characters({ characters }: Media) {
         <>
           <h3>Characters</h3>
           <div className="characters__container">
-            {characters.edges.map((character: any) => (
-              <div key={character.id} className="characters__block">
-                <div className="characters__blockLeft">
-                  <div className="characters__blockImageContainer">
-                    <img src={character.node.image.large} alt={character.node.name.userPreferred} />
-                  </div>
-                  <div className="characters__blockBody">
-                    <h5>{character.node.name.userPreferred}</h5>
-                    <p>{convertText(character.role)}</p>
-                  </div>
-                </div>
-                {character.voiceActors.length > 0 && (
-                  <div className="characters__blockRight">
-                    <div className="characters__blockBody">
-                      <h5>{character.voiceActors[0].name.userPreferred}</h5>
-                      <p>{character.voiceActors[0].language}</p>
-                    </div>
-                    <div className="characters__blockImageContainer">
-                      <img
-                        src={character.voiceActors[0].image.large}
-                        alt={character.voiceActors[0].name.userPreferred}
-                      />
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
+            {characters.edges.map((character: any) => {
+              // Japanese where there is one — the original performance for
+              // almost everything here.
+              const actor =
+                (character.voiceActors as VoiceActor[])?.find(
+                  (voice) => voice?.language === 'Japanese',
+                ) ?? character.voiceActors?.[0];
+              return (
+                <CastChip
+                  key={character.id}
+                  image={character.node.image?.large}
+                  name={character.node.name.userPreferred}
+                  meta={convertText(character.role)}
+                  insetImage={actor?.image?.large}
+                  insetName={actor?.name?.userPreferred}
+                />
+              );
+            })}
           </div>
         </>
       )}

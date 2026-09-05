@@ -1,0 +1,113 @@
+/* The inset's ring has to match the chip behind it so the portrait reads as
+   cut out of the card rather than stuck on top. Declared as a token because
+   the chip background differs by colour scheme. */
+.castChip {
+  --chip-bg: #f7f8fc;
+  --face: 72px;
+  /* Derived, not a second literal: the inset is defined as a proportion of the
+     portrait, so changing the portrait keeps the pairing in proportion. */
+  --inset: calc(var(--face) * 0.6);
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem 0.75rem 0.75rem;
+  background-color: var(--chip-bg);
+  border-radius: var(--border-radius);
+}
+
+.castChip__faces {
+  position: relative;
+  flex: none;
+  width: var(--face);
+  height: var(--face);
+}
+
+.castChip__face {
+  display: block;
+  width: var(--face);
+  height: var(--face);
+  object-fit: cover;
+  border-radius: 16px;
+  background-color: rgba(11, 22, 33, 0.06);
+  transition: transform 0.22s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.castChip__inset {
+  position: absolute;
+  right: -10px;
+  bottom: -10px;
+  width: var(--inset);
+  height: var(--inset);
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--chip-bg);
+  background-color: var(--chip-bg);
+  transition: transform 0.22s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+/* Both faces grow together, so the pairing holds its shape. The inset grows
+   from its own corner rather than the centre, or it drifts off the portrait. */
+.castChip:hover .castChip__face {
+  transform: scale(1.07);
+}
+
+.castChip:hover .castChip__inset {
+  transform: scale(1.12);
+  transform-origin: bottom right;
+}
+
+.castChip__body {
+  min-width: 0;
+}
+
+.castChip__body h5 {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--primary);
+}
+
+.castChip__body p {
+  margin: 0.15rem 0 0;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--secondary);
+}
+
+.castChip__insetName {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--secondary);
+  opacity: 0.75;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .castChip__face,
+  .castChip__inset {
+    transition: none;
+  }
+
+  .castChip:hover .castChip__face,
+  .castChip:hover .castChip__inset {
+    transform: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .castChip {
+    --chip-bg: #16202f;
+  }
+
+  .castChip__body h5 {
+    color: white;
+  }
+}

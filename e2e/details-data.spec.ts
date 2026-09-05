@@ -71,8 +71,12 @@ test.describe('details data sections', () => {
     // They used to be tabs, and before that both the UI and the query capped
     // them at six. The fixture predates the raised query cap and holds 8 staff,
     // which is still enough to prove the UI cap is gone.
-    await expect(page.locator('.characters__block').first()).toBeVisible();
-    expect(await page.locator('.staff__block').count()).toBeGreaterThan(6);
+    await expect(page.locator('.characters .castChip').first()).toBeVisible();
+    expect(await page.locator('.staff .castChip').count()).toBeGreaterThan(6);
+    // The voice actor is an inset on the character's portrait, not a second
+    // equal-sized face facing it.
+    await expect(page.locator('.characters .castChip__inset').first()).toBeVisible();
+    await expect(page.locator('.staff .castChip__inset')).toHaveCount(0);
     await expect(page.getByRole('tab', { name: 'Characters' })).toHaveCount(0);
   });
 

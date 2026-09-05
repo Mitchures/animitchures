@@ -1,5 +1,7 @@
 import './Staff.css';
 
+import CastChip from './CastChip';
+
 import { Media } from 'graphql/types';
 
 function Staff({ staff }: Media) {
@@ -9,18 +11,14 @@ function Staff({ staff }: Media) {
         <>
           <h3>Staff</h3>
           <div className="staff__container">
-            {staff.edges.map((staff: any) => (
-              <div key={staff.id} className="staff__block">
-                <div className="staff__blockLeft">
-                  <div className="staff__blockImageContainer">
-                    <img src={staff.node.image.large} alt={staff.node.name.userPreferred} />
-                  </div>
-                  <div className="staff__blockBody">
-                    <h5>{staff.node.name.userPreferred}</h5>
-                    <p>{staff.role}</p>
-                  </div>
-                </div>
-              </div>
+            {staff.edges.map((member: any) => (
+              // No inset: a crew credit is one person, not a pairing.
+              <CastChip
+                key={member.id}
+                image={member.node.image?.large}
+                name={member.node.name.userPreferred}
+                meta={member.role}
+              />
             ))}
           </div>
         </>
