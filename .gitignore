@@ -33,3 +33,9 @@ storage.rules
 
 # local design docs (specs, plans)
 /docs
+
+.vscode/
+# playwright
+/test-results
+/playwright-report
+/blob-report

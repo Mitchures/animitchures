@@ -112,7 +112,7 @@ function Settings() {
                 ) : (
                   <a
                     className="settings__loginWithAnilist"
-                    href={`https://anilist.co/api/v2/oauth/authorize?client_id=${process.env.REACT_APP_ANILIST_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_ANILIST_CALLBACK_URI}&response_type=code`}
+                    href={`https://anilist.co/api/v2/oauth/authorize?client_id=${import.meta.env.VITE_ANILIST_CLIENT_ID}&redirect_uri=${import.meta.env.VITE_ANILIST_CALLBACK_URI}&response_type=code`}
                   >
                     <div>
                       <img src={AnilistLogoImage} alt="Anilist" />

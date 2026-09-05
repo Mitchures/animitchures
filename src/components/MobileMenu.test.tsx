@@ -9,8 +9,8 @@ const user = { uid: 'u1', displayName: 'Mitchell', photoURL: null, email: 'm@exa
 const sections = getNavSections({ user, anilistUser: null });
 
 const setup = (open = true) => {
-  const onClose = jest.fn();
-  const onLogout = jest.fn();
+  const onClose = vi.fn();
+  const onLogout = vi.fn();
   const view = renderWithProviders(
     <MobileMenu open={open} sections={sections} user={user} onClose={onClose} onLogout={onLogout} />,
   );
