@@ -23,8 +23,8 @@
   font-weight: 800;
 }
 
-.features__body::-webkit-scrollbar { 
-  width: 0 !important 
+.features__body::-webkit-scrollbar {
+  width: 0 !important;
 }
 
 .features__body {

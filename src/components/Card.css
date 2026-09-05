@@ -25,7 +25,7 @@
 
 .card__label {
   display: -webkit-box;
-  color: rgb(116,136,153);
+  color: rgb(116, 136, 153);
   /* Derived from the poster height at the image's 2:3 ratio, so the label can
      never disagree with the image width the way two literals could. */
   max-width: calc(var(--card-poster-height) * 2 / 3);
@@ -33,7 +33,7 @@
   padding-top: 0.625rem;
   font-weight: 600;
   overflow: hidden;
-  transition: color .2s ease;
+  transition: color 0.2s ease;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }

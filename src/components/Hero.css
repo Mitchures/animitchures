@@ -7,7 +7,7 @@
 
 .hero h1 {
   cursor: pointer;
-  text-shadow: 2px 3px 12px rgba(0,0,0,0.5);
+  text-shadow: 2px 3px 12px rgba(0, 0, 0, 0.5);
   transition: all 0.2s;
 }
 
@@ -80,7 +80,7 @@
 .hero__score {
   display: flex;
   align-items: center;
-  text-shadow: 2px 3px 12px rgba(0,0,0,0.5);
+  text-shadow: 2px 3px 12px rgba(0, 0, 0, 0.5);
 }
 
 .hero__score svg {
@@ -135,7 +135,6 @@
 }
 
 @media (prefers-color-scheme: dark) {
-
 }
 
 /* Stacks as soon as the sidebar goes away. The two-column split needs desktop

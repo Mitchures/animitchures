@@ -1,18 +1,96 @@
 .details__banner {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 520px;
+  margin-top: calc(-1 * var(--header-height));
+  padding: calc(var(--header-height) + 1rem) var(--x-axis-spacing) 2rem;
   background-position: 50% 35%;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 400px;
-  margin-top: calc(-1 * var(--header-height));
   background-color: rgba(0, 0, 0, 0.15);
 }
 
-.details__bannerShadow {
-  /* background: linear-gradient(0deg, rgba(6, 13, 34, 0) 25%, rgba(6, 13, 34, 0.6)); */
-  background: linear-gradient(50deg, rgba(236, 238, 247, 0) 0%, rgba(236, 238, 247, 1));
-  height: 100%;
+/* Deliberately heavy. Text sits directly on the image here, and a light or busy
+   banner will otherwise swallow the title. The top stop is darker than the
+   middle so the translucent sticky header stays readable over it too. */
+.details__bannerScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(11, 22, 33, 0.97) 0%,
+    rgba(11, 22, 33, 0.72) 38%,
+    rgba(11, 22, 33, 0.25) 72%,
+    rgba(11, 22, 33, 0.45) 100%
+  );
+}
+
+.details__hero {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  gap: 1.75rem;
   width: 100%;
-  /* backdrop-filter: blur(20px); */
+}
+
+.details__poster {
+  width: 260px;
+  flex: none;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+}
+
+.details__heroBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.details__title {
+  font-size: clamp(26px, 3.4vw, 44px);
+  font-weight: 800;
+  color: white;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.65);
+}
+
+.details__altTitles {
+  margin-top: 0.4rem;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.72);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+.details__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.details__tag {
+  padding: 0.3rem 0.7rem;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+  background-color: rgba(0, 0, 0, 0.55);
+  border-radius: 8px;
+  backdrop-filter: blur(6px);
+}
+
+/* The hero already carries its own spacing, so Actions drops the top margin it
+   needed when it sat under the poster in the old left column. */
+.details__hero .actions {
+  flex: none;
+  margin: 0;
+}
+
+.details__hero .actions > button {
+  margin-bottom: 0;
 }
 
 .details__container {
@@ -21,29 +99,16 @@
   padding: 2rem var(--x-axis-spacing);
   z-index: 10;
   height: 100%;
-  /* backdrop-filter: blur(20px); */
-  /* margin-top: -50px; */
-  /* border-top-left-radius: 40px; */
-  /* border-top-right-radius: 40px; */
 }
 
 .details__left {
   flex: 0.3;
-  margin-top: -250px;
-}
-
-.details__poster {
-  width: 100%;
-  object-fit: cover;
-  border-radius: var(--border-radius);
-  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
 }
 
 .details__right {
   flex: 0.7;
   position: relative;
   overflow-x: hidden;
-  /* width: calc(100% - 360px); */
   padding: 0 0 0 1.875rem;
 }
 
@@ -55,18 +120,12 @@
 }
 
 .details__iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-}
-
-@media (prefers-color-scheme: dark) {
-  .details__bannerShadow {
-    background: linear-gradient(50deg, rgba(6, 13, 34, 0) 0%, rgba(6, 13, 34, 1));
-  }
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
 }
 
 @media screen and (max-width: 960px) {
@@ -83,15 +142,36 @@
   }
 }
 
-@media screen and (max-width: 480px) {
-  .details__banner {
-    height: 220px;
+@media screen and (max-width: 768px) {
+  /* Actions drops below the text rather than competing with it for width. */
+  .details__hero {
+    flex-wrap: wrap;
   }
 
-  .details__left {
-    /* Full width at this breakpoint would make a 2:3 poster ~515px tall. */
-    max-width: 180px;
-    margin: -100px auto 1.25rem;
+  .details__poster {
+    width: 200px;
+  }
+
+  .details__hero .actions {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .details__banner {
+    min-height: 380px;
+    padding-bottom: 1.5rem;
+  }
+
+  .details__hero {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .details__poster {
+    /* A 2:3 poster at full width would be ~515px tall at this breakpoint. */
+    width: 150px;
   }
 
   .details__right {

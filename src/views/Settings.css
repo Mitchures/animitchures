@@ -78,7 +78,6 @@
 }
 
 @media (prefers-color-scheme: dark) {
-
   .settings__column > h4 {
     color: white;
   }
@@ -88,7 +87,7 @@
   }
 
   .settings__loginWithAnilist {
-    background-color: #19212D;
+    background-color: #19212d;
     border: none;
     color: white;
   }

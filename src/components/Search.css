@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: space-between;
   border-radius: calc(999px - 3px);
-  background-color: #EDEEF7;
+  background-color: #edeef7;
   color: var(--secondary);
 }
 
@@ -36,7 +36,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .search { 
+  .search {
     border-color: rgba(255, 255, 255, 0.2);
     color: white;
   }

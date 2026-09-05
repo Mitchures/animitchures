@@ -9,8 +9,8 @@
   margin-bottom: 1.25rem;
 }
 
-.relations__container::-webkit-scrollbar { 
-  width: 0 !important 
+.relations__container::-webkit-scrollbar {
+  width: 0 !important;
 }
 
 .relations__container > .card:first-child {

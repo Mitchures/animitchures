@@ -104,7 +104,7 @@
   }
 
   /* Notifications, avatar and name move into the overlay's footer. */
-    /* Matches .navigation__icon in the sidebar so the two read as one system. */
+  /* Matches .navigation__icon in the sidebar so the two read as one system. */
   .header__menuButton {
     display: flex;
     align-items: center;

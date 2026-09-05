@@ -12,6 +12,7 @@ import Relations from 'components/details/Relations';
 import Characters from 'components/details/Characters';
 import Staff from 'components/details/Staff';
 import Actions from 'components/details/Actions';
+import HeroMeta from 'components/details/HeroMeta';
 
 import { Media } from 'graphql/types';
 import { DETAILS_EXTENDED_QUERY } from 'graphql/queries';
@@ -36,6 +37,18 @@ function Details() {
     return () => setSelected(null);
   }, [data]);
 
+  // The other titles this show goes by, minus whichever one is already the
+  // heading. Deduped because romaji and userPreferred are frequently identical.
+  const altTitles = selected
+    ? [
+        ...new Set(
+          [selected.title?.romaji, selected.title?.english, selected.title?.native].filter(
+            (title): title is string => Boolean(title) && title !== selected.title?.userPreferred,
+          ),
+        ),
+      ]
+    : [];
+
   return !loading && selected ? (
     <motion.div
       initial={{ opacity: 0 }}
@@ -51,16 +64,32 @@ function Details() {
           })`,
         }}
       >
-        <div className="details__bannerShadow"></div>
-      </div>
-      <div className="details__container">
-        <div className="details__left">
+        <div className="details__bannerScrim"></div>
+        <div className="details__hero">
           <img
             className="details__poster"
             src={selected.coverImage?.extraLarge || ''}
             alt={selected.title?.userPreferred || 'No Image'}
           />
+          <div className="details__heroBody">
+            <h1 className="details__title">{selected.title?.userPreferred}</h1>
+            {altTitles.length > 0 && <p className="details__altTitles">{altTitles.join(' · ')}</p>}
+            {selected.genres && selected.genres.length > 0 && (
+              <div className="details__tags">
+                {selected.genres.map((genre) => (
+                  <span key={`${genre}`} className="details__tag">
+                    {genre}
+                  </span>
+                ))}
+              </div>
+            )}
+            <HeroMeta media={selected} />
+          </div>
           <Actions media={selected} />
+        </div>
+      </div>
+      <div className="details__container">
+        <div className="details__left">
           <Sidebar {...selected} />
         </div>
         <div className="details__right">

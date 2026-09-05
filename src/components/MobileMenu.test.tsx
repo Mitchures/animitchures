@@ -12,7 +12,13 @@ const setup = (open = true) => {
   const onClose = vi.fn();
   const onLogout = vi.fn();
   const view = renderWithProviders(
-    <MobileMenu open={open} sections={sections} user={user} onClose={onClose} onLogout={onLogout} />,
+    <MobileMenu
+      open={open}
+      sections={sections}
+      user={user}
+      onClose={onClose}
+      onLogout={onLogout}
+    />,
   );
   return { onClose, onLogout, ...view };
 };

@@ -119,12 +119,12 @@
 }
 
 @media (prefers-color-scheme: dark) {
-
   .login__header > a {
     color: white;
   }
 
-  .login__container, .login__header {
+  .login__container,
+  .login__header {
     background-color: rgba(16, 18, 27, 40%);
   }
 
