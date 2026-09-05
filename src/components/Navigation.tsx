@@ -1,28 +1,15 @@
 import { NavLink, Link } from 'react-router-dom';
-import {
-  Explore,
-  Favorite,
-  CalendarToday,
-  Settings,
-  Groups,
-  Logout,
-  Login,
-  PlaylistPlay,
-} from '@mui/icons-material';
 import './Navigation.css';
 
-import { auth } from 'config';
-import { useStateValue } from 'context';
-
+import { NavSection } from './nav-items';
 import Logo from '../images/animitchures-logo.svg';
 
-function Navigation() {
-  const [{ user, anilist_user }] = useStateValue();
+interface Props {
+  sections: NavSection[];
+  onLogout: () => void;
+}
 
-  const logout = () => {
-    auth.signOut();
-  };
-
+function Navigation({ sections, onLogout }: Props) {
   return (
     <div className="navigation">
       <Link to="/" className="navigation__logo">
@@ -30,93 +17,32 @@ function Navigation() {
         animitchures<span></span>
       </Link>
       <div className="navigation__container">
-        <h5>Menu</h5>
-        <ul>
-          <li>
-            <NavLink to="/">
-              <div className="navigation__icon">
-                <Explore />
-              </div>
-              <span>Discover</span>
-            </NavLink>
-          </li>
-          {user && (
-            <li>
-              <NavLink to="/favorites">
-                <div className="navigation__icon">
-                  <Favorite />
-                </div>
-                <span>Favorites</span>
-              </NavLink>
-            </li>
-          )}
-          {/* <li>
-            <NavLink to="/coming-soon">
-              <div className="navigation__icon">
-                <CalendarToday />
-              </div>
-              <span>Coming Soon</span>
-            </NavLink>
-          </li> */}
-        </ul>
-        {/* <h5>Social</h5>
-        <ul>
-          <li>
-            <NavLink to="/community">
-              <div className="navigation__icon">
-                <Groups />
-              </div>
-              <span>Community</span>
-            </NavLink>
-          </li>
-        </ul> */}
-        {user && anilist_user && (
-          <>
-            <h5>Anilist</h5>
+        {sections.map((section) => (
+          <div key={section.id}>
+            <h5>{section.heading}</h5>
             <ul>
-              <li>
-                <NavLink to="/anilist-watchlist">
-                  <div className="navigation__icon">
-                    <PlaylistPlay />
-                  </div>
-                  <span>Watchlist</span>
-                </NavLink>
-              </li>
+              {section.items.map(({ id, label, to, Icon, end, isLogout }) => (
+                <li key={id}>
+                  {isLogout ? (
+                    <Link to={to} className="logout" onClick={onLogout}>
+                      <div className="navigation__icon">
+                        <Icon />
+                      </div>
+                      <span>{label}</span>
+                    </Link>
+                  ) : (
+                    <NavLink to={to} end={end}>
+                      <div className="navigation__icon">
+                        <Icon />
+                      </div>
+                      <span>{label}</span>
+                    </NavLink>
+                  )}
+                </li>
+              ))}
             </ul>
-          </>
-        )}
-        <h5>General</h5>
-        <ul>
-          {user && (
-            <li>
-              <NavLink to="/settings">
-                <div className="navigation__icon">
-                  <Settings />
-                </div>
-                <span>Settings</span>
-              </NavLink>
-            </li>
-          )}
-          {user ? (
-            <li>
-              <Link to="/" className="logout" onClick={logout}>
-                <div className="navigation__icon">
-                  <Logout />
-                </div>
-                <span>Logout</span>
-              </Link>
-            </li>
-          ) : (
-            <li>
-              <Link to="/login">
-                <div className="navigation__icon">
-                  <Login />
-                </div>
-                <span>Login</span>
-              </Link>
-            </li>
-          )}
-        </ul>
+          </div>
+        ))}
       </div>
     </div>
   );

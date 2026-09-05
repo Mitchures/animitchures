@@ -4,10 +4,20 @@
   justify-content: space-between;
   padding: 0 2rem;
   /* border-bottom: 1px solid rgba(0, 0, 0, 0.05); */
-  height: 116px;
+  height: var(--header-height);
   width: 100%;
   z-index: 99;
   /* backdrop-filter: blur(20px); */
+}
+
+/* Both are mobile-only affordances: the sidebar carries the logo on desktop,
+   and the overlay menu it opens is unreachable above 960px. */
+.header__mark {
+  display: none;
+}
+
+.header__menuButton {
+  display: none;
 }
 
 .header a {
@@ -105,16 +115,57 @@
 }
 
 @media screen and (max-width: 960px) {
-  /* .header {
-    flex-direction: column;
+  .header {
+    gap: 0.75rem;
+    padding: 0 1rem;
+  }
+
+  .header__mark {
+    display: flex;
+    align-items: center;
+    flex: none;
+  }
+
+  .header__mark img {
+    width: 38px;
   }
 
   .header__left {
-    order: 1;
-    padding-bottom: 1rem;
+    flex: 1;
   }
 
+  /* Notifications, avatar and name move into the overlay's footer. */
   .header__right {
-    order: 2;
-  } */
+    display: none;
+  }
+
+  /* Matches .navigation__icon in the sidebar so the two read as one system. */
+  .header__menuButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 48px;
+    min-width: 48px;
+    height: 48px;
+    padding: 0.75rem;
+    color: var(--secondary);
+    border-radius: 18px;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .header__menuButton svg {
+    font-size: 24px;
+  }
+
+  .header__menuButton:hover {
+    color: white;
+    background-color: var(--action);
+  }
+}
+
+@media screen and (max-width: 960px) and (prefers-color-scheme: dark) {
+  .header__menuButton {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
 }

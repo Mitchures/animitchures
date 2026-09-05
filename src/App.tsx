@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Outlet, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { FirebaseError } from 'firebase/app';
 import { collection, setDoc, doc, getDoc, DocumentSnapshot } from 'firebase/firestore';
 
 import './App.css';
 
-import Header from 'components/Header';
-import Navigation from 'components/Navigation';
+import AppShell from 'components/AppShell';
 
 import Login from 'views/Login';
 import SignUp from 'views/SignUp';
@@ -116,17 +115,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/sign-up" element={<SignUp />} />
-            <Route
-              element={
-                <div className="app__container">
-                  <Navigation />
-                  <div className="app__body">
-                    <Header />
-                    <Outlet />
-                  </div>
-                </div>
-              }
-            >
+            <Route element={<AppShell />}>
               <Route path="/callback" element={<Callback />} />
               <Route path="/search/anime" element={<Results />} />
               <Route path="/anime/:id/:title" element={<Details />} />
