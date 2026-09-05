@@ -28,3 +28,8 @@ firebase.json
 firestore*
 ./firebase
 storage.rules
+# superpowers brainstorming companion
+.superpowers/
+
+# local design docs (specs, plans)
+/docs
