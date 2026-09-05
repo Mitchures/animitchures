@@ -22,3 +22,20 @@
   min-width: 54px;
   background-color: var(--accent-primary);
 }
+
+.actions__favoriteWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Expands and fades out from under the button on each click. */
+.actions__burst {
+  position: absolute;
+  width: 54px;
+  height: 54px;
+  border-radius: 999px;
+  border: 2px solid var(--accent-primary);
+  pointer-events: none;
+}

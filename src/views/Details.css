@@ -48,12 +48,21 @@
   width: 100%;
 }
 
-.details__poster {
-  width: 260px;
+/* The perspective lives on the wrapper so the poster can tilt in 3D; sizing
+   moves here too, since the img is now 100% of it. */
+.details__posterWrap {
   flex: none;
+  width: 260px;
+  perspective: 900px;
+}
+
+.details__poster {
+  display: block;
+  width: 100%;
   object-fit: cover;
   border-radius: var(--border-radius);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+  transform-style: preserve-3d;
 }
 
 .details__heroBody {
@@ -150,7 +159,7 @@
     flex-wrap: wrap;
   }
 
-  .details__poster {
+  .details__posterWrap {
     width: 200px;
   }
 
@@ -171,7 +180,7 @@
     gap: 1rem;
   }
 
-  .details__poster {
+  .details__posterWrap {
     /* A 2:3 poster at full width would be ~515px tall at this breakpoint. */
     width: 150px;
   }

@@ -38,6 +38,7 @@ function Details() {
   // The title reappears in the tab bar as the hero's copy leaves.
   const compactOpacity = useTransform(scrollY, [220, 360], [0, 1]);
   const [selected, setSelected] = useState<Media | null>(null);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const { loading, data } = useQuery(DETAILS_EXTENDED_QUERY, {
     variables: {
       id,
@@ -47,6 +48,16 @@ function Details() {
       headers: authHeader(),
     },
   });
+
+  // Tilts the poster toward the pointer. Read from the wrapper's box so the
+  // rotation itself cannot feed back into the measurement.
+  const handlePosterMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (reduceMotion) return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const px = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const py = (event.clientY - bounds.top) / bounds.height - 0.5;
+    setTilt({ x: -py * 14, y: px * 14 });
+  };
 
   useEffect(() => {
     const element = scrollContainerRef?.current;
@@ -152,22 +163,44 @@ function Details() {
             opacity: reduceMotion ? undefined : heroOpacity,
           }}
         >
-          <img
-            className="details__poster"
-            src={selected.coverImage?.extraLarge || ''}
-            alt={selected.title?.userPreferred || 'No Image'}
-          />
+          <div
+            className="details__posterWrap"
+            onMouseMove={handlePosterMove}
+            onMouseLeave={() => setTilt({ x: 0, y: 0 })}
+          >
+            <motion.img
+              className="details__poster"
+              animate={{ rotateX: tilt.x, rotateY: tilt.y }}
+              transition={{ type: 'spring', stiffness: 220, damping: 18 }}
+              src={selected.coverImage?.extraLarge || ''}
+              alt={selected.title?.userPreferred || 'No Image'}
+            />
+          </div>
           <div className="details__heroBody">
             <h1 className="details__title">{selected.title?.userPreferred}</h1>
             {altTitles.length > 0 && <p className="details__altTitles">{altTitles.join(' · ')}</p>}
             {selected.genres && selected.genres.length > 0 && (
-              <div className="details__tags">
+              <motion.div
+                className="details__tags"
+                initial="hidden"
+                animate="shown"
+                variants={{
+                  shown: { transition: { staggerChildren: reduceMotion ? 0 : 0.04 } },
+                }}
+              >
                 {selected.genres.map((genre) => (
-                  <span key={`${genre}`} className="details__tag">
+                  <motion.span
+                    key={`${genre}`}
+                    className="details__tag"
+                    variants={{
+                      hidden: { opacity: 0, y: reduceMotion ? 0 : 8 },
+                      shown: { opacity: 1, y: 0 },
+                    }}
+                  >
                     {genre}
-                  </span>
+                  </motion.span>
                 ))}
-              </div>
+              </motion.div>
             )}
             <HeroMeta media={selected} />
           </div>

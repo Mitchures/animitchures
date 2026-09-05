@@ -34,12 +34,41 @@
 .staff__blockImageContainer {
   max-height: 80px;
   max-width: 80px;
+  /* Clips the hover zoom. The radius has to move here as well: scaling the img
+     pushes its own rounded corners outside this box, where they get cut off. */
+  overflow: hidden;
+}
+
+.staff__blockLeft > .staff__blockImageContainer {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+.staff__blockRight > .staff__blockImageContainer {
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
 }
 
 .staff__blockImageContainer > img {
   object-fit: cover;
   height: 80px;
   width: 80px;
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+/* Scaling inside a fixed-size container, so hovering shifts no layout. */
+.staff__block:hover .staff__blockImageContainer > img {
+  transform: scale(1.09);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .staff__blockImageContainer > img {
+    transition: none;
+  }
+
+  .staff__block:hover .staff__blockImageContainer > img {
+    transform: none;
+  }
 }
 
 .staff__blockLeft > .staff__blockImageContainer > img {
