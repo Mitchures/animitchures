@@ -46,11 +46,14 @@ test.describe('signed-in shell', () => {
     await gotoSignedInHome(page);
     const nav = page.locator('.navigation');
 
-    await expect(nav.getByText('Favorites')).toBeVisible();
-    await expect(nav.getByText('Settings')).toBeVisible();
-    await expect(nav.getByText('Watchlist')).toBeVisible();
-    await expect(nav.getByText('Logout')).toBeVisible();
-    await expect(nav.getByText('Login')).toHaveCount(0);
+    // Asserts accessible names rather than visible text: the rail is collapsed to
+    // icons by default, so the labels are not rendered until it is hovered. The
+    // accessible name is what matters here anyway — it is the only thing a screen
+    // reader gets in the collapsed state.
+    for (const name of ['Discover', 'Favorites', 'Watchlist', 'Settings', 'Logout']) {
+      await expect(nav.getByRole('link', { name })).toHaveCount(1);
+    }
+    await expect(nav.getByRole('link', { name: 'Login' })).toHaveCount(0);
   });
 
   test('logout returns the app to its signed-out state', async ({ page }) => {
