@@ -111,7 +111,7 @@ function App() {
   return (
     <div className="app">
       <Router>
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence mode="wait">
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/sign-up" element={<SignUp />} />
