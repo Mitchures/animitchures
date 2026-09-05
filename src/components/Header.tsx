@@ -1,5 +1,5 @@
 import './Header.css';
-import Avatar from '@material-ui/core/Avatar';
+import Avatar from '@mui/material/Avatar';
 import { IoNotifications } from 'react-icons/io5';
 import { Menu as MenuIcon } from '@mui/icons-material';
 

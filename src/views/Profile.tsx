@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Avatar from '@material-ui/core/Avatar';
+import Avatar from '@mui/material/Avatar';
 import { useQuery } from '@apollo/client';
 import { motion } from 'framer-motion';
 
