@@ -14,6 +14,6 @@ test('@live real AniList still satisfies the Discover query', async ({ page }) =
   // If AniList changed its schema or the query broke, the hero never renders —
   // the fixtures would still be green, which is exactly the blind spot this
   // covers.
-  await expect(page.locator('.hero__banner')).toBeVisible({ timeout: 30_000 });
-  await expect(page.locator('.features__body .card').first()).toBeVisible();
+  await expect(page.locator('.hero')).toBeVisible({ timeout: 30_000 });
+  await expect(page.locator('.rail__scroller .card').first()).toBeVisible();
 });

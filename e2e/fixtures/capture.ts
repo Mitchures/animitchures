@@ -45,7 +45,7 @@ async function capturePublic(browser: Browser, seen: Set<string>): Promise<void>
   attach(page, seen);
 
   await page.goto('http://localhost:3000/', { waitUntil: 'domcontentloaded' });
-  await page.locator('.hero__banner').waitFor({ timeout: 25_000 });
+  await page.locator('.hero').waitFor({ timeout: 25_000 });
   await page.waitForTimeout(2500);
 
   await page.goto('http://localhost:3000/anime/1/cowboy-bebop', { waitUntil: 'domcontentloaded' });

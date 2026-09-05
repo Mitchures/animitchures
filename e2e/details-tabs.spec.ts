@@ -51,7 +51,7 @@ test.describe('details tabs', () => {
 
   test('switching tabs does not stack history entries', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.hero__banner')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.hero')).toBeVisible({ timeout: 20_000 });
     await page.goto(DETAILS);
     await expect(page.locator('.details__hero')).toBeVisible({ timeout: 20_000 });
 

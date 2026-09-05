@@ -21,7 +21,7 @@ const WIDTHS = [320, 375, 500, 768, 960, 961, 1280];
  */
 async function gotoDiscover(page: Page) {
   await page.goto('/', { waitUntil: 'networkidle' });
-  await page.locator('.hero__banner').waitFor({ state: 'visible', timeout: 20_000 });
+  await page.locator('.hero').waitFor({ state: 'visible', timeout: 20_000 });
 }
 
 /**
@@ -147,13 +147,19 @@ test.describe('hero', () => {
     }
   });
 
-  test('stacks below the breakpoint and stays side-by-side above it', async ({ page }) => {
-    await page.setViewportSize({ width: 500, height: 900 });
-    await gotoDiscover(page);
-    await expect(page.locator('.hero__bannerBody')).toHaveCSS('flex-direction', 'column');
-
+  test('poster and copy sit side by side, and the poster shrinks on a phone', async ({ page }) => {
+    // The hero used to stack into a column below the breakpoint. It keeps the
+    // poster beside the copy at every width now — the poster shrinks instead,
+    // which is what stops the title being squeezed.
     await page.setViewportSize({ width: 1280, height: 900 });
     await gotoDiscover(page);
-    await expect(page.locator('.hero__bannerBody')).toHaveCSS('flex-direction', 'row');
+    const wide = await page.locator('.hero__poster').boundingBox();
+    const wideCopy = await page.locator('.hero__body').boundingBox();
+    expect(wideCopy!.x).toBeGreaterThan(wide!.x);
+
+    await page.setViewportSize({ width: 500, height: 900 });
+    await gotoDiscover(page);
+    const narrow = await page.locator('.hero__poster').boundingBox();
+    expect(narrow!.width).toBeLessThan(wide!.width);
   });
 });

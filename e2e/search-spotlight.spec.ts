@@ -35,7 +35,7 @@ test.describe('search spotlight', () => {
 
   test('opens with the keyboard and closes with escape', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.hero__banner')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.hero')).toBeVisible({ timeout: 20_000 });
 
     await page.keyboard.press('ControlOrMeta+k');
     await expect(page.getByRole('dialog', { name: 'Search anime' })).toBeVisible();
@@ -48,7 +48,7 @@ test.describe('search spotlight', () => {
 
   test('"/" opens it, but not while typing in a field', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.hero__banner')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.hero')).toBeVisible({ timeout: 20_000 });
 
     await page.keyboard.press('/');
     await expect(page.getByRole('dialog', { name: 'Search anime' })).toBeVisible();
@@ -60,7 +60,7 @@ test.describe('search spotlight', () => {
 
   test('typing shows poster results and enter opens one', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.hero__banner')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.hero')).toBeVisible({ timeout: 20_000 });
 
     await page.locator('.navigation__search').click();
     await page.locator('.spotlight__field input').fill('frieren');
@@ -82,7 +82,7 @@ test.describe('search spotlight', () => {
 
   test('reopening does not show the previous search', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.hero__banner')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.hero')).toBeVisible({ timeout: 20_000 });
 
     await page.locator('.navigation__search').click();
     await page.locator('.spotlight__field input').fill('frieren');
@@ -98,7 +98,7 @@ test.describe('search spotlight', () => {
 
   test('see-all goes to the full results page', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.hero__banner')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.hero')).toBeVisible({ timeout: 20_000 });
 
     await page.locator('.navigation__search').click();
     await page.locator('.spotlight__field input').fill('frieren');

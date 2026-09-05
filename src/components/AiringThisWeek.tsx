@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 
 import './AiringThisWeek.css';
 
@@ -7,6 +8,23 @@ import { mediaPath } from 'helpers';
 
 const WEEK_SECONDS = 7 * 24 * 60 * 60;
 const CARD_COUNT = 4;
+/**
+ * How long a card keeps saying "Airing now" after its countdown reaches zero.
+ *
+ * The episode's own runtime rather than a fixed grace period: "Airing now" is
+ * true for exactly as long as the episode is on, which is 12 minutes for a
+ * short and ~24 for a normal TV episode. A card that vanished the instant it
+ * hit zero would read as a glitch, and a flat five minutes would be wrong in
+ * both directions.
+ *
+ * Capped so a feature-length special does not hold a slot all evening, and
+ * defaulted for the handful of entries with no duration.
+ */
+const DEFAULT_RUNTIME_MINUTES = 24;
+const MAX_ON_AIR_MINUTES = 90;
+
+const onAirWindow = (media: any) =>
+  Math.min(media.duration ?? DEFAULT_RUNTIME_MINUTES, MAX_ON_AIR_MINUTES) * 60;
 
 /**
  * Live countdown text. Rounds to the two largest units that still say something
@@ -25,6 +43,8 @@ const formatCountdown = (secondsLeft: number) => {
   return `${minutes}m ${seconds}s`;
 };
 
+const MotionLink = motion.create(Link);
+
 /**
  * What airs in the next seven days, drawn from the media already loaded for the
  * Discover rails — `nextAiringEpisode` comes back with every one of them, so
@@ -36,6 +56,7 @@ const formatCountdown = (secondsLeft: number) => {
  */
 function AiringThisWeek({ featured }: { featured: Record<string, any> }) {
   const [now, setNow] = useState(() => Math.floor(Date.now() / 1000));
+  const reduceMotion = useReducedMotion();
 
   const upcoming = useMemo(() => {
     const seen = new Map<number, any>();
@@ -48,7 +69,12 @@ function AiringThisWeek({ featured }: { featured: Record<string, any> }) {
     });
 
     return [...seen.values()]
-      .filter((media) => media.nextAiringEpisode.airingAt - now < WEEK_SECONDS)
+      .filter((media) => {
+        const secondsLeft = media.nextAiringEpisode.airingAt - now;
+        // Drops off once the episode has finished airing; the cards behind it
+        // slide forward and the next one up takes the empty slot.
+        return secondsLeft > -onAirWindow(media) && secondsLeft < WEEK_SECONDS;
+      })
       .sort((a, b) => a.nextAiringEpisode.airingAt - b.nextAiringEpisode.airingAt)
       .slice(0, CARD_COUNT);
   }, [featured, now]);
@@ -67,29 +93,45 @@ function AiringThisWeek({ featured }: { featured: Record<string, any> }) {
         <h3>Airing this week</h3>
       </div>
       <div className="airing__row">
-        {upcoming.map((media, index) => (
-          <Link
-            key={media.id}
-            className="airing__card"
-            to={mediaPath(media.id, media.title.userPreferred)}
-            style={{
-              // Falls back to the cover: plenty of titles have no banner art.
-              backgroundImage: `url(${media.bannerImage ?? media.coverImage.extraLarge ?? media.coverImage.large})`,
-            }}
-          >
-            <span className="airing__scrim" />
-            {index === 0 && <span className="airing__flag">Next up</span>}
-            <span className="airing__body">
-              <span className="airing__title">
-                {media.title.english ?? media.title.userPreferred}
-              </span>
-              <span className="airing__clock">
-                {formatCountdown(media.nextAiringEpisode.airingAt - now)}
-              </span>
-              <span className="airing__episode">Episode {media.nextAiringEpisode.episode}</span>
-            </span>
-          </Link>
-        ))}
+        {/* layout + AnimatePresence: when one expires it fades out and the rest
+            animate into the space rather than snapping across. */}
+        <AnimatePresence initial={false} mode="popLayout">
+          {upcoming.map((media, index) => {
+            const secondsLeft = media.nextAiringEpisode.airingAt - now;
+            return (
+              <MotionLink
+                key={media.id}
+                layout={!reduceMotion}
+                initial={reduceMotion ? undefined : { opacity: 0, scale: 0.94 }}
+                animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
+                exit={reduceMotion ? undefined : { opacity: 0, scale: 0.94 }}
+                transition={{ duration: 0.35, ease: [0.2, 0.7, 0.3, 1] }}
+                className="airing__card"
+                to={mediaPath(media.id, media.title.userPreferred)}
+                style={{
+                  // Falls back to the cover: plenty of titles have no banner art.
+                  backgroundImage: `url(${media.bannerImage ?? media.coverImage.extraLarge ?? media.coverImage.large})`,
+                }}
+              >
+                <span className="airing__scrim" />
+                {/* "Next up" would be a lie once the clock has run out, so the
+                  flag reports which of the two states this card is in. */}
+                {index === 0 && (
+                  <span className={`airing__flag${secondsLeft <= 0 ? ' airing__flag--live' : ''}`}>
+                    {secondsLeft <= 0 ? 'On air' : 'Next up'}
+                  </span>
+                )}
+                <span className="airing__body">
+                  <span className="airing__title">
+                    {media.title.english ?? media.title.userPreferred}
+                  </span>
+                  <span className="airing__clock">{formatCountdown(secondsLeft)}</span>
+                  <span className="airing__episode">Episode {media.nextAiringEpisode.episode}</span>
+                </span>
+              </MotionLink>
+            );
+          })}
+        </AnimatePresence>
       </div>
     </section>
   );

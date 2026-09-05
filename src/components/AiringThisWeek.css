@@ -59,6 +59,13 @@
   border-radius: 999px;
 }
 
+/* Green rather than gold: this one is on right now, which is a different
+   thing from being next. */
+.airing__flag--live {
+  color: white;
+  background-color: var(--success);
+}
+
 .airing__body {
   position: absolute;
   left: 0.9rem;
