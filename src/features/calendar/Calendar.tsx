@@ -7,6 +7,7 @@ import './Calendar.css';
 
 import CalendarSkeleton from './CalendarSkeleton';
 
+import { useStateValue } from 'context';
 import { AIRING_SCHEDULE_QUERY } from 'graphql/queries';
 import { mediaPath } from 'helpers';
 import { Airing, CalendarView } from './types';
@@ -28,6 +29,7 @@ const WEEKDAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const CELL_PREVIEW = 3;
 
 function Calendar() {
+  const [{ user }] = useStateValue();
   /**
    * Opens on the week, not the month.
    *
@@ -56,7 +58,17 @@ function Calendar() {
     variables: { start, end, page: 1 },
   });
 
-  const airings: Airing[] = data?.Page?.airingSchedules ?? [];
+  /**
+   * Adult titles are filtered here rather than in the query: AniList's
+   * `airingSchedules` takes no isAdult argument, unlike its media queries.
+   * They still arrive over the wire — there is no way to ask it not to send
+   * them — but nothing draws them.
+   */
+  const allAirings: Airing[] = data?.Page?.airingSchedules ?? [];
+  const airings = useMemo(
+    () => (user?.isAdult ? allAirings : allAirings.filter((airing) => !airing.media?.isAdult)),
+    [allAirings, user?.isAdult],
+  );
   const pageInfo = data?.Page?.pageInfo;
 
   /**

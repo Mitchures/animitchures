@@ -21,6 +21,7 @@ import CharacterPage from 'features/people/CharacterPage';
 import StudioPage from 'features/studio/StudioPage';
 import Taste from 'features/taste/Taste';
 import Calendar from 'features/calendar/Calendar';
+import Social from 'features/social/Social';
 import Settings from 'features/settings/Settings';
 import Callback from 'views/Callback';
 import ComingSoon from 'views/ComingSoon';
@@ -93,6 +94,7 @@ function App() {
                   <Route path="/anilist-watchlist" element={<Watchlist />} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/taste" element={<Taste />} />
+                  <Route path="/social" element={<Social />} />
                 </>
               )}
               <Route path="/" element={<Discover />} />

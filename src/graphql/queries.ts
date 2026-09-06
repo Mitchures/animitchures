@@ -1479,6 +1479,9 @@ export const AIRING_SCHEDULE_QUERY = gql`
         airingAt
         media {
           id
+          # airingSchedules takes no isAdult argument — AniList only offers it
+          # on media queries — so this is filtered client-side instead.
+          isAdult
           title {
             userPreferred
             romaji
@@ -1493,6 +1496,81 @@ export const AIRING_SCHEDULE_QUERY = gql`
           episodes
           averageScore
           popularity
+        }
+      }
+    }
+  }
+`;
+
+/**
+ * The activity of people you follow, plus who they are.
+ *
+ * Sampling the live feed first: 126 of 127 activities were "watched episode
+ * N" and only 28% shared a title, which is why the page does not try to
+ * cluster by show — most groups would be a single person.
+ */
+export const SOCIAL_FEED_QUERY = gql`
+  query SocialFeed($userId: Int!, $page: Int = 1) {
+    following: Page(perPage: 30) {
+      following(userId: $userId, sort: USERNAME) {
+        id
+        name
+        avatar {
+          large
+        }
+      }
+    }
+    feed: Page(page: $page, perPage: 30) {
+      pageInfo {
+        hasNextPage
+        currentPage
+      }
+      activities(isFollowing: true, sort: ID_DESC, type_in: [ANIME_LIST, TEXT]) {
+        ... on ListActivity {
+          id
+          type
+          status
+          progress
+          createdAt
+          likeCount
+          replyCount
+          user {
+            id
+            name
+            avatar {
+              large
+            }
+          }
+          media {
+            id
+            # Same as the calendar: no server-side adult filter on activities.
+            isAdult
+            title {
+              userPreferred
+              romaji
+              english
+              native
+            }
+            coverImage {
+              large
+            }
+            episodes
+          }
+        }
+        ... on TextActivity {
+          id
+          type
+          text
+          createdAt
+          likeCount
+          replyCount
+          user {
+            id
+            name
+            avatar {
+              large
+            }
+          }
         }
       }
     }

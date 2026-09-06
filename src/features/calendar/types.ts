@@ -4,6 +4,7 @@ export interface Airing {
   airingAt: number;
   media: {
     id: number;
+    isAdult: boolean | null;
     title: { userPreferred: string };
     coverImage: { large: string; medium: string };
     format: string | null;

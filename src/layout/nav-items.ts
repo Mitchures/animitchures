@@ -5,6 +5,7 @@ import {
   PlaylistPlay,
   InsightsOutlined,
   CalendarMonthOutlined,
+  PeopleOutlined,
   Settings as SettingsIcon,
   Logout,
   Login,
@@ -70,6 +71,12 @@ export function getNavSections({ user, anilistUser }: Args): NavSection[] {
                 label: 'Taste',
                 to: '/taste',
                 Icon: InsightsOutlined,
+              },
+              {
+                id: 'social',
+                label: 'Social',
+                to: '/social',
+                Icon: PeopleOutlined,
               },
             ]
           : [],
