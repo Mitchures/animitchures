@@ -53,17 +53,25 @@ function Callback() {
   };
 
   const handleAnilistUser = async (anilist_user: AnilistUser, userId: string) => {
-    const collectionRef = collection(db, 'anilist');
-    const docRef = doc(collectionRef, `${userId}`);
-    setDoc(docRef, anilist_user)
-      .then(() => {
-        dispatch({
-          type: 'set_anilist_user',
-          anilist_user,
-        });
-      })
-      .then(() => navigate('/settings'))
-      .catch((error) => alert(error.message));
+    try {
+      await setDoc(doc(collection(db, 'anilist'), `${userId}`), anilist_user);
+
+      // Set the flag here rather than leaving it to the linkedAnilistAccount
+      // Cloud Function. That trigger fires onCreate, so re-linking an account
+      // overwrites the document without firing it — and it does nothing at all
+      // unless functions are deployed. Linking should not depend on either.
+      await setDoc(
+        doc(collection(db, 'users'), `${userId}`),
+        { anilistLinked: true },
+        { merge: true },
+      );
+
+      dispatch({ type: 'set_anilist_user', anilist_user });
+      if (user) dispatch({ type: 'update_user', user: { ...user, anilistLinked: true } });
+      navigate('/settings');
+    } catch (error) {
+      alert((error as Error).message);
+    }
   };
 
   useEffect(() => {

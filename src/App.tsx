@@ -61,29 +61,36 @@ function App() {
                 setDoc(docRef, user).catch((error: FirebaseError) => alert(error.message));
                 // get user favorites.
                 getFavorites(uid, dispatch);
-                // get anilist user if linked.
-                if (user.anilistLinked) {
-                  // get access token from database and store in local storage.
-                  if (!localStorage.getItem('token'))
-                    getAccessToken(uid).then((token) =>
-                      localStorage.setItem('token', JSON.stringify(token)),
-                    );
-                  // Get anilist user from database.
-                  const anilistDocRef = doc(collection(db, 'anilist'), uid);
-                  getDoc(anilistDocRef)
-                    .then((docSnapshot: DocumentSnapshot) => {
-                      if (docSnapshot.exists()) {
-                        const data = docSnapshot.data();
-                        if (data) {
-                          dispatch({
-                            type: 'set_anilist_user',
-                            anilist_user: data as AnilistUser,
-                          });
-                        }
-                      }
-                    })
-                    .catch((error: FirebaseError) => alert(error.message));
-                }
+                // An anilist/{uid} document existing is what "linked" actually
+                // means. `anilistLinked` on the user doc is only a cache of
+                // that, written by a Cloud Function trigger — and that trigger
+                // fires onCreate, so re-linking an account never updates it,
+                // and it does nothing at all if functions are not deployed.
+                // Read the source of truth and repair the flag from it.
+                const anilistDocRef = doc(collection(db, 'anilist'), uid);
+                getDoc(anilistDocRef)
+                  .then((anilistSnapshot: DocumentSnapshot) => {
+                    if (!anilistSnapshot.exists()) return;
+                    const anilistData = anilistSnapshot.data();
+                    if (!anilistData) return;
+
+                    dispatch({
+                      type: 'set_anilist_user',
+                      anilist_user: anilistData as AnilistUser,
+                    });
+
+                    if (!localStorage.getItem('token'))
+                      getAccessToken(uid).then((token) =>
+                        localStorage.setItem('token', JSON.stringify(token)),
+                      );
+
+                    if (!user.anilistLinked) {
+                      const linked = { ...user, anilistLinked: true };
+                      setDoc(docRef, linked).catch((error: FirebaseError) => alert(error.message));
+                      dispatch({ type: 'update_user', user: linked });
+                    }
+                  })
+                  .catch((error: FirebaseError) => alert(error.message));
                 // set current user to existing user.
                 dispatch({
                   type: 'login_user',
