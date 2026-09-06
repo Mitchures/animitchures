@@ -1,0 +1,175 @@
+.spine {
+  margin-bottom: 1.25rem;
+}
+
+.spine__scroller {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  padding: 0.875rem var(--x-axis-spacing) 0;
+}
+
+.spine__scroller::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* One inline-block track so the three rows share a width and cannot drift. */
+.spine__inner {
+  display: inline-block;
+  min-width: 100%;
+}
+
+.spine__row {
+  display: flex;
+  align-items: flex-end;
+}
+
+.spine__cell {
+  display: flex;
+  align-items: flex-end;
+  flex: none;
+}
+
+.spine__cell--rest {
+  align-items: flex-end;
+}
+
+/* The break where the season thins out. Same width in the poster row and the
+   date row, so the rule's ticks stay under their posters. */
+.spine__gap,
+.spine__gapLabel {
+  display: inline-flex;
+  flex: none;
+  width: 74px;
+}
+
+.spine__gapLabel {
+  align-items: center;
+  justify-content: center;
+  padding-top: 0.7rem;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.spine__item {
+  display: block;
+  width: 96px;
+  flex: none;
+  margin-right: 0.875rem;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.spine__item:hover {
+  opacity: 0.65;
+}
+
+.spine__item img {
+  display: block;
+  width: 96px;
+  height: 144px;
+  object-fit: cover;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.spine__title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-top: 0.4rem;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--primary);
+  /* Always two lines tall. Without this a single-line title lifts its studio
+     line, and the row goes ragged next to its two-line neighbours. */
+  height: 2.5em;
+}
+
+.spine__studio {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.spine__rule {
+  height: 1px;
+  margin-top: 0.875rem;
+  background-color: rgba(11, 22, 33, 0.14);
+}
+
+.spine__row--dates .spine__cell {
+  align-items: flex-start;
+}
+
+.spine__date {
+  position: relative;
+  width: 96px;
+  flex: none;
+  margin-right: 0.875rem;
+  padding-top: 0.7rem;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The tick that ties a date to the rule above it. */
+.spine__date::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: rgba(11, 22, 33, 0.3);
+}
+
+/* The next premiere still to come — the one thing this list is for. */
+.spine__date--next {
+  color: var(--action);
+}
+
+.spine__date--next::before {
+  background-color: var(--action);
+  box-shadow: 0 0 0 4px var(--action-light);
+}
+
+.spine__date--tbc {
+  color: var(--secondary);
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spine__item {
+    transition: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .spine__title {
+    color: white;
+  }
+
+  .spine__rule {
+    background-color: rgba(255, 255, 255, 0.16);
+  }
+
+  .spine__date {
+    color: white;
+  }
+
+  .spine__date::before {
+    background-color: rgba(255, 255, 255, 0.35);
+  }
+}
