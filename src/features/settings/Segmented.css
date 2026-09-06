@@ -1,0 +1,48 @@
+.segmented {
+  display: inline-flex;
+  gap: 0.2rem;
+  padding: 0.2rem;
+  border-radius: 9px;
+  background-color: var(--chip, rgba(255, 255, 255, 0.06));
+}
+
+.segmented__option {
+  /* App.css styles every bare button as a full-width 54px form control. */
+  width: auto;
+  height: auto;
+  border: none;
+  border-radius: 7px;
+  padding: 0.32rem 0.7rem;
+  font: inherit;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--secondary);
+  background: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.segmented__option:hover {
+  opacity: 1;
+  color: var(--action) !important;
+}
+
+.segmented__option.is-active {
+  background-color: var(--action);
+  color: #fff !important;
+}
+
+/* Light is the base; the two dark routes override it. */
+.segmented {
+  --chip: rgba(11, 22, 33, 0.07);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .segmented {
+    --chip: rgba(255, 255, 255, 0.06);
+  }
+}
+
+:root[data-theme='dark'] .segmented {
+  --chip: rgba(255, 255, 255, 0.06);
+}

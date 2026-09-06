@@ -1,0 +1,59 @@
+.person {
+  height: calc(100vh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
+  overflow-y: auto;
+}
+
+.person__body {
+  padding: 0.5rem var(--x-axis-spacing) 3rem;
+}
+
+/* Two columns of pairings on desktop — one is a very long thin list, three
+   squeezes the title under the face into an ellipsis. */
+.person__roles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 0.55rem;
+}
+
+.person__more {
+  width: auto;
+  height: auto;
+  margin-top: 1rem;
+  border: 1px solid var(--row-rule, rgba(255, 255, 255, 0.12));
+  border-radius: 999px;
+  background: none;
+  color: var(--secondary);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.45rem 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.person__more:hover {
+  opacity: 1;
+  color: var(--action) !important;
+  border-color: var(--action);
+}
+
+.person__empty {
+  display: grid;
+  place-content: center;
+  height: 60vh;
+  color: var(--secondary);
+  text-align: center;
+}
+
+@media (prefers-color-scheme: light) {
+  .person__more {
+    --row-rule: rgba(11, 22, 33, 0.15);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .person__roles {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

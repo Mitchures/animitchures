@@ -1,0 +1,202 @@
+/* Full-bleed to the top edge, like the Details banner. The old hero sat inside
+   the page padding as a rounded card, which wasted the artwork. */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 560px;
+  padding: calc(var(--header-height) + 2rem) var(--x-axis-spacing) 2.5rem;
+  overflow: hidden;
+  color: white;
+  background-color: #0b1621;
+}
+
+.hero__image {
+  position: absolute;
+  inset: 0;
+  background-position: 50% 32%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  will-change: transform;
+}
+
+/* Sideways rather than upward: the copy sits on the left, and a bottom-up
+   gradient would darken the artwork without protecting the text. */
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(11, 22, 33, 0.96) 0%,
+      rgba(11, 22, 33, 0.72) 46%,
+      rgba(11, 22, 33, 0.08) 100%
+    ),
+    linear-gradient(0deg, rgba(11, 22, 33, 0.7) 0%, rgba(11, 22, 33, 0) 45%);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  gap: 1.75rem;
+  width: 100%;
+}
+
+.hero__poster {
+  width: 200px;
+  flex: none;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+}
+
+.hero__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.hero__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.hero__title {
+  font-size: clamp(28px, 3.6vw, 46px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.65);
+}
+
+.hero__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.hero__tag {
+  padding: 0.3rem 0.7rem;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+  background-color: rgba(0, 0, 0, 0.55);
+  border-radius: 8px;
+  backdrop-filter: blur(6px);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+
+/* Width and height are set because App.css gives every button 100%/54px. */
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: auto;
+  height: auto;
+  padding: 0.65rem 1.35rem;
+  font-size: 13px;
+  font-weight: 800;
+  color: white !important;
+  text-decoration: none;
+  background-color: var(--action);
+  border-radius: 999px;
+  /* Matches the global `button` rule so these feel like every other button. */
+  transition: var(--transition);
+}
+
+/* The app's buttons fade on hover (`button:hover { opacity: 0.65 }`), so these
+   do too rather than inventing a lift. "View details" is an anchor and never
+   matched that rule, which is why it behaved differently.
+
+   The colour is restated because App.css sets
+   `a:hover { color: var(--action) !important }`, and among !important
+   declarations `a:hover` (0,1,1) outranks a plain `.hero__cta` (0,1,0) — so the
+   label turned the same indigo as its own background. */
+.hero__cta:hover {
+  color: white !important;
+  opacity: 0.65;
+}
+
+/* Pink, matching the favourite button on Details — the same action should not
+   be a different colour depending on which page you press it from. */
+.hero__cta--favorite {
+  background-color: var(--accent-primary);
+}
+
+.hero__cta svg {
+  font-size: 16px;
+}
+
+.hero__dots {
+  display: flex;
+  align-self: flex-end;
+  gap: 0.4rem;
+  flex: none;
+  margin-bottom: 0.35rem;
+}
+
+.hero__dot {
+  width: 22px;
+  height: 4px;
+  min-width: 0;
+  padding: 0;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.35);
+  transition:
+    width 0.24s cubic-bezier(0.2, 0.7, 0.3, 1),
+    background-color 0.24s;
+}
+
+.hero__dot--active {
+  width: 38px;
+  background-color: white;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__cta,
+  .hero__dot {
+    transition: none;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .hero {
+    min-height: 460px;
+    padding-bottom: 2rem;
+  }
+
+  .hero__poster {
+    width: 150px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .hero {
+    min-height: 420px;
+  }
+
+  .hero__content {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .hero__poster {
+    width: 110px;
+  }
+
+  .hero__dots {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+}

@@ -1,3 +1,5 @@
+@import './features/settings/preferences.css';
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800&display=swap');
 
 * {
@@ -43,7 +45,11 @@ code {
 }
 
 @media (prefers-color-scheme: dark) {
-  body {
+  :root:not([data-theme='light']) body {
     background-color: black;
   }
+}
+
+:root[data-theme='dark'] body {
+  background-color: black;
 }

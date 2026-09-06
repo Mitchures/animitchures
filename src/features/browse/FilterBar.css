@@ -1,0 +1,134 @@
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0 1.25rem;
+}
+
+/* The label wraps the select so clicking anywhere on the pill opens it, and the
+   pill can style itself from the select's state. */
+.filterBar__field {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 0.85rem;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+}
+
+.filterBar__field:hover {
+  opacity: 0.65;
+}
+
+.filterBar__field--on {
+  color: var(--action);
+  background-color: var(--action-light);
+  box-shadow: inset 0 0 0 1px rgba(99, 102, 241, 0.45);
+}
+
+/* The visible text is the select's own value; this label only exists so the
+   pill can size itself before the native control paints. */
+.filterBar__label {
+  visibility: hidden;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.filterBar__field select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 0.85rem;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--secondary);
+  background: none;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.filterBar__field--on select {
+  color: var(--action);
+}
+
+.filterBar__field select:focus-visible {
+  outline: 2px solid var(--action);
+  outline-offset: 2px;
+}
+
+/* Options render in the platform menu, which does not inherit the pill's
+   colours — set them so a dark OS menu stays readable. */
+.filterBar__field option {
+  color: var(--primary);
+  background-color: #fff;
+}
+
+.filterBar__clear {
+  width: auto;
+  height: 36px;
+  padding: 0 0.9rem;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--secondary);
+  background: none;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+}
+
+.filterBar__clear:hover {
+  color: white;
+  background-color: var(--action-secondary);
+  border-color: transparent;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filterBar__field {
+    transition: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .filterBar__field {
+    background-color: rgba(255, 255, 255, 0.07);
+  }
+
+  :root:not([data-theme='light']) .filterBar__field--on {
+    background-color: rgba(99, 102, 241, 0.2);
+  }
+
+  :root:not([data-theme='light']) .filterBar__field option {
+    color: white;
+    background-color: #16202f;
+  }
+
+  :root:not([data-theme='light']) .filterBar__clear {
+    border-color: rgba(255, 255, 255, 0.16);
+  }
+}
+
+:root[data-theme='dark'] .filterBar__field {
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+:root[data-theme='dark'] .filterBar__field--on {
+  background-color: rgba(99, 102, 241, 0.2);
+}
+
+:root[data-theme='dark'] .filterBar__field option {
+  color: white;
+  background-color: #16202f;
+}
+
+:root[data-theme='dark'] .filterBar__clear {
+  border-color: rgba(255, 255, 255, 0.16);
+}

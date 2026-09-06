@@ -1,0 +1,63 @@
+/* Mirrors the real page's spacing so nothing shifts when data lands. */
+.profileSkeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 1.75rem var(--x-axis-spacing) 3rem;
+}
+
+.profileSkeleton__identity {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.profileSkeleton__name {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding-bottom: 0.5rem;
+}
+
+.profileSkeleton__vitals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+  margin: 1.25rem 0 2rem;
+}
+
+.profileSkeleton__vitals > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+/* One column per week on the same track as the real grid, rather than 371
+   individual squares — at this size the difference is invisible and the DOM is
+   seven times smaller. */
+.profileSkeleton__heatmap {
+  display: flex;
+  gap: 3px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.profileSkeleton__genres {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+}
+
+.profileSkeleton__favourites {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+@media screen and (max-width: 640px) {
+  .profileSkeleton__genres {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

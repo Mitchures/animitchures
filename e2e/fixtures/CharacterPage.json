@@ -1,0 +1,457 @@
+{
+ "data": {
+  "Character": {
+   "id": 136072,
+   "name": {
+    "full": "Mitsuri Kanroji",
+    "native": "\u7518\u9732\u5bfa\u871c\u7483",
+    "__typename": "CharacterName"
+   },
+   "image": {
+    "large": "https://s4.anilist.co/file/anilistcdn/character/large/b136072-xVwyRUKdpybi.png",
+    "__typename": "CharacterImage"
+   },
+   "description": "__Height:__ 167 cm (5'5\")\n__Combat Style:__ Love Breathing\n\nDemon Hunter and the Love Pillar of the Demon Killing Corps. Mitsuri is a soft and kind person. She is very emotional and passionate, constantly complimenting people in her head, which probably contributes to her nickname of \"the Hashira of Love\". Although she is rather shy and is easily flustered, she is always kind to others, most notably towards [Obanai](https://anilist.co/character/137777), whom she appears to share a strong bond with. Besides her rather emotional personality, she can also come off as somewhat childish at times.\n\n~!She was taught by Rengoku to use the flame breathing. However, although Mitsuri has learnt it, she was not as skillful with it and cannot fight to her fullest using it, leading her to solely develop the Love Breathing.!~",
+   "gender": "Female",
+   "age": "19",
+   "favourites": 6873,
+   "dateOfBirth": {
+    "year": null,
+    "month": 6,
+    "day": 1,
+    "__typename": "FuzzyDate"
+   },
+   "media": {
+    "pageInfo": {
+     "hasNextPage": false,
+     "currentPage": 1,
+     "__typename": "PageInfo"
+    },
+    "edges": [
+     {
+      "id": 183940,
+      "characterRole": "SUPPORTING",
+      "node": {
+       "id": 101922,
+       "title": {
+        "userPreferred": "Kimetsu no Yaiba",
+        "__typename": "MediaTitle",
+        "romaji": "Kimetsu no Yaiba",
+        "english": "Demon Slayer: Kimetsu no Yaiba",
+        "native": "\u9b3c\u6ec5\u306e\u5203"
+       },
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx101922-WBsBl0ClmgYL.jpg",
+        "__typename": "MediaCoverImage"
+       },
+       "seasonYear": 2019,
+       "averageScore": 83,
+       "episodes": 26,
+       "__typename": "Media"
+      },
+      "voiceActors": [
+       {
+        "id": 95185,
+        "name": {
+         "full": "Kana Hanazawa",
+         "__typename": "StaffName",
+         "native": null
+        },
+        "image": {
+         "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n95185-x8ZYvtN7SegC.png",
+         "__typename": "StaffImage"
+        },
+        "__typename": "Staff"
+       }
+      ],
+      "__typename": "MediaEdge"
+     },
+     {
+      "id": 311838,
+      "characterRole": "BACKGROUND",
+      "node": {
+       "id": 112151,
+       "title": {
+        "userPreferred": "Kimetsu no Yaiba: Mugen Ressha-hen",
+        "__typename": "MediaTitle",
+        "romaji": "Kimetsu no Yaiba: Mugen Ressha-hen",
+        "english": "Demon Slayer -Kimetsu no Yaiba- The Movie: Mugen Train",
+        "native": "\u9b3c\u6ec5\u306e\u5203 \u7121\u9650\u5217\u8eca\u7de8"
+       },
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx112151-1qlQwPB1RrJe.png",
+        "__typename": "MediaCoverImage"
+       },
+       "seasonYear": 2020,
+       "averageScore": 84,
+       "episodes": 1,
+       "__typename": "Media"
+      },
+      "voiceActors": [],
+      "__typename": "MediaEdge"
+     },
+     {
+      "id": 343953,
+      "characterRole": "SUPPORTING",
+      "node": {
+       "id": 142329,
+       "title": {
+        "userPreferred": "Kimetsu no Yaiba: Yuukaku-hen",
+        "__typename": "MediaTitle",
+        "romaji": "Kimetsu no Yaiba: Yuukaku-hen",
+        "english": "Demon Slayer: Kimetsu no Yaiba Entertainment District Arc",
+        "native": "\u9b3c\u6ec5\u306e\u5203 \u904a\u90ed\u7de8"
+       },
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx142329-kET1PIXJv2eW.jpg",
+        "__typename": "MediaCoverImage"
+       },
+       "seasonYear": 2022,
+       "averageScore": 86,
+       "episodes": 11,
+       "__typename": "Media"
+      },
+      "voiceActors": [
+       {
+        "id": 95185,
+        "name": {
+         "full": "Kana Hanazawa",
+         "__typename": "StaffName",
+         "native": null
+        },
+        "image": {
+         "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n95185-x8ZYvtN7SegC.png",
+         "__typename": "StaffImage"
+        },
+        "__typename": "Staff"
+       }
+      ],
+      "__typename": "MediaEdge"
+     },
+     {
+      "id": 354188,
+      "characterRole": "MAIN",
+      "node": {
+       "id": 145139,
+       "title": {
+        "userPreferred": "Kimetsu no Yaiba: Katanakaji no Sato-hen",
+        "__typename": "MediaTitle",
+        "romaji": "Kimetsu no Yaiba: Katanakaji no Sato-hen",
+        "english": "Demon Slayer: Kimetsu no Yaiba Swordsmith Village Arc",
+        "native": "\u9b3c\u6ec5\u306e\u5203 \u5200\u935b\u51b6\u306e\u91cc\u7de8"
+       },
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx145139-rRimpHGWLhym.png",
+        "__typename": "MediaCoverImage"
+       },
+       "seasonYear": 2023,
+       "averageScore": 81,
+       "episodes": 11,
+       "__typename": "Media"
+      },
+      "voiceActors": [
+       {
+        "id": 95185,
+        "name": {
+         "full": "Kana Hanazawa",
+         "__typename": "StaffName",
+         "native": null
+        },
+        "image": {
+         "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n95185-x8ZYvtN7SegC.png",
+         "__typename": "StaffImage"
+        },
+        "__typename": "Staff"
+       }
+      ],
+      "__typename": "MediaEdge"
+     },
+     {
+      "id": 338257,
+      "characterRole": "SUPPORTING",
+      "node": {
+       "id": 129874,
+       "title": {
+        "userPreferred": "Kimetsu no Yaiba: Mugen Ressha-hen (TV)",
+        "__typename": "MediaTitle",
+        "romaji": "Kimetsu no Yaiba: Mugen Ressha-hen (TV)",
+        "english": "Demon Slayer: Kimetsu no Yaiba Mugen Train Arc",
+        "native": "\u9b3c\u6ec5\u306e\u5203 \u7121\u9650\u5217\u8eca\u7de8 (TV)"
+       },
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx129874-g6ZKXB94Hui1.jpg",
+        "__typename": "MediaCoverImage"
+       },
+       "seasonYear": 2021,
+       "averageScore": 82,
+       "episodes": 7,
+       "__typename": "Media"
+      },
+      "voiceActors": [
+       {
+        "id": 95185,
+        "name": {
+         "full": "Kana Hanazawa",
+         "__typename": "StaffName",
+         "native": null
+        },
+        "image": {
+         "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n95185-x8ZYvtN7SegC.png",
+         "__typename": "StaffImage"
+        },
+        "__typename": "Staff"
+       }
+      ],
+      "__typename": "MediaEdge"
+     },
+     {
+      "id": 433453,
+      "characterRole": "SUPPORTING",
+      "node": {
+       "id": 166240,
+       "title": {
+        "userPreferred": "Kimetsu no Yaiba: Hashira Geiko-hen",
+        "__typename": "MediaTitle",
+        "romaji": "Kimetsu no Yaiba: Hashira Geiko-hen",
+        "english": "Demon Slayer: Kimetsu no Yaiba Hashira Training Arc",
+        "native": "\u9b3c\u6ec5\u306e\u5203 \u67f1\u7a3d\u53e4\u7de8"
+       },
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx166240-PBV7zukIHW7V.png",
+        "__typename": "MediaCoverImage"
+       },
+       "seasonYear": 2024,
+       "averageScore": 79,
+       "episodes": 8,
+       "__typename": "Media"
+      },
+      "voiceActors": [
+       {
+        "id": 95185,
+        "name": {
+         "full": "Kana Hanazawa",
+         "__typename": "StaffName",
+         "native": null
+        },
+        "image": {
+         "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n95185-x8ZYvtN7SegC.png",
+         "__typename": "StaffImage"
+        },
+        "__typename": "Staff"
+       }
+      ],
+      "__typename": "MediaEdge"
+     },
+     {
+      "id": 169000,
+      "characterRole": "SUPPORTING",
+      "node": {
+       "id": 87216,
+       "title": {
+        "userPreferred": "Kimetsu no Yaiba",
+        "__typename": "MediaTitle",
+        "romaji": "Kimetsu no Yaiba",
+        "english": "Demon Slayer: Kimetsu no Yaiba",
+        "native": "\u9b3c\u6ec5\u306e\u5203"
+       },
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx87216-c9bSNVD10UuD.png",
+        "__typename": "MediaCoverImage"
+       },
+       "seasonYear": null,
+       "averageScore": 79,
+       "episodes": null,
+       "__typename": "Media"
+      },
+      "voiceActors": [],
+      "__typename": "MediaEdge"
+     },
+     {
+      "id": 492547,
+      "characterRole": "SUPPORTING",
+      "node": {
+       "id": 178788,
+       "title": {
+        "userPreferred": "Kimetsu no Yaiba: Mugenjou-hen Movie 1 - Akaza Sairai",
+        "__typename": "MediaTitle",
+        "romaji": "Kimetsu no Yaiba: Mugenjou-hen Movie 1 - Akaza Sairai",
+        "english": "Demon Slayer: Kimetsu no Yaiba Infinity Castle",
+        "native": "\u5287\u5834\u7248\u300c\u9b3c\u6ec5\u306e\u5203\u300d\u7121\u9650\u57ce\u7de8 \u7b2c\u4e00\u7ae0 \u7317\u7aa9\u5ea7\u518d\u6765"
+       },
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx178788-zm3gtpB9TpRt.jpg",
+        "__typename": "MediaCoverImage"
+       },
+       "seasonYear": 2025,
+       "averageScore": 86,
+       "episodes": 1,
+       "__typename": "Media"
+      },
+      "voiceActors": [
+       {
+        "id": 95185,
+        "name": {
+         "full": "Kana Hanazawa",
+         "__typename": "StaffName",
+         "native": null
+        },
+        "image": {
+         "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n95185-x8ZYvtN7SegC.png",
+         "__typename": "StaffImage"
+        },
+        "__typename": "Staff"
+       }
+      ],
+      "__typename": "MediaEdge"
+     },
+     {
+      "id": 353356,
+      "characterRole": "MAIN",
+      "node": {
+       "id": 126445,
+       "title": {
+        "userPreferred": "Kimetsu no Yaiba: Gaiden",
+        "__typename": "MediaTitle",
+        "romaji": "Kimetsu no Yaiba: Gaiden",
+        "english": "Demon Slayer: Kimetsu no Yaiba - Stories of Water and Flame",
+        "native": "\u9b3c\u6ec5\u306e\u5203 \u5916\u4f1d"
+       },
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx126445-F06tM0NpCsph.jpg",
+        "__typename": "MediaCoverImage"
+       },
+       "seasonYear": null,
+       "averageScore": 75,
+       "episodes": null,
+       "__typename": "Media"
+      },
+      "voiceActors": [],
+      "__typename": "MediaEdge"
+     },
+     {
+      "id": 257293,
+      "characterRole": "MAIN",
+      "node": {
+       "id": 118991,
+       "title": {
+        "userPreferred": "Kimetsu no Yaiba: Rengoku Kyoujurou Gaiden",
+        "__typename": "MediaTitle",
+        "romaji": "Kimetsu no Yaiba: Rengoku Kyoujurou Gaiden",
+        "english": "Demon Slayer: Kimetsu no Yaiba - Kyojuro Rengoku\u2019s Story",
+        "native": "\u9b3c\u6ec5\u306e\u5203 \u7149\u7344\u674f\u5bff\u90ce \u3010\u5916\u4f1d\u3011"
+       },
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx118991-JTtCck3yxaXk.jpg",
+        "__typename": "MediaCoverImage"
+       },
+       "seasonYear": null,
+       "averageScore": 76,
+       "episodes": null,
+       "__typename": "Media"
+      },
+      "voiceActors": [],
+      "__typename": "MediaEdge"
+     },
+     {
+      "id": 343752,
+      "characterRole": "SUPPORTING",
+      "node": {
+       "id": 136382,
+       "title": {
+        "userPreferred": "Kimetsu Gakuen!",
+        "__typename": "MediaTitle",
+        "romaji": "Kimetsu Gakuen!",
+        "english": "Demon Slayer: Kimetsu Academy",
+        "native": "\u30ad\u30e1\u30c4\u5b66\u5712\uff01"
+       },
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx136382-MbpgvJ8eBy4d.jpg",
+        "__typename": "MediaCoverImage"
+       },
+       "seasonYear": null,
+       "averageScore": 72,
+       "episodes": null,
+       "__typename": "Media"
+      },
+      "voiceActors": [],
+      "__typename": "MediaEdge"
+     },
+     {
+      "id": 370314,
+      "characterRole": "SUPPORTING",
+      "node": {
+       "id": 116140,
+       "title": {
+        "userPreferred": "Kimetsu no Yaiba: Shiawase no Hana",
+        "__typename": "MediaTitle",
+        "romaji": "Kimetsu no Yaiba: Shiawase no Hana",
+        "english": "Demon Slayer: Kimetsu no Yaiba - The Flower of Happiness",
+        "native": "\u9b3c\u6ec5\u306e\u5203 \u3057\u3042\u308f\u305b\u306e\u82b1"
+       },
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx116140-i9UlieKwD4rn.jpg",
+        "__typename": "MediaCoverImage"
+       },
+       "seasonYear": null,
+       "averageScore": 70,
+       "episodes": null,
+       "__typename": "Media"
+      },
+      "voiceActors": [],
+      "__typename": "MediaEdge"
+     },
+     {
+      "id": 225374,
+      "characterRole": "MAIN",
+      "node": {
+       "id": 116141,
+       "title": {
+        "userPreferred": "Kimetsu no Yaiba: Katahane no Chou",
+        "__typename": "MediaTitle",
+        "romaji": "Kimetsu no Yaiba: Katahane no Chou",
+        "english": "Demon Slayer: Kimetsu no Yaiba - One-Winged Butterfly",
+        "native": "\u9b3c\u6ec5\u306e\u5203 \u7247\u7fbd\u306e\u8776"
+       },
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/bx116141-FlWc7gn6qZHp.jpg",
+        "__typename": "MediaCoverImage"
+       },
+       "seasonYear": null,
+       "averageScore": 74,
+       "episodes": null,
+       "__typename": "Media"
+      },
+      "voiceActors": [],
+      "__typename": "MediaEdge"
+     },
+     {
+      "id": 522780,
+      "characterRole": "BACKGROUND",
+      "node": {
+       "id": 187383,
+       "title": {
+        "userPreferred": "Kimetsu no Yaiba x MLB Tokyo Series presented by Guggenheim",
+        "__typename": "MediaTitle",
+        "romaji": "Kimetsu no Yaiba x MLB Tokyo Series presented by Guggenheim",
+        "english": null,
+        "native": "\u9b3c\u6ec5\u306e\u5203 \u00d7 MLB Tokyo Series presented by Guggenheim"
+       },
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx187383-OlAtb2DU7e5A.png",
+        "__typename": "MediaCoverImage"
+       },
+       "seasonYear": null,
+       "averageScore": 59,
+       "episodes": 1,
+       "__typename": "Media"
+      },
+      "voiceActors": [],
+      "__typename": "MediaEdge"
+     }
+    ],
+    "__typename": "MediaConnection"
+   },
+   "__typename": "Character"
+  }
+ }
+}

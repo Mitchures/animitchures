@@ -16,6 +16,20 @@
   --score-good: #facc15;
   --score-mixed: #f59e0b;
   --score-poor: #ff5657;
+  /* The standard interactive transition. It was written out in twelve files,
+     which is how the hero's buttons ended up with a different hover from
+     everything else. */
+  --transition: all 0.3s;
+  /* Vertical rhythm between page sections. */
+  --section-gap: 1.25rem;
+  /* Bottom-up scrim for text sitting on artwork. Copied into four files before
+     it was named, and a gradient is not something to keep retyping. */
+  --scrim-bottom: linear-gradient(
+    0deg,
+    rgba(11, 22, 33, 0.96) 14%,
+    rgba(11, 22, 33, 0.42) 62%,
+    rgba(11, 22, 33, 0.14) 100%
+  );
   /* Border radius of all block elements */
   --border-radius: 20px;
   /* Margins and padding of left and right content spacing */
@@ -29,8 +43,14 @@
      the sticky tab bar, the 100vh view heights — follows from this token.
      Below 960px the header returns for the logo and menu button. */
   --header-height: 0px;
-  /* Poster height for Card. Card width derives from it at a 2:3 ratio. */
-  --card-poster-height: 300px;
+  /* Poster height for Card. Card width derives from it at a 2:3 ratio, and
+     the density setting scales both through one multiplier rather than a
+     second set of sizes in every component. */
+  --card-poster-base: 300px;
+  --card-poster-height: calc(var(--card-poster-base) * var(--poster-scale));
+  /* Minimum track for the poster grids, on the same multiplier — scaling the
+     card without the track leaves gaps between narrower cards. */
+  --poster-track: calc(200px * var(--poster-scale));
   /* Sidebar rail: collapsed by default, expands on hover as an overlay. */
   --rail-width: 72px;
   --rail-width-expanded: 240px;
@@ -49,7 +69,7 @@
     --x-axis-spacing: 1.5rem;
     --left-spacing: 1.5rem;
     --right-spacing: 1.5rem;
-    --card-poster-height: 240px;
+    --card-poster-base: 240px;
   }
 }
 
@@ -59,7 +79,7 @@
     --left-spacing: 1rem;
     --right-spacing: 1rem;
     --border-radius: 14px;
-    --card-poster-height: 180px;
+    --card-poster-base: 180px;
   }
 }
 
@@ -109,11 +129,16 @@ p {
 
 a {
   text-decoration: none;
-  transition: all 0.3s;
+  transition: var(--transition);
+  /* Links take their surroundings, not the user agent's blue. Every link in
+     the app was being coloured by its own component rule, so the moment one
+     was added without that it came out browser-blue against the dark theme.
+     The purple hover below still applies everywhere. */
+  color: inherit;
 }
 
 a * {
-  transition: all 0.3s;
+  transition: var(--transition);
 }
 
 a:hover {
@@ -154,7 +179,7 @@ button {
   border-radius: var(--border-radius);
   color: white;
   background-color: var(--action);
-  transition: all 0.3s;
+  transition: var(--transition);
 }
 
 button[type='submit'] {
@@ -193,23 +218,41 @@ button:focus {
 }
 
 @media (prefers-color-scheme: dark) {
-  .app {
+  :root:not([data-theme='light']) .app {
     background: var(--primary);
     color: white;
   }
 
-  hr {
+  :root:not([data-theme='light']) hr {
     border-color: rgba(209, 213, 219, 0.15);
   }
 
-  input {
+  :root:not([data-theme='light']) input {
     background-color: rgba(243, 244, 246, 0.15);
     color: white;
   }
 
-  a.active span {
+  :root:not([data-theme='light']) a.active span {
     color: white;
   }
+}
+
+:root[data-theme='dark'] .app {
+  background: var(--primary);
+  color: white;
+}
+
+:root[data-theme='dark'] hr {
+  border-color: rgba(209, 213, 219, 0.15);
+}
+
+:root[data-theme='dark'] input {
+  background-color: rgba(243, 244, 246, 0.15);
+  color: white;
+}
+
+:root[data-theme='dark'] a.active span {
+  color: white;
 }
 
 @media screen and (max-width: 960px) {
@@ -218,4 +261,17 @@ button:focus {
     /* The sidebar is display:none here — reclaim its reserved width. */
     margin-left: 0;
   }
+}
+
+/* Horizontal scroller with the scrollbar hidden — the Discover rails, the rank
+   chart and the premiere spine all need exactly this. */
+.scrollerX {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.scrollerX::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
 }

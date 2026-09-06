@@ -1,0 +1,180 @@
+.upNext {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem 0.75rem 0.75rem;
+  border-radius: 14px;
+  background-color: var(--card-surface, rgba(255, 255, 255, 0.04));
+  transition: var(--transition);
+}
+
+.upNext:hover {
+  background-color: var(--card-surface-hover, rgba(255, 255, 255, 0.075));
+}
+
+/* Big enough to recognise the art from across the room — this row is the one
+   the page is for, and a thumbnail you have to squint at defeats it. */
+.upNext__art {
+  flex: none;
+  width: 132px;
+  aspect-ratio: 2 / 3;
+  border-radius: 10px;
+  overflow: hidden;
+  display: block;
+}
+
+.upNext__art > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: var(--transition);
+}
+
+.upNext:hover .upNext__art > img {
+  transform: scale(1.06);
+}
+
+.upNext__body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.upNext__title {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 0.6rem;
+  color: inherit;
+  /* Always two lines' worth, clipped past that. Reserving the space rather
+     than only capping it is what keeps the strips level across a row — a
+     one-line title beside a two-line one otherwise sits its strip 20px high. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(2 * 1.35 * 0.95rem);
+}
+
+.upNext__title:hover {
+  color: var(--action) !important;
+}
+
+.upNext__meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+  font-size: 0.75rem;
+}
+
+/* Tabular figures so a column of fractions lines up on the slash. */
+.upNext__count {
+  font-size: 1.05rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.upNext__count > span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--secondary);
+}
+
+.upNext__left {
+  color: var(--secondary);
+  font-weight: 700;
+}
+
+.upNext__airing {
+  margin-left: auto;
+  font-style: normal;
+  font-weight: 700;
+  color: var(--action);
+  text-align: right;
+  /* Never break "Ep 24 airs Wednesday" across two lines — it is one phrase,
+     and half of it on its own line reads as a different fact. */
+  white-space: nowrap;
+}
+
+.upNext__mark {
+  flex: none;
+  align-self: center;
+  /* App.css styles every bare `button` as a full-width 54px form button.
+     A class beats an element selector, but only for what it declares — so
+     these two have to be said out loud. */
+  width: auto;
+  height: auto;
+  border: none;
+  border-radius: 9px;
+  padding: 0.5rem 0.8rem;
+  background-color: var(--action);
+  color: #fff;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--transition);
+}
+
+.upNext__mark:hover:not(:disabled) {
+  opacity: 1;
+  filter: brightness(1.14);
+}
+
+.upNext__mark:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+@media (prefers-color-scheme: light) {
+  .upNext {
+    /* The light page is a pale lavender, so 4.5% black barely separated the
+       card from it — the band read as loose text rather than as cards. */
+    --card-surface: rgba(11, 22, 33, 0.075);
+    --card-surface-hover: rgba(11, 22, 33, 0.115);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .upNext {
+    gap: 0.75rem;
+    padding: 0.6rem 0.75rem 0.6rem 0.6rem;
+  }
+
+  .upNext__art {
+    width: 96px;
+  }
+
+  .upNext__title {
+    font-size: 0.86rem;
+  }
+
+  /* The airing note wraps under the fraction rather than fighting it for the
+     same line at this width. */
+  .upNext__meta {
+    flex-wrap: wrap;
+    row-gap: 0.25rem;
+  }
+
+  .upNext__airing {
+    margin-left: 0;
+    flex-basis: 100%;
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .upNext,
+  .upNext__art > img,
+  .upNext__mark {
+    transition: none;
+  }
+
+  .upNext:hover .upNext__art > img {
+    transform: none;
+  }
+}

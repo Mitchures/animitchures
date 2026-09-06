@@ -1,0 +1,107 @@
+.listRow {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.45rem 0.6rem;
+  border-bottom: 1px solid var(--row-rule, rgba(255, 255, 255, 0.06));
+  color: inherit;
+  transition: background-color 0.2s;
+}
+
+.listRow:hover {
+  background-color: var(--row-hover, rgba(255, 255, 255, 0.045));
+}
+
+.listRow:hover .listRow__title {
+  color: var(--action) !important;
+}
+
+.listRow > img {
+  flex: none;
+  width: 54px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.listRow__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 0.84rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: var(--transition);
+}
+
+.listRow__strip {
+  flex: none;
+  width: 110px;
+}
+
+/* Fixed widths on the trailing columns are what make the rows scan as a
+   column rather than as a ragged list. */
+.listRow__count {
+  flex: none;
+  width: 62px;
+  text-align: right;
+  font-size: 0.78rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.listRow__count > span {
+  font-weight: 600;
+  font-size: 0.7rem;
+  color: var(--secondary);
+}
+
+.listRow__score {
+  flex: none;
+  width: 34px;
+  text-align: right;
+  font-size: 0.78rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: var(--gold);
+}
+
+.listRow__score.is-unrated {
+  color: var(--secondary);
+  opacity: 0.4;
+}
+
+.listRow__when {
+  flex: none;
+  width: 76px;
+  text-align: right;
+  font-style: normal;
+  font-size: 0.7rem;
+  color: var(--secondary);
+}
+
+@media (prefers-color-scheme: light) {
+  .listRow {
+    --row-rule: rgba(11, 22, 33, 0.08);
+    --row-hover: rgba(11, 22, 33, 0.045);
+  }
+}
+
+/* Below 820px the strip and the timestamp are the first things to go — the
+   fraction carries the same information in less room. */
+@media screen and (max-width: 820px) {
+  .listRow__strip {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .listRow__when {
+    display: none;
+  }
+
+  .listRow {
+    gap: 0.7rem;
+  }
+}

@@ -1,1524 +1,1575 @@
 {
-  "data": {
-    "Media": {
-      "id": 1,
-      "title": {
-        "userPreferred": "Cowboy Bebop",
-        "romaji": "Cowboy Bebop",
-        "english": "Cowboy Bebop",
-        "native": "カウボーイビバップ",
-        "__typename": "MediaTitle"
-      },
-      "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1-GCsPm7waJ4kS.png",
-        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1-GCsPm7waJ4kS.png",
+ "data": {
+  "Media": {
+   "id": 1,
+   "title": {
+    "userPreferred": "Cowboy Bebop",
+    "romaji": "Cowboy Bebop",
+    "english": "Cowboy Bebop",
+    "native": "\u30ab\u30a6\u30dc\u30fc\u30a4\u30d3\u30d0\u30c3\u30d7",
+    "__typename": "MediaTitle"
+   },
+   "coverImage": {
+    "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1-GCsPm7waJ4kS.png",
+    "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1-GCsPm7waJ4kS.png",
+    "__typename": "MediaCoverImage"
+   },
+   "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/1-OquNCNB6srGe.jpg",
+   "startDate": {
+    "year": 1998,
+    "month": 4,
+    "day": 3,
+    "__typename": "FuzzyDate"
+   },
+   "endDate": {
+    "year": 1999,
+    "month": 4,
+    "day": 24,
+    "__typename": "FuzzyDate"
+   },
+   "description": "Enter a world in the distant future, where Bounty Hunters roam the solar system. Spike and Jet, bounty hunting partners, set out on journeys in an ever struggling effort to win bounty rewards to survive.<br><br>\nWhile traveling, they meet up with other very interesting people. Could Faye, the beautiful and ridiculously poor gambler, Edward, the computer genius, and Ein, the engineered dog be a good addition to the group?",
+   "season": "SPRING",
+   "seasonYear": 1998,
+   "type": "ANIME",
+   "format": "TV",
+   "status": "FINISHED",
+   "episodes": 26,
+   "duration": 24,
+   "chapters": null,
+   "volumes": null,
+   "genres": [
+    "Action",
+    "Adventure",
+    "Drama",
+    "Sci-Fi"
+   ],
+   "synonyms": [
+    "\uce74\uc6b0\ubcf4\uc774 \ube44\ubc25",
+    "\u05e7\u05d0\u05d5\u05d1\u05d5\u05d9 \u05d1\u05d9\u05d1\u05d5\u05e4",
+    "\u0e04\u0e32\u0e27\u0e1a\u0e2d\u0e22 \u0e1a\u0e35\u0e1a\u0e4a\u0e2d\u0e1b",
+    "\u041a\u043e\u0432\u0431\u043e\u0439 \u0411\u0438\u0431\u043e\u043f",
+    "\u039a\u03b1\u03bf\u03c5\u03bc\u03c0\u03cc\u03b7\u03b4\u03b5\u03c2 \u03c4\u03bf\u03c5 \u0394\u03b9\u03b1\u03c3\u03c4\u03ae\u03bc\u03b1\u03c4\u03bf\u03c2",
+    "Kowboj Bebop"
+   ],
+   "source": "ORIGINAL",
+   "isAdult": false,
+   "isLocked": false,
+   "meanScore": 86,
+   "averageScore": 86,
+   "popularity": 466218,
+   "favourites": 33668,
+   "hashtag": null,
+   "countryOfOrigin": "JP",
+   "isLicensed": true,
+   "isFavourite": false,
+   "isRecommendationBlocked": false,
+   "isFavouriteBlocked": false,
+   "nextAiringEpisode": null,
+   "relations": {
+    "edges": [
+     {
+      "id": 3,
+      "relationType": "SIDE_STORY",
+      "node": {
+       "id": 5,
+       "title": {
+        "english": "Cowboy Bebop: The Movie - Knockin' on Heaven's Door",
+        "userPreferred": "Cowboy Bebop: Tengoku no Tobira",
+        "__typename": "MediaTitle",
+        "romaji": "Cowboy Bebop: Tengoku no Tobira",
+        "native": "\u30ab\u30a6\u30dc\u30fc\u30a4\u30d3\u30d0\u30c3\u30d7\u5929\u56fd\u306e\u6249"
+       },
+       "format": "MOVIE",
+       "type": "ANIME",
+       "status": "FINISHED",
+       "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/5-VOcSZFepDDhm.jpg",
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx5-NozHwXWdNLCz.jpg",
         "__typename": "MediaCoverImage"
+       },
+       "__typename": "Media"
       },
-      "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/1-OquNCNB6srGe.jpg",
-      "startDate": {
-        "year": 1998,
-        "month": 4,
-        "day": 3,
-        "__typename": "FuzzyDate"
+      "__typename": "MediaEdge"
+     },
+     {
+      "id": 4,
+      "relationType": "SIDE_STORY",
+      "node": {
+       "id": 17205,
+       "title": {
+        "english": "Ein's Summer Vacation",
+        "userPreferred": "Cowboy Bebop: Ein no Natsuyasumi",
+        "__typename": "MediaTitle",
+        "romaji": "Cowboy Bebop: Ein no Natsuyasumi",
+        "native": "\u30a2\u30a4\u30f3\u306e\u306a\u3064\u3084\u3059\u307f"
+       },
+       "format": "SPECIAL",
+       "type": "ANIME",
+       "status": "FINISHED",
+       "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/17205-V924IzRELNKt.jpg",
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx17205-Dk5nmaKD7hPM.jpg",
+        "__typename": "MediaCoverImage"
+       },
+       "__typename": "Media"
       },
-      "endDate": {
-        "year": 1999,
-        "month": 4,
-        "day": 24,
-        "__typename": "FuzzyDate"
+      "__typename": "MediaEdge"
+     },
+     {
+      "id": 29272,
+      "relationType": "ADAPTATION",
+      "node": {
+       "id": 30173,
+       "title": {
+        "english": "Cowboy Bebop",
+        "userPreferred": "Cowboy Bebop",
+        "__typename": "MediaTitle",
+        "romaji": "Cowboy Bebop",
+        "native": "\u30ab\u30a6\u30dc\u30fc\u30a4\u30d3\u30d0\u30c3\u30d7"
+       },
+       "format": "MANGA",
+       "type": "MANGA",
+       "status": "FINISHED",
+       "bannerImage": null,
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/nx30173-SU7cu3H9jLXT.jpg",
+        "__typename": "MediaCoverImage"
+       },
+       "__typename": "Media"
       },
-      "description": "Enter a world in the distant future, where Bounty Hunters roam the solar system. Spike and Jet, bounty hunting partners, set out on journeys in an ever struggling effort to win bounty rewards to survive.<br><br>\nWhile traveling, they meet up with other very interesting people. Could Faye, the beautiful and ridiculously poor gambler, Edward, the computer genius, and Ein, the engineered dog be a good addition to the group?",
-      "season": "SPRING",
-      "seasonYear": 1998,
-      "type": "ANIME",
-      "format": "TV",
-      "status": "FINISHED",
-      "episodes": 26,
-      "duration": 24,
-      "chapters": null,
-      "volumes": null,
-      "genres": [
-        "Action",
-        "Adventure",
-        "Drama",
-        "Sci-Fi"
+      "__typename": "MediaEdge"
+     },
+     {
+      "id": 29274,
+      "relationType": "ADAPTATION",
+      "node": {
+       "id": 30174,
+       "title": {
+        "english": "Cowboy Bebop Shooting Star",
+        "userPreferred": "Shooting Star Bebop: Cowboy Bebop",
+        "__typename": "MediaTitle",
+        "romaji": "Shooting Star Bebop: Cowboy Bebop",
+        "native": "\u30b7\u30e5\u30fc\u30c6\u30a3\u30f3\u30b0\u30b9\u30bf\u30fc\u30d3\u30d0\u30c3\u30d7 \u30ab\u30a6\u30dc\u30fc\u30a4\u30d3\u30d0\u30c3\u30d7"
+       },
+       "format": "MANGA",
+       "type": "MANGA",
+       "status": "FINISHED",
+       "bannerImage": null,
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/b30174-RTbUXsQNPNwd.jpg",
+        "__typename": "MediaCoverImage"
+       },
+       "__typename": "Media"
+      },
+      "__typename": "MediaEdge"
+     },
+     {
+      "id": 29951,
+      "relationType": "SUMMARY",
+      "node": {
+       "id": 4037,
+       "title": {
+        "english": null,
+        "userPreferred": "Cowboy Bebop: Yoseatsume Blues",
+        "__typename": "MediaTitle",
+        "romaji": "Cowboy Bebop: Yoseatsume Blues",
+        "native": "\u30ab\u30a6\u30dc\u30fc\u30a4\u30d3\u30d0\u30c3\u30d7 \u3088\u305b\u3042\u3064\u3081\u30d6\u30eb\u30fc\u30b9"
+       },
+       "format": "SPECIAL",
+       "type": "ANIME",
+       "status": "FINISHED",
+       "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/n4037-1rwmIePHBzB7.jpg",
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx4037-zpDbjycoZhNI.png",
+        "__typename": "MediaCoverImage"
+       },
+       "__typename": "Media"
+      },
+      "__typename": "MediaEdge"
+     }
+    ],
+    "__typename": "MediaConnection"
+   },
+   "characters": {
+    "edges": [
+     {
+      "id": 2504,
+      "role": "MAIN",
+      "name": null,
+      "voiceActors": [
+       {
+        "id": 95011,
+        "name": {
+         "userPreferred": "Kouichi Yamadera",
+         "__typename": "StaffName",
+         "native": null
+        },
+        "language": "Japanese",
+        "image": {
+         "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n95011-2RfLzncNyvbR.png",
+         "__typename": "StaffImage"
+        },
+        "__typename": "Staff"
+       }
       ],
-      "synonyms": [
-        "카우보이 비밥",
-        "קאובוי ביבופ",
-        "คาวบอย บีบ๊อป",
-        "Ковбой Бибоп",
-        "Καουμπόηδες του Διαστήματος",
-        "Kowboj Bebop"
+      "node": {
+       "id": 1,
+       "name": {
+        "userPreferred": "Spike Spiegel",
+        "__typename": "CharacterName",
+        "native": null
+       },
+       "image": {
+        "large": "https://s4.anilist.co/file/anilistcdn/character/large/b1-ChxaldmieFlQ.png",
+        "__typename": "CharacterImage"
+       },
+       "__typename": "Character"
+      },
+      "__typename": "CharacterEdge"
+     },
+     {
+      "id": 3013,
+      "role": "MAIN",
+      "name": null,
+      "voiceActors": [
+       {
+        "id": 95014,
+        "name": {
+         "userPreferred": "Megumi Hayashibara",
+         "__typename": "StaffName",
+         "native": null
+        },
+        "language": "Japanese",
+        "image": {
+         "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n95014-tFYQYYhlVOF0.png",
+         "__typename": "StaffImage"
+        },
+        "__typename": "Staff"
+       }
       ],
-      "source": "ORIGINAL",
-      "isAdult": false,
-      "isLocked": false,
-      "meanScore": 86,
-      "averageScore": 86,
-      "popularity": 466218,
-      "favourites": 33668,
-      "hashtag": null,
-      "countryOfOrigin": "JP",
-      "isLicensed": true,
-      "isFavourite": false,
-      "isRecommendationBlocked": false,
-      "isFavouriteBlocked": false,
-      "nextAiringEpisode": null,
-      "relations": {
-        "edges": [
-          {
-            "id": 3,
-            "relationType": "SIDE_STORY",
-            "node": {
-              "id": 5,
-              "title": {
-                "english": "Cowboy Bebop: The Movie - Knockin' on Heaven's Door",
-                "userPreferred": "Cowboy Bebop: Tengoku no Tobira",
-                "__typename": "MediaTitle"
-              },
-              "format": "MOVIE",
-              "type": "ANIME",
-              "status": "FINISHED",
-              "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/5-VOcSZFepDDhm.jpg",
-              "coverImage": {
-                "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx5-NozHwXWdNLCz.jpg",
-                "__typename": "MediaCoverImage"
-              },
-              "__typename": "Media"
-            },
-            "__typename": "MediaEdge"
-          },
-          {
-            "id": 4,
-            "relationType": "SIDE_STORY",
-            "node": {
-              "id": 17205,
-              "title": {
-                "english": "Ein's Summer Vacation",
-                "userPreferred": "Cowboy Bebop: Ein no Natsuyasumi",
-                "__typename": "MediaTitle"
-              },
-              "format": "SPECIAL",
-              "type": "ANIME",
-              "status": "FINISHED",
-              "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/17205-V924IzRELNKt.jpg",
-              "coverImage": {
-                "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx17205-Dk5nmaKD7hPM.jpg",
-                "__typename": "MediaCoverImage"
-              },
-              "__typename": "Media"
-            },
-            "__typename": "MediaEdge"
-          },
-          {
-            "id": 29272,
-            "relationType": "ADAPTATION",
-            "node": {
-              "id": 30173,
-              "title": {
-                "english": "Cowboy Bebop",
-                "userPreferred": "Cowboy Bebop",
-                "__typename": "MediaTitle"
-              },
-              "format": "MANGA",
-              "type": "MANGA",
-              "status": "FINISHED",
-              "bannerImage": null,
-              "coverImage": {
-                "large": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/nx30173-SU7cu3H9jLXT.jpg",
-                "__typename": "MediaCoverImage"
-              },
-              "__typename": "Media"
-            },
-            "__typename": "MediaEdge"
-          },
-          {
-            "id": 29274,
-            "relationType": "ADAPTATION",
-            "node": {
-              "id": 30174,
-              "title": {
-                "english": "Cowboy Bebop Shooting Star",
-                "userPreferred": "Shooting Star Bebop: Cowboy Bebop",
-                "__typename": "MediaTitle"
-              },
-              "format": "MANGA",
-              "type": "MANGA",
-              "status": "FINISHED",
-              "bannerImage": null,
-              "coverImage": {
-                "large": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/b30174-RTbUXsQNPNwd.jpg",
-                "__typename": "MediaCoverImage"
-              },
-              "__typename": "Media"
-            },
-            "__typename": "MediaEdge"
-          },
-          {
-            "id": 29951,
-            "relationType": "SUMMARY",
-            "node": {
-              "id": 4037,
-              "title": {
-                "english": null,
-                "userPreferred": "Cowboy Bebop: Yoseatsume Blues",
-                "__typename": "MediaTitle"
-              },
-              "format": "SPECIAL",
-              "type": "ANIME",
-              "status": "FINISHED",
-              "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/n4037-1rwmIePHBzB7.jpg",
-              "coverImage": {
-                "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx4037-zpDbjycoZhNI.png",
-                "__typename": "MediaCoverImage"
-              },
-              "__typename": "Media"
-            },
-            "__typename": "MediaEdge"
-          }
-        ],
-        "__typename": "MediaConnection"
+      "node": {
+       "id": 2,
+       "name": {
+        "userPreferred": "Faye Valentine",
+        "__typename": "CharacterName",
+        "native": null
+       },
+       "image": {
+        "large": "https://s4.anilist.co/file/anilistcdn/character/large/b2-0Iszg6Izgt4p.png",
+        "__typename": "CharacterImage"
+       },
+       "__typename": "Character"
       },
-      "characters": {
-        "edges": [
-          {
-            "id": 2504,
-            "role": "MAIN",
-            "name": null,
-            "voiceActors": [
-              {
-                "id": 95011,
-                "name": {
-                  "userPreferred": "Kouichi Yamadera",
-                  "__typename": "StaffName"
-                },
-                "language": "Japanese",
-                "image": {
-                  "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n95011-2RfLzncNyvbR.png",
-                  "__typename": "StaffImage"
-                },
-                "__typename": "Staff"
-              }
-            ],
-            "node": {
-              "id": 1,
-              "name": {
-                "userPreferred": "Spike Spiegel",
-                "__typename": "CharacterName"
-              },
-              "image": {
-                "large": "https://s4.anilist.co/file/anilistcdn/character/large/b1-ChxaldmieFlQ.png",
-                "__typename": "CharacterImage"
-              },
-              "__typename": "Character"
-            },
-            "__typename": "CharacterEdge"
-          },
-          {
-            "id": 3013,
-            "role": "MAIN",
-            "name": null,
-            "voiceActors": [
-              {
-                "id": 95014,
-                "name": {
-                  "userPreferred": "Megumi Hayashibara",
-                  "__typename": "StaffName"
-                },
-                "language": "Japanese",
-                "image": {
-                  "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n95014-tFYQYYhlVOF0.png",
-                  "__typename": "StaffImage"
-                },
-                "__typename": "Staff"
-              }
-            ],
-            "node": {
-              "id": 2,
-              "name": {
-                "userPreferred": "Faye Valentine",
-                "__typename": "CharacterName"
-              },
-              "image": {
-                "large": "https://s4.anilist.co/file/anilistcdn/character/large/b2-0Iszg6Izgt4p.png",
-                "__typename": "CharacterImage"
-              },
-              "__typename": "Character"
-            },
-            "__typename": "CharacterEdge"
-          },
-          {
-            "id": 31911,
-            "role": "MAIN",
-            "name": null,
-            "voiceActors": [
-              {
-                "id": 95357,
-                "name": {
-                  "userPreferred": "Unshou Ishizuka",
-                  "__typename": "StaffName"
-                },
-                "language": "Japanese",
-                "image": {
-                  "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n95357-umndcceko65h.png",
-                  "__typename": "StaffImage"
-                },
-                "__typename": "Staff"
-              }
-            ],
-            "node": {
-              "id": 3,
-              "name": {
-                "userPreferred": "Jet Black",
-                "__typename": "CharacterName"
-              },
-              "image": {
-                "large": "https://s4.anilist.co/file/anilistcdn/character/large/b3-JjH9Si9UM1NZ.png",
-                "__typename": "CharacterImage"
-              },
-              "__typename": "Character"
-            },
-            "__typename": "CharacterEdge"
-          },
-          {
-            "id": 36164,
-            "role": "MAIN",
-            "name": null,
-            "voiceActors": [
-              {
-                "id": 95658,
-                "name": {
-                  "userPreferred": "Aoi Tada",
-                  "__typename": "StaffName"
-                },
-                "language": "Japanese",
-                "image": {
-                  "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n95658-paHKYOWkhoOd.png",
-                  "__typename": "StaffImage"
-                },
-                "__typename": "Staff"
-              }
-            ],
-            "node": {
-              "id": 16,
-              "name": {
-                "userPreferred": "Edward Wong Hau Pepelu Tivrusky IV",
-                "__typename": "CharacterName"
-              },
-              "image": {
-                "large": "https://s4.anilist.co/file/anilistcdn/character/large/b16-80wd87nl1Rue.png",
-                "__typename": "CharacterImage"
-              },
-              "__typename": "Character"
-            },
-            "__typename": "CharacterEdge"
-          },
-          {
-            "id": 2505,
-            "role": "SUPPORTING",
-            "name": null,
-            "voiceActors": [
-              {
-                "id": 95011,
-                "name": {
-                  "userPreferred": "Kouichi Yamadera",
-                  "__typename": "StaffName"
-                },
-                "language": "Japanese",
-                "image": {
-                  "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n95011-2RfLzncNyvbR.png",
-                  "__typename": "StaffImage"
-                },
-                "__typename": "Staff"
-              }
-            ],
-            "node": {
-              "id": 4,
-              "name": {
-                "userPreferred": "Ein",
-                "__typename": "CharacterName"
-              },
-              "image": {
-                "large": "https://s4.anilist.co/file/anilistcdn/character/large/4.jpg",
-                "__typename": "CharacterImage"
-              },
-              "__typename": "Character"
-            },
-            "__typename": "CharacterEdge"
-          },
-          {
-            "id": 10844,
-            "role": "SUPPORTING",
-            "name": null,
-            "voiceActors": [
-              {
-                "id": 95084,
-                "name": {
-                  "userPreferred": "Norio Wakamoto",
-                  "__typename": "StaffName"
-                },
-                "language": "Japanese",
-                "image": {
-                  "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n95084-RTrZSU38POPF.png",
-                  "__typename": "StaffImage"
-                },
-                "__typename": "Staff"
-              }
-            ],
-            "node": {
-              "id": 2734,
-              "name": {
-                "userPreferred": "Vicious",
-                "__typename": "CharacterName"
-              },
-              "image": {
-                "large": "https://s4.anilist.co/file/anilistcdn/character/large/b2734-aglO8RKNVxnn.jpg",
-                "__typename": "CharacterImage"
-              },
-              "__typename": "Character"
-            },
-            "__typename": "CharacterEdge"
-          }
-        ],
-        "__typename": "CharacterConnection"
-      },
-      "staff": {
-        "edges": [
-          {
-            "id": 4313,
-            "role": "Original Creator",
-            "node": {
-              "id": 97197,
-              "name": {
-                "userPreferred": "Hajime Yatate",
-                "__typename": "StaffName"
-              },
-              "language": "Japanese",
-              "image": {
-                "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n97197-6NsKNt4EPoul.jpg",
-                "__typename": "StaffImage"
-              },
-              "__typename": "Staff"
-            },
-            "__typename": "StaffEdge"
-          },
-          {
-            "id": 3837,
-            "role": "Director",
-            "node": {
-              "id": 97009,
-              "name": {
-                "userPreferred": "Shinichirou Watanabe",
-                "__typename": "StaffName"
-              },
-              "language": "Japanese",
-              "image": {
-                "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n97009-4K1Wc7JG9iLR.png",
-                "__typename": "StaffImage"
-              },
-              "__typename": "Staff"
-            },
-            "__typename": "StaffEdge"
-          },
-          {
-            "id": 4616,
-            "role": "Series Composition",
-            "node": {
-              "id": 97334,
-              "name": {
-                "userPreferred": "Keiko Nobumoto",
-                "__typename": "StaffName"
-              },
-              "language": "Japanese",
-              "image": {
-                "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n97334-ewqQWYWhU3wm.png",
-                "__typename": "StaffImage"
-              },
-              "__typename": "Staff"
-            },
-            "__typename": "StaffEdge"
-          },
-          {
-            "id": 458667,
-            "role": "Literary Arts",
-            "node": {
-              "id": 143033,
-              "name": {
-                "userPreferred": "Akira Toba",
-                "__typename": "StaffName"
-              },
-              "language": "Japanese",
-              "image": {
-                "large": "https://s4.anilist.co/file/anilistcdn/staff/large/default.jpg",
-                "__typename": "StaffImage"
-              },
-              "__typename": "Staff"
-            },
-            "__typename": "StaffEdge"
-          },
-          {
-            "id": 24691,
-            "role": "Character Design",
-            "node": {
-              "id": 103531,
-              "name": {
-                "userPreferred": "Toshihiro Kawamoto",
-                "__typename": "StaffName"
-              },
-              "language": "Japanese",
-              "image": {
-                "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n103531-vNFYQvYyUFs8.png",
-                "__typename": "StaffImage"
-              },
-              "__typename": "Staff"
-            },
-            "__typename": "StaffEdge"
-          },
-          {
-            "id": 34817,
-            "role": "Mechanical Design",
-            "node": {
-              "id": 106476,
-              "name": {
-                "userPreferred": "Kimitoshi Yamane",
-                "__typename": "StaffName"
-              },
-              "language": "Japanese",
-              "image": {
-                "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n106476-pzrMSb7jlA04.png",
-                "__typename": "StaffImage"
-              },
-              "__typename": "Staff"
-            },
-            "__typename": "StaffEdge"
-          },
-          {
-            "id": 458619,
-            "role": "Set Design",
-            "node": {
-              "id": 140797,
-              "name": {
-                "userPreferred": "Isamu Imakake",
-                "__typename": "StaffName"
-              },
-              "language": "Japanese",
-              "image": {
-                "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n140797-dYXGAewnESJc.png",
-                "__typename": "StaffImage"
-              },
-              "__typename": "Staff"
-            },
-            "__typename": "StaffEdge"
-          },
-          {
-            "id": 458612,
-            "role": "Setting Design Assistance",
-            "node": {
-              "id": 97501,
-              "name": {
-                "userPreferred": "Shouji Kawamori",
-                "__typename": "StaffName"
-              },
-              "language": "Japanese",
-              "image": {
-                "large": "https://s4.anilist.co/file/anilistcdn/staff/large/97501-fy8TgOjYJwIi.jpg",
-                "__typename": "StaffImage"
-              },
-              "__typename": "Staff"
-            },
-            "__typename": "StaffEdge"
-          }
-        ],
-        "__typename": "StaffConnection"
-      },
-      "studios": {
-        "edges": [
-          {
-            "isMain": true,
-            "node": {
-              "id": 14,
-              "name": "Sunrise",
-              "__typename": "Studio"
-            },
-            "__typename": "StudioEdge"
-          },
-          {
-            "isMain": false,
-            "node": {
-              "id": 23,
-              "name": "Bandai Visual",
-              "__typename": "Studio"
-            },
-            "__typename": "StudioEdge"
-          },
-          {
-            "isMain": false,
-            "node": {
-              "id": 233,
-              "name": "Bandai Entertainment",
-              "__typename": "Studio"
-            },
-            "__typename": "StudioEdge"
-          }
-        ],
-        "__typename": "StudioConnection"
-      },
-      "reviews": {
-        "pageInfo": {
-          "total": 500,
-          "__typename": "PageInfo"
+      "__typename": "CharacterEdge"
+     },
+     {
+      "id": 31911,
+      "role": "MAIN",
+      "name": null,
+      "voiceActors": [
+       {
+        "id": 95357,
+        "name": {
+         "userPreferred": "Unshou Ishizuka",
+         "__typename": "StaffName",
+         "native": null
         },
-        "nodes": [
-          {
-            "id": 7295,
-            "summary": "Controversial opinion incoming ",
-            "rating": 362,
-            "ratingAmount": 771,
-            "user": {
-              "id": 410834,
-              "name": "Limitless",
-              "avatar": {
-                "large": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b410834-KVZm3OX0FN8C.jpg",
-                "__typename": "UserAvatar"
-              },
-              "__typename": "User"
-            },
-            "__typename": "Review"
-          },
-          {
-            "id": 2242,
-            "summary": "Review of Cowboy Bebop",
-            "rating": 320,
-            "ratingAmount": 375,
-            "user": {
-              "id": 98098,
-              "name": "ToeBeans",
-              "avatar": {
-                "large": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/98098-OHfrX9d7wIVQ.jpg",
-                "__typename": "UserAvatar"
-              },
-              "__typename": "User"
-            },
-            "__typename": "Review"
-          }
-        ],
-        "__typename": "ReviewConnection"
-      },
-      "recommendations": {
-        "pageInfo": {
-          "total": 500,
-          "__typename": "PageInfo"
+        "language": "Japanese",
+        "image": {
+         "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n95357-umndcceko65h.png",
+         "__typename": "StaffImage"
         },
-        "nodes": [
-          {
-            "id": 1468,
-            "rating": 1646,
-            "userRating": "NO_RATING",
-            "mediaRecommendation": {
-              "id": 205,
-              "title": {
-                "userPreferred": "Samurai Champloo",
-                "__typename": "MediaTitle"
-              },
-              "format": "TV",
-              "type": "ANIME",
-              "status": "FINISHED",
-              "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/205-L7WpOOWUmVjh.jpg",
-              "coverImage": {
-                "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx205-7tHVFu6dPBm9.png",
-                "__typename": "MediaCoverImage"
-              },
-              "__typename": "Media"
-            },
-            "user": {
-              "id": 172921,
-              "name": "languor",
-              "avatar": {
-                "large": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b172921-uWIZLBH4T9F7.png",
-                "__typename": "UserAvatar"
-              },
-              "__typename": "User"
-            },
-            "__typename": "Recommendation"
-          },
-          {
-            "id": 250,
-            "rating": 656,
-            "userRating": "NO_RATING",
-            "mediaRecommendation": {
-              "id": 6,
-              "title": {
-                "userPreferred": "TRIGUN",
-                "__typename": "MediaTitle"
-              },
-              "format": "TV",
-              "type": "ANIME",
-              "status": "FINISHED",
-              "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/6-4pIR2RY8AHZ0.jpg",
-              "coverImage": {
-                "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx6-wd4saT1JzStH.jpg",
-                "__typename": "MediaCoverImage"
-              },
-              "__typename": "Media"
-            },
-            "user": {
-              "id": 40330,
-              "name": "AniBot",
-              "avatar": {
-                "large": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/40330-GGWmwJbkuuuE.jpg",
-                "__typename": "UserAvatar"
-              },
-              "__typename": "User"
-            },
-            "__typename": "Recommendation"
-          },
-          {
-            "id": 32471,
-            "rating": 421,
-            "userRating": "NO_RATING",
-            "mediaRecommendation": {
-              "id": 110349,
-              "title": {
-                "userPreferred": "GREAT PRETENDER",
-                "__typename": "MediaTitle"
-              },
-              "format": "ONA",
-              "type": "ANIME",
-              "status": "FINISHED",
-              "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/110349-bGG1E4uunLoq.jpg",
-              "coverImage": {
-                "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx110349-59hhZ9CNHVdk.png",
-                "__typename": "MediaCoverImage"
-              },
-              "__typename": "Media"
-            },
-            "user": {
-              "id": 372505,
-              "name": "JustinRod056",
-              "avatar": {
-                "large": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b372505-T2uL1okQhe9A.jpg",
-                "__typename": "UserAvatar"
-              },
-              "__typename": "User"
-            },
-            "__typename": "Recommendation"
-          },
-          {
-            "id": 2058,
-            "rating": 314,
-            "userRating": "NO_RATING",
-            "mediaRecommendation": {
-              "id": 20057,
-              "title": {
-                "userPreferred": "Space☆Dandy",
-                "__typename": "MediaTitle"
-              },
-              "format": "TV",
-              "type": "ANIME",
-              "status": "FINISHED",
-              "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20057.jpg",
-              "coverImage": {
-                "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20057-tG83EpH5Gu8K.jpg",
-                "__typename": "MediaCoverImage"
-              },
-              "__typename": "Media"
-            },
-            "user": {
-              "id": 98334,
-              "name": "TheBasementGnome",
-              "avatar": {
-                "large": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b98334-FtmjiOnpOI7r.jpg",
-                "__typename": "UserAvatar"
-              },
-              "__typename": "User"
-            },
-            "__typename": "Recommendation"
-          },
-          {
-            "id": 7722,
-            "rating": 294,
-            "userRating": "NO_RATING",
-            "mediaRecommendation": {
-              "id": 889,
-              "title": {
-                "userPreferred": "BLACK LAGOON",
-                "__typename": "MediaTitle"
-              },
-              "format": "TV",
-              "type": "ANIME",
-              "status": "FINISHED",
-              "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/889-qZE1iFHexJVz.jpg",
-              "coverImage": {
-                "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx889-4S7N2ciq2cwA.png",
-                "__typename": "MediaCoverImage"
-              },
-              "__typename": "Media"
-            },
-            "user": {
-              "id": 333619,
-              "name": "jeff",
-              "avatar": {
-                "large": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b333619-gpYpLubms6rt.jpg",
-                "__typename": "UserAvatar"
-              },
-              "__typename": "User"
-            },
-            "__typename": "Recommendation"
-          },
-          {
-            "id": 407879,
-            "rating": 176,
-            "userRating": "NO_RATING",
-            "mediaRecommendation": {
-              "id": 167336,
-              "title": {
-                "userPreferred": "Lazarus",
-                "__typename": "MediaTitle"
-              },
-              "format": "TV",
-              "type": "ANIME",
-              "status": "FINISHED",
-              "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/167336-tDasHGggSBcH.jpg",
-              "coverImage": {
-                "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx167336-KpGIIBie71OX.png",
-                "__typename": "MediaCoverImage"
-              },
-              "__typename": "Media"
-            },
-            "user": {
-              "id": 6311461,
-              "name": "BaleWayner",
-              "avatar": {
-                "large": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6311461-cgmyQeu0xt2r.jpg",
-                "__typename": "UserAvatar"
-              },
-              "__typename": "User"
-            },
-            "__typename": "Recommendation"
-          },
-          {
-            "id": 3233,
-            "rating": 169,
-            "userRating": "NO_RATING",
-            "mediaRecommendation": {
-              "id": 2251,
-              "title": {
-                "userPreferred": "Baccano!",
-                "__typename": "MediaTitle"
-              },
-              "format": "TV",
-              "type": "ANIME",
-              "status": "FINISHED",
-              "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/2251-FVSbYyJhQPj2.jpg",
-              "coverImage": {
-                "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx2251-tTQoWxVy4472.jpg",
-                "__typename": "MediaCoverImage"
-              },
-              "__typename": "Media"
-            },
-            "user": {
-              "id": 3,
-              "name": "Removed",
-              "avatar": {
-                "large": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/3.jpg",
-                "__typename": "UserAvatar"
-              },
-              "__typename": "User"
-            },
-            "__typename": "Recommendation"
-          }
-        ],
-        "__typename": "RecommendationConnection"
-      },
-      "externalLinks": [
-        {
-          "site": "Hulu",
-          "url": "http://www.hulu.com/cowboy-bebop",
-          "__typename": "MediaExternalLink"
-        },
-        {
-          "site": "Crunchyroll",
-          "url": "http://www.crunchyroll.com/cowboy-bebop",
-          "__typename": "MediaExternalLink"
-        },
-        {
-          "site": "Amazon Prime Video",
-          "url": "https://www.amazon.com/gp/video/detail/B00R2KO8ZE/",
-          "__typename": "MediaExternalLink"
-        },
-        {
-          "site": "Tubi TV",
-          "url": "https://tubitv.com/series/2052",
-          "__typename": "MediaExternalLink"
-        },
-        {
-          "site": "Adult Swim",
-          "url": "https://www.adultswim.com/videos/cowboy-bebop",
-          "__typename": "MediaExternalLink"
-        },
-        {
-          "site": "Netflix",
-          "url": "https://www.netflix.com/title/80001305",
-          "__typename": "MediaExternalLink"
-        },
-        {
-          "site": "Official Site",
-          "url": "https://cowboy-bebop.net/",
-          "__typename": "MediaExternalLink"
-        }
+        "__typename": "Staff"
+       }
       ],
-      "streamingEpisodes": [
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 1 - Asteroid Blues",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire2-tmb/e3a45e86c597fe16f02d29efcadedcd81473268732_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/G7PU4VJEJ/asteroid-blues",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 2 - Stray Dog Strut",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire3-tmb/0eea0ce5c2a92b72fd633e5cbabd17b81473277532_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/GX9UQ7ZXW/stray-dog-strut",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 3 - Honky Tonk Women",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire4-tmb/f007ab7cb899b5ca83b8e8d07a1067d51473125168_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/G14U4EGNQ/honky-tonk-women",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 4 - Gateway Shuffle",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire4-tmb/8395f1edb9b86ec69777bdd84a9bf7921473115214_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/GK9U34D13/gateway-shuffle",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 5 - Ballad of Fallen Angels",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire3-tmb/180d486bb9c563491f417eea1985c1de1473112114_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/GVWU0Z4K1/ballad-of-fallen-angels",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 6 - Sympathy for the Devil",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire1-tmb/24668be96b09d1356709e04a3daa161f1473114965_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/GPWUK5DP3/sympathy-for-the-devil",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 7 - Heavy Metal Queen",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire2-tmb/d2d71facab3a707cd6480df47c78c2fe1473112459_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/GZ7UVX1ZP/heavy-metal-queen",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 8 - Waltz for Venus",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire4-tmb/c82f024aa8e91377f1fd1f31a732ed211473138815_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/GWDU8KQ1W/waltz-for-venus",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 9 - Jamming with Edward",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire2-tmb/48d53aa4330ef9268c31db12def817ae1473113990_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/G0DUN0J77/jamming-with-edward",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 10 - Ganymede Elegy",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire2-tmb/0b1fe4247b00a2a96cd724c978f2e9301473126093_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/G9DUEPG85/ganymede-elegy",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 11 - Toys in the Attic",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire1-tmb/77098545eaa70378a9ef1cdd995015641473117569_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/GJWU2XEV7/toys-in-the-attic",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 12 - Jupiter Jazz (part 1)",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire3-tmb/cd71c0f3bcf0cb5559d0939e583daf361473118196_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/GK9U34DX3/jupiter-jazz-part-1",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 13 - Jupiter Jazz (part 2)",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire2-tmb/e289707b5fc232b037a3e7d0e2a7959c1473119423_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/GPWUK5DG3/jupiter-jazz-part-2",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 14 - Bohemian Rhapsody",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire3-tmb/44580eb7cc5740f63f3170265de80b561473120654_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/GD9UVW8XW/bohemian-rhapsody",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 15 - My Funny Valentine",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire1-tmb/efb53c03f2ec8c0470275bb3cd32c6aa1473119912_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/GG1U2EZG9/my-funny-valentine",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 16 - Black Dog Serenade",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire2-tmb/c4138c03816a57f8e28e112875767dff1473121102_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/G9DUEPG35/black-dog-serenade",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 17 - Mushroom Samba",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire3-tmb/2140460e2f69b8a124f812b31b2f0e991473122552_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/G4VUQX825/mushroom-samba",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 18 - Speak Like a Child",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire2-tmb/22ab56e337990440b8b3dde252b64b321473122227_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/GN7UD7VVJ/speak-like-a-child",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 19 - Wild Horses",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire1-tmb/3288ad0b33dcfc5e1af91497d280b4fe1473124229_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/GWDU8KQQ0/wild-horses",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 20 - Pierrot Le Fou",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire3-tmb/785ef5c25a046832b3513089c6f3d9941473123758_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/G7PU4VJJ5/pierrot-le-fou",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 21 - Boogie Woogie Feng Shui",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire2-tmb/13dbb524b4b6bbc4cd1d36719d789b2f1473126565_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/G4VUQX88Z/boogie-woogie-feng-shui",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 22 - Cowboy Funk",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire1-tmb/c71fbb3f7b06b6747208d3d966aaa1b91473125734_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/GN7UD7VVE/cowboy-funk",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 23 - Brain Scratch",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire3-tmb/0d7ddcae6489ee5aae1c2cccf09f73991473126176_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/GVWU0Z444/brain-scratch",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 24 - Hard Luck Woman",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire4-tmb/9d2308b354746a3fb84152526b195e1c1473128052_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/G8WUNW0G3/hard-luck-woman",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 25 - The Real Folk Blues (part 1)",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire2-tmb/7e9bb2a05eb81b701cdf115710d659291473127483_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/GG1U2EZ4P/the-real-folk-blues-part-1",
-          "__typename": "MediaStreamingEpisode"
-        },
-        {
-          "site": "Crunchyroll",
-          "title": "Episode 26 - The Real Folk Blues (part 2)",
-          "thumbnail": "https://img1.ak.crunchyroll.com/i/spire1-tmb/191b230426f0b0e6568b4ca6edab47321473136587_full.jpg",
-          "url": "http://www.crunchyroll.com/watch/G9DUEPG5D/the-real-folk-blues-part-2",
-          "__typename": "MediaStreamingEpisode"
-        }
-      ],
-      "trailer": {
-        "id": "OhNwckCLzis",
-        "site": "youtube",
-        "__typename": "MediaTrailer"
+      "node": {
+       "id": 3,
+       "name": {
+        "userPreferred": "Jet Black",
+        "__typename": "CharacterName",
+        "native": null
+       },
+       "image": {
+        "large": "https://s4.anilist.co/file/anilistcdn/character/large/b3-JjH9Si9UM1NZ.png",
+        "__typename": "CharacterImage"
+       },
+       "__typename": "Character"
       },
-      "rankings": [
-        {
-          "id": 55,
-          "rank": 55,
-          "type": "RATED",
-          "format": "TV",
-          "year": null,
-          "season": null,
-          "allTime": true,
-          "context": "highest rated all time",
-          "__typename": "MediaRank"
+      "__typename": "CharacterEdge"
+     },
+     {
+      "id": 36164,
+      "role": "MAIN",
+      "name": null,
+      "voiceActors": [
+       {
+        "id": 95658,
+        "name": {
+         "userPreferred": "Aoi Tada",
+         "__typename": "StaffName",
+         "native": null
         },
-        {
-          "id": 556,
-          "rank": 56,
-          "type": "POPULAR",
-          "format": "TV",
-          "year": null,
-          "season": null,
-          "allTime": true,
-          "context": "most popular all time",
-          "__typename": "MediaRank"
+        "language": "Japanese",
+        "image": {
+         "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n95658-paHKYOWkhoOd.png",
+         "__typename": "StaffImage"
         },
-        {
-          "id": 1507,
-          "rank": 1,
-          "type": "RATED",
-          "format": "TV",
-          "year": 1998,
-          "season": null,
-          "allTime": false,
-          "context": "highest rated",
-          "__typename": "MediaRank"
-        },
-        {
-          "id": 1561,
-          "rank": 1,
-          "type": "POPULAR",
-          "format": "TV",
-          "year": 1998,
-          "season": null,
-          "allTime": false,
-          "context": "most popular",
-          "__typename": "MediaRank"
-        }
+        "__typename": "Staff"
+       }
       ],
-      "tags": [
-        {
-          "id": 63,
-          "name": "Space",
-          "description": "Partly or completely set in outer space.",
-          "rank": 94,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": null,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 648,
-          "name": "Crime",
-          "description": "Centers around unlawful activities punishable by the state or other authority.",
-          "rank": 92,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": null,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 193,
-          "name": "Episodic",
-          "description": "Features story arcs that are loosely tied or lack an overarching plot.",
-          "rank": 89,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": null,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 105,
-          "name": "Ensemble Cast",
-          "description": "Features a large cast of characters with (almost) equal screen time and importance to the plot.",
-          "rank": 86,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": null,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 109,
-          "name": "Primarily Adult Cast",
-          "description": "Main cast is mostly composed of characters above a high school age.",
-          "rank": 85,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": null,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 391,
-          "name": "Philosophy",
-          "description": "Relating or devoted to the study of the fundamental nature of knowledge, reality, and existence.",
-          "rank": 84,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": 5947629,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 85,
-          "name": "Tragedy",
-          "description": "Centers around tragic events and unhappy endings.",
-          "rank": 83,
-          "isMediaSpoiler": true,
-          "isGeneralSpoiler": true,
-          "userId": null,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 1310,
-          "name": "Travel",
-          "description": "Centers around character(s) moving between places a significant distance apart.",
-          "rank": 82,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": 857856,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 1277,
-          "name": "Found Family",
-          "description": "Features a group of characters with no biological relations that are united in a group providing social support.",
-          "rank": 82,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": 124347,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 327,
-          "name": "Noir",
-          "description": "Stylized as a cynical crime drama with low-key visuals.",
-          "rank": 80,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": null,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 104,
-          "name": "Anti-Hero",
-          "description": "Features a protagonist who lacks conventional heroic attributes and may be considered a borderline villain.",
-          "rank": 79,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": 6369383,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 82,
-          "name": "Male Protagonist",
-          "description": "Main character is male.",
-          "rank": 78,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": null,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 108,
-          "name": "Cyberpunk",
-          "description": "Set in a future of advanced technological and scientific achievements that have resulted in social disorder.",
-          "rank": 78,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": null,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 157,
-          "name": "Guns",
-          "description": "Prominently features the use of guns in combat.",
-          "rank": 78,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": null,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 98,
-          "name": "Female Protagonist",
-          "description": "Main character is female.",
-          "rank": 75,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": 6369383,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 1045,
-          "name": "Heterosexual",
-          "description": "Prominently features a romance between a man and a woman, not inherently sexual.",
-          "rank": 72,
-          "isMediaSpoiler": true,
-          "isGeneralSpoiler": false,
-          "userId": 6369383,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 285,
-          "name": "Terrorism",
-          "description": "Centers around the activities of a terrorist or terrorist organization.",
-          "rank": 69,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": 315670,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 801,
-          "name": "Cyborg",
-          "description": "Prominently features a human character whose physiological functions are aided or enhanced by artificial means.",
-          "rank": 66,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": null,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 931,
-          "name": "Tomboy",
-          "description": "Features a girl who exhibits characteristics or behaviors considered in many cultures to be typical of boys.",
-          "rank": 66,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": 5948301,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 30,
-          "name": "Martial Arts",
-          "description": "Centers around the use of traditional hand-to-hand combat.",
-          "rank": 66,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": null,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 1648,
-          "name": "Cowboys",
-          "description": "Features Western or Western-inspired cowboys.",
-          "rank": 65,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": 5601751,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 240,
-          "name": "Amnesia",
-          "description": "Prominently features a character(s) with memory loss.",
-          "rank": 62,
-          "isMediaSpoiler": true,
-          "isGeneralSpoiler": false,
-          "userId": null,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 145,
-          "name": "Work",
-          "description": "Centers around the activities of a certain occupation.",
-          "rank": 60,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": 6311461,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 91,
-          "name": "Gambling",
-          "description": "Centers around the act of gambling.",
-          "rank": 59,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": null,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 40,
-          "name": "Police",
-          "description": "Centers around the life and activities of law enforcement officers.",
-          "rank": 52,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": 315670,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 199,
-          "name": "Yakuza",
-          "description": "Centered around Japanese organised crime syndicates.",
-          "rank": 51,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": null,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 489,
-          "name": "Drugs",
-          "description": "Prominently features the usage of drugs such as opioids, stimulants, hallucinogens etc.",
-          "rank": 50,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": null,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 100,
-          "name": "Nudity",
-          "description": "Features a character wearing no clothing or exposing intimate body parts.",
-          "rank": 49,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": 5998808,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 586,
-          "name": "Cult",
-          "description": "Features a social group with unorthodox religious, spiritual, or philosophical beliefs and practices.",
-          "rank": 47,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": 956867,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 335,
-          "name": "Tanned Skin",
-          "description": "Prominently features characters with tanned skin.",
-          "rank": 42,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": null,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 476,
-          "name": "Circus",
-          "description": "Prominently features a circus.",
-          "rank": 36,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": 244281,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 90,
-          "name": "CGI",
-          "description": "Prominently features scenes created with computer-generated imagery.",
-          "rank": 20,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": 6235864,
-          "__typename": "MediaTag"
-        },
-        {
-          "id": 483,
-          "name": "LGBTQ+ Themes",
-          "description": "Prominently features characters or themes associated with the LGBTQ+ community, such as sexuality or gender identity.",
-          "rank": 20,
-          "isMediaSpoiler": false,
-          "isGeneralSpoiler": false,
-          "userId": 7391075,
-          "__typename": "MediaTag"
-        }
-      ],
-      "mediaListEntry": null,
-      "stats": {
-        "statusDistribution": [
-          {
-            "status": "CURRENT",
-            "amount": 41203,
-            "__typename": "StatusDistribution"
-          },
-          {
-            "status": "PLANNING",
-            "amount": 153510,
-            "__typename": "StatusDistribution"
-          },
-          {
-            "status": "COMPLETED",
-            "amount": 233065,
-            "__typename": "StatusDistribution"
-          },
-          {
-            "status": "DROPPED",
-            "amount": 10786,
-            "__typename": "StatusDistribution"
-          },
-          {
-            "status": "PAUSED",
-            "amount": 27654,
-            "__typename": "StatusDistribution"
-          }
-        ],
-        "scoreDistribution": [
-          {
-            "score": 10,
-            "amount": 626,
-            "__typename": "ScoreDistribution"
-          },
-          {
-            "score": 20,
-            "amount": 202,
-            "__typename": "ScoreDistribution"
-          },
-          {
-            "score": 30,
-            "amount": 486,
-            "__typename": "ScoreDistribution"
-          },
-          {
-            "score": 40,
-            "amount": 973,
-            "__typename": "ScoreDistribution"
-          },
-          {
-            "score": 50,
-            "amount": 2627,
-            "__typename": "ScoreDistribution"
-          },
-          {
-            "score": 60,
-            "amount": 5239,
-            "__typename": "ScoreDistribution"
-          },
-          {
-            "score": 70,
-            "amount": 15734,
-            "__typename": "ScoreDistribution"
-          },
-          {
-            "score": 80,
-            "amount": 34332,
-            "__typename": "ScoreDistribution"
-          },
-          {
-            "score": 90,
-            "amount": 56401,
-            "__typename": "ScoreDistribution"
-          },
-          {
-            "score": 100,
-            "amount": 53685,
-            "__typename": "ScoreDistribution"
-          }
-        ],
-        "__typename": "MediaStats"
+      "node": {
+       "id": 16,
+       "name": {
+        "userPreferred": "Edward Wong Hau Pepelu Tivrusky IV",
+        "__typename": "CharacterName",
+        "native": null
+       },
+       "image": {
+        "large": "https://s4.anilist.co/file/anilistcdn/character/large/b16-80wd87nl1Rue.png",
+        "__typename": "CharacterImage"
+       },
+       "__typename": "Character"
       },
-      "__typename": "Media"
+      "__typename": "CharacterEdge"
+     },
+     {
+      "id": 2505,
+      "role": "SUPPORTING",
+      "name": null,
+      "voiceActors": [
+       {
+        "id": 95011,
+        "name": {
+         "userPreferred": "Kouichi Yamadera",
+         "__typename": "StaffName",
+         "native": null
+        },
+        "language": "Japanese",
+        "image": {
+         "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n95011-2RfLzncNyvbR.png",
+         "__typename": "StaffImage"
+        },
+        "__typename": "Staff"
+       }
+      ],
+      "node": {
+       "id": 4,
+       "name": {
+        "userPreferred": "Ein",
+        "__typename": "CharacterName",
+        "native": null
+       },
+       "image": {
+        "large": "https://s4.anilist.co/file/anilistcdn/character/large/4.jpg",
+        "__typename": "CharacterImage"
+       },
+       "__typename": "Character"
+      },
+      "__typename": "CharacterEdge"
+     },
+     {
+      "id": 10844,
+      "role": "SUPPORTING",
+      "name": null,
+      "voiceActors": [
+       {
+        "id": 95084,
+        "name": {
+         "userPreferred": "Norio Wakamoto",
+         "__typename": "StaffName",
+         "native": null
+        },
+        "language": "Japanese",
+        "image": {
+         "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n95084-RTrZSU38POPF.png",
+         "__typename": "StaffImage"
+        },
+        "__typename": "Staff"
+       }
+      ],
+      "node": {
+       "id": 2734,
+       "name": {
+        "userPreferred": "Vicious",
+        "__typename": "CharacterName",
+        "native": null
+       },
+       "image": {
+        "large": "https://s4.anilist.co/file/anilistcdn/character/large/b2734-aglO8RKNVxnn.jpg",
+        "__typename": "CharacterImage"
+       },
+       "__typename": "Character"
+      },
+      "__typename": "CharacterEdge"
+     }
+    ],
+    "__typename": "CharacterConnection"
+   },
+   "staff": {
+    "edges": [
+     {
+      "id": 4313,
+      "role": "Original Creator",
+      "node": {
+       "id": 97197,
+       "name": {
+        "userPreferred": "Hajime Yatate",
+        "__typename": "StaffName",
+        "native": null
+       },
+       "language": "Japanese",
+       "image": {
+        "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n97197-6NsKNt4EPoul.jpg",
+        "__typename": "StaffImage"
+       },
+       "__typename": "Staff"
+      },
+      "__typename": "StaffEdge"
+     },
+     {
+      "id": 3837,
+      "role": "Director",
+      "node": {
+       "id": 97009,
+       "name": {
+        "userPreferred": "Shinichirou Watanabe",
+        "__typename": "StaffName",
+        "native": null
+       },
+       "language": "Japanese",
+       "image": {
+        "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n97009-4K1Wc7JG9iLR.png",
+        "__typename": "StaffImage"
+       },
+       "__typename": "Staff"
+      },
+      "__typename": "StaffEdge"
+     },
+     {
+      "id": 4616,
+      "role": "Series Composition",
+      "node": {
+       "id": 97334,
+       "name": {
+        "userPreferred": "Keiko Nobumoto",
+        "__typename": "StaffName",
+        "native": null
+       },
+       "language": "Japanese",
+       "image": {
+        "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n97334-ewqQWYWhU3wm.png",
+        "__typename": "StaffImage"
+       },
+       "__typename": "Staff"
+      },
+      "__typename": "StaffEdge"
+     },
+     {
+      "id": 458667,
+      "role": "Literary Arts",
+      "node": {
+       "id": 143033,
+       "name": {
+        "userPreferred": "Akira Toba",
+        "__typename": "StaffName",
+        "native": null
+       },
+       "language": "Japanese",
+       "image": {
+        "large": "https://s4.anilist.co/file/anilistcdn/staff/large/default.jpg",
+        "__typename": "StaffImage"
+       },
+       "__typename": "Staff"
+      },
+      "__typename": "StaffEdge"
+     },
+     {
+      "id": 24691,
+      "role": "Character Design",
+      "node": {
+       "id": 103531,
+       "name": {
+        "userPreferred": "Toshihiro Kawamoto",
+        "__typename": "StaffName",
+        "native": null
+       },
+       "language": "Japanese",
+       "image": {
+        "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n103531-vNFYQvYyUFs8.png",
+        "__typename": "StaffImage"
+       },
+       "__typename": "Staff"
+      },
+      "__typename": "StaffEdge"
+     },
+     {
+      "id": 34817,
+      "role": "Mechanical Design",
+      "node": {
+       "id": 106476,
+       "name": {
+        "userPreferred": "Kimitoshi Yamane",
+        "__typename": "StaffName",
+        "native": null
+       },
+       "language": "Japanese",
+       "image": {
+        "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n106476-pzrMSb7jlA04.png",
+        "__typename": "StaffImage"
+       },
+       "__typename": "Staff"
+      },
+      "__typename": "StaffEdge"
+     },
+     {
+      "id": 458619,
+      "role": "Set Design",
+      "node": {
+       "id": 140797,
+       "name": {
+        "userPreferred": "Isamu Imakake",
+        "__typename": "StaffName",
+        "native": null
+       },
+       "language": "Japanese",
+       "image": {
+        "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n140797-dYXGAewnESJc.png",
+        "__typename": "StaffImage"
+       },
+       "__typename": "Staff"
+      },
+      "__typename": "StaffEdge"
+     },
+     {
+      "id": 458612,
+      "role": "Setting Design Assistance",
+      "node": {
+       "id": 97501,
+       "name": {
+        "userPreferred": "Shouji Kawamori",
+        "__typename": "StaffName",
+        "native": null
+       },
+       "language": "Japanese",
+       "image": {
+        "large": "https://s4.anilist.co/file/anilistcdn/staff/large/97501-fy8TgOjYJwIi.jpg",
+        "__typename": "StaffImage"
+       },
+       "__typename": "Staff"
+      },
+      "__typename": "StaffEdge"
+     }
+    ],
+    "__typename": "StaffConnection"
+   },
+   "studios": {
+    "edges": [
+     {
+      "isMain": true,
+      "node": {
+       "id": 14,
+       "name": "Sunrise",
+       "__typename": "Studio"
+      },
+      "__typename": "StudioEdge"
+     },
+     {
+      "isMain": false,
+      "node": {
+       "id": 23,
+       "name": "Bandai Visual",
+       "__typename": "Studio"
+      },
+      "__typename": "StudioEdge"
+     },
+     {
+      "isMain": false,
+      "node": {
+       "id": 233,
+       "name": "Bandai Entertainment",
+       "__typename": "Studio"
+      },
+      "__typename": "StudioEdge"
+     }
+    ],
+    "__typename": "StudioConnection"
+   },
+   "reviews": {
+    "pageInfo": {
+     "total": 500,
+     "__typename": "PageInfo"
+    },
+    "nodes": [
+     {
+      "id": 7295,
+      "summary": "Controversial opinion incoming ",
+      "rating": 362,
+      "ratingAmount": 771,
+      "user": {
+       "id": 410834,
+       "name": "Limitless",
+       "avatar": {
+        "large": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b410834-KVZm3OX0FN8C.jpg",
+        "__typename": "UserAvatar"
+       },
+       "__typename": "User"
+      },
+      "__typename": "Review"
+     },
+     {
+      "id": 2242,
+      "summary": "Review of Cowboy Bebop",
+      "rating": 320,
+      "ratingAmount": 375,
+      "user": {
+       "id": 98098,
+       "name": "ToeBeans",
+       "avatar": {
+        "large": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/98098-OHfrX9d7wIVQ.jpg",
+        "__typename": "UserAvatar"
+       },
+       "__typename": "User"
+      },
+      "__typename": "Review"
+     }
+    ],
+    "__typename": "ReviewConnection"
+   },
+   "recommendations": {
+    "pageInfo": {
+     "total": 500,
+     "__typename": "PageInfo"
+    },
+    "nodes": [
+     {
+      "id": 1468,
+      "rating": 1646,
+      "userRating": "NO_RATING",
+      "mediaRecommendation": {
+       "id": 205,
+       "title": {
+        "userPreferred": "Samurai Champloo",
+        "__typename": "MediaTitle",
+        "romaji": "Samurai Champloo",
+        "english": "Samurai Champloo",
+        "native": "\u30b5\u30e0\u30e9\u30a4\u30c1\u30e3\u30f3\u30d7\u30eb\u30fc"
+       },
+       "format": "TV",
+       "type": "ANIME",
+       "status": "FINISHED",
+       "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/205-L7WpOOWUmVjh.jpg",
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx205-7tHVFu6dPBm9.png",
+        "__typename": "MediaCoverImage"
+       },
+       "__typename": "Media"
+      },
+      "user": {
+       "id": 172921,
+       "name": "languor",
+       "avatar": {
+        "large": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b172921-uWIZLBH4T9F7.png",
+        "__typename": "UserAvatar"
+       },
+       "__typename": "User"
+      },
+      "__typename": "Recommendation"
+     },
+     {
+      "id": 250,
+      "rating": 656,
+      "userRating": "NO_RATING",
+      "mediaRecommendation": {
+       "id": 6,
+       "title": {
+        "userPreferred": "TRIGUN",
+        "__typename": "MediaTitle",
+        "romaji": "TRIGUN",
+        "english": "Trigun",
+        "native": "TRIGUN"
+       },
+       "format": "TV",
+       "type": "ANIME",
+       "status": "FINISHED",
+       "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/6-4pIR2RY8AHZ0.jpg",
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx6-wd4saT1JzStH.jpg",
+        "__typename": "MediaCoverImage"
+       },
+       "__typename": "Media"
+      },
+      "user": {
+       "id": 40330,
+       "name": "AniBot",
+       "avatar": {
+        "large": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/40330-GGWmwJbkuuuE.jpg",
+        "__typename": "UserAvatar"
+       },
+       "__typename": "User"
+      },
+      "__typename": "Recommendation"
+     },
+     {
+      "id": 32471,
+      "rating": 421,
+      "userRating": "NO_RATING",
+      "mediaRecommendation": {
+       "id": 110349,
+       "title": {
+        "userPreferred": "GREAT PRETENDER",
+        "__typename": "MediaTitle",
+        "romaji": "GREAT PRETENDER",
+        "english": "Great Pretender",
+        "native": "GREAT PRETENDER"
+       },
+       "format": "ONA",
+       "type": "ANIME",
+       "status": "FINISHED",
+       "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/110349-bGG1E4uunLoq.jpg",
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx110349-59hhZ9CNHVdk.png",
+        "__typename": "MediaCoverImage"
+       },
+       "__typename": "Media"
+      },
+      "user": {
+       "id": 372505,
+       "name": "JustinRod056",
+       "avatar": {
+        "large": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b372505-T2uL1okQhe9A.jpg",
+        "__typename": "UserAvatar"
+       },
+       "__typename": "User"
+      },
+      "__typename": "Recommendation"
+     },
+     {
+      "id": 2058,
+      "rating": 314,
+      "userRating": "NO_RATING",
+      "mediaRecommendation": {
+       "id": 20057,
+       "title": {
+        "userPreferred": "Space\u2606Dandy",
+        "__typename": "MediaTitle",
+        "romaji": "Space\u2606Dandy",
+        "english": "Space Dandy",
+        "native": "\u30b9\u30da\u30fc\u30b9\u2606\u30c0\u30f3\u30c7\u30a3"
+       },
+       "format": "TV",
+       "type": "ANIME",
+       "status": "FINISHED",
+       "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20057.jpg",
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20057-tG83EpH5Gu8K.jpg",
+        "__typename": "MediaCoverImage"
+       },
+       "__typename": "Media"
+      },
+      "user": {
+       "id": 98334,
+       "name": "TheBasementGnome",
+       "avatar": {
+        "large": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b98334-FtmjiOnpOI7r.jpg",
+        "__typename": "UserAvatar"
+       },
+       "__typename": "User"
+      },
+      "__typename": "Recommendation"
+     },
+     {
+      "id": 7722,
+      "rating": 294,
+      "userRating": "NO_RATING",
+      "mediaRecommendation": {
+       "id": 889,
+       "title": {
+        "userPreferred": "BLACK LAGOON",
+        "__typename": "MediaTitle",
+        "romaji": "BLACK LAGOON",
+        "english": "Black Lagoon",
+        "native": "BLACK LAGOON"
+       },
+       "format": "TV",
+       "type": "ANIME",
+       "status": "FINISHED",
+       "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/889-qZE1iFHexJVz.jpg",
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx889-4S7N2ciq2cwA.png",
+        "__typename": "MediaCoverImage"
+       },
+       "__typename": "Media"
+      },
+      "user": {
+       "id": 333619,
+       "name": "jeff",
+       "avatar": {
+        "large": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b333619-gpYpLubms6rt.jpg",
+        "__typename": "UserAvatar"
+       },
+       "__typename": "User"
+      },
+      "__typename": "Recommendation"
+     },
+     {
+      "id": 407879,
+      "rating": 176,
+      "userRating": "NO_RATING",
+      "mediaRecommendation": {
+       "id": 167336,
+       "title": {
+        "userPreferred": "Lazarus",
+        "__typename": "MediaTitle",
+        "romaji": "Lazarus",
+        "english": "LAZARUS",
+        "native": "\u30e9\u30b6\u30ed"
+       },
+       "format": "TV",
+       "type": "ANIME",
+       "status": "FINISHED",
+       "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/167336-tDasHGggSBcH.jpg",
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx167336-KpGIIBie71OX.png",
+        "__typename": "MediaCoverImage"
+       },
+       "__typename": "Media"
+      },
+      "user": {
+       "id": 6311461,
+       "name": "BaleWayner",
+       "avatar": {
+        "large": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6311461-cgmyQeu0xt2r.jpg",
+        "__typename": "UserAvatar"
+       },
+       "__typename": "User"
+      },
+      "__typename": "Recommendation"
+     },
+     {
+      "id": 3233,
+      "rating": 169,
+      "userRating": "NO_RATING",
+      "mediaRecommendation": {
+       "id": 2251,
+       "title": {
+        "userPreferred": "Baccano!",
+        "__typename": "MediaTitle",
+        "romaji": "Baccano!",
+        "english": "Baccano!",
+        "native": "\u30d0\u30c3\u30ab\u30fc\u30ce\uff01"
+       },
+       "format": "TV",
+       "type": "ANIME",
+       "status": "FINISHED",
+       "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/2251-FVSbYyJhQPj2.jpg",
+       "coverImage": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx2251-tTQoWxVy4472.jpg",
+        "__typename": "MediaCoverImage"
+       },
+       "__typename": "Media"
+      },
+      "user": {
+       "id": 3,
+       "name": "Removed",
+       "avatar": {
+        "large": "https://s4.anilist.co/file/anilistcdn/user/avatar/large/3.jpg",
+        "__typename": "UserAvatar"
+       },
+       "__typename": "User"
+      },
+      "__typename": "Recommendation"
+     }
+    ],
+    "__typename": "RecommendationConnection"
+   },
+   "externalLinks": [
+    {
+     "site": "Hulu",
+     "url": "http://www.hulu.com/cowboy-bebop",
+     "__typename": "MediaExternalLink"
+    },
+    {
+     "site": "Crunchyroll",
+     "url": "http://www.crunchyroll.com/cowboy-bebop",
+     "__typename": "MediaExternalLink"
+    },
+    {
+     "site": "Amazon Prime Video",
+     "url": "https://www.amazon.com/gp/video/detail/B00R2KO8ZE/",
+     "__typename": "MediaExternalLink"
+    },
+    {
+     "site": "Tubi TV",
+     "url": "https://tubitv.com/series/2052",
+     "__typename": "MediaExternalLink"
+    },
+    {
+     "site": "Adult Swim",
+     "url": "https://www.adultswim.com/videos/cowboy-bebop",
+     "__typename": "MediaExternalLink"
+    },
+    {
+     "site": "Netflix",
+     "url": "https://www.netflix.com/title/80001305",
+     "__typename": "MediaExternalLink"
+    },
+    {
+     "site": "Official Site",
+     "url": "https://cowboy-bebop.net/",
+     "__typename": "MediaExternalLink"
     }
+   ],
+   "streamingEpisodes": [
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 1 - Asteroid Blues",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire2-tmb/e3a45e86c597fe16f02d29efcadedcd81473268732_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/G7PU4VJEJ/asteroid-blues",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 2 - Stray Dog Strut",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire3-tmb/0eea0ce5c2a92b72fd633e5cbabd17b81473277532_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/GX9UQ7ZXW/stray-dog-strut",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 3 - Honky Tonk Women",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire4-tmb/f007ab7cb899b5ca83b8e8d07a1067d51473125168_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/G14U4EGNQ/honky-tonk-women",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 4 - Gateway Shuffle",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire4-tmb/8395f1edb9b86ec69777bdd84a9bf7921473115214_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/GK9U34D13/gateway-shuffle",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 5 - Ballad of Fallen Angels",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire3-tmb/180d486bb9c563491f417eea1985c1de1473112114_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/GVWU0Z4K1/ballad-of-fallen-angels",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 6 - Sympathy for the Devil",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire1-tmb/24668be96b09d1356709e04a3daa161f1473114965_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/GPWUK5DP3/sympathy-for-the-devil",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 7 - Heavy Metal Queen",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire2-tmb/d2d71facab3a707cd6480df47c78c2fe1473112459_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/GZ7UVX1ZP/heavy-metal-queen",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 8 - Waltz for Venus",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire4-tmb/c82f024aa8e91377f1fd1f31a732ed211473138815_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/GWDU8KQ1W/waltz-for-venus",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 9 - Jamming with Edward",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire2-tmb/48d53aa4330ef9268c31db12def817ae1473113990_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/G0DUN0J77/jamming-with-edward",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 10 - Ganymede Elegy",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire2-tmb/0b1fe4247b00a2a96cd724c978f2e9301473126093_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/G9DUEPG85/ganymede-elegy",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 11 - Toys in the Attic",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire1-tmb/77098545eaa70378a9ef1cdd995015641473117569_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/GJWU2XEV7/toys-in-the-attic",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 12 - Jupiter Jazz (part 1)",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire3-tmb/cd71c0f3bcf0cb5559d0939e583daf361473118196_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/GK9U34DX3/jupiter-jazz-part-1",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 13 - Jupiter Jazz (part 2)",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire2-tmb/e289707b5fc232b037a3e7d0e2a7959c1473119423_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/GPWUK5DG3/jupiter-jazz-part-2",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 14 - Bohemian Rhapsody",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire3-tmb/44580eb7cc5740f63f3170265de80b561473120654_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/GD9UVW8XW/bohemian-rhapsody",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 15 - My Funny Valentine",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire1-tmb/efb53c03f2ec8c0470275bb3cd32c6aa1473119912_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/GG1U2EZG9/my-funny-valentine",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 16 - Black Dog Serenade",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire2-tmb/c4138c03816a57f8e28e112875767dff1473121102_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/G9DUEPG35/black-dog-serenade",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 17 - Mushroom Samba",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire3-tmb/2140460e2f69b8a124f812b31b2f0e991473122552_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/G4VUQX825/mushroom-samba",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 18 - Speak Like a Child",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire2-tmb/22ab56e337990440b8b3dde252b64b321473122227_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/GN7UD7VVJ/speak-like-a-child",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 19 - Wild Horses",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire1-tmb/3288ad0b33dcfc5e1af91497d280b4fe1473124229_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/GWDU8KQQ0/wild-horses",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 20 - Pierrot Le Fou",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire3-tmb/785ef5c25a046832b3513089c6f3d9941473123758_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/G7PU4VJJ5/pierrot-le-fou",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 21 - Boogie Woogie Feng Shui",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire2-tmb/13dbb524b4b6bbc4cd1d36719d789b2f1473126565_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/G4VUQX88Z/boogie-woogie-feng-shui",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 22 - Cowboy Funk",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire1-tmb/c71fbb3f7b06b6747208d3d966aaa1b91473125734_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/GN7UD7VVE/cowboy-funk",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 23 - Brain Scratch",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire3-tmb/0d7ddcae6489ee5aae1c2cccf09f73991473126176_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/GVWU0Z444/brain-scratch",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 24 - Hard Luck Woman",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire4-tmb/9d2308b354746a3fb84152526b195e1c1473128052_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/G8WUNW0G3/hard-luck-woman",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 25 - The Real Folk Blues (part 1)",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire2-tmb/7e9bb2a05eb81b701cdf115710d659291473127483_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/GG1U2EZ4P/the-real-folk-blues-part-1",
+     "__typename": "MediaStreamingEpisode"
+    },
+    {
+     "site": "Crunchyroll",
+     "title": "Episode 26 - The Real Folk Blues (part 2)",
+     "thumbnail": "https://img1.ak.crunchyroll.com/i/spire1-tmb/191b230426f0b0e6568b4ca6edab47321473136587_full.jpg",
+     "url": "http://www.crunchyroll.com/watch/G9DUEPG5D/the-real-folk-blues-part-2",
+     "__typename": "MediaStreamingEpisode"
+    }
+   ],
+   "trailer": {
+    "id": "OhNwckCLzis",
+    "site": "youtube",
+    "__typename": "MediaTrailer"
+   },
+   "rankings": [
+    {
+     "id": 55,
+     "rank": 55,
+     "type": "RATED",
+     "format": "TV",
+     "year": null,
+     "season": null,
+     "allTime": true,
+     "context": "highest rated all time",
+     "__typename": "MediaRank"
+    },
+    {
+     "id": 556,
+     "rank": 56,
+     "type": "POPULAR",
+     "format": "TV",
+     "year": null,
+     "season": null,
+     "allTime": true,
+     "context": "most popular all time",
+     "__typename": "MediaRank"
+    },
+    {
+     "id": 1507,
+     "rank": 1,
+     "type": "RATED",
+     "format": "TV",
+     "year": 1998,
+     "season": null,
+     "allTime": false,
+     "context": "highest rated",
+     "__typename": "MediaRank"
+    },
+    {
+     "id": 1561,
+     "rank": 1,
+     "type": "POPULAR",
+     "format": "TV",
+     "year": 1998,
+     "season": null,
+     "allTime": false,
+     "context": "most popular",
+     "__typename": "MediaRank"
+    }
+   ],
+   "tags": [
+    {
+     "id": 63,
+     "name": "Space",
+     "description": "Partly or completely set in outer space.",
+     "rank": 94,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": null,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 648,
+     "name": "Crime",
+     "description": "Centers around unlawful activities punishable by the state or other authority.",
+     "rank": 92,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": null,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 193,
+     "name": "Episodic",
+     "description": "Features story arcs that are loosely tied or lack an overarching plot.",
+     "rank": 89,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": null,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 105,
+     "name": "Ensemble Cast",
+     "description": "Features a large cast of characters with (almost) equal screen time and importance to the plot.",
+     "rank": 86,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": null,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 109,
+     "name": "Primarily Adult Cast",
+     "description": "Main cast is mostly composed of characters above a high school age.",
+     "rank": 85,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": null,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 391,
+     "name": "Philosophy",
+     "description": "Relating or devoted to the study of the fundamental nature of knowledge, reality, and existence.",
+     "rank": 84,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": 5947629,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 85,
+     "name": "Tragedy",
+     "description": "Centers around tragic events and unhappy endings.",
+     "rank": 83,
+     "isMediaSpoiler": true,
+     "isGeneralSpoiler": true,
+     "userId": null,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 1310,
+     "name": "Travel",
+     "description": "Centers around character(s) moving between places a significant distance apart.",
+     "rank": 82,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": 857856,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 1277,
+     "name": "Found Family",
+     "description": "Features a group of characters with no biological relations that are united in a group providing social support.",
+     "rank": 82,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": 124347,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 327,
+     "name": "Noir",
+     "description": "Stylized as a cynical crime drama with low-key visuals.",
+     "rank": 80,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": null,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 104,
+     "name": "Anti-Hero",
+     "description": "Features a protagonist who lacks conventional heroic attributes and may be considered a borderline villain.",
+     "rank": 79,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": 6369383,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 82,
+     "name": "Male Protagonist",
+     "description": "Main character is male.",
+     "rank": 78,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": null,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 108,
+     "name": "Cyberpunk",
+     "description": "Set in a future of advanced technological and scientific achievements that have resulted in social disorder.",
+     "rank": 78,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": null,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 157,
+     "name": "Guns",
+     "description": "Prominently features the use of guns in combat.",
+     "rank": 78,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": null,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 98,
+     "name": "Female Protagonist",
+     "description": "Main character is female.",
+     "rank": 75,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": 6369383,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 1045,
+     "name": "Heterosexual",
+     "description": "Prominently features a romance between a man and a woman, not inherently sexual.",
+     "rank": 72,
+     "isMediaSpoiler": true,
+     "isGeneralSpoiler": false,
+     "userId": 6369383,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 285,
+     "name": "Terrorism",
+     "description": "Centers around the activities of a terrorist or terrorist organization.",
+     "rank": 69,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": 315670,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 801,
+     "name": "Cyborg",
+     "description": "Prominently features a human character whose physiological functions are aided or enhanced by artificial means.",
+     "rank": 66,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": null,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 931,
+     "name": "Tomboy",
+     "description": "Features a girl who exhibits characteristics or behaviors considered in many cultures to be typical of boys.",
+     "rank": 66,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": 5948301,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 30,
+     "name": "Martial Arts",
+     "description": "Centers around the use of traditional hand-to-hand combat.",
+     "rank": 66,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": null,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 1648,
+     "name": "Cowboys",
+     "description": "Features Western or Western-inspired cowboys.",
+     "rank": 65,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": 5601751,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 240,
+     "name": "Amnesia",
+     "description": "Prominently features a character(s) with memory loss.",
+     "rank": 62,
+     "isMediaSpoiler": true,
+     "isGeneralSpoiler": false,
+     "userId": null,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 145,
+     "name": "Work",
+     "description": "Centers around the activities of a certain occupation.",
+     "rank": 60,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": 6311461,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 91,
+     "name": "Gambling",
+     "description": "Centers around the act of gambling.",
+     "rank": 59,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": null,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 40,
+     "name": "Police",
+     "description": "Centers around the life and activities of law enforcement officers.",
+     "rank": 52,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": 315670,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 199,
+     "name": "Yakuza",
+     "description": "Centered around Japanese organised crime syndicates.",
+     "rank": 51,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": null,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 489,
+     "name": "Drugs",
+     "description": "Prominently features the usage of drugs such as opioids, stimulants, hallucinogens etc.",
+     "rank": 50,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": null,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 100,
+     "name": "Nudity",
+     "description": "Features a character wearing no clothing or exposing intimate body parts.",
+     "rank": 49,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": 5998808,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 586,
+     "name": "Cult",
+     "description": "Features a social group with unorthodox religious, spiritual, or philosophical beliefs and practices.",
+     "rank": 47,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": 956867,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 335,
+     "name": "Tanned Skin",
+     "description": "Prominently features characters with tanned skin.",
+     "rank": 42,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": null,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 476,
+     "name": "Circus",
+     "description": "Prominently features a circus.",
+     "rank": 36,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": 244281,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 90,
+     "name": "CGI",
+     "description": "Prominently features scenes created with computer-generated imagery.",
+     "rank": 20,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": 6235864,
+     "__typename": "MediaTag"
+    },
+    {
+     "id": 483,
+     "name": "LGBTQ+ Themes",
+     "description": "Prominently features characters or themes associated with the LGBTQ+ community, such as sexuality or gender identity.",
+     "rank": 20,
+     "isMediaSpoiler": false,
+     "isGeneralSpoiler": false,
+     "userId": 7391075,
+     "__typename": "MediaTag"
+    }
+   ],
+   "mediaListEntry": null,
+   "stats": {
+    "statusDistribution": [
+     {
+      "status": "CURRENT",
+      "amount": 41203,
+      "__typename": "StatusDistribution"
+     },
+     {
+      "status": "PLANNING",
+      "amount": 153510,
+      "__typename": "StatusDistribution"
+     },
+     {
+      "status": "COMPLETED",
+      "amount": 233065,
+      "__typename": "StatusDistribution"
+     },
+     {
+      "status": "DROPPED",
+      "amount": 10786,
+      "__typename": "StatusDistribution"
+     },
+     {
+      "status": "PAUSED",
+      "amount": 27654,
+      "__typename": "StatusDistribution"
+     }
+    ],
+    "scoreDistribution": [
+     {
+      "score": 10,
+      "amount": 626,
+      "__typename": "ScoreDistribution"
+     },
+     {
+      "score": 20,
+      "amount": 202,
+      "__typename": "ScoreDistribution"
+     },
+     {
+      "score": 30,
+      "amount": 486,
+      "__typename": "ScoreDistribution"
+     },
+     {
+      "score": 40,
+      "amount": 973,
+      "__typename": "ScoreDistribution"
+     },
+     {
+      "score": 50,
+      "amount": 2627,
+      "__typename": "ScoreDistribution"
+     },
+     {
+      "score": 60,
+      "amount": 5239,
+      "__typename": "ScoreDistribution"
+     },
+     {
+      "score": 70,
+      "amount": 15734,
+      "__typename": "ScoreDistribution"
+     },
+     {
+      "score": 80,
+      "amount": 34332,
+      "__typename": "ScoreDistribution"
+     },
+     {
+      "score": 90,
+      "amount": 56401,
+      "__typename": "ScoreDistribution"
+     },
+     {
+      "score": 100,
+      "amount": 53685,
+      "__typename": "ScoreDistribution"
+     }
+    ],
+    "__typename": "MediaStats"
+   },
+   "__typename": "Media"
   }
+ }
 }

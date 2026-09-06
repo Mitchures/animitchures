@@ -1,17 +1,1629 @@
 {
-  "errors": [
+ "data": {
+  "MediaListCollection": {
+   "__typename": "MediaListCollection",
+   "lists": [
     {
-      "message": "User not found",
-      "status": 404,
-      "locations": [
-        {
-          "line": 3,
-          "column": 5
+     "__typename": "MediaListGroup",
+     "name": "Watching",
+     "isCustomList": false,
+     "isCompletedList": false,
+     "entries": [
+      {
+       "__typename": "MediaList",
+       "id": 700001,
+       "mediaId": 182205,
+       "status": "CURRENT",
+       "score": 0,
+       "progress": 19,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1788578723,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 182205,
+        "title": {
+         "english": "That Time I Got Reincarnated as a Slime Season 4",
+         "userPreferred": "Tensei Shitara Slime Datta Ken 4th Season",
+         "__typename": "MediaTitle",
+         "romaji": "Tensei Shitara Slime Datta Ken 4th Season",
+         "native": "\u8ee2\u751f\u3057\u305f\u3089\u30b9\u30e9\u30a4\u30e0\u3060\u3063\u305f\u4ef6 \u7b2c4\u671f"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182205-q2AeO1owuQbO.jpg",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx182205-q2AeO1owuQbO.jpg",
+         "color": "#1abbd6",
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "TV",
+        "status": "RELEASING",
+        "episodes": 24,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": 83,
+        "popularity": 132388,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Action",
+         "Adventure",
+         "Comedy",
+         "Fantasy"
+        ],
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/182205-fRUoKv6f2JAq.jpg",
+        "nextAiringEpisode": {
+         "__typename": "AiringSchedule",
+         "episode": 24,
+         "airingAt": 1788924323
+        },
+        "startDate": {
+         "year": 2026,
+         "month": 4,
+         "day": 3,
+         "__typename": "FuzzyDate"
         }
-      ]
+       }
+      },
+      {
+       "__typename": "MediaList",
+       "id": 700002,
+       "mediaId": 209983,
+       "status": "CURRENT",
+       "score": 0,
+       "progress": 3,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1788319523,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 209983,
+        "title": {
+         "english": "HELL MODE: The Hardcore Gamer Dominates in Another World with Garbage Balancing Season 2",
+         "userPreferred": "Hell Mode: Yarikomi-zuki no Gamer wa Haisettei no Isekai de Musou Suru 2nd Season",
+         "__typename": "MediaTitle",
+         "romaji": "Hell Mode: Yarikomi-zuki no Gamer wa Haisettei no Isekai de Musou Suru 2nd Season",
+         "native": "\u30d8\u30eb\u30e2\u30fc\u30c9 \uff5e\u3084\u308a\u8fbc\u307f\u597d\u304d\u306e\u30b2\u30fc\u30de\u30fc\u306f\u5ec3\u8a2d\u5b9a\u306e\u7570\u4e16\u754c\u3067\u7121\u53cc\u3059\u308b\uff5e 2nd Season"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx209983-sFOcKyqMufxb.jpg",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx209983-sFOcKyqMufxb.jpg",
+         "color": "#0dbbf1",
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "TV",
+        "status": "RELEASING",
+        "episodes": 13,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": 72,
+        "popularity": 37918,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Action",
+         "Adventure",
+         "Fantasy"
+        ],
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/209983-fJysbFB72IM9.jpg",
+        "nextAiringEpisode": {
+         "__typename": "AiringSchedule",
+         "episode": 4,
+         "airingAt": 1789097123
+        },
+        "startDate": {
+         "year": 2026,
+         "month": 7,
+         "day": 4,
+         "__typename": "FuzzyDate"
+        }
+       }
+      },
+      {
+       "__typename": "MediaList",
+       "id": 700003,
+       "mediaId": 269,
+       "status": "CURRENT",
+       "score": 0,
+       "progress": 212,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1787628323,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 269,
+        "title": {
+         "english": "Bleach",
+         "userPreferred": "BLEACH",
+         "__typename": "MediaTitle",
+         "romaji": "BLEACH",
+         "native": "BLEACH"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx269-d2GmRkJbMopq.png",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx269-d2GmRkJbMopq.png",
+         "color": "#f1a150",
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "TV",
+        "status": "FINISHED",
+        "episodes": 366,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": 79,
+        "popularity": 518381,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Action",
+         "Adventure",
+         "Supernatural"
+        ],
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/269-08ar2HJOUAuL.jpg",
+        "nextAiringEpisode": null,
+        "startDate": {
+         "year": 2004,
+         "month": 10,
+         "day": 5,
+         "__typename": "FuzzyDate"
+        }
+       }
+      },
+      {
+       "__typename": "MediaList",
+       "id": 700004,
+       "mediaId": 21,
+       "status": "CURRENT",
+       "score": 0,
+       "progress": 1094,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1788492323,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 21,
+        "title": {
+         "english": "ONE PIECE",
+         "userPreferred": "ONE PIECE",
+         "__typename": "MediaTitle",
+         "romaji": "ONE PIECE",
+         "native": "ONE PIECE"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-ELSYx3yMPcKM.jpg",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21-ELSYx3yMPcKM.jpg",
+         "color": "#e49335",
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "TV",
+        "status": "RELEASING",
+        "episodes": null,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": 87,
+        "popularity": 747774,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Action",
+         "Adventure",
+         "Comedy",
+         "Drama",
+         "Fantasy"
+        ],
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21-wf37VakJmZqs.jpg",
+        "nextAiringEpisode": {
+         "__typename": "AiringSchedule",
+         "episode": 1095,
+         "airingAt": 1788837923
+        },
+        "startDate": {
+         "year": 1999,
+         "month": 10,
+         "day": 20,
+         "__typename": "FuzzyDate"
+        }
+       }
+      },
+      {
+       "__typename": "MediaList",
+       "id": 700005,
+       "mediaId": 196218,
+       "status": "REPEATING",
+       "score": 88,
+       "progress": 6,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1787973923,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 196218,
+        "title": {
+         "english": "The Frontier Lord Begins with Zero Subjects",
+         "userPreferred": "Ryoumin 0-Nin Start no Henkyou Ryoushu-sama",
+         "__typename": "MediaTitle",
+         "romaji": "Ryoumin 0-Nin Start no Henkyou Ryoushu-sama",
+         "native": "\u9818\u6c110\u4eba\u30b9\u30bf\u30fc\u30c8\u306e\u8fba\u5883\u9818\u4e3b\u69d8"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx196218-UsdTTCrwpDIN.jpg",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx196218-UsdTTCrwpDIN.jpg",
+         "color": "#febb50",
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "ONA",
+        "status": "RELEASING",
+        "episodes": 12,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": 66,
+        "popularity": 30550,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Action",
+         "Comedy",
+         "Drama",
+         "Fantasy",
+         "Romance",
+         "Slice of Life"
+        ],
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/196218-lX0y9T76KQkC.jpg",
+        "nextAiringEpisode": null,
+        "startDate": {
+         "year": 2026,
+         "month": 7,
+         "day": 3,
+         "__typename": "FuzzyDate"
+        }
+       }
+      }
+     ]
+    },
+    {
+     "__typename": "MediaListGroup",
+     "name": "Completed",
+     "isCustomList": false,
+     "isCompletedList": true,
+     "entries": [
+      {
+       "__typename": "MediaList",
+       "id": 700006,
+       "mediaId": 196187,
+       "status": "COMPLETED",
+       "score": 92,
+       "progress": 12,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1788405923,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 196187,
+        "title": {
+         "english": "Smoking Behind the Supermarket with You",
+         "userPreferred": "Super no Ura de Yani Suu Futari",
+         "__typename": "MediaTitle",
+         "romaji": "Super no Ura de Yani Suu Futari",
+         "native": "\u30b9\u30fc\u30d1\u30fc\u306e\u88cf\u3067\u30e4\u30cb\u5438\u3046\u3075\u305f\u308a"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx196187-0dgFi2CPp3xn.jpg",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx196187-0dgFi2CPp3xn.jpg",
+         "color": "#f1c9bb",
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "TV",
+        "status": "RELEASING",
+        "episodes": 12,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": 82,
+        "popularity": 115797,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Comedy",
+         "Romance",
+         "Slice of Life"
+        ],
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/196187-Z9dV6uotmKjM.jpg",
+        "nextAiringEpisode": null,
+        "startDate": {
+         "year": 2026,
+         "month": 7,
+         "day": 10,
+         "__typename": "FuzzyDate"
+        }
+       }
+      },
+      {
+       "__typename": "MediaList",
+       "id": 700007,
+       "mediaId": 189046,
+       "status": "COMPLETED",
+       "score": 88,
+       "progress": 19,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1787801123,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 189046,
+        "title": {
+         "english": "Re:ZERO -Starting Life in Another World- Season 4",
+         "userPreferred": "Re:Zero kara Hajimeru Isekai Seikatsu 4th Season",
+         "__typename": "MediaTitle",
+         "romaji": "Re:Zero kara Hajimeru Isekai Seikatsu 4th Season",
+         "native": "Re:\u30bc\u30ed\u304b\u3089\u59cb\u3081\u308b\u7570\u4e16\u754c\u751f\u6d3b 4th season"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx189046-yaHWtS5FII46.jpg",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx189046-yaHWtS5FII46.jpg",
+         "color": "#e49350",
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "TV",
+        "status": "RELEASING",
+        "episodes": 19,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": 90,
+        "popularity": 136865,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Action",
+         "Adventure",
+         "Drama",
+         "Fantasy",
+         "Psychological",
+         "Romance",
+         "Thriller"
+        ],
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/189046-MDk2CaVuRWpb.jpg",
+        "nextAiringEpisode": null,
+        "startDate": {
+         "year": 2026,
+         "month": 4,
+         "day": 8,
+         "__typename": "FuzzyDate"
+        }
+       }
+      },
+      {
+       "__typename": "MediaList",
+       "id": 700008,
+       "mediaId": 199748,
+       "status": "COMPLETED",
+       "score": 76,
+       "progress": 12,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1787196323,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 199748,
+        "title": {
+         "english": "I Became a Legend After My 10 Year-Long Last Stand",
+         "userPreferred": "Koko wa Ore ni Makasete Saki ni Ike to Ittekara 10-nen ga Tattara Densetsu ni Natteita.",
+         "__typename": "MediaTitle",
+         "romaji": "Koko wa Ore ni Makasete Saki ni Ike to Ittekara 10-nen ga Tattara Densetsu ni Natteita.",
+         "native": "\u3053\u3053\u306f\u4ffa\u306b\u4efb\u305b\u3066\u5148\u306b\u884c\u3051\u3068\u8a00\u3063\u3066\u304b\u3089\uff11\uff10\u5e74\u304c\u305f\u3063\u305f\u3089\u4f1d\u8aac\u306b\u306a\u3063\u3066\u3044\u305f\u3002"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx199748-PAFk9pGSUmFL.png",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx199748-PAFk9pGSUmFL.png",
+         "color": "#5dd6f1",
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "ONA",
+        "status": "RELEASING",
+        "episodes": 12,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": 63,
+        "popularity": 38390,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Action",
+         "Adventure",
+         "Fantasy"
+        ],
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/199748-H2JAicBqBq3b.jpg",
+        "nextAiringEpisode": null,
+        "startDate": {
+         "year": 2026,
+         "month": 7,
+         "day": 3,
+         "__typename": "FuzzyDate"
+        }
+       }
+      },
+      {
+       "__typename": "MediaList",
+       "id": 700009,
+       "mediaId": 180136,
+       "status": "COMPLETED",
+       "score": 84,
+       "progress": 26,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1786591523,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 180136,
+        "title": {
+         "english": "The Exiled Heavy Knight Knows How to Game the System",
+         "userPreferred": "Tsuihou Sareta Tensei Juukishi wa Game Chishiki de Musou Suru",
+         "__typename": "MediaTitle",
+         "romaji": "Tsuihou Sareta Tensei Juukishi wa Game Chishiki de Musou Suru",
+         "native": "\u8ffd\u653e\u3055\u308c\u305f\u8ee2\u751f\u91cd\u9a0e\u58eb\u306f\u30b2\u30fc\u30e0\u77e5\u8b58\u3067\u7121\u53cc\u3059\u308b"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx180136-gtMTCRlOD4OE.jpg",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx180136-gtMTCRlOD4OE.jpg",
+         "color": "#50c9fe",
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "TV",
+        "status": "RELEASING",
+        "episodes": 26,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": 66,
+        "popularity": 59249,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Action",
+         "Fantasy"
+        ],
+        "bannerImage": null,
+        "nextAiringEpisode": null,
+        "startDate": {
+         "year": 2026,
+         "month": 7,
+         "day": 3,
+         "__typename": "FuzzyDate"
+        }
+       }
+      },
+      {
+       "__typename": "MediaList",
+       "id": 700010,
+       "mediaId": 178789,
+       "status": "COMPLETED",
+       "score": 70,
+       "progress": 14,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1785986723,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 178789,
+        "title": {
+         "english": "Mushoku Tensei: Jobless Reincarnation Season 3",
+         "userPreferred": "Mushoku Tensei III: Isekai Ittara Honki Dasu",
+         "__typename": "MediaTitle",
+         "romaji": "Mushoku Tensei III: Isekai Ittara Honki Dasu",
+         "native": "\u7121\u8077\u8ee2\u751f\u2162 \uff5e\u7570\u4e16\u754c\u884c\u3063\u305f\u3089\u672c\u6c17\u3060\u3059\uff5e"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx178789-hNXjKFzUq7mk.jpg",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx178789-hNXjKFzUq7mk.jpg",
+         "color": "#28bbe4",
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "TV",
+        "status": "RELEASING",
+        "episodes": 14,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": 84,
+        "popularity": 151946,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Adventure",
+         "Drama",
+         "Ecchi",
+         "Fantasy"
+        ],
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/178789-9nHWmoRLlcLu.jpg",
+        "nextAiringEpisode": null,
+        "startDate": {
+         "year": 2026,
+         "month": 7,
+         "day": 4,
+         "__typename": "FuzzyDate"
+        }
+       }
+      },
+      {
+       "__typename": "MediaList",
+       "id": 700011,
+       "mediaId": 182616,
+       "status": "COMPLETED",
+       "score": 95,
+       "progress": 12,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1785381923,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 182616,
+        "title": {
+         "english": "The Elusive Samurai Season 2",
+         "userPreferred": "Nige Jouzu no Wakagimi 2nd Season",
+         "__typename": "MediaTitle",
+         "romaji": "Nige Jouzu no Wakagimi 2nd Season",
+         "native": "\u9003\u3052\u4e0a\u624b\u306e\u82e5\u541b \u7b2c\u4e8c\u671f"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182616-ZOCgArw9cgqI.jpg",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx182616-ZOCgArw9cgqI.jpg",
+         "color": "#e45050",
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "TV",
+        "status": "RELEASING",
+        "episodes": 12,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": 76,
+        "popularity": 26216,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Action",
+         "Adventure"
+        ],
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/182616-kmIqMEUsLYrO.jpg",
+        "nextAiringEpisode": null,
+        "startDate": {
+         "year": 2026,
+         "month": 7,
+         "day": 17,
+         "__typename": "FuzzyDate"
+        }
+       }
+      },
+      {
+       "__typename": "MediaList",
+       "id": 700012,
+       "mediaId": 195600,
+       "status": "COMPLETED",
+       "score": 81,
+       "progress": 24,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1784777123,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 195600,
+        "title": {
+         "english": "Daemons of the Shadow Realm",
+         "userPreferred": "Yomi no Tsugai",
+         "__typename": "MediaTitle",
+         "romaji": "Yomi no Tsugai",
+         "native": "\u9ec4\u6cc9\u306e\u30c4\u30ac\u30a4"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx195600-moI0UFArtOme.jpg",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx195600-moI0UFArtOme.jpg",
+         "color": "#e49335",
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "TV",
+        "status": "RELEASING",
+        "episodes": 24,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": 78,
+        "popularity": 132926,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Action",
+         "Adventure",
+         "Comedy",
+         "Fantasy",
+         "Supernatural"
+        ],
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/195600-UxHvDXwzJxlP.jpg",
+        "nextAiringEpisode": null,
+        "startDate": {
+         "year": 2026,
+         "month": 4,
+         "day": 4,
+         "__typename": "FuzzyDate"
+        }
+       }
+      },
+      {
+       "__typename": "MediaList",
+       "id": 700013,
+       "mediaId": 185874,
+       "status": "COMPLETED",
+       "score": 67,
+       "progress": 10,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1784172323,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 185874,
+        "title": {
+         "english": "BLEACH: Thousand-Year Blood War - The Calamity",
+         "userPreferred": "BLEACH: Sennen Kessen-hen - Kashin-tan",
+         "__typename": "MediaTitle",
+         "romaji": "BLEACH: Sennen Kessen-hen - Kashin-tan",
+         "native": "BLEACH \u5343\u5e74\u8840\u6226\u7bc7-\u798d\u9032\u8b5a-"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx185874-aU3e6tBT6wwA.jpg",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx185874-aU3e6tBT6wwA.jpg",
+         "color": null,
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "TV",
+        "status": "RELEASING",
+        "episodes": 10,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": 90,
+        "popularity": 82887,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Action",
+         "Adventure",
+         "Supernatural"
+        ],
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/185874-IdGyh1EBG91I.jpg",
+        "nextAiringEpisode": null,
+        "startDate": {
+         "year": 2026,
+         "month": 7,
+         "day": 25,
+         "__typename": "FuzzyDate"
+        }
+       }
+      }
+     ]
+    },
+    {
+     "__typename": "MediaListGroup",
+     "name": "Planning",
+     "isCustomList": false,
+     "isCompletedList": false,
+     "entries": [
+      {
+       "__typename": "MediaList",
+       "id": 700014,
+       "mediaId": 195539,
+       "status": "PLANNING",
+       "score": 0,
+       "progress": 0,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1787801123,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 195539,
+        "title": {
+         "english": "Cyberpunk: Edgerunners 2",
+         "userPreferred": "Cyberpunk: Edgerunners 2",
+         "__typename": "MediaTitle",
+         "romaji": "Cyberpunk: Edgerunners 2",
+         "native": "\u30b5\u30a4\u30d0\u30fc\u30d1\u30f3\u30af: \u30a8\u30c3\u30b8\u30e9\u30f3\u30ca\u30fc\u30ba2"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx195539-jaarfaxv6K0Z.jpg",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx195539-jaarfaxv6K0Z.jpg",
+         "color": "#1ac9e4",
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "ONA",
+        "status": "NOT_YET_RELEASED",
+        "episodes": 10,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": null,
+        "popularity": 58315,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Action",
+         "Drama",
+         "Sci-Fi"
+        ],
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/195539-2obqrBzqrOSR.jpg",
+        "nextAiringEpisode": null,
+        "startDate": {
+         "year": 2026,
+         "month": 10,
+         "day": 20,
+         "__typename": "FuzzyDate"
+        }
+       }
+      },
+      {
+       "__typename": "MediaList",
+       "id": 700015,
+       "mediaId": 160275,
+       "status": "PLANNING",
+       "score": 0,
+       "progress": 0,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1786850723,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 160275,
+        "title": {
+         "english": null,
+         "userPreferred": "Made in Abyss: Mezameru Shinpi",
+         "__typename": "MediaTitle",
+         "romaji": "Made in Abyss: Mezameru Shinpi",
+         "native": "\u30e1\u30a4\u30c9\u30a4\u30f3\u30a2\u30d3\u30b9 \u76ee\u899a\u3081\u308b\u795e\u79d8"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx160275-cBOWJpcCGeMq.jpg",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx160275-cBOWJpcCGeMq.jpg",
+         "color": "#e4d643",
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "MOVIE",
+        "status": "NOT_YET_RELEASED",
+        "episodes": 1,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": null,
+        "popularity": 37213,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Adventure",
+         "Drama",
+         "Fantasy",
+         "Horror",
+         "Mystery",
+         "Sci-Fi"
+        ],
+        "bannerImage": null,
+        "nextAiringEpisode": null,
+        "startDate": {
+         "year": 2026,
+         "month": 10,
+         "day": 23,
+         "__typename": "FuzzyDate"
+        }
+       }
+      },
+      {
+       "__typename": "MediaList",
+       "id": 700016,
+       "mediaId": 143103,
+       "status": "PLANNING",
+       "score": 0,
+       "progress": 0,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1785900323,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 143103,
+        "title": {
+         "english": "Witch on the Holy Night",
+         "userPreferred": "Mahoutsukai no Yoru",
+         "__typename": "MediaTitle",
+         "romaji": "Mahoutsukai no Yoru",
+         "native": "\u9b54\u6cd5\u4f7f\u3044\u306e\u591c"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx143103-vvsaIpZPpIuE.png",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx143103-vvsaIpZPpIuE.png",
+         "color": "#f1d6ae",
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "MOVIE",
+        "status": "NOT_YET_RELEASED",
+        "episodes": 1,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": null,
+        "popularity": 33716,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Action",
+         "Drama",
+         "Fantasy"
+        ],
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/143103-KwDRPfPl4OwL.jpg",
+        "nextAiringEpisode": null,
+        "startDate": {
+         "year": 2026,
+         "month": 11,
+         "day": 20,
+         "__typename": "FuzzyDate"
+        }
+       }
+      },
+      {
+       "__typename": "MediaList",
+       "id": 700017,
+       "mediaId": 199340,
+       "status": "PLANNING",
+       "score": 0,
+       "progress": 0,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1784949923,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 199340,
+        "title": {
+         "english": "Rascal Does Not Dream of a Dear Friend",
+         "userPreferred": "Seishun Buta Yarou wa Dear Friend no Yume wo Minai",
+         "__typename": "MediaTitle",
+         "romaji": "Seishun Buta Yarou wa Dear Friend no Yume wo Minai",
+         "native": "\u9752\u6625\u30d6\u30bf\u91ce\u90ce\u306f\u30c7\u30a3\u30a2\u30d5\u30ec\u30f3\u30c9\u306e\u5922\u3092\u898b\u306a\u3044"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx199340-YQlmzvmcJzyt.jpg",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx199340-YQlmzvmcJzyt.jpg",
+         "color": "#5da1f1",
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "MOVIE",
+        "status": "NOT_YET_RELEASED",
+        "episodes": 1,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": null,
+        "popularity": 27733,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Drama",
+         "Psychological",
+         "Romance",
+         "Supernatural"
+        ],
+        "bannerImage": null,
+        "nextAiringEpisode": null,
+        "startDate": {
+         "year": 2026,
+         "month": 10,
+         "day": 16,
+         "__typename": "FuzzyDate"
+        }
+       }
+      },
+      {
+       "__typename": "MediaList",
+       "id": 700018,
+       "mediaId": 200929,
+       "status": "PLANNING",
+       "score": 0,
+       "progress": 0,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1783999523,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 200929,
+        "title": {
+         "english": null,
+         "userPreferred": "Kusuriya no Hitorigoto: Bouhi no Hihou",
+         "__typename": "MediaTitle",
+         "romaji": "Kusuriya no Hitorigoto: Bouhi no Hihou",
+         "native": "\u85ac\u5c4b\u306e\u3072\u3068\u308a\u3054\u3068 \u4ea1\u5983\u306e\u79d8\u5b9d"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx200929-ZnRFJbEqFbgJ.jpg",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx200929-ZnRFJbEqFbgJ.jpg",
+         "color": "#f19335",
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "MOVIE",
+        "status": "NOT_YET_RELEASED",
+        "episodes": 1,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": null,
+        "popularity": 22338,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Drama",
+         "Mystery"
+        ],
+        "bannerImage": null,
+        "nextAiringEpisode": null,
+        "startDate": {
+         "year": 2026,
+         "month": 12,
+         "day": 11,
+         "__typename": "FuzzyDate"
+        }
+       }
+      },
+      {
+       "__typename": "MediaList",
+       "id": 700019,
+       "mediaId": 210482,
+       "status": "PLANNING",
+       "score": 0,
+       "progress": 0,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1783049123,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 210482,
+        "title": {
+         "english": "STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE",
+         "userPreferred": "JoJo no Kimyou na Bouken: Steel Ball Run - 2nd - 3rd STAGE",
+         "__typename": "MediaTitle",
+         "romaji": "JoJo no Kimyou na Bouken: Steel Ball Run - 2nd - 3rd STAGE",
+         "native": "\u30b8\u30e7\u30b8\u30e7\u306e\u5947\u5999\u306a\u5192\u967a \u30b9\u30c6\u30a3\u30fc\u30eb\u30fb\u30dc\u30fc\u30eb\u30fb\u30e9\u30f3 2nd - 3rd STAGE"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx210482-P1VNKbqdJ6Zj.jpg",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx210482-P1VNKbqdJ6Zj.jpg",
+         "color": "#f1ae50",
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "ONA",
+        "status": "NOT_YET_RELEASED",
+        "episodes": 11,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": null,
+        "popularity": 22296,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Action",
+         "Adventure",
+         "Drama",
+         "Mystery",
+         "Supernatural"
+        ],
+        "bannerImage": null,
+        "nextAiringEpisode": null,
+        "startDate": {
+         "year": 2026,
+         "month": 9,
+         "day": 25,
+         "__typename": "FuzzyDate"
+        }
+       }
+      }
+     ]
+    },
+    {
+     "__typename": "MediaListGroup",
+     "name": "Paused",
+     "isCustomList": false,
+     "isCompletedList": false,
+     "entries": [
+      {
+       "__typename": "MediaList",
+       "id": 700020,
+       "mediaId": 172463,
+       "status": "PAUSED",
+       "score": 0,
+       "progress": 4,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1778297123,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 172463,
+        "title": {
+         "english": "JUJUTSU KAISEN Season 3: The Culling Game Part 1",
+         "userPreferred": "Jujutsu Kaisen: Shimetsu Kaiyuu - Zenpen",
+         "__typename": "MediaTitle",
+         "romaji": "Jujutsu Kaisen: Shimetsu Kaiyuu - Zenpen",
+         "native": "\u546a\u8853\u5efb\u6226 \u6b7b\u6ec5\u56de\u6e38 \u524d\u7de8"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx172463-LnXqHzt74SJL.jpg",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx172463-LnXqHzt74SJL.jpg",
+         "color": "#78aee4",
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "TV",
+        "status": "FINISHED",
+        "episodes": 12,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": 86,
+        "popularity": 256435,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Action",
+         "Drama",
+         "Supernatural"
+        ],
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/172463-3J2o3qQZadFJ.jpg",
+        "nextAiringEpisode": null,
+        "startDate": {
+         "year": 2026,
+         "month": 1,
+         "day": 9,
+         "__typename": "FuzzyDate"
+        }
+       }
+      },
+      {
+       "__typename": "MediaList",
+       "id": 700021,
+       "mediaId": 182255,
+       "status": "PAUSED",
+       "score": 0,
+       "progress": 9,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1771385123,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 182255,
+        "title": {
+         "english": "Frieren: Beyond Journey\u2019s End Season 2",
+         "userPreferred": "Sousou no Frieren 2nd Season",
+         "__typename": "MediaTitle",
+         "romaji": "Sousou no Frieren 2nd Season",
+         "native": "\u846c\u9001\u306e\u30d5\u30ea\u30fc\u30ec\u30f3 \u7b2c2\u671f"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182255-butzrqd4I0aC.jpg",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx182255-butzrqd4I0aC.jpg",
+         "color": "#5dc9f1",
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "TV",
+        "status": "FINISHED",
+        "episodes": 10,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": 88,
+        "popularity": 222753,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Adventure",
+         "Drama",
+         "Fantasy"
+        ],
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/182255-wyHvp6zJbWsO.jpg",
+        "nextAiringEpisode": null,
+        "startDate": {
+         "year": 2026,
+         "month": 1,
+         "day": 16,
+         "__typename": "FuzzyDate"
+        }
+       }
+      }
+     ]
+    },
+    {
+     "__typename": "MediaListGroup",
+     "name": "Dropped",
+     "isCustomList": false,
+     "isCompletedList": false,
+     "entries": [
+      {
+       "__typename": "MediaList",
+       "id": 700022,
+       "mediaId": 147105,
+       "status": "DROPPED",
+       "score": 45,
+       "progress": 2,
+       "progressVolumes": null,
+       "repeat": 0,
+       "priority": 0,
+       "private": false,
+       "hiddenFromStatusLists": false,
+       "customLists": null,
+       "advancedScores": {},
+       "notes": null,
+       "updatedAt": 1762745123,
+       "startedAt": {
+        "__typename": "FuzzyDate",
+        "year": 2025,
+        "month": 4,
+        "day": 6
+       },
+       "completedAt": {
+        "__typename": "FuzzyDate",
+        "year": null,
+        "month": null,
+        "day": null
+       },
+       "media": {
+        "__typename": "Media",
+        "id": 147105,
+        "title": {
+         "english": "Witch Hat Atelier",
+         "userPreferred": "Tongari Boushi no Atelier",
+         "__typename": "MediaTitle",
+         "romaji": "Tongari Boushi no Atelier",
+         "native": "\u3068\u3093\u304c\u308a\u5e3d\u5b50\u306e\u30a2\u30c8\u30ea\u30a8"
+        },
+        "coverImage": {
+         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx147105-rwOX8qyUy8gV.jpg",
+         "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx147105-rwOX8qyUy8gV.jpg",
+         "color": "#0d8693",
+         "__typename": "MediaCoverImage"
+        },
+        "type": "ANIME",
+        "format": "ONA",
+        "status": "FINISHED",
+        "episodes": 13,
+        "volumes": null,
+        "chapters": null,
+        "averageScore": 85,
+        "popularity": 222234,
+        "isAdult": false,
+        "countryOfOrigin": "JP",
+        "genres": [
+         "Adventure",
+         "Drama",
+         "Fantasy"
+        ],
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/147105-fTjmRrILFixZ.jpg",
+        "nextAiringEpisode": null,
+        "startDate": {
+         "year": 2026,
+         "month": 4,
+         "day": 6,
+         "__typename": "FuzzyDate"
+        }
+       }
+      }
+     ]
     }
-  ],
-  "data": {
-    "MediaListCollection": null
+   ],
+   "user": {
+    "__typename": "User",
+    "id": 6001782,
+    "name": "TestViewer",
+    "avatar": {
+     "__typename": "UserAvatar",
+     "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx182205-q2AeO1owuQbO.jpg"
+    },
+    "mediaListOptions": {
+     "__typename": "MediaListOptions",
+     "scoreFormat": "POINT_100",
+     "rowOrder": "score",
+     "animeList": {
+      "__typename": "MediaListTypeOptions",
+      "sectionOrder": [
+       "Watching",
+       "Completed",
+       "Planning",
+       "Paused",
+       "Dropped"
+      ],
+      "customLists": [],
+      "splitCompletedSectionByFormat": false,
+      "theme": null
+     },
+     "mangaList": {
+      "__typename": "MediaListTypeOptions",
+      "sectionOrder": [],
+      "customLists": [],
+      "splitCompletedSectionByFormat": false,
+      "theme": null
+     }
+    }
+   }
   }
+ }
 }

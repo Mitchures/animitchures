@@ -1,0 +1,98 @@
+.ratingCurve {
+  /* Room above the bars for the two mean labels — they used to sit on top of
+     the tallest bar and become unreadable. */
+  padding-top: 1.5rem;
+}
+
+.ratingCurve__plot {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 130px;
+  padding-bottom: 1.4rem;
+}
+
+.ratingCurve__bar {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.ratingCurve__bar > i {
+  display: block;
+  width: 100%;
+  border-radius: 3px 3px 0 0;
+  background-color: color-mix(in srgb, var(--action) 42%, transparent);
+  transition: background-color 0.2s;
+}
+
+.ratingCurve__bar > i.is-peak {
+  background-color: var(--action);
+}
+
+.ratingCurve__bar:hover > i {
+  background-color: var(--action);
+}
+
+.ratingCurve__bar > span {
+  text-align: center;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--secondary);
+  margin-top: 0.25rem;
+}
+
+.ratingCurve__mark {
+  position: absolute;
+  top: 0;
+  bottom: 1.4rem;
+}
+
+.ratingCurve__mark > i {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  border-radius: 1px;
+}
+
+.ratingCurve__mark > em {
+  position: absolute;
+  bottom: 100%;
+  margin-bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-style: normal;
+  font-size: 0.6rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.ratingCurve__mark--mine > i {
+  background-color: var(--gold);
+}
+
+.ratingCurve__mark--mine > em {
+  color: var(--gold);
+}
+
+.ratingCurve__mark--site > i {
+  background-color: color-mix(in srgb, currentColor 40%, transparent);
+}
+
+/* The two means sit close together on most accounts, so one label rides low
+   to clear the other rather than overlapping it. */
+.ratingCurve__mark--site > em {
+  color: var(--secondary);
+  bottom: auto;
+  top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ratingCurve__bar > i {
+    transition: none;
+  }
+}

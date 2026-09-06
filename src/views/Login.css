@@ -92,7 +92,7 @@
   border: 1px solid rgba(209, 213, 219, 1);
   border-radius: var(--border-radius);
   background-color: white;
-  transition: all 0.3s;
+  transition: var(--transition);
 }
 
 .login__withGoogle:hover,
@@ -119,33 +119,63 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .login__header > a {
+  :root:not([data-theme='light']) .login__header > a {
     color: white;
   }
 
-  .login__container,
-  .login__header {
+  :root:not([data-theme='light']) .login__container,
+  :root:not([data-theme='light']) .login__header {
     background-color: rgba(16, 18, 27, 40%);
   }
 
-  .login__form label {
+  :root:not([data-theme='light']) .login__form label {
     color: white;
   }
 
-  .login__withGoogle,
-  .login__withApple {
+  :root:not([data-theme='light']) .login__withGoogle,
+  :root:not([data-theme='light']) .login__withApple {
     background-color: black;
     border: none;
     color: white;
   }
 
-  .login__withApple svg path {
+  :root:not([data-theme='light']) .login__withApple svg path {
     fill: white;
   }
 
-  .login__withGoogle:hover,
-  .login__withApple:hover {
+  :root:not([data-theme='light']) .login__withGoogle:hover,
+  :root:not([data-theme='light']) .login__withApple:hover {
     color: white;
     background-color: #222;
   }
+}
+
+:root[data-theme='dark'] .login__header > a {
+  color: white;
+}
+
+:root[data-theme='dark'] .login__container,
+:root[data-theme='dark'] .login__header {
+  background-color: rgba(16, 18, 27, 40%);
+}
+
+:root[data-theme='dark'] .login__form label {
+  color: white;
+}
+
+:root[data-theme='dark'] .login__withGoogle,
+:root[data-theme='dark'] .login__withApple {
+  background-color: black;
+  border: none;
+  color: white;
+}
+
+:root[data-theme='dark'] .login__withApple svg path {
+  fill: white;
+}
+
+:root[data-theme='dark'] .login__withGoogle:hover,
+:root[data-theme='dark'] .login__withApple:hover {
+  color: white;
+  background-color: #222;
 }

@@ -1,0 +1,74 @@
+.rankedBars__row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.3rem 0;
+  font-size: 0.78rem;
+}
+
+.rankedBars__rank {
+  width: 15px;
+  flex: none;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.rankedBars__label {
+  width: 130px;
+  flex: none;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: inherit;
+}
+
+a.rankedBars__label:hover {
+  color: var(--action) !important;
+}
+
+.rankedBars__track {
+  flex: 1 1 auto;
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+  background-color: var(--track, rgba(255, 255, 255, 0.08));
+}
+
+.rankedBars__track > i {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background-color: var(--action);
+}
+
+.rankedBars__count {
+  width: 28px;
+  flex: none;
+  text-align: right;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.rankedBars__score {
+  width: 26px;
+  flex: none;
+  text-align: right;
+  font-weight: 800;
+  font-size: 0.74rem;
+  color: var(--gold);
+}
+
+@media (prefers-color-scheme: light) {
+  .rankedBars {
+    --track: rgba(11, 22, 33, 0.1);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .rankedBars__label {
+    width: 96px;
+  }
+}

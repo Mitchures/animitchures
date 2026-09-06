@@ -1,0 +1,258 @@
+.social {
+  height: calc(100vh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
+  overflow-y: auto;
+  padding: 0.5rem var(--x-axis-spacing) 3rem;
+}
+
+.social__faces {
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 0.4rem;
+}
+
+.social__face {
+  width: 66px;
+  flex: none;
+  text-align: center;
+}
+
+.social__face > img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 0.3rem;
+  border: 2px solid var(--rule, rgba(255, 255, 255, 0.18));
+}
+
+/* A green ring is the only fast answer to "is there anything new here". */
+.social__face.is-live > img {
+  border-color: var(--score-great);
+}
+
+.social__face > span {
+  display: block;
+  font-size: 0.64rem;
+  font-weight: 700;
+  color: var(--secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.social__face.is-live > span {
+  color: inherit;
+}
+
+.social__row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.55rem 0.6rem;
+  border-radius: 10px;
+  border-bottom: 1px solid var(--rule, rgba(255, 255, 255, 0.06));
+}
+
+.social__row:hover {
+  background-color: var(--chip, rgba(255, 255, 255, 0.04));
+}
+
+/* Milestones carry the weight; routine progress stays quiet. */
+.social__row.is-milestone {
+  background-color: color-mix(in srgb, var(--action) 8%, transparent);
+  box-shadow: inset 2px 0 0 var(--action);
+}
+
+.social__avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+}
+
+.social__body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.social__line {
+  margin: 0 0 0.35rem;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: var(--secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.social__line b {
+  color: inherit;
+  filter: brightness(1.6);
+  font-weight: 800;
+}
+
+.social__line a {
+  color: inherit;
+  filter: brightness(1.6);
+  font-weight: 600;
+}
+
+.social__line a:hover {
+  color: var(--action) !important;
+  filter: none;
+}
+
+.social__strip {
+  display: block;
+  max-width: 200px;
+}
+
+.social__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.social__meta > i {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.64rem;
+  color: var(--secondary);
+}
+
+.social__badge {
+  font-size: 0.58rem;
+  font-weight: 800;
+  padding: 0.08rem 0.45rem;
+  border-radius: 999px;
+  text-transform: capitalize;
+}
+
+.social__badge--completed {
+  background-color: color-mix(in srgb, var(--score-great) 20%, transparent);
+  color: var(--score-great);
+}
+
+.social__badge--started,
+.social__badge--rewatched {
+  background-color: color-mix(in srgb, var(--action) 22%, transparent);
+  color: var(--action);
+}
+
+.social__badge--paused {
+  background-color: color-mix(in srgb, var(--score-mixed) 20%, transparent);
+  color: var(--score-mixed);
+}
+
+.social__badge--dropped {
+  background-color: color-mix(in srgb, var(--score-poor) 20%, transparent);
+  color: var(--score-poor);
+}
+
+.social__poster {
+  flex: none;
+  width: 32px;
+  aspect-ratio: 2 / 3;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.social__poster > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.social__when {
+  width: 34px;
+  flex: none;
+  text-align: right;
+  font-style: normal;
+  font-size: 0.68rem;
+  color: var(--secondary);
+}
+
+.social__row--text {
+  align-items: flex-start;
+}
+
+.social__text {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  /* Posts run long; three lines is enough to decide whether to open it. */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.social__more {
+  width: auto;
+  height: auto;
+  margin-top: 1rem;
+  border: 1px solid var(--rule, rgba(255, 255, 255, 0.14));
+  border-radius: 999px;
+  background: none;
+  color: var(--secondary);
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 0.45rem 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.social__more:hover {
+  opacity: 1;
+  color: var(--action) !important;
+  border-color: var(--action);
+}
+
+.social__empty {
+  display: grid;
+  place-content: center;
+  height: 60vh;
+  max-width: 36ch;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.65;
+  color: var(--secondary);
+}
+
+.social__empty--inline {
+  height: auto;
+  padding: 2.5rem 0;
+}
+
+/* Light is the base; both dark routes override it. */
+.social {
+  --rule: rgba(11, 22, 33, 0.1);
+  --chip: rgba(11, 22, 33, 0.045);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .social {
+    --rule: rgba(255, 255, 255, 0.08);
+    --chip: rgba(255, 255, 255, 0.045);
+  }
+}
+
+:root[data-theme='dark'] .social {
+  --rule: rgba(255, 255, 255, 0.08);
+  --chip: rgba(255, 255, 255, 0.045);
+}
+
+@media screen and (max-width: 700px) {
+  .social__strip {
+    display: none;
+  }
+}

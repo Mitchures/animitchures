@@ -1,0 +1,58 @@
+.episodeStrip {
+  display: flex;
+  gap: 2px;
+  align-items: stretch;
+  height: 7px;
+  width: 100%;
+}
+
+.episodeStrip i {
+  flex: 1 1 auto;
+  min-width: 2px;
+  background-color: var(--strip-empty, rgba(255, 255, 255, 0.14));
+  border-radius: 1.5px;
+  transition: background-color 0.25s;
+}
+
+.episodeStrip i.is-watched {
+  background-color: var(--action);
+}
+
+/* The bar and open variants are one continuous fill rather than a row of
+   children, so they need the track on the wrapper instead. */
+.episodeStrip--bar,
+.episodeStrip--open {
+  display: block;
+  background-color: var(--strip-empty, rgba(255, 255, 255, 0.14));
+  border-radius: 3.5px;
+  overflow: hidden;
+}
+
+.episodeStrip--bar i,
+.episodeStrip--open i {
+  display: block;
+  height: 100%;
+  min-width: 0;
+  background-color: var(--action);
+  border-radius: 3.5px;
+  transition: width 0.35s;
+}
+
+/* Fading the right edge is what says "this keeps going" — a hard edge would
+   read as a total the series does not have. */
+.episodeStrip--open {
+  -webkit-mask-image: linear-gradient(90deg, #000 74%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 74%, transparent 100%);
+}
+
+@media (prefers-color-scheme: light) {
+  .episodeStrip {
+    --strip-empty: rgba(11, 22, 33, 0.19);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .episodeStrip i {
+    transition: none;
+  }
+}
