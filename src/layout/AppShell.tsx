@@ -4,7 +4,8 @@ import { Outlet, useLocation } from 'react-router-dom';
 import Header from 'layout/Header';
 import Navigation from 'layout/Navigation';
 import MobileMenu from 'layout/MobileMenu';
-import SearchSpotlight from 'layout/SearchSpotlight';
+import SearchSpotlight, { SEARCH_SHORTCUT } from 'layout/SearchSpotlight';
+import SearchFab from 'layout/SearchFab';
 import { getNavSections } from 'layout/nav-items';
 
 import { auth } from 'config';
@@ -35,13 +36,8 @@ function AppShell() {
 
   return (
     <div className="app__container">
-      <Navigation
-        sections={sections}
-        user={user}
-        onLogout={handleLogout}
-        onSearchOpen={() => setSearchOpen(true)}
-        searchOpen={searchOpen}
-      />
+      <Navigation sections={sections} user={user} onLogout={handleLogout} />
+      <SearchFab open={searchOpen} onOpen={() => setSearchOpen(true)} shortcut={SEARCH_SHORTCUT} />
       <SearchSpotlight open={searchOpen} onOpenChange={setSearchOpen} />
       <div className="app__body" ref={scrollContainerRef}>
         <Header menuOpen={menuOpen} onMenuToggle={() => setMenuOpen((open) => !open)} />

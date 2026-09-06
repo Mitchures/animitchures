@@ -1,10 +1,9 @@
 import { NavLink, Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
-import { IoNotifications, IoSearch } from 'react-icons/io5';
+import { IoNotifications } from 'react-icons/io5';
 import './Navigation.css';
 
 import { NavSection } from 'layout/nav-items';
-import { SEARCH_SHORTCUT } from './SearchSpotlight';
 import { User } from 'context/types';
 import Logo from '../images/animitchures-logo.svg';
 
@@ -12,11 +11,9 @@ interface Props {
   sections: NavSection[];
   user: User | null;
   onLogout: () => void;
-  onSearchOpen: () => void;
-  searchOpen: boolean;
 }
 
-function Navigation({ sections, user, onLogout, onSearchOpen, searchOpen }: Props) {
+function Navigation({ sections, user, onLogout }: Props) {
   // The rail splits the same nav data two ways: destinations in the list,
   // account actions pinned to the footer without their "General" heading.
   // nav-items is left intact because MobileMenu renders all sections as-is.
@@ -37,19 +34,6 @@ function Navigation({ sections, user, onLogout, onSearchOpen, searchOpen }: Prop
           animitchures<span></span>
         </span>
       </Link>
-      {/* The shortcut is a tooltip rather than a visible keycap. */}
-      <button
-        type="button"
-        className={`navigation__action navigation__search${searchOpen ? ' active' : ''}`}
-        aria-label="Search anime"
-        title={`Search (${SEARCH_SHORTCUT})`}
-        onClick={onSearchOpen}
-      >
-        <div className="navigation__icon">
-          <IoSearch />
-        </div>
-        <span>Search</span>
-      </button>
       <div className="navigation__container">
         {destinations.map((section) => (
           <div key={section.id}>

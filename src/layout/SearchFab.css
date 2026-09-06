@@ -1,0 +1,61 @@
+.searchFab {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 130;
+
+  /* App.css styles every bare button as a full-width 54px form control. */
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+
+  display: grid;
+  place-items: center;
+  font-size: 1.35rem;
+  color: #fff;
+  background-color: var(--action);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.35),
+    0 0 0 1px color-mix(in srgb, var(--action) 40%, transparent);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.searchFab:hover {
+  opacity: 1;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.42),
+    0 0 0 1px color-mix(in srgb, var(--action) 60%, transparent);
+}
+
+.searchFab:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* While the spotlight is open the button is the thing that opened it, so it
+   holds the pressed state rather than sitting there looking untouched. */
+.searchFab.active {
+  transform: scale(0.94);
+  opacity: 0.85;
+}
+
+@media screen and (max-width: 600px) {
+  .searchFab {
+    right: 1rem;
+    bottom: 1rem;
+    width: 52px;
+    height: 52px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .searchFab,
+  .searchFab:hover {
+    transition: none;
+    transform: none;
+  }
+}
