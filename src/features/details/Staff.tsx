@@ -2,13 +2,15 @@ import './Staff.css';
 
 import CastChip from './CastChip';
 
+import { staffPath } from 'helpers';
+
 import { Media } from 'graphql/types';
 
 /** The part of a staff edge this section reads. */
 type StaffCredit = {
   id?: number | null;
   role?: string | null;
-  node: { name: { userPreferred: string }; image?: { large?: string | null } | null };
+  node: { id: number; name: { userPreferred: string }; image?: { large?: string | null } | null };
 };
 
 function Staff({ staff }: Media) {
@@ -25,6 +27,7 @@ function Staff({ staff }: Media) {
                 image={member.node.image?.large}
                 name={member.node.name.userPreferred}
                 meta={member.role}
+                to={staffPath(member.node.id, member.node.name.userPreferred)}
               />
             ))}
           </div>

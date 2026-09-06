@@ -16,6 +16,9 @@ import Discover from 'features/discover/Discover';
 import Browse from 'features/browse/Browse';
 import Favorites from 'views/Favorites';
 import Watchlist from 'features/watchlist/Watchlist';
+import StaffPage from 'features/people/StaffPage';
+import CharacterPage from 'features/people/CharacterPage';
+import StudioPage from 'features/studio/StudioPage';
 import Settings from 'views/Settings';
 import Callback from 'views/Callback';
 import ComingSoon from 'views/ComingSoon';
@@ -72,6 +75,11 @@ function App() {
               <Route path="/callback" element={<Callback />} />
               <Route path="/search/anime" element={<Browse />} />
               <Route path="/anime/:id/:title" element={<Details />} />
+              {/* Public: a cast chip should lead somewhere whether or not you
+                  are signed in — these were the app's biggest dead ends. */}
+              <Route path="/staff/:id/:name" element={<StaffPage />} />
+              <Route path="/character/:id/:name" element={<CharacterPage />} />
+              <Route path="/studio/:id/:name" element={<StudioPage />} />
               {/* Private Routes */}
               {user && (
                 <>

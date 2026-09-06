@@ -33,6 +33,31 @@
   transition: transform 0.22s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
 
+/* When the inset is a link, the anchor becomes the positioned box and the
+   image fills it. Leaving `position: absolute` on the image alone collapsed
+   the anchor to zero size, which made the actor's face unclickable — the
+   corner still looked right, so only a test caught it. */
+.castChip__insetLink {
+  position: absolute;
+  z-index: 2;
+  right: -10px;
+  bottom: -10px;
+  width: var(--inset);
+  height: var(--inset);
+  border-radius: 50%;
+  display: block;
+  transition: transform 0.22s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.castChip__insetLink > .castChip__inset {
+  position: static;
+  right: auto;
+  bottom: auto;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 .castChip__inset {
   position: absolute;
   right: -10px;
@@ -52,9 +77,15 @@
   transform: scale(1.07);
 }
 
-.castChip:hover .castChip__inset {
+.castChip:hover .castChip__inset,
+.castChip:hover .castChip__insetLink {
   transform: scale(1.12);
   transform-origin: bottom right;
+}
+
+/* The image no longer scales on its own once the link is doing it. */
+.castChip:hover .castChip__insetLink > .castChip__inset {
+  transform: none;
 }
 
 .castChip__body {
@@ -110,4 +141,30 @@
   .castChip__body h5 {
     color: white;
   }
+}
+
+/* The chip's two links share the chip's colour and pick up the app's purple on
+   hover, rather than each face having its own idea of what a link looks like. */
+.castChip__body h5 a:hover,
+a.castChip__insetName:hover {
+  color: var(--action) !important;
+}
+
+/* --- whole-card click target --- */
+.castChip--link {
+  position: relative;
+}
+
+.castChip__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+/* The actor's name is a second destination, so it has to clear the overlay. */
+a.castChip__insetName {
+  position: relative;
+  z-index: 2;
 }

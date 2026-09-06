@@ -1,0 +1,446 @@
+{
+ "data": {
+  "Studio": {
+   "id": 2,
+   "name": "Kyoto Animation",
+   "favourites": 24014,
+   "isAnimationStudio": true,
+   "media": {
+    "pageInfo": {
+     "hasNextPage": true,
+     "currentPage": 1,
+     "__typename": "PageInfo"
+    },
+    "nodes": [
+     {
+      "id": 204738,
+      "title": {
+       "userPreferred": "Ruri Dragon",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx204738-KeWrOGnjUuk1.png",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": null,
+      "season": null,
+      "format": "TV",
+      "episodes": null,
+      "averageScore": null,
+      "__typename": "Media"
+     },
+     {
+      "id": 177460,
+      "title": {
+       "userPreferred": "Tonari no 801-chan",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx177460-TCRyhwdeehf8.jpg",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": null,
+      "season": null,
+      "format": "TV",
+      "episodes": null,
+      "averageScore": null,
+      "__typename": "Media"
+     },
+     {
+      "id": 212105,
+      "title": {
+       "userPreferred": "Umi ga Hashiru End Roll",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b212105-f5L7q8C22ga2.png",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": null,
+      "season": null,
+      "format": "MOVIE",
+      "episodes": 1,
+      "averageScore": null,
+      "__typename": "Media"
+     },
+     {
+      "id": 194116,
+      "title": {
+       "userPreferred": "Saishuu Gakushou Hibike! Euphonium - Kouhen",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx194116-qPegtxeNTYIC.jpg",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": 2026,
+      "season": "FALL",
+      "format": "MOVIE",
+      "episodes": 1,
+      "averageScore": null,
+      "__typename": "Media"
+     },
+     {
+      "id": 103303,
+      "title": {
+       "userPreferred": "Nijusseiki Denki Mokuroku: Eureka Evrika",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx103303-IF43hFJPPv2Y.png",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": 2026,
+      "season": "SUMMER",
+      "format": "TV",
+      "episodes": 13,
+      "averageScore": 76,
+      "__typename": "Media"
+     },
+     {
+      "id": 188035,
+      "title": {
+       "userPreferred": "Saishuu Gakushou Hibike! Euphonium - Zenpen",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx188035-wTA4Yse8APa1.png",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": 2026,
+      "season": "SPRING",
+      "format": "MOVIE",
+      "episodes": 1,
+      "averageScore": 70,
+      "__typename": "Media"
+     },
+     {
+      "id": 181841,
+      "title": {
+       "userPreferred": "CITY THE ANIMATION",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx181841-R6fB3bmU5eOE.jpg",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": 2025,
+      "season": "SUMMER",
+      "format": "TV",
+      "episodes": 13,
+      "averageScore": 80,
+      "__typename": "Media"
+     },
+     {
+      "id": 181839,
+      "title": {
+       "userPreferred": "Kobayashi-san Chi no Maidragon: Samishigariya no Ryuu",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx181839-pgM02tCNM2ae.png",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": 2025,
+      "season": "SPRING",
+      "format": "MOVIE",
+      "episodes": 1,
+      "averageScore": 82,
+      "__typename": "Media"
+     },
+     {
+      "id": 177008,
+      "title": {
+       "userPreferred": "Hibike! Euphonium 3: Extra Episodes",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx177008-rAEmoVJkVBLH.jpg",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": 2024,
+      "season": "SUMMER",
+      "format": "SPECIAL",
+      "episodes": 6,
+      "averageScore": 71,
+      "__typename": "Media"
+     },
+     {
+      "id": 109731,
+      "title": {
+       "userPreferred": "Hibike! Euphonium 3",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx109731-EwHzbtywdcyG.png",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": 2024,
+      "season": "SPRING",
+      "format": "TV",
+      "episodes": 13,
+      "averageScore": 87,
+      "__typename": "Media"
+     },
+     {
+      "id": 175783,
+      "title": {
+       "userPreferred": "Uji ni wa Monogatari ga Aru",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx175783-ltmI1hsCemk9.jpg",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": 2024,
+      "season": "WINTER",
+      "format": "SPECIAL",
+      "episodes": 1,
+      "averageScore": 65,
+      "__typename": "Media"
+     },
+     {
+      "id": 150429,
+      "title": {
+       "userPreferred": "Tokubetsu-hen Hibike! Euphonium: Ensemble Contest",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx150429-5KvbB5BBt2Yz.jpg",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": 2023,
+      "season": "SUMMER",
+      "format": "OVA",
+      "episodes": 1,
+      "averageScore": 78,
+      "__typename": "Media"
+     },
+     {
+      "id": 153841,
+      "title": {
+       "userPreferred": "Tsurune: Tsunagari no Issha",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx153841-SjRoSMof4nHS.png",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": 2023,
+      "season": "WINTER",
+      "format": "TV",
+      "episodes": 13,
+      "averageScore": 81,
+      "__typename": "Media"
+     },
+     {
+      "id": 125261,
+      "title": {
+       "userPreferred": "Tsurune: Hajimari no Issha",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx125261-Sh9fN2heZ1rm.jpg",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": 2022,
+      "season": "SUMMER",
+      "format": "MOVIE",
+      "episodes": 1,
+      "averageScore": 74,
+      "__typename": "Media"
+     },
+     {
+      "id": 133124,
+      "title": {
+       "userPreferred": "Free!: the Final Stroke - Kouhen",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx133124-4LPUTLuw0Jy8.jpg",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": 2022,
+      "season": "SPRING",
+      "format": "MOVIE",
+      "episodes": 1,
+      "averageScore": 78,
+      "__typename": "Media"
+     },
+     {
+      "id": 136436,
+      "title": {
+       "userPreferred": "Kobayashi-san Chi no Maidragon S: Nippon no Omotenashi (Attend wa Dragon desu)",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx136436-Pirva3Ad2uWc.jpg",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": 2022,
+      "season": "WINTER",
+      "format": "OVA",
+      "episodes": 1,
+      "averageScore": 77,
+      "__typename": "Media"
+     },
+     {
+      "id": 107203,
+      "title": {
+       "userPreferred": "Free!: the Final Stroke - Zenpen",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b107203-Mxm9faqiRlAQ.png",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": 2021,
+      "season": "SUMMER",
+      "format": "MOVIE",
+      "episodes": 1,
+      "averageScore": 77,
+      "__typename": "Media"
+     },
+     {
+      "id": 137804,
+      "title": {
+       "userPreferred": "Kobayashi-san Chi no Maidragon S: Mini Dra EX",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx137804-Weq552NyDeV7.jpg",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": 2021,
+      "season": "SUMMER",
+      "format": "SPECIAL",
+      "episodes": 5,
+      "averageScore": 72,
+      "__typename": "Media"
+     },
+     {
+      "id": 136452,
+      "title": {
+       "userPreferred": "Kyoto Animation: Souzou-hen",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx136452-z7EfDRf4VB27.png",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": null,
+      "season": null,
+      "format": "ONA",
+      "episodes": 1,
+      "averageScore": 63,
+      "__typename": "Media"
+     },
+     {
+      "id": 107717,
+      "title": {
+       "userPreferred": "Kobayashi-san Chi no Maidragon S",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx107717-bixaW1NTGBra.jpg",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": 2021,
+      "season": "SUMMER",
+      "format": "TV",
+      "episodes": 12,
+      "averageScore": 81,
+      "__typename": "Media"
+     },
+     {
+      "id": 132096,
+      "title": {
+       "userPreferred": "Kobayashi-san Chi no Maidragon S: Mini Dra",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx132096-ypUvQZ7e4hmq.png",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": 2021,
+      "season": "SPRING",
+      "format": "ONA",
+      "episodes": 16,
+      "averageScore": 73,
+      "__typename": "Media"
+     },
+     {
+      "id": 103047,
+      "title": {
+       "userPreferred": "Violet Evergarden Movie",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx103047-odblDHHEdehK.jpg",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": 2020,
+      "season": "SUMMER",
+      "format": "MOVIE",
+      "episodes": 1,
+      "averageScore": 87,
+      "__typename": "Media"
+     },
+     {
+      "id": 112010,
+      "title": {
+       "userPreferred": "Baja no Studio: Baja no Mita Umi",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b112010-uRs7PPvskYn2.jpg",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": 2019,
+      "season": "FALL",
+      "format": "OVA",
+      "episodes": 1,
+      "averageScore": 66,
+      "__typename": "Media"
+     },
+     {
+      "id": 109190,
+      "title": {
+       "userPreferred": "Violet Evergarden Gaiden: Eien to Jidou Shuki Ningyou",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx109190-e8mv1qdmpjLW.jpg",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": 2019,
+      "season": "SUMMER",
+      "format": "MOVIE",
+      "episodes": 1,
+      "averageScore": 84,
+      "__typename": "Media"
+     },
+     {
+      "id": 107202,
+      "title": {
+       "userPreferred": "Free!: Road to the World - Yume",
+       "__typename": "MediaTitle"
+      },
+      "coverImage": {
+       "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx107202-jjp0XqcywCfa.jpg",
+       "__typename": "MediaCoverImage"
+      },
+      "seasonYear": 2019,
+      "season": "SUMMER",
+      "format": "MOVIE",
+      "episodes": 1,
+      "averageScore": 77,
+      "__typename": "Media"
+     }
+    ],
+    "__typename": "MediaConnection"
+   },
+   "__typename": "Studio"
+  }
+ }
+}

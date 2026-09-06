@@ -1,0 +1,86 @@
+.entityHero {
+  display: flex;
+  gap: 1.4rem;
+  align-items: flex-end;
+  padding: 1.75rem var(--x-axis-spacing) 1.25rem;
+}
+
+/* The wash separates a person page from a studio page at a glance, without
+   either needing a label saying which it is. */
+.entityHero--person {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--action) 16%, transparent),
+    transparent
+  );
+}
+
+.entityHero--studio {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--score-great) 15%, transparent),
+    transparent
+  );
+}
+
+.entityHero__portrait {
+  flex: none;
+  width: 132px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.entityHero__id {
+  min-width: 0;
+}
+
+.entityHero__id h1 {
+  margin: 0 0 0.1rem;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.entityHero__native {
+  margin: 0 0 0.85rem;
+  font-size: 0.85rem;
+  color: var(--secondary);
+}
+
+.entityHero__facts {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  font-size: 0.76rem;
+  color: var(--secondary);
+}
+
+/* `inherit`, not --primary: that token is #0b1621, which is the dark-mode
+   background — setting text to it painted every value invisible. */
+.entityHero__facts b {
+  color: inherit;
+  font-size: 0.86rem;
+}
+
+@media screen and (max-width: 600px) {
+  .entityHero {
+    gap: 1rem;
+    padding-top: 1.25rem;
+  }
+
+  .entityHero__portrait {
+    width: 92px;
+  }
+
+  .entityHero__id h1 {
+    font-size: 1.3rem;
+  }
+
+  /* Stacked rather than a wrapping row: at this width the facts wrap
+     mid-pair and read as unrelated fragments. */
+  .entityHero__facts {
+    gap: 0.35rem 1rem;
+  }
+}

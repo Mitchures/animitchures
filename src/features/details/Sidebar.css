@@ -63,3 +63,15 @@
 .sidebar__score--poor {
   color: var(--score-poor) !important;
 }
+
+/* The studio is the sidebar's one outbound link; it should read as one. */
+.sidebar__link {
+  color: inherit;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+  transition: var(--transition);
+}
+
+.sidebar__link:hover {
+  color: var(--action) !important;
+  border-bottom-color: var(--action);
+}

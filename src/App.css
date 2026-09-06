@@ -124,6 +124,11 @@ p {
 a {
   text-decoration: none;
   transition: var(--transition);
+  /* Links take their surroundings, not the user agent's blue. Every link in
+     the app was being coloured by its own component rule, so the moment one
+     was added without that it came out browser-blue against the dark theme.
+     The purple hover below still applies everywhere. */
+  color: inherit;
 }
 
 a * {

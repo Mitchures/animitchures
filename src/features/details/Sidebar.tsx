@@ -1,9 +1,10 @@
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 import './Sidebar.css';
 
 import { FuzzyDate, Media } from 'graphql/types';
-import { scoreTier, titleCase, mainStudio } from 'helpers';
+import { scoreTier, titleCase, mainStudioNode, studioPath } from 'helpers';
 
 const formatDate = (date: FuzzyDate) => {
   const { day, month, year } = date;
@@ -35,6 +36,7 @@ function Sidebar({
   popularity,
   favourites,
 }: Media) {
+  const studio = mainStudioNode(studios);
   return (
     <div className="sidebar">
       {nextAiringEpisode && (
@@ -89,10 +91,16 @@ function Sidebar({
           <p>{titleCase(source)}</p>
         </div>
       )}
-      {studios && (
+      {studio && (
         <div className="sidebar__data">
           <h5>Studio</h5>
-          <p>{mainStudio(studios)}</p>
+          {/* Was plain text. The query already returned the id, so the one
+              thing standing between this and a studio page was a link. */}
+          <p>
+            <Link className="sidebar__link" to={studioPath(studio.id, studio.name)}>
+              {studio.name}
+            </Link>
+          </p>
         </div>
       )}
       {popularity && (

@@ -30,7 +30,16 @@ export const seasonLabel = (season?: string | null): string | undefined =>
  * rather than found, so it produced `[false, false, 'Sunrise']` and only
  * rendered correctly because React discards the falses.
  */
-export const mainStudio = (studios?: { edges?: unknown } | null): string => {
-  const edges = (studios?.edges ?? []) as { isMain?: boolean; node?: { name?: string } }[];
-  return edges.find((edge) => edge?.isMain)?.node?.name ?? '';
+type StudioEdge = { isMain?: boolean; node?: { id?: number; name?: string } };
+
+/** The studio that actually animated a title, as a linkable node. */
+export const mainStudioNode = (
+  studios?: { edges?: unknown } | null,
+): { id: number; name: string } | null => {
+  const edges = (studios?.edges ?? []) as StudioEdge[];
+  const node = edges.find((edge) => edge?.isMain)?.node;
+  return node?.id && node?.name ? { id: node.id, name: node.name } : null;
 };
+
+export const mainStudio = (studios?: { edges?: unknown } | null): string =>
+  mainStudioNode(studios)?.name ?? '';

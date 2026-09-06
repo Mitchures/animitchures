@@ -2,6 +2,8 @@ import './Characters.css';
 
 import CastChip from './CastChip';
 
+import { characterPath, staffPath } from 'helpers';
+
 import { Media } from 'graphql/types';
 import { titleCase } from 'helpers';
 
@@ -10,11 +12,12 @@ import { titleCase } from 'helpers';
 type CharacterCredit = {
   id?: number | null;
   role?: string | null;
-  node: { name: { userPreferred: string }; image?: { large?: string | null } | null };
+  node: { id: number; name: { userPreferred: string }; image?: { large?: string | null } | null };
   voiceActors?: VoiceActor[] | null;
 };
 
 type VoiceActor = {
+  id: number;
   language?: string | null;
   name?: { userPreferred?: string | null } | null;
   image?: { large?: string | null } | null;
@@ -42,6 +45,8 @@ function Characters({ characters }: Media) {
                   meta={character.role ? titleCase(character.role) : undefined}
                   insetImage={actor?.image?.large}
                   insetName={actor?.name?.userPreferred}
+                  to={characterPath(character.node.id, character.node.name.userPreferred)}
+                  insetTo={actor ? staffPath(actor.id, actor.name?.userPreferred ?? '') : undefined}
                 />
               );
             })}

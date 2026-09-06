@@ -1168,3 +1168,159 @@ export const ANILIST_USER_NOTIFICATIONS_QUERY = gql`
     }
   }
 `;
+
+/**
+ * A staff member and the characters they have played.
+ *
+ * `characters` is sorted by how beloved each character is rather than by
+ * recency: someone arriving from a cast chip is looking for the role they
+ * already know, which is almost never the most recent one.
+ */
+export const STAFF_QUERY = gql`
+  query StaffPage($id: Int!, $page: Int) {
+    Staff(id: $id) {
+      id
+      name {
+        full
+        native
+      }
+      image {
+        large
+      }
+      description(asHtml: false)
+      primaryOccupations
+      gender
+      homeTown
+      yearsActive
+      favourites
+      dateOfBirth {
+        year
+        month
+        day
+      }
+      characters(sort: FAVOURITES_DESC, page: $page, perPage: 24) {
+        pageInfo {
+          hasNextPage
+          currentPage
+        }
+        edges {
+          id
+          node {
+            id
+            name {
+              full
+            }
+            image {
+              large
+            }
+            favourites
+          }
+          media {
+            id
+            title {
+              userPreferred
+            }
+            coverImage {
+              large
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+/** A character, and every title they appear in with who voiced them. */
+export const CHARACTER_QUERY = gql`
+  query CharacterPage($id: Int!, $page: Int) {
+    Character(id: $id) {
+      id
+      name {
+        full
+        native
+      }
+      image {
+        large
+      }
+      description(asHtml: false)
+      gender
+      age
+      favourites
+      dateOfBirth {
+        year
+        month
+        day
+      }
+      media(sort: POPULARITY_DESC, page: $page, perPage: 24) {
+        pageInfo {
+          hasNextPage
+          currentPage
+        }
+        edges {
+          id
+          characterRole
+          node {
+            id
+            title {
+              userPreferred
+            }
+            coverImage {
+              large
+            }
+            seasonYear
+            averageScore
+            episodes
+          }
+          voiceActors(language: JAPANESE) {
+            id
+            name {
+              full
+            }
+            image {
+              large
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+/**
+ * A studio's filmography, in date order.
+ *
+ * `isMain: true` keeps this to productions the studio actually animated —
+ * without it the list fills with titles they only had a hand in. Sorted by
+ * date because a studio's story is chronological; popularity order would
+ * cherry-pick each year's best and hide the shape of their run.
+ */
+export const STUDIO_QUERY = gql`
+  query StudioPage($id: Int!, $page: Int) {
+    Studio(id: $id) {
+      id
+      name
+      favourites
+      isAnimationStudio
+      media(sort: START_DATE_DESC, isMain: true, page: $page, perPage: 36) {
+        pageInfo {
+          hasNextPage
+          currentPage
+        }
+        nodes {
+          id
+          title {
+            userPreferred
+          }
+          coverImage {
+            large
+          }
+          seasonYear
+          season
+          format
+          episodes
+          averageScore
+        }
+      }
+    }
+  }
+`;
