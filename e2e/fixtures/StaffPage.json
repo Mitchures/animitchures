@@ -4,7 +4,7 @@
    "id": 95185,
    "name": {
     "full": "Kana Hanazawa",
-    "native": "花澤香菜",
+    "native": "\u82b1\u6fa4\u9999\u83dc",
     "__typename": "StaffName"
    },
    "image": {
@@ -41,7 +41,8 @@
        "id": 136072,
        "name": {
         "full": "Mitsuri Kanroji",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b136072-xVwyRUKdpybi.png",
@@ -55,7 +56,10 @@
         "id": 101922,
         "title": {
          "userPreferred": "Kimetsu no Yaiba",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Kimetsu no Yaiba",
+         "english": "Demon Slayer: Kimetsu no Yaiba",
+         "native": "\u9b3c\u6ec5\u306e\u5203"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx101922-WBsBl0ClmgYL.jpg",
@@ -67,7 +71,10 @@
         "id": 129874,
         "title": {
          "userPreferred": "Kimetsu no Yaiba: Mugen Ressha-hen (TV)",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Kimetsu no Yaiba: Mugen Ressha-hen (TV)",
+         "english": "Demon Slayer: Kimetsu no Yaiba Mugen Train Arc",
+         "native": "\u9b3c\u6ec5\u306e\u5203 \u7121\u9650\u5217\u8eca\u7de8 (TV)"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx129874-g6ZKXB94Hui1.jpg",
@@ -79,7 +86,10 @@
         "id": 142329,
         "title": {
          "userPreferred": "Kimetsu no Yaiba: Yuukaku-hen",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Kimetsu no Yaiba: Yuukaku-hen",
+         "english": "Demon Slayer: Kimetsu no Yaiba Entertainment District Arc",
+         "native": "\u9b3c\u6ec5\u306e\u5203 \u904a\u90ed\u7de8"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx142329-kET1PIXJv2eW.jpg",
@@ -91,7 +101,10 @@
         "id": 145139,
         "title": {
          "userPreferred": "Kimetsu no Yaiba: Katanakaji no Sato-hen",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Kimetsu no Yaiba: Katanakaji no Sato-hen",
+         "english": "Demon Slayer: Kimetsu no Yaiba Swordsmith Village Arc",
+         "native": "\u9b3c\u6ec5\u306e\u5203 \u5200\u935b\u51b6\u306e\u91cc\u7de8"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx145139-rRimpHGWLhym.png",
@@ -103,7 +116,10 @@
         "id": 166240,
         "title": {
          "userPreferred": "Kimetsu no Yaiba: Hashira Geiko-hen",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Kimetsu no Yaiba: Hashira Geiko-hen",
+         "english": "Demon Slayer: Kimetsu no Yaiba Hashira Training Arc",
+         "native": "\u9b3c\u6ec5\u306e\u5203 \u67f1\u7a3d\u53e4\u7de8"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx166240-PBV7zukIHW7V.png",
@@ -115,7 +131,10 @@
         "id": 178788,
         "title": {
          "userPreferred": "Kimetsu no Yaiba: Mugenjou-hen Movie 1 - Akaza Sairai",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Kimetsu no Yaiba: Mugenjou-hen Movie 1 - Akaza Sairai",
+         "english": "Demon Slayer: Kimetsu no Yaiba Infinity Castle",
+         "native": "\u5287\u5834\u7248\u300c\u9b3c\u6ec5\u306e\u5203\u300d\u7121\u9650\u57ce\u7de8 \u7b2c\u4e00\u7ae0 \u7317\u7aa9\u5ea7\u518d\u6765"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx178788-zm3gtpB9TpRt.jpg",
@@ -132,7 +151,8 @@
        "id": 35253,
        "name": {
         "full": "Mayuri Shiina",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b35253-u6QVgLLyHq2W.png",
@@ -146,7 +166,10 @@
         "id": 9253,
         "title": {
          "userPreferred": "Steins;Gate",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Steins;Gate",
+         "english": "Steins;Gate",
+         "native": "\u30b7\u30e5\u30bf\u30a4\u30f3\u30ba\u30fb\u30b2\u30fc\u30c8"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx9253-tIUXF2gfU8Sg.jpg",
@@ -157,8 +180,11 @@
        {
         "id": 11577,
         "title": {
-         "userPreferred": "Steins;Gate: Fuka Ryouiki no Déjà vu",
-         "__typename": "MediaTitle"
+         "userPreferred": "Steins;Gate: Fuka Ryouiki no D\u00e9j\u00e0 vu",
+         "__typename": "MediaTitle",
+         "romaji": "Steins;Gate: Fuka Ryouiki no D\u00e9j\u00e0 vu",
+         "english": "Steins;Gate The Movie \u2013 Load Region of D\u00e9j\u00e0 Vu",
+         "native": "\u5287\u5834\u7248 \u30b7\u30e5\u30bf\u30a4\u30f3\u30ba\u30b2\u30fc\u30c8 \u8ca0\u8377\u9818\u57df\u306e\u30c7\u30b8\u30e3\u30f4"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx11577-rhqsxLOAge4f.png",
@@ -170,7 +196,10 @@
         "id": 10863,
         "title": {
          "userPreferred": "Steins;Gate: Oukoubakko no Poriomania",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Steins;Gate: Oukoubakko no Poriomania",
+         "english": "Steins;Gate: Egoistic Poriomania",
+         "native": "\u30b7\u30e5\u30bf\u30a4\u30f3\u30ba\u30fb\u30b2\u30fc\u30c8 \u6a2a\u884c\u8dcb\u6248\u306e\u30dd\u30ea\u30aa\u30de\u30cb\u30a2"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx10863-V6oW2kN8bBYf.png",
@@ -182,7 +211,10 @@
         "id": 21624,
         "title": {
          "userPreferred": "Steins;Gate: Kyoukaimenjou no Missing Link - Divide By Zero",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Steins;Gate: Kyoukaimenjou no Missing Link - Divide By Zero",
+         "english": "Steins;Gate 0: 23\u03b2 -Divide by Zero-",
+         "native": "\u30b7\u30e5\u30bf\u30a4\u30f3\u30ba\u30fb\u30b2\u30fc\u30c8 \u5883\u754c\u9762\u4e0a\u306e\u30df\u30c3\u30b7\u30f3\u30b0\u30ea\u30f3\u30af -Divide By Zero-"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21624-szbmwyC3sJos.jpg",
@@ -194,7 +226,10 @@
         "id": 20907,
         "title": {
          "userPreferred": "Steins;Gate: Soumei Eichi no Cognitive Computing",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Steins;Gate: Soumei Eichi no Cognitive Computing",
+         "english": null,
+         "native": "Steins;Gate \u8061\u660e\u53e1\u667a\u306e\u30b3\u30b0\u30cb\u30c6\u30a3\u30d6\u30fb\u30b3\u30f3\u30d4\u30e5\u30fc\u30c6\u30a3\u30f3\u30b0"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20907-Pl4YwH8RopKT.jpg",
@@ -206,7 +241,10 @@
         "id": 21127,
         "title": {
          "userPreferred": "Steins;Gate 0",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Steins;Gate 0",
+         "english": "Steins;Gate 0",
+         "native": "\u30b7\u30e5\u30bf\u30a4\u30f3\u30ba\u30fb\u30b2\u30fc\u30c8 \u30bc\u30ed"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21127-7ARWZkDXKiiD.jpg",
@@ -218,7 +256,10 @@
         "id": 104174,
         "title": {
          "userPreferred": "Steins;Gate 0: Kesshou Takei no Valentine - Bittersweet Day",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Steins;Gate 0: Kesshou Takei no Valentine - Bittersweet Day",
+         "english": "Steins;Gate 0: Valentine's of Crystal Polymorphism -Bittersweet Intermedio-",
+         "native": "\u30b7\u30e5\u30bf\u30a4\u30f3\u30ba\u30fb\u30b2\u30fc\u30c8 \u30bc\u30ed \u7d50\u6676\u591a\u5f62\u306e\u30d0\u30ec\u30f3\u30bf\u30a4\u30f3"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx104174-aoNLSSN6bT4L.png",
@@ -235,7 +276,8 @@
        "id": 52723,
        "name": {
         "full": "Kosaki Onodera",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b52723-YbLFn4JmoAVQ.png",
@@ -249,7 +291,10 @@
         "id": 18897,
         "title": {
          "userPreferred": "Nisekoi",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Nisekoi",
+         "english": "Nisekoi",
+         "native": "\u30cb\u30bb\u30b3\u30a4"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx18897-G2Fx2ZACsXBU.jpg",
@@ -261,7 +306,10 @@
         "id": 20728,
         "title": {
          "userPreferred": "Nisekoi OVA",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Nisekoi OVA",
+         "english": "Nisekoi OVA",
+         "native": "\u30cb\u30bb\u30b3\u30a4 OVA"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20728-gBiGaxCy0HF2.png",
@@ -273,7 +321,10 @@
         "id": 20876,
         "title": {
          "userPreferred": "Nisekoi:",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Nisekoi:",
+         "english": "Nisekoi:",
+         "native": "\u30cb\u30bb\u30b3\u30a4\uff1a"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20876-CCVVLTSsnKC8.jpg",
@@ -285,7 +336,10 @@
         "id": 119947,
         "title": {
          "userPreferred": "Nisekoi: OVA",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Nisekoi: OVA",
+         "english": null,
+         "native": "\u30cb\u30bb\u30b3\u30a4: OAD"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx119947-yU16iRo7CPAM.png",
@@ -302,7 +356,8 @@
        "id": 22050,
        "name": {
         "full": "Nadeko Sengoku",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b22050-RUw3vyGYdr9W.jpg",
@@ -316,7 +371,10 @@
         "id": 5081,
         "title": {
          "userPreferred": "Bakemonogatari",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Bakemonogatari",
+         "english": "Bakemonogatari",
+         "native": "\u5316\u7269\u8a9e"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx5081-9GocceQ5Z865.jpg",
@@ -328,7 +386,10 @@
         "id": 17074,
         "title": {
          "userPreferred": "Monogatari Series: Second Season",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Monogatari Series: Second Season",
+         "english": "Monogatari Series Second Season",
+         "native": "\u3008\u7269\u8a9e\u3009\u30b7\u30ea\u30fc\u30ba \u30bb\u30ab\u30f3\u30c9\u30b7\u30fc\u30ba\u30f3"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx17074-xMhVAZsEDH66.png",
@@ -340,7 +401,10 @@
         "id": 11597,
         "title": {
          "userPreferred": "Nisemonogatari",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Nisemonogatari",
+         "english": "Nisemonogatari",
+         "native": "\u507d\u7269\u8a9e"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx11597-x2vd4KSHcI1S.jpg",
@@ -352,7 +416,10 @@
         "id": 21262,
         "title": {
          "userPreferred": "Owarimonogatari",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Owarimonogatari",
+         "english": "Owarimonogatari",
+         "native": "\u7d42\u7269\u8a9e"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21262-jfbv9hvjymMW.jpg",
@@ -364,7 +431,10 @@
         "id": 21520,
         "title": {
          "userPreferred": "Koyomimonogatari",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Koyomimonogatari",
+         "english": "Koyomimonogatari",
+         "native": "\u66a6\u7269\u8a9e"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21520-nZKCr7PZrv7e.png",
@@ -376,7 +446,10 @@
         "id": 21745,
         "title": {
          "userPreferred": "Owarimonogatari (Ge)",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Owarimonogatari (Ge)",
+         "english": "Owarimonogatari Second Season",
+         "native": "\u7d42\u7269\u8a9e\uff08\u4e0b\uff09"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21745-VrhhJjZNdBXV.png",
@@ -388,7 +461,10 @@
         "id": 100815,
         "title": {
          "userPreferred": "Zoku Owarimonogatari",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Zoku Owarimonogatari",
+         "english": "Zoku Owarimonogatari",
+         "native": "\u7d9a\u30fb\u7d42\u7269\u8a9e"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx100815-cZbnM9Bjth8W.png",
@@ -400,7 +476,10 @@
         "id": 104434,
         "title": {
          "userPreferred": "Koyomi History",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Koyomi History",
+         "english": null,
+         "native": "\u3053\u3088\u307f\u30d2\u30b9\u30c8\u30ea\u30fc"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx104434-6Pbe0XxAZp2S.png",
@@ -412,7 +491,10 @@
         "id": 143663,
         "title": {
          "userPreferred": "Bakemonogatari PV",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Bakemonogatari PV",
+         "english": null,
+         "native": "\u5316\u7269\u8a9e PV"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b143663-uhiYo1Yg6UA5.png",
@@ -424,7 +506,10 @@
         "id": 173533,
         "title": {
          "userPreferred": "Monogatari Series: Off & Monster Season",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Monogatari Series: Off & Monster Season",
+         "english": "MONOGATARI Series: OFF & MONSTER Season",
+         "native": "\u3008\u7269\u8a9e\u3009\u30b7\u30ea\u30fc\u30ba \u30aa\u30d5&\u30e2\u30f3\u30b9\u30bf\u30fc\u30b7\u30fc\u30ba\u30f3"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx173533-9DN3nHtT2FBm.png",
@@ -441,7 +526,8 @@
        "id": 22369,
        "name": {
         "full": "Kanade Tachibana",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b22369-zC7OgGbfO7b6.jpg",
@@ -455,7 +541,10 @@
         "id": 6547,
         "title": {
          "userPreferred": "Angel Beats!",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Angel Beats!",
+         "english": "Angel Beats!",
+         "native": "Angel Beats!"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx6547-SYexAn5aFyss.png",
@@ -467,7 +556,10 @@
         "id": 9062,
         "title": {
          "userPreferred": "Angel Beats! Tokubetsu-hen",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Angel Beats! Tokubetsu-hen",
+         "english": "Angel Beats! Specials",
+         "native": "\u30a8\u30f3\u30b8\u30a7\u30eb\u30d3\u30fc\u30c4 \u7279\u5225\u7bc7"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx9062-x3XnEGxK4eqh.jpg",
@@ -479,7 +571,10 @@
         "id": 143150,
         "title": {
          "userPreferred": "Kaginado Season 2",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Kaginado Season 2",
+         "english": "KAGINADO Season 2",
+         "native": "\u304b\u304e\u306a\u3069 \u30b7\u30fc\u30ba\u30f3\uff12"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx143150-yYb9yimEQocm.png",
@@ -496,7 +591,8 @@
        "id": 73205,
        "name": {
         "full": "Chiaki Nanami",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b73205-XVUjSJd97PbC.jpg",
@@ -510,7 +606,10 @@
         "id": 21825,
         "title": {
          "userPreferred": "Danganronpa 3: The End of Kibougamine Gakuen - Zetsubou-hen",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Danganronpa 3: The End of Kibougamine Gakuen - Zetsubou-hen",
+         "english": "Danganronpa 3: The End of Hope\u2019s Peak High School - Despair Arc",
+         "native": "\u30c0\u30f3\u30ac\u30f3\u30ed\u30f3\u30d13 -The End of \u5e0c\u671b\u30f6\u5cf0\u5b66\u5712-\u3000\u7d76\u671b\u7de8"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21825-OjVRUQwM8bTz.png",
@@ -522,7 +621,10 @@
         "id": 97672,
         "title": {
          "userPreferred": "Danganronpa 3: The End of Kibougamine Gakuen - Kibou-hen",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Danganronpa 3: The End of Kibougamine Gakuen - Kibou-hen",
+         "english": "Danganronpa 3: The End of Hope's Peak High School - Hope Arc",
+         "native": "\u30c0\u30f3\u30ac\u30f3\u30ed\u30f3\u30d1\uff13-The End of \u5e0c\u671b\u30f6\u5cf0\u5b66\u5712-\u5e0c\u671b\u7de8"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx97672-BRm6bIWQfI2v.jpg",
@@ -539,7 +641,8 @@
        "id": 126371,
        "name": {
         "full": "Ichika Nakano",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b126371-0KQpl80s8kXQ.png",
@@ -553,7 +656,10 @@
         "id": 103572,
         "title": {
          "userPreferred": "Go-toubun no Hanayome",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Go-toubun no Hanayome",
+         "english": "The Quintessential Quintuplets",
+         "native": "\u4e94\u7b49\u5206\u306e\u82b1\u5ac1"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx103572-cchriAdH95cQ.png",
@@ -564,8 +670,11 @@
        {
         "id": 109261,
         "title": {
-         "userPreferred": "Go-toubun no Hanayome ∬",
-         "__typename": "MediaTitle"
+         "userPreferred": "Go-toubun no Hanayome \u222c",
+         "__typename": "MediaTitle",
+         "romaji": "Go-toubun no Hanayome \u222c",
+         "english": "The Quintessential Quintuplets 2",
+         "native": "\u4e94\u7b49\u5206\u306e\u82b1\u5ac1\u222c"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx109261-65rKxMDlcU9r.png",
@@ -577,7 +686,10 @@
         "id": 131520,
         "title": {
          "userPreferred": "Go-toubun no Hanayome Movie",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Go-toubun no Hanayome Movie",
+         "english": "The Quintessential Quintuplets Movie",
+         "native": "\u6620\u753b \u4e94\u7b49\u5206\u306e\u82b1\u5ac1"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx131520-89Qfo8JnGHI3.png",
@@ -588,8 +700,11 @@
        {
         "id": 163327,
         "title": {
-         "userPreferred": "Go-toubun no Hanayome∽",
-         "__typename": "MediaTitle"
+         "userPreferred": "Go-toubun no Hanayome\u223d",
+         "__typename": "MediaTitle",
+         "romaji": "Go-toubun no Hanayome\u223d",
+         "english": "The Quintessential Quintuplets Specials",
+         "native": "\u4e94\u7b49\u5206\u306e\u82b1\u5ac1\u223d"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx163327-xBQznOwq6emq.jpg",
@@ -601,7 +716,10 @@
         "id": 177191,
         "title": {
          "userPreferred": "Go-toubun no Hanayome *",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Go-toubun no Hanayome *",
+         "english": "The Quintessential Quintuplets Specials 2",
+         "native": "\u4e94\u7b49\u5206\u306e\u82b1\u5ac1\uff0a"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx177191-ovNZsq8EbIPY.jpg",
@@ -613,7 +731,10 @@
         "id": 211710,
         "title": {
          "userPreferred": "Go-toubun no Hanayome (Shinsaku OVA)",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Go-toubun no Hanayome (Shinsaku OVA)",
+         "english": null,
+         "native": "\u4e94\u7b49\u5206\u306e\u82b1\u5ac1 \u65b0\u4f5cOVA"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx211710-Cmeq84reFr56.jpg",
@@ -625,7 +746,10 @@
         "id": 211709,
         "title": {
          "userPreferred": "Go-toubun no Hanayome: Shunkashuutou",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Go-toubun no Hanayome: Shunkashuutou",
+         "english": null,
+         "native": "\u4e94\u7b49\u5206\u306e\u82b1\u5ac1\u3010\u6625\u590f\u79cb\u51ac\u3011"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx211709-eLIMRJ4Twp8e.jpg",
@@ -642,7 +766,8 @@
        "id": 68583,
        "name": {
         "full": "Akane Tsunemori",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b68583-sEP2wyE2Tk7a.png",
@@ -656,7 +781,10 @@
         "id": 13601,
         "title": {
          "userPreferred": "PSYCHO-PASS",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "PSYCHO-PASS",
+         "english": "PSYCHO-PASS",
+         "native": "PSYCHO-PASS \u30b5\u30a4\u30b3\u30d1\u30b9"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx13601-i42VFuHpqEOJ.jpg",
@@ -668,7 +796,10 @@
         "id": 20513,
         "title": {
          "userPreferred": "PSYCHO-PASS 2",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "PSYCHO-PASS 2",
+         "english": "PSYCHO-PASS 2",
+         "native": "PSYCHO-PASS \u30b5\u30a4\u30b3\u30d1\u30b92"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20513-pVQqYhMwBGoh.jpg",
@@ -680,7 +811,10 @@
         "id": 20514,
         "title": {
          "userPreferred": "PSYCHO-PASS Movie",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "PSYCHO-PASS Movie",
+         "english": "PSYCHO-PASS: The Movie",
+         "native": "\u5287\u5834\u7248 PSYCHO-PASS \u30b5\u30a4\u30b3\u30d1\u30b9"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20514-WhWrHdWWonsC.jpg",
@@ -692,7 +826,10 @@
         "id": 108307,
         "title": {
          "userPreferred": "PSYCHO-PASS 3",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "PSYCHO-PASS 3",
+         "english": "PSYCHO-PASS 3",
+         "native": "PSYCHO-PASS \u30b5\u30a4\u30b3\u30d1\u30b93"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx108307-2vfdTNsxoS8H.jpg",
@@ -704,7 +841,10 @@
         "id": 102649,
         "title": {
          "userPreferred": "PSYCHO-PASS Sinners of the System Case 1: Tsumi to Batsu",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "PSYCHO-PASS Sinners of the System Case 1: Tsumi to Batsu",
+         "english": "PSYCHO-PASS: Sinners of the System 1 - Crime and Punishment",
+         "native": "PSYCHO-PASS \u30b5\u30a4\u30b3\u30d1\u30b9 Sinners of the System Case.1 - \u7f6a\u3068\u7f70"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx102649-gfShc1x0QQZv.jpg",
@@ -716,7 +856,10 @@
         "id": 113917,
         "title": {
          "userPreferred": "PSYCHO-PASS 3: FIRST INSPECTOR",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "PSYCHO-PASS 3: FIRST INSPECTOR",
+         "english": "PSYCHO-PASS 3: First Inspector",
+         "native": "PSYCHO-PASS \u30b5\u30a4\u30b3\u30d1\u30b9 3 FIRST INSPECTOR"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx113917-lmW1flyIYU78.png",
@@ -728,7 +871,10 @@
         "id": 153687,
         "title": {
          "userPreferred": "PSYCHO-PASS PROVIDENCE",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "PSYCHO-PASS PROVIDENCE",
+         "english": "PSYCHO-PASS: Providence",
+         "native": "\u5287\u5834\u7248 PSYCHO-PASS \u30b5\u30a4\u30b3\u30d1\u30b9 PROVIDENCE"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx153687-xB2x4toOz5MB.jpg",
@@ -745,7 +891,8 @@
        "id": 24312,
        "name": {
         "full": "Hinata Kawamoto",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b24312-A39sjFFj3Zrg.png",
@@ -759,7 +906,10 @@
         "id": 21366,
         "title": {
          "userPreferred": "3-gatsu no Lion",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "3-gatsu no Lion",
+         "english": "March comes in like a lion",
+         "native": "\uff13\u6708\u306e\u30e9\u30a4\u30aa\u30f3"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21366-0wrYK0kjKeFn.jpg",
@@ -771,7 +921,10 @@
         "id": 98478,
         "title": {
          "userPreferred": "3-gatsu no Lion 2nd Season",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "3-gatsu no Lion 2nd Season",
+         "english": "March comes in like a lion Season 2",
+         "native": "\uff13\u6708\u306e\u30e9\u30a4\u30aa\u30f3 \u7b2c2\u30b7\u30ea\u30fc\u30ba"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx98478-Yua5iL9zbrji.jpg",
@@ -783,7 +936,10 @@
         "id": 155014,
         "title": {
          "userPreferred": "3-gatsu no Lion: Ugoku! Nya Shogi",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "3-gatsu no Lion: Ugoku! Nya Shogi",
+         "english": null,
+         "native": "\u3046\u3054\u304f\uff01\u30cb\u30e3\u30fc\u5c06\u68cb\u3000\u4e8c\u6d77\u5802\u30bb\u30f3\u30bb\u30a4\u306e\u3082\u3063\u3061\u308a\u5c06\u68cb\u6559\u5ba4"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b155014-UPrmLqLlHuqe.jpg",
@@ -800,7 +956,8 @@
        "id": 132222,
        "name": {
         "full": "Lucy Montgomery",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/n132222-Ue3zZMq9aqMg.jpg",
@@ -814,7 +971,10 @@
         "id": 21679,
         "title": {
          "userPreferred": "Bungou Stray Dogs 2nd Season",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Bungou Stray Dogs 2nd Season",
+         "english": "Bungo Stray Dogs 2",
+         "native": "\u6587\u8c6a\u30b9\u30c8\u30ec\u30a4\u30c9\u30c3\u30b0\u30b9 \u7b2c2\u30b7\u30fc\u30ba\u30f3"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21679-9MKdz1A7YLV7.jpg",
@@ -826,7 +986,10 @@
         "id": 103223,
         "title": {
          "userPreferred": "Bungou Stray Dogs 3rd Season",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Bungou Stray Dogs 3rd Season",
+         "english": "Bungo Stray Dogs 3",
+         "native": "\u6587\u8c6a\u30b9\u30c8\u30ec\u30a4\u30c9\u30c3\u30b0\u30b9 \u7b2c3\u30b7\u30fc\u30ba\u30f3"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx103223-bfdnnKWxE4YE.jpg",
@@ -838,7 +1001,10 @@
         "id": 21311,
         "title": {
          "userPreferred": "Bungou Stray Dogs",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Bungou Stray Dogs",
+         "english": "Bungo Stray Dogs",
+         "native": "\u6587\u8c6a\u30b9\u30c8\u30ec\u30a4\u30c9\u30c3\u30b0\u30b9"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21311-hAXyT8Yoh6G9.jpg",
@@ -850,7 +1016,10 @@
         "id": 141249,
         "title": {
          "userPreferred": "Bungou Stray Dogs 4th Season",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Bungou Stray Dogs 4th Season",
+         "english": "Bungo Stray Dogs 4",
+         "native": "\u6587\u8c6a\u30b9\u30c8\u30ec\u30a4\u30c9\u30c3\u30b0\u30b9 \u7b2c4\u30b7\u30fc\u30ba\u30f3"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx141249-8tjavEDHmLoT.jpg",
@@ -862,7 +1031,10 @@
         "id": 163263,
         "title": {
          "userPreferred": "Bungou Stray Dogs 5th Season",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Bungou Stray Dogs 5th Season",
+         "english": "Bungo Stray Dogs 5",
+         "native": "\u6587\u8c6a\u30b9\u30c8\u30ec\u30a4\u30c9\u30c3\u30b0\u30b9 \u7b2c5\u30b7\u30fc\u30ba\u30f3"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx163263-uz881pFAyi7P.jpg",
@@ -874,7 +1046,10 @@
         "id": 201667,
         "title": {
          "userPreferred": "Bungou Stray Dogs Wan! 2",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Bungou Stray Dogs Wan! 2",
+         "english": "Bungo Stray Dogs WAN! 2",
+         "native": "\u6587\u8c6a\u30b9\u30c8\u30ec\u30a4\u30c9\u30c3\u30b0\u30b9 \u308f\u3093\uff01\uff12"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx201667-oqaW97DQ7HUj.jpg",
@@ -891,7 +1066,8 @@
        "id": 36309,
        "name": {
         "full": "Narrator",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b36309-6KM0riV4lqfN.jpg",
@@ -905,7 +1081,10 @@
         "id": 154454,
         "title": {
          "userPreferred": "Dekoboko Majo no Oyako Jijou",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Dekoboko Majo no Oyako Jijou",
+         "english": "The Family Circumstances of the Irregular Witch",
+         "native": "\u3067\u3053\u307c\u3053\u9b54\u5973\u306e\u89aa\u5b50\u4e8b\u60c5"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx154454-9gZSDOmcBwrn.jpg",
@@ -917,7 +1096,10 @@
         "id": 165426,
         "title": {
          "userPreferred": "Odekake Kozame",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Odekake Kozame",
+         "english": "Little Shark's Day Out",
+         "native": "\u304a\u3067\u304b\u3051\u5b50\u30b6\u30e1"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx165426-Q93dCaAlRx6b.jpg",
@@ -934,7 +1116,8 @@
        "id": 8631,
        "name": {
         "full": "Shiro",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b8631-c6VT3zQUGAU5.jpg",
@@ -948,7 +1131,10 @@
         "id": 6880,
         "title": {
          "userPreferred": "Deadman Wonderland",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Deadman Wonderland",
+         "english": "Deadman Wonderland",
+         "native": "\u30c7\u30c3\u30c9\u30de\u30f3\u30fb\u30ef\u30f3\u30c0\u30fc\u30e9\u30f3\u30c9"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx6880-qZ1jIqIYpST2.png",
@@ -965,7 +1151,8 @@
        "id": 31008,
        "name": {
         "full": "Ruri Gokou",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b31008-IJLxEJqTKhsJ.png",
@@ -979,7 +1166,10 @@
         "id": 8769,
         "title": {
          "userPreferred": "Ore no Imouto ga Konna ni Kawaii Wake ga Nai",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Ore no Imouto ga Konna ni Kawaii Wake ga Nai",
+         "english": "Oreimo",
+         "native": "\u4ffa\u306e\u59b9\u304c\u3053\u3093\u306a\u306b\u53ef\u611b\u3044\u308f\u3051\u304c\u306a\u3044"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx8769-Lat76qlOwdBN.jpg",
@@ -991,7 +1181,10 @@
         "id": 10108,
         "title": {
          "userPreferred": "Ore no Imouto ga Konna ni Kawaii Wake ga Nai Animated Commentary",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Ore no Imouto ga Konna ni Kawaii Wake ga Nai Animated Commentary",
+         "english": "Oreimo Animated Commentary",
+         "native": "\u4ffa\u306e\u59b9\u304c\u3053\u3093\u306a\u306b\u53ef\u611b\u3044\u308f\u3051\u304c\u306a\u3044"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/10108.jpg",
@@ -1003,7 +1196,10 @@
         "id": 10020,
         "title": {
          "userPreferred": "Ore no Imouto ga Konna ni Kawaii Wake ga Nai TRUE ROUTE",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Ore no Imouto ga Konna ni Kawaii Wake ga Nai TRUE ROUTE",
+         "english": null,
+         "native": "\u4ffa\u306e\u59b9\u304c\u3053\u3093\u306a\u306b\u53ef\u611b\u3044\u308f\u3051\u304c\u306a\u3044 TRUE ROUTE"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx10020-5BFz41M11Muv.jpg",
@@ -1015,7 +1211,10 @@
         "id": 13659,
         "title": {
          "userPreferred": "Ore no Imouto ga Konna ni Kawaii Wake ga Nai.",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Ore no Imouto ga Konna ni Kawaii Wake ga Nai.",
+         "english": "Oreimo 2",
+         "native": "\u4ffa\u306e\u59b9\u304c\u3053\u3093\u306a\u306b\u53ef\u611b\u3044\u308f\u3051\u304c\u306a\u3044\u3002"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx13659-dKbA53HH9vwR.png",
@@ -1027,7 +1226,10 @@
         "id": 19845,
         "title": {
          "userPreferred": "Ore no Imouto ga Konna ni Kawaii Wake ga Nai. Short Specials",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Ore no Imouto ga Konna ni Kawaii Wake ga Nai. Short Specials",
+         "english": "Oreimo 2 Extras",
+         "native": "\u4ffa\u306e\u59b9\u304c\u3053\u3093\u306a\u306b\u53ef\u611b\u3044\u308f\u3051\u304c\u306a\u3044\u3002SD\u30ad\u30e3\u30e9\u306b\u3088\u308b\u30b7\u30e7\u30fc\u30c8\u30e0\u30fc\u30d3\u30fc"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/19845.jpg",
@@ -1039,7 +1241,10 @@
         "id": 18857,
         "title": {
          "userPreferred": "Ore no Imouto ga Konna ni Kawaii Wake ga Nai. (ONA)",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Ore no Imouto ga Konna ni Kawaii Wake ga Nai. (ONA)",
+         "english": "Oreimo 2 (ONA)",
+         "native": "\u4ffa\u306e\u59b9\u304c\u3053\u3093\u306a\u306b\u53ef\u611b\u3044\u308f\u3051\u304c\u306a\u3044\u3002(ONA)"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx18857-su3IlKYL3NS8.jpg",
@@ -1051,7 +1256,10 @@
         "id": 21685,
         "title": {
          "userPreferred": "Eromanga Sensei",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Eromanga Sensei",
+         "english": "Eromanga Sensei",
+         "native": "\u30a8\u30ed\u30de\u30f3\u30ac\u5148\u751f"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21685-h1SrcpaNnrIq.jpg",
@@ -1068,7 +1276,8 @@
        "id": 124546,
        "name": {
         "full": "Shirase Kobuchizawa",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b124546-m2grkrB5gfCJ.png",
@@ -1082,7 +1291,10 @@
         "id": 99426,
         "title": {
          "userPreferred": "Sora yori mo Tooi Basho",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Sora yori mo Tooi Basho",
+         "english": "A Place Further Than the Universe",
+         "native": "\u5b87\u5b99\u3088\u308a\u3082\u9060\u3044\u5834\u6240"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx99426-ti5BL69Ip3kZ.png",
@@ -1099,7 +1311,8 @@
        "id": 68127,
        "name": {
         "full": "Shinako Morinome",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b68127-MGZctMPhZACw.png",
@@ -1113,7 +1326,10 @@
         "id": 109020,
         "title": {
          "userPreferred": "Yesterday wo Utatte",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Yesterday wo Utatte",
+         "english": "SING \"YESTERDAY\" FOR ME",
+         "native": "\u30a4\u30a8\u30b9\u30bf\u30c7\u30a4\u3092\u3046\u305f\u3063\u3066"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx109020-sRBusiVXbsLH.jpg",
@@ -1125,7 +1341,10 @@
         "id": 117496,
         "title": {
          "userPreferred": "Yesterday wo Utatte Extras",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Yesterday wo Utatte Extras",
+         "english": null,
+         "native": "\u30a4\u30a8\u30b9\u30bf\u30c7\u30a4\u3092\u3046\u305f\u3063\u3066Extras"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx117496-CP35rVXw69hq.png",
@@ -1142,7 +1361,8 @@
        "id": 126754,
        "name": {
         "full": "Satou Matsuzaka",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b126754-8qXcvqW1gPNf.png",
@@ -1156,7 +1376,10 @@
         "id": 101351,
         "title": {
          "userPreferred": "Happy Sugar Life",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Happy Sugar Life",
+         "english": "Happy Sugar Life",
+         "native": "\u30cf\u30c3\u30d4\u30fc\u30b7\u30e5\u30ac\u30fc\u30e9\u30a4\u30d5"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx101351-TWLbnRdE1tBI.jpg",
@@ -1173,7 +1396,8 @@
        "id": 88413,
        "name": {
         "full": "Rize Kamishiro",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b88413-FmAvV0hGSljG.png",
@@ -1187,7 +1411,10 @@
         "id": 20605,
         "title": {
          "userPreferred": "Tokyo Ghoul",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Tokyo Ghoul",
+         "english": "Tokyo Ghoul",
+         "native": "\u6771\u4eac\u55b0\u7a2e \u30c8\u30fc\u30ad\u30e7\u30fc\u30b0\u30fc\u30eb"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b20605-k665mVkSug8D.jpg",
@@ -1199,7 +1426,10 @@
         "id": 102351,
         "title": {
          "userPreferred": "Tokyo Ghoul:re 2",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Tokyo Ghoul:re 2",
+         "english": "Tokyo Ghoul:re 2",
+         "native": "\u6771\u4eac\u55b0\u7a2e-\u30c8\u30fc\u30ad\u30e7\u30fc\u30b0\u30fc\u30eb-:re 2"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx102351-yD3Ty9YZFMsf.jpg",
@@ -1216,7 +1446,8 @@
        "id": 164986,
        "name": {
         "full": "Nagisa Kubo",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b164986-FewavqJshmYl.png",
@@ -1230,7 +1461,10 @@
         "id": 148969,
         "title": {
          "userPreferred": "Kubo-san wa Mob wo Yurusanai",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Kubo-san wa Mob wo Yurusanai",
+         "english": "Kubo Won't Let Me Be Invisible",
+         "native": "\u4e45\u4fdd\u3055\u3093\u306f\u50d5\u3092\u8a31\u3055\u306a\u3044"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx148969-3vPgXpMpQvba.jpg",
@@ -1247,7 +1481,8 @@
        "id": 298929,
        "name": {
         "full": "Amo Empool",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b298929-FPGX8O3DHcoL.png",
@@ -1261,7 +1496,10 @@
         "id": 178025,
         "title": {
          "userPreferred": "Gachiakuta",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Gachiakuta",
+         "english": "Gachiakuta",
+         "native": "\u30ac\u30c1\u30a2\u30af\u30bf"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx178025-cWJKEsZynkil.jpg",
@@ -1278,7 +1516,8 @@
        "id": 64847,
        "name": {
         "full": "Hana Midorikawa",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b64847-02UYthi3I0zh.jpg",
@@ -1292,7 +1531,10 @@
         "id": 20807,
         "title": {
          "userPreferred": "Prison School",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Prison School",
+         "english": "Prison School",
+         "native": "\u76e3\u7344\u5b66\u5712\u3008\u30d7\u30ea\u30ba\u30f3\u30b9\u30af\u30fc\u30eb\u3009"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20807-8nFoO0AUdGsy.jpg",
@@ -1304,7 +1546,10 @@
         "id": 21565,
         "title": {
          "userPreferred": "Prison School: Mad Wax",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Prison School: Mad Wax",
+         "english": null,
+         "native": "\u76e3\u7344\u5b66\u5712[\u30d7\u30ea\u30ba\u30f3\u30b9\u30af\u30fc\u30eb] \u30de\u30c3\u30c9\u30ef\u30c3\u30af\u30b9"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b21565-PsQEFVGXs1fX.jpg",
@@ -1321,7 +1566,8 @@
        "id": 121845,
        "name": {
         "full": "Misaki Takasaki",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b121845-K2Nn8y8zZYgM.jpg",
@@ -1335,7 +1581,10 @@
         "id": 98320,
         "title": {
          "userPreferred": "Koi to Uso",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Koi to Uso",
+         "english": "LOVE and LIES",
+         "native": "\u604b\u3068\u5618"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx98320-VwCcTBeEs08J.jpg",
@@ -1347,7 +1596,10 @@
         "id": 101501,
         "title": {
          "userPreferred": "Koi to Uso: Isshou no Koi/Koi no Kimochi",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Koi to Uso: Isshou no Koi/Koi no Kimochi",
+         "english": "LOVE and LIES OVA",
+         "native": "\u604b\u3068\u5618 \u4e00\u751f\u306e\u604b / \u604b\u306e\u6c17\u6301\u3061"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b101501-bWvhFO9hPaBB.jpg",
@@ -1364,7 +1616,8 @@
        "id": 88194,
        "name": {
         "full": "Mayumi Saegusa",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b88194-HE3sw1jDHN1L.png",
@@ -1378,7 +1631,10 @@
         "id": 20458,
         "title": {
          "userPreferred": "Mahouka Koukou no Rettousei",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Mahouka Koukou no Rettousei",
+         "english": "The Irregular at Magic High School",
+         "native": "\u9b54\u6cd5\u79d1\u9ad8\u6821\u306e\u52a3\u7b49\u751f"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20458-tGh343Ew10yU.jpg",
@@ -1390,7 +1646,10 @@
         "id": 112300,
         "title": {
          "userPreferred": "Mahouka Koukou no Rettousei: Raihousha-hen",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Mahouka Koukou no Rettousei: Raihousha-hen",
+         "english": "The Irregular at Magic High School: Visitor Arc",
+         "native": "\u9b54\u6cd5\u79d1\u9ad8\u6821\u306e\u52a3\u7b49\u751f \u6765\u8a2a\u8005\u7de8"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx112300-I5ucx66OvqWX.png",
@@ -1402,7 +1661,10 @@
         "id": 20679,
         "title": {
          "userPreferred": "Mahouka Koukou no Rettousei: Yoku Wakaru Mahouka",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Mahouka Koukou no Rettousei: Yoku Wakaru Mahouka",
+         "english": "The Irregular at Magic High School: Get to Know Magic Studies",
+         "native": "\u9b54\u6cd5\u79d1\u9ad8\u6821\u306e\u52a3\u7b49\u751f \u3088\u304f\u308f\u304b\u308b\u9b54\u6cd5\u79d1\uff01"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/20679.jpg",
@@ -1414,7 +1676,10 @@
         "id": 127688,
         "title": {
          "userPreferred": "Mahouka Koukou no Yuutousei",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Mahouka Koukou no Yuutousei",
+         "english": "The Honor at Magic High School",
+         "native": "\u9b54\u6cd5\u79d1\u9ad8\u6821\u306e\u512a\u7b49\u751f"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx127688-WDZFupRhW3eX.jpg",
@@ -1426,7 +1691,10 @@
         "id": 143271,
         "title": {
          "userPreferred": "Mahouka Koukou no Rettousei 3rd Season",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Mahouka Koukou no Rettousei 3rd Season",
+         "english": "The Irregular at Magic High School Season 3",
+         "native": "\u9b54\u6cd5\u79d1\u9ad8\u6821\u306e\u52a3\u7b49\u751f \u7b2c3\u30b7\u30fc\u30ba\u30f3"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx143271-o5wry0ohH9R3.jpg",
@@ -1442,8 +1710,9 @@
       "node": {
        "id": 19706,
        "name": {
-        "full": "Black★Rock Shooter",
-        "__typename": "CharacterName"
+        "full": "Black\u2605Rock Shooter",
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b19706-ztCMK3WkgJtc.jpg",
@@ -1456,8 +1725,11 @@
        {
         "id": 7059,
         "title": {
-         "userPreferred": "Black★Rock Shooter (OVA)",
-         "__typename": "MediaTitle"
+         "userPreferred": "Black\u2605Rock Shooter (OVA)",
+         "__typename": "MediaTitle",
+         "romaji": "Black\u2605Rock Shooter (OVA)",
+         "english": null,
+         "native": "\u30d6\u30e9\u30c3\u30af\u2605\u30ed\u30c3\u30af\u30b7\u30e5\u30fc\u30bf\u30fc (OVA)"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx7059-8fqxS4nNzbq7.jpg",
@@ -1468,8 +1740,11 @@
        {
         "id": 11285,
         "title": {
-         "userPreferred": "Black★Rock Shooter (TV)",
-         "__typename": "MediaTitle"
+         "userPreferred": "Black\u2605Rock Shooter (TV)",
+         "__typename": "MediaTitle",
+         "romaji": "Black\u2605Rock Shooter (TV)",
+         "english": "Black Rock Shooter",
+         "native": "\u30d6\u30e9\u30c3\u30af\u2605\u30ed\u30c3\u30af\u30b7\u30e5\u30fc\u30bf\u30fc (TV)"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx11285-uO6GgQUjikbf.jpg",
@@ -1486,7 +1761,8 @@
        "id": 126975,
        "name": {
         "full": "Sekkekkyuu AE3803",
-        "__typename": "CharacterName"
+        "__typename": "CharacterName",
+        "native": null
        },
        "image": {
         "large": "https://s4.anilist.co/file/anilistcdn/character/large/b126975-Lqj6mlIEBaSA.png",
@@ -1500,7 +1776,10 @@
         "id": 100977,
         "title": {
          "userPreferred": "Hataraku Saibou",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Hataraku Saibou",
+         "english": "Cells at Work!",
+         "native": "\u306f\u305f\u3089\u304f\u7d30\u80de"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx100977-nH1J2dR7GGAk.jpg",
@@ -1512,7 +1791,10 @@
         "id": 105662,
         "title": {
          "userPreferred": "Hataraku Saibou: Kaze Shoukougun",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Hataraku Saibou: Kaze Shoukougun",
+         "english": "Cells at Work!: The Common Cold",
+         "native": "\u306f\u305f\u3089\u304f\u7d30\u80de\u300c\u98a8\u90aa\u75c7\u5019\u7fa4\u300d"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx105662-hQ04rdwCot6p.jpg",
@@ -1524,7 +1806,10 @@
         "id": 108631,
         "title": {
          "userPreferred": "Hataraku Saibou!!",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Hataraku Saibou!!",
+         "english": "Cells at Work!!",
+         "native": "\u306f\u305f\u3089\u304f\u7d30\u80de!!"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx108631-R3yjfHmOJDET.jpg",
@@ -1536,7 +1821,10 @@
         "id": 109085,
         "title": {
          "userPreferred": "Hataraku Saibou Specials",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Hataraku Saibou Specials",
+         "english": "Cells at Work! Specials",
+         "native": "\u306f\u305f\u3089\u304f\u7d30\u80de Specials"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx109085-Zt7eTEtZWKzI.jpg",
@@ -1548,7 +1836,10 @@
         "id": 138675,
         "title": {
          "userPreferred": "Pocari Sweat web movie: Hataraku Saibou Dai 11.5-wa Necchuushou - Moshimo Pocari Sweat ga Attara",
-         "__typename": "MediaTitle"
+         "__typename": "MediaTitle",
+         "romaji": "Pocari Sweat web movie: Hataraku Saibou Dai 11.5-wa Necchuushou - Moshimo Pocari Sweat ga Attara",
+         "english": null,
+         "native": "\u30dd\u30ab\u30ea\u30b9\u30a8\u30c3\u30c8web movie\uff5c\u306f\u305f\u3089\u304f\u7d30\u80de\u7b2c11.5\u8a71\u71b1\u4e2d\u75c7\uff5e\u3082\u3057\u3082\u30dd\u30ab\u30ea\u30b9\u30a8\u30c3\u30c8\u304c\u3042\u3063\u305f\u3089\uff5e"
         },
         "coverImage": {
          "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b138675-muGygZHvL1Ur.png",

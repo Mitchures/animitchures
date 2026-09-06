@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 import Header from 'layout/Header';
 import Navigation from 'layout/Navigation';
@@ -10,6 +10,7 @@ import { getNavSections } from 'layout/nav-items';
 
 import { auth } from 'config';
 import { useStateValue, ScrollContainerProvider } from 'context';
+import { usePreferences } from 'features/settings/usePreferences';
 
 /**
  * The signed-in app shell: sidebar + header + routed content.
@@ -25,6 +26,9 @@ function AppShell() {
   // not the window.
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { preferences } = usePreferences();
+  const landed = useRef(false);
 
   const sections = getNavSections({ user, anilistUser: anilist_user });
   const handleLogout = () => auth.signOut();
@@ -33,6 +37,21 @@ function AppShell() {
   useEffect(() => {
     setMenuOpen(false);
   }, [location.pathname]);
+
+  /**
+   * Honour the start-page preference once, on arrival.
+   *
+   * Guarded by a ref rather than by the pathname: without it, clicking
+   * Discover would bounce straight back to whatever the preference names,
+   * which makes the rail's first item unusable.
+   */
+  useEffect(() => {
+    if (landed.current || !user) return;
+    landed.current = true;
+    if (location.pathname === '/' && preferences.startPage !== '/') {
+      navigate(preferences.startPage, { replace: true });
+    }
+  }, [user, preferences.startPage, location.pathname, navigate]);
 
   return (
     <div className="app__container">

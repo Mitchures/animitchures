@@ -140,7 +140,8 @@
         "id": 95185,
         "name": {
          "__typename": "StaffName",
-         "full": "Kana Hanazawa"
+         "full": "Kana Hanazawa",
+         "native": null
         },
         "image": {
          "__typename": "StaffImage",
@@ -156,7 +157,8 @@
         "id": 95186,
         "name": {
          "__typename": "StaffName",
-         "full": "Yuuki Kaji"
+         "full": "Yuuki Kaji",
+         "native": null
         },
         "image": {
          "__typename": "StaffImage",
@@ -172,7 +174,8 @@
         "id": 95187,
         "name": {
          "__typename": "StaffName",
-         "full": "Aoi Yuuki"
+         "full": "Aoi Yuuki",
+         "native": null
         },
         "image": {
          "__typename": "StaffImage",
@@ -188,7 +191,8 @@
         "id": 95188,
         "name": {
          "__typename": "StaffName",
-         "full": "Takehito Koyasu"
+         "full": "Takehito Koyasu",
+         "native": null
         },
         "image": {
          "__typename": "StaffImage",

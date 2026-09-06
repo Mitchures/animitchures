@@ -47,7 +47,11 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .genreOverview__rest {
+  :root:not([data-theme='light']) .genreOverview__rest {
     background-color: rgba(255, 255, 255, 0.12);
   }
+}
+
+:root[data-theme='dark'] .genreOverview__rest {
+  background-color: rgba(255, 255, 255, 0.12);
 }

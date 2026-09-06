@@ -29,9 +29,13 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .skeleton {
+  :root:not([data-theme='light']) .skeleton {
     background-color: rgba(255, 255, 255, 0.07);
   }
+}
+
+:root[data-theme='dark'] .skeleton {
+  background-color: rgba(255, 255, 255, 0.07);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -84,7 +84,11 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .mediaStats__key b {
+  :root:not([data-theme='light']) .mediaStats__key b {
     color: white;
   }
+}
+
+:root[data-theme='dark'] .mediaStats__key b {
+  color: white;
 }

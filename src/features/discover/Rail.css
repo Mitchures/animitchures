@@ -99,8 +99,13 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .rail__arrow {
+  :root:not([data-theme='light']) .rail__arrow {
     color: white;
     background-color: rgba(18, 28, 43, 0.94);
   }
+}
+
+:root[data-theme='dark'] .rail__arrow {
+  color: white;
+  background-color: rgba(18, 28, 43, 0.94);
 }

@@ -156,28 +156,53 @@
 @media (prefers-color-scheme: dark) {
   /* The expanded rail overlays content, so it needs an opaque ground of its own
      or the page shows through it. */
-  .navigation:hover {
+  :root:not([data-theme='light']) .navigation:hover {
     background-color: #121c2b;
     box-shadow: 8px 0 32px rgba(0, 0, 0, 0.45);
   }
 
-  .navigation {
+  :root:not([data-theme='light']) .navigation {
     /* background-color: rgba(255, 255, 255, 0.025); */
     /* background-color: #1d1d1f; */
     /* border-right: 1px solid rgba(255, 255, 255, 0.15); */
   }
 
-  .navigation__logo {
+  :root:not([data-theme='light']) .navigation__logo {
     color: white;
   }
 
-  /* .navigation__container ul li a:hover span {
+  :root:not([data-theme='light']) /* .navigation__container ul li a:hover span {
     color: white;
-  } */
+  } :root:not([data-theme='light']) */
 
   .navigation__container ul li a .navigation__icon {
     background-color: rgba(255, 255, 255, 0.05);
   }
+}
+
+/* The expanded rail overlays content, so it needs an opaque ground of its own
+     or the page shows through it. */
+:root[data-theme='dark'] .navigation:hover {
+  background-color: #121c2b;
+  box-shadow: 8px 0 32px rgba(0, 0, 0, 0.45);
+}
+
+:root[data-theme='dark'] .navigation {
+  /* background-color: rgba(255, 255, 255, 0.025); */
+  /* background-color: #1d1d1f; */
+  /* border-right: 1px solid rgba(255, 255, 255, 0.15); */
+}
+
+:root[data-theme='dark'] .navigation__logo {
+  color: white;
+}
+
+:root[data-theme='dark'] /* .navigation__container ul li a:hover span {
+    color: white;
+  } :root[data-theme='dark'] */
+
+  .navigation__container ul li a .navigation__icon {
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 @media screen and (max-width: 960px) {
@@ -273,13 +298,21 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .navigation__footer {
+  :root:not([data-theme='light']) .navigation__footer {
     border-top-color: rgba(255, 255, 255, 0.08);
   }
 
-  .navigation__action .navigation__icon {
+  :root:not([data-theme='light']) .navigation__action .navigation__icon {
     background-color: rgba(255, 255, 255, 0.05);
   }
+}
+
+:root[data-theme='dark'] .navigation__footer {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+:root[data-theme='dark'] .navigation__action .navigation__icon {
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 /* Active state for the footer items.
@@ -318,7 +351,11 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .navigation__search {
+  :root:not([data-theme='light']) .navigation__search {
     border-bottom-color: rgba(255, 255, 255, 0.08);
   }
+}
+
+:root[data-theme='dark'] .navigation__search {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
 }

@@ -72,18 +72,31 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .header {
+  :root:not([data-theme='light']) .header {
     background-color: rgba(11, 22, 33, 0.72);
     /* border-bottom: 1px solid rgba(255, 255, 255, 0.15); */
   }
 
-  .header__left > a {
+  :root:not([data-theme='light']) .header__left > a {
     color: white;
   }
 
-  .header__left > a > svg {
+  :root:not([data-theme='light']) .header__left > a > svg {
     /* fill: white; */
   }
+}
+
+:root[data-theme='dark'] .header {
+  background-color: rgba(11, 22, 33, 0.72);
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.15); */
+}
+
+:root[data-theme='dark'] .header__left > a {
+  color: white;
+}
+
+:root[data-theme='dark'] .header__left > a > svg {
+  /* fill: white; */
 }
 
 @media screen and (max-width: 960px) {

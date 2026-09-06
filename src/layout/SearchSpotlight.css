@@ -206,32 +206,32 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .spotlight__panel {
+  :root:not([data-theme='light']) .spotlight__panel {
     background-color: #121c2b;
   }
 
-  .spotlight__field,
-  .spotlight__foot {
+  :root:not([data-theme='light']) .spotlight__field,
+  :root:not([data-theme='light']) .spotlight__foot {
     border-color: rgba(255, 255, 255, 0.12);
   }
 
-  .spotlight__field input,
-  .spotlight__resultTitle {
+  :root:not([data-theme='light']) .spotlight__field input,
+  :root:not([data-theme='light']) .spotlight__resultTitle {
     color: white;
   }
 
-  .spotlight__esc,
-  .spotlight__foot kbd {
+  :root:not([data-theme='light']) .spotlight__esc,
+  :root:not([data-theme='light']) .spotlight__foot kbd {
     border-color: rgba(255, 255, 255, 0.22);
   }
 
-  .spotlight__esc:hover {
+  :root:not([data-theme='light']) .spotlight__esc:hover {
     color: var(--primary);
     background-color: rgba(255, 255, 255, 0.88);
   }
 
-  .spotlight__result img,
-  .spotlight__posterSkeleton {
+  :root:not([data-theme='light']) .spotlight__result img,
+  :root:not([data-theme='light']) .spotlight__posterSkeleton {
     background-color: rgba(255, 255, 255, 0.07);
   }
 
@@ -239,3 +239,36 @@
      artwork rather than over a surface, and a dark chip disappeared into dark
      banners — the one thing the theme should not be allowed to do to it. */
 }
+
+:root[data-theme='dark'] .spotlight__panel {
+  background-color: #121c2b;
+}
+
+:root[data-theme='dark'] .spotlight__field,
+:root[data-theme='dark'] .spotlight__foot {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+:root[data-theme='dark'] .spotlight__field input,
+:root[data-theme='dark'] .spotlight__resultTitle {
+  color: white;
+}
+
+:root[data-theme='dark'] .spotlight__esc,
+:root[data-theme='dark'] .spotlight__foot kbd {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+:root[data-theme='dark'] .spotlight__esc:hover {
+  color: var(--primary);
+  background-color: rgba(255, 255, 255, 0.88);
+}
+
+:root[data-theme='dark'] .spotlight__result img,
+:root[data-theme='dark'] .spotlight__posterSkeleton {
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+/* The trigger stays light in both schemes deliberately. It floats over
+     artwork rather than over a surface, and a dark chip disappeared into dark
+     banners — the one thing the theme should not be allowed to do to it. */

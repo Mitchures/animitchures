@@ -98,20 +98,37 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .filterBar__field {
+  :root:not([data-theme='light']) .filterBar__field {
     background-color: rgba(255, 255, 255, 0.07);
   }
 
-  .filterBar__field--on {
+  :root:not([data-theme='light']) .filterBar__field--on {
     background-color: rgba(99, 102, 241, 0.2);
   }
 
-  .filterBar__field option {
+  :root:not([data-theme='light']) .filterBar__field option {
     color: white;
     background-color: #16202f;
   }
 
-  .filterBar__clear {
+  :root:not([data-theme='light']) .filterBar__clear {
     border-color: rgba(255, 255, 255, 0.16);
   }
+}
+
+:root[data-theme='dark'] .filterBar__field {
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+:root[data-theme='dark'] .filterBar__field--on {
+  background-color: rgba(99, 102, 241, 0.2);
+}
+
+:root[data-theme='dark'] .filterBar__field option {
+  color: white;
+  background-color: #16202f;
+}
+
+:root[data-theme='dark'] .filterBar__clear {
+  border-color: rgba(255, 255, 255, 0.16);
 }

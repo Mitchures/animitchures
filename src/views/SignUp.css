@@ -118,16 +118,29 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .signUp__container,
-  .signUp__header {
+  :root:not([data-theme='light']) .signUp__container,
+  :root:not([data-theme='light']) .signUp__header {
     background-color: rgba(16, 18, 27, 40%);
   }
 
-  .signUp__header > a {
+  :root:not([data-theme='light']) .signUp__header > a {
     color: white;
   }
 
-  .signUp__form label {
+  :root:not([data-theme='light']) .signUp__form label {
     color: white;
   }
+}
+
+:root[data-theme='dark'] .signUp__container,
+:root[data-theme='dark'] .signUp__header {
+  background-color: rgba(16, 18, 27, 40%);
+}
+
+:root[data-theme='dark'] .signUp__header > a {
+  color: white;
+}
+
+:root[data-theme='dark'] .signUp__form label {
+  color: white;
 }

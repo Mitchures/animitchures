@@ -1,0 +1,24 @@
+/**
+ * Runtime knobs the settings page turns.
+ *
+ * `--poster-scale` is read by the card and poster rules so density is one
+ * multiplier rather than a second set of sizes in every component.
+ */
+:root {
+  --poster-scale: 1;
+}
+
+:root[data-density='compact'] {
+  --poster-scale: 0.82;
+}
+
+/* The manual switch mirrors what the OS-level query already does, so the
+   rules stay in one place and both routes reach the same outcome. */
+:root[data-motion='reduced'] *,
+:root[data-motion='reduced'] *::before,
+:root[data-motion='reduced'] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}

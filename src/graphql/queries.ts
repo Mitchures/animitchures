@@ -52,6 +52,8 @@ export const FEATURED_QUERY = gql`
     title {
       english
       userPreferred
+      romaji
+      native
     }
     coverImage {
       extraLarge
@@ -180,6 +182,8 @@ export const SEARCH_QUERY = gql`
         title {
           english
           userPreferred
+          romaji
+          native
         }
         coverImage {
           extraLarge
@@ -250,6 +254,7 @@ export const DETAILS_LIST_QUERY = gql`
           userPreferred
           english
           romaji
+          native
         }
         coverImage {
           extraLarge
@@ -269,6 +274,8 @@ export const DETAILS_QUERY = gql`
       title {
         userPreferred
         english
+        romaji
+        native
       }
       coverImage {
         extraLarge
@@ -344,6 +351,8 @@ export const DETAILS_EXTENDED_QUERY = gql`
             title {
               english
               userPreferred
+              romaji
+              native
             }
             format
             type
@@ -364,6 +373,7 @@ export const DETAILS_EXTENDED_QUERY = gql`
             id
             name {
               userPreferred
+              native
             }
             language: languageV2
             image {
@@ -374,6 +384,7 @@ export const DETAILS_EXTENDED_QUERY = gql`
             id
             name {
               userPreferred
+              native
             }
             image {
               large
@@ -389,6 +400,7 @@ export const DETAILS_EXTENDED_QUERY = gql`
             id
             name {
               userPreferred
+              native
             }
             language: languageV2
             image {
@@ -436,6 +448,9 @@ export const DETAILS_EXTENDED_QUERY = gql`
             id
             title {
               userPreferred
+              romaji
+              english
+              native
             }
             format
             type
@@ -546,6 +561,9 @@ export const ANILIST_USER_AND_ACTIVITY_QUERY = gql`
             bannerImage
             title {
               userPreferred
+              romaji
+              english
+              native
             }
             coverImage {
               large
@@ -667,6 +685,9 @@ export const ANILIST_USER_AND_ACTIVITY_QUERY = gql`
               bannerImage
               title {
                 userPreferred
+                romaji
+                english
+                native
               }
               coverImage {
                 large
@@ -689,6 +710,9 @@ export const ANILIST_USER_AND_ACTIVITY_QUERY = gql`
               bannerImage
               title {
                 userPreferred
+                romaji
+                english
+                native
               }
               coverImage {
                 large
@@ -706,6 +730,7 @@ export const ANILIST_USER_AND_ACTIVITY_QUERY = gql`
               id
               name {
                 userPreferred
+                native
               }
               image {
                 large
@@ -720,6 +745,7 @@ export const ANILIST_USER_AND_ACTIVITY_QUERY = gql`
               id
               name {
                 userPreferred
+                native
               }
               image {
                 large
@@ -909,6 +935,9 @@ export const ANILIST_USER_NOTIFICATIONS_QUERY = gql`
             bannerImage
             title {
               userPreferred
+              romaji
+              english
+              native
             }
             coverImage {
               large
@@ -926,6 +955,9 @@ export const ANILIST_USER_NOTIFICATIONS_QUERY = gql`
             bannerImage
             title {
               userPreferred
+              romaji
+              english
+              native
             }
             coverImage {
               large
@@ -1129,6 +1161,9 @@ export const ANILIST_USER_NOTIFICATIONS_QUERY = gql`
             bannerImage
             title {
               userPreferred
+              romaji
+              english
+              native
             }
             coverImage {
               large
@@ -1147,6 +1182,9 @@ export const ANILIST_USER_NOTIFICATIONS_QUERY = gql`
             bannerImage
             title {
               userPreferred
+              romaji
+              english
+              native
             }
             coverImage {
               large
@@ -1209,6 +1247,7 @@ export const STAFF_QUERY = gql`
             id
             name {
               full
+              native
             }
             image {
               large
@@ -1219,6 +1258,9 @@ export const STAFF_QUERY = gql`
             id
             title {
               userPreferred
+              romaji
+              english
+              native
             }
             coverImage {
               large
@@ -1263,6 +1305,9 @@ export const CHARACTER_QUERY = gql`
             id
             title {
               userPreferred
+              romaji
+              english
+              native
             }
             coverImage {
               large
@@ -1275,6 +1320,7 @@ export const CHARACTER_QUERY = gql`
             id
             name {
               full
+              native
             }
             image {
               large
@@ -1310,6 +1356,9 @@ export const STUDIO_QUERY = gql`
           id
           title {
             userPreferred
+            romaji
+            english
+            native
           }
           coverImage {
             large
@@ -1370,6 +1419,7 @@ export const TASTE_QUERY = gql`
               id
               name {
                 full
+                native
               }
               image {
                 large

@@ -1,0 +1,88 @@
+.settings {
+  height: calc(100vh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
+  overflow-y: auto;
+  padding: 1.5rem var(--x-axis-spacing) 3rem;
+  /* A settings list is a column of short rows; full width leaves the control
+     stranded a metre from its label on a wide screen. */
+  max-width: 860px;
+}
+
+.settings__title {
+  margin: 0 0 1.25rem;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.settings__select {
+  background-color: var(--chip, rgba(255, 255, 255, 0.08));
+  color: inherit;
+  border: none;
+  border-radius: 8px;
+  padding: 0.4rem 0.6rem;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  min-width: 150px;
+  cursor: pointer;
+}
+
+.settings__swatches {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.settings__swatch {
+  width: 22px;
+  height: 22px;
+  /* App.css styles every bare button as a full-width 54px form control. */
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.settings__swatch:hover {
+  opacity: 1;
+  transform: scale(1.12);
+}
+
+.settings__swatch.is-active {
+  box-shadow:
+    0 0 0 2px var(--app-bg, #0b1621),
+    0 0 0 4px currentColor;
+}
+
+.settings__error {
+  margin: 0.6rem 0;
+  font-size: 0.76rem;
+  color: var(--score-poor);
+}
+
+/* Light is the base; both dark routes override it. */
+.settings {
+  --chip: rgba(11, 22, 33, 0.07);
+  --app-bg: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .settings {
+    --chip: rgba(255, 255, 255, 0.08);
+    --app-bg: #0b1621;
+  }
+}
+
+:root[data-theme='dark'] .settings {
+  --chip: rgba(255, 255, 255, 0.08);
+  --app-bg: #0b1621;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .settings__swatch,
+  .settings__swatch:hover {
+    transition: none;
+    transform: none;
+  }
+}

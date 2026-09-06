@@ -134,13 +134,21 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .castChip {
+  :root:not([data-theme='light']) .castChip {
     --chip-bg: #16202f;
   }
 
-  .castChip__body h5 {
+  :root:not([data-theme='light']) .castChip__body h5 {
     color: white;
   }
+}
+
+:root[data-theme='dark'] .castChip {
+  --chip-bg: #16202f;
+}
+
+:root[data-theme='dark'] .castChip__body h5 {
+  color: white;
 }
 
 /* The chip's two links share the chip's colour and pick up the app's purple on

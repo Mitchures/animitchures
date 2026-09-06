@@ -1,0 +1,44 @@
+.anilistLink__linked {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 0 0.3rem;
+  font-size: 0.84rem;
+  color: var(--score-great);
+}
+
+.anilistLink__linked b {
+  color: var(--primary-text, inherit);
+}
+
+.anilistLink__pitch {
+  margin: 0.7rem 0 0.9rem;
+  font-size: 0.8rem;
+  line-height: 1.65;
+  color: var(--secondary);
+  max-width: 62ch;
+}
+
+.anilistLink__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  background-color: #02a9ff;
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: var(--transition);
+}
+
+.anilistLink__cta:hover {
+  color: #fff !important;
+  filter: brightness(1.1);
+}
+
+.anilistLink__cta > img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}

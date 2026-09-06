@@ -76,14 +76,6 @@ function Navigation({ sections, user, onLogout }: Props) {
             <span>Notifications</span>
           </button>
         )}
-        {settingsItems.map(({ id, label, to, Icon, end }) => (
-          <NavLink key={id} to={to} end={end} className="navigation__action" aria-label={label}>
-            <div className="navigation__icon">
-              <Icon />
-            </div>
-            <span>{label}</span>
-          </NavLink>
-        ))}
         {user && (
           <NavLink to="/profile" className="navigation__action" aria-label="Profile">
             {/* src is undefined rather than `${user.photoURL}`, which stringifies
@@ -117,6 +109,14 @@ function Navigation({ sections, user, onLogout }: Props) {
             <span>{logoutItem.label}</span>
           </Link>
         )}
+        {settingsItems.map(({ id, label, to, Icon, end }) => (
+          <NavLink key={id} to={to} end={end} className="navigation__action" aria-label={label}>
+            <div className="navigation__icon">
+              <Icon />
+            </div>
+            <span>{label}</span>
+          </NavLink>
+        ))}
       </div>
     </div>
   );

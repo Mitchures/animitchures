@@ -225,16 +225,29 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .profile__avatar {
+  :root:not([data-theme='light']) .profile__avatar {
     border-color: var(--primary);
   }
 
-  .profile__vitals,
-  .profile__feedRow {
+  :root:not([data-theme='light']) .profile__vitals,
+  :root:not([data-theme='light']) .profile__feedRow {
     border-color: rgba(255, 255, 255, 0.1);
   }
 
-  .profile__feedRow span b {
+  :root:not([data-theme='light']) .profile__feedRow span b {
     color: white;
   }
+}
+
+:root[data-theme='dark'] .profile__avatar {
+  border-color: var(--primary);
+}
+
+:root[data-theme='dark'] .profile__vitals,
+:root[data-theme='dark'] .profile__feedRow {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme='dark'] .profile__feedRow span b {
+  color: white;
 }

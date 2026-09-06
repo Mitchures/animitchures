@@ -22,7 +22,11 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .relations__container {
+  :root:not([data-theme='light']) .relations__container {
     background-color: rgba(0, 0, 0, 0.15);
   }
+}
+
+:root[data-theme='dark'] .relations__container {
+  background-color: rgba(0, 0, 0, 0.15);
 }

@@ -64,14 +64,25 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .detailsTabs__bar {
+  :root:not([data-theme='light']) .detailsTabs__bar {
     background-color: rgba(11, 22, 33, 0.82);
     border-bottom-color: rgba(255, 255, 255, 0.08);
   }
 
-  .detailsTabs__tab--active,
-  .detailsTabs__tab:hover,
-  .detailsTabs__title {
+  :root:not([data-theme='light']) .detailsTabs__tab--active,
+  :root:not([data-theme='light']) .detailsTabs__tab:hover,
+  :root:not([data-theme='light']) .detailsTabs__title {
     color: white;
   }
+}
+
+:root[data-theme='dark'] .detailsTabs__bar {
+  background-color: rgba(11, 22, 33, 0.82);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+:root[data-theme='dark'] .detailsTabs__tab--active,
+:root[data-theme='dark'] .detailsTabs__tab:hover,
+:root[data-theme='dark'] .detailsTabs__title {
+  color: white;
 }

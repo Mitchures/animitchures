@@ -1,3 +1,4 @@
+import { Preferences } from 'features/settings/preferences';
 import { Featured } from 'graphql/featured';
 import { Media, User as ALUser } from 'graphql/types';
 
@@ -16,6 +17,8 @@ export type User = {
   isAdult?: boolean;
   anilistLinked?: boolean;
   preferredWatchlist?: WatchlistFormat;
+  /** Settings that live in this app rather than on AniList. */
+  preferences?: Partial<Preferences>;
 };
 
 export type AccessToken = {

@@ -64,7 +64,11 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .rankChart__rank {
+  :root:not([data-theme='light']) .rankChart__rank {
     color: white;
   }
+}
+
+:root[data-theme='dark'] .rankChart__rank {
+  color: white;
 }

@@ -43,8 +43,14 @@
      the sticky tab bar, the 100vh view heights — follows from this token.
      Below 960px the header returns for the logo and menu button. */
   --header-height: 0px;
-  /* Poster height for Card. Card width derives from it at a 2:3 ratio. */
-  --card-poster-height: 300px;
+  /* Poster height for Card. Card width derives from it at a 2:3 ratio, and
+     the density setting scales both through one multiplier rather than a
+     second set of sizes in every component. */
+  --card-poster-base: 300px;
+  --card-poster-height: calc(var(--card-poster-base) * var(--poster-scale));
+  /* Minimum track for the poster grids, on the same multiplier — scaling the
+     card without the track leaves gaps between narrower cards. */
+  --poster-track: calc(200px * var(--poster-scale));
   /* Sidebar rail: collapsed by default, expands on hover as an overlay. */
   --rail-width: 72px;
   --rail-width-expanded: 240px;
@@ -63,7 +69,7 @@
     --x-axis-spacing: 1.5rem;
     --left-spacing: 1.5rem;
     --right-spacing: 1.5rem;
-    --card-poster-height: 240px;
+    --card-poster-base: 240px;
   }
 }
 
@@ -73,7 +79,7 @@
     --left-spacing: 1rem;
     --right-spacing: 1rem;
     --border-radius: 14px;
-    --card-poster-height: 180px;
+    --card-poster-base: 180px;
   }
 }
 
@@ -212,23 +218,41 @@ button:focus {
 }
 
 @media (prefers-color-scheme: dark) {
-  .app {
+  :root:not([data-theme='light']) .app {
     background: var(--primary);
     color: white;
   }
 
-  hr {
+  :root:not([data-theme='light']) hr {
     border-color: rgba(209, 213, 219, 0.15);
   }
 
-  input {
+  :root:not([data-theme='light']) input {
     background-color: rgba(243, 244, 246, 0.15);
     color: white;
   }
 
-  a.active span {
+  :root:not([data-theme='light']) a.active span {
     color: white;
   }
+}
+
+:root[data-theme='dark'] .app {
+  background: var(--primary);
+  color: white;
+}
+
+:root[data-theme='dark'] hr {
+  border-color: rgba(209, 213, 219, 0.15);
+}
+
+:root[data-theme='dark'] input {
+  background-color: rgba(243, 244, 246, 0.15);
+  color: white;
+}
+
+:root[data-theme='dark'] a.active span {
+  color: white;
 }
 
 @media screen and (max-width: 960px) {

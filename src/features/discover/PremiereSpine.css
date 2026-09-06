@@ -149,19 +149,35 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .spine__title {
+  :root:not([data-theme='light']) .spine__title {
     color: white;
   }
 
-  .spine__rule {
+  :root:not([data-theme='light']) .spine__rule {
     background-color: rgba(255, 255, 255, 0.16);
   }
 
-  .spine__date {
+  :root:not([data-theme='light']) .spine__date {
     color: white;
   }
 
-  .spine__date::before {
+  :root:not([data-theme='light']) .spine__date::before {
     background-color: rgba(255, 255, 255, 0.35);
   }
+}
+
+:root[data-theme='dark'] .spine__title {
+  color: white;
+}
+
+:root[data-theme='dark'] .spine__rule {
+  background-color: rgba(255, 255, 255, 0.16);
+}
+
+:root[data-theme='dark'] .spine__date {
+  color: white;
+}
+
+:root[data-theme='dark'] .spine__date::before {
+  background-color: rgba(255, 255, 255, 0.35);
 }

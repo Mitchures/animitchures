@@ -20,7 +20,7 @@ import StaffPage from 'features/people/StaffPage';
 import CharacterPage from 'features/people/CharacterPage';
 import StudioPage from 'features/studio/StudioPage';
 import Taste from 'features/taste/Taste';
-import Settings from 'views/Settings';
+import Settings from 'features/settings/Settings';
 import Callback from 'views/Callback';
 import ComingSoon from 'views/ComingSoon';
 import Community from 'views/Community';

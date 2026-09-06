@@ -1,0 +1,48 @@
+.settingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.65rem 0;
+}
+
+/* inline-block, not block: the AniList tag belongs on the same line as the
+   label, while the note below it breaks the line on its own. */
+.settingRow__label b {
+  display: inline-block;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.settingRow__note {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--secondary);
+  margin-top: 0.15rem;
+  max-width: 46ch;
+  line-height: 1.5;
+}
+
+.settingRow__syncs {
+  display: inline-block;
+  font-size: 0.58rem;
+  font-weight: 800;
+  color: var(--action);
+  border: 1px solid color-mix(in srgb, var(--action) 50%, transparent);
+  border-radius: 999px;
+  padding: 0 0.4rem;
+  margin-left: 0.45rem;
+  vertical-align: 1px;
+}
+
+.settingRow__control {
+  flex: none;
+}
+
+@media screen and (max-width: 600px) {
+  .settingRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+}
