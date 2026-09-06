@@ -1,0 +1,118 @@
+.airing {
+  margin-bottom: 1.25rem;
+}
+
+.airing__row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.875rem;
+  padding: 0.875rem var(--x-axis-spacing) 0;
+}
+
+.airing__card {
+  position: relative;
+  display: block;
+  height: 180px;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  text-decoration: none;
+  background-position: center;
+  background-size: cover;
+  transition: transform 0.22s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+/* Cards in this app scale on hover (see .card); lifting was a fourth idea. */
+.airing__card:hover {
+  transform: scale(1.02);
+}
+
+/* Bottom-weighted: the copy sits at the foot of the card, and the artwork above
+   it should stay visible rather than being flattened by a full overlay. */
+.airing__scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--scrim-bottom);
+}
+
+.airing__flag {
+  position: absolute;
+  top: 0.7rem;
+  left: 0.7rem;
+  padding: 0.15rem 0.55rem;
+  font-size: 10px;
+  font-weight: 800;
+  color: #0b1621;
+  background-color: #facc15;
+  border-radius: 999px;
+}
+
+/* Green rather than gold: this one is on right now, which is a different
+   thing from being next. */
+.airing__flag--live {
+  color: white;
+  background-color: var(--success);
+}
+
+.airing__body {
+  position: absolute;
+  left: 0.9rem;
+  right: 0.9rem;
+  bottom: 0.8rem;
+  display: block;
+}
+
+.airing__title {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 13px;
+  font-weight: 800;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Tabular figures so the seconds ticking does not shuffle the layout. */
+.airing__clock {
+  display: block;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: white;
+  font-variant-numeric: tabular-nums;
+}
+
+.airing__episode {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .airing__card {
+    transition: none;
+  }
+
+  .airing__card:hover {
+    transform: none;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .airing__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .airing__row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .airing__card {
+    height: 150px;
+  }
+}

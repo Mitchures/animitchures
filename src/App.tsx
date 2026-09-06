@@ -6,15 +6,15 @@ import { collection, setDoc, doc, getDoc, DocumentSnapshot } from 'firebase/fire
 
 import './App.css';
 
-import AppShell from 'components/AppShell';
+import AppShell from 'layout/AppShell';
 import Loader from 'components/Loader';
 
 import Login from 'views/Login';
 import SignUp from 'views/SignUp';
-import Details from 'views/Details';
+import Details from 'features/details/Details';
 import Profile from 'views/Profile';
-import Features from 'views/Features';
-import Results from 'views/Results';
+import Features from 'features/discover/Discover';
+import Results from 'features/browse/Browse';
 import Favorites from 'views/Favorites';
 import AnilistWatchlist from 'views/AnilistWatchlist';
 import Settings from 'views/Settings';

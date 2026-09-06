@@ -1,0 +1,70 @@
+.rankChart {
+  margin-bottom: 1.25rem;
+}
+
+.rankChart__scroller {
+  display: flex;
+  gap: 1rem;
+  /* Left padding so the first numeral is not clipped by the scroller. */
+  padding: 0.875rem var(--x-axis-spacing) 0;
+}
+
+.rankChart__entry {
+  display: flex;
+  align-items: flex-end;
+  flex: none;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.rankChart__entry:hover {
+  opacity: 0.65;
+}
+
+/* Solid type, not an outline effect. The negative margin lets the poster sit
+   over it, which is what keeps a 92px numeral from dominating the artwork it is
+   labelling — no stroke trickery needed. */
+.rankChart__rank {
+  font-size: 140px;
+  font-weight: 800;
+  line-height: 0.7;
+  color: var(--primary);
+  opacity: 0.85;
+  font-variant-numeric: tabular-nums;
+  /* The overlap is measured from the numeral's right edge, so the poster covers
+     the same slice of the final digit whether the rank is 9 or 10. An earlier
+     per-digit override made #10 overlap less than everything before it. */
+  margin-right: -22px;
+}
+
+/* Same size as a Card in the Trending rail: both derive from
+   --card-poster-height at the poster's 2:3 ratio, so they cannot disagree. */
+.rankChart__entry img {
+  display: block;
+  height: var(--card-poster-height);
+  width: calc(var(--card-poster-height) * 2 / 3);
+  object-fit: cover;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.06);
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.45);
+}
+
+/* --card-poster-height drops to 240px below 960px, so the numeral follows. */
+@media screen and (max-width: 960px) {
+  .rankChart__rank {
+    font-size: 112px;
+    margin-right: -18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rankChart__entry {
+    transition: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .rankChart__rank {
+    color: white;
+  }
+}
