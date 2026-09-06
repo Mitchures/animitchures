@@ -79,13 +79,17 @@ src/
   test-utils.tsx     renderWithProviders() — RTL render wrapped in the app's providers
   api/services/      Firestore reads/writes: favorites.ts, profile.ts, anilist.ts (tokens)
   components/        Shared UI; components/details/* are Details-page sections
-                     Skeleton.tsx is a shimmer primitive, currently used only by Details
+                     Skeleton.tsx is a shimmer primitive (Details skeleton + spotlight)
+                     SearchSpotlight.tsx is global search; Hero/AiringThisWeek/Rail/
+                     GenreTiles are the Discover sections; CastChip is one cast credit
   config/            firebase.ts (app, auth, db, storage, Apple/Google providers), apollo-client.ts
   context/           useReducer-based global store (StateProvider, reducer, types, initialState)
                      ScrollContainer.tsx shares the scrolling element (see "Scrolling" below)
   graphql/           queries.ts, mutations.ts (handwritten), types.ts (GENERATED — don't edit)
-  helpers/           authHeader() — reads the AniList token from localStorage
-  utils/hooks/       useInput
+  helpers/           authHeader() (AniList token), mediaPath() (the /anime/:id/:slug rule,
+                     shared so Card and the spotlight cannot produce two URLs for one
+                     title), scoreTier() (score severity buckets)
+  utils/hooks/       useInput, useTilt (pointer tilt — pair with a perspective wrapper)
   views/             Route-level pages, each with a sibling .css
 functions/src/       Firebase Cloud Functions (auth + Firestore triggers)
 ```
@@ -119,8 +123,30 @@ appears.
 **Shell chrome.** `Navigation` is a 72px icon rail that expands to 240px on hover. It is
 absolutely positioned and `.app__body` reserves its width with a margin, so expanding it
 overlays the page instead of shifting it. Account controls — notifications, settings,
-profile, logout — sit in `.navigation__footer` at the bottom; the header holds only search
-and is sticky. Below 960px the rail is hidden and `MobileMenu` takes over.
+profile, logout — sit in `.navigation__footer` at the bottom, and search sits at the top
+above the "Menu" heading.
+
+**There is no desktop header.** `--header-height` is `0px` above 960px, which is what
+drives the Details banner pull-up, the sticky tab bar's offset and every
+`calc(100vh - var(--header-height))` view height from one token. `.header` is
+`display: none` there. Below 960px the rail is hidden, `--header-height` becomes 72px and
+the header returns — it still carries the logo and the `MobileMenu` button, plus its own
+inline `Search`.
+
+**Search.** `SearchSpotlight` is an overlay opened from the rail, or with ⌘K / `/`;
+escape closes, arrows move, enter opens, and focus returns to the trigger. It is
+controlled — `AppShell` owns the open state, because the trigger lives in `Navigation`.
+Results are gated on the current term: Apollo keeps the last response, so without that the
+previous search's posters are still there on reopen. Desktop only.
+
+**Discover.** A full-bleed `Hero` (crossfading slides, the active slide's poster, a
+sideways scrim, score tier badge, CTAs), `AiringThisWeek`, the `Rail` rows, then
+`GenreTiles`. Everything is built from the one `Featured` query — `nextAiringEpisode`,
+`duration` and `genres` all come back with it, so no section costs an extra request. An
+airing card retires itself once the episode's own runtime has elapsed (capped at 90
+minutes, defaulting to 24), fading out while the rest reflow and the next one backfills.
+Genre tiles link to `/search/anime?genre=`, which `Results` handles alongside `?search=` —
+it falls back to `POPULARITY_DESC` there, since `SEARCH_MATCH` ranks by typed text.
 
 **Scrolling.** The window never scrolls: `.app__body` is a fixed-height `overflow-y: auto`
 box. So `useScroll()` from framer-motion silently produces zeros, and window scroll
@@ -144,9 +170,11 @@ Private routes are rendered conditionally on `user` in the route tree, with `*` 
 
 ## Current state — what's done and what isn't
 
-Working: discover/featured page, search, details page (hero + tabs, parallax, skeleton
-loading), favorites, Firebase auth (email+password, Google, Apple), settings, AniList
-linking, AniList watchlist view. Responsive down to 320px.
+Working: Discover (cinematic hero, live airing countdowns, snapping rails, genre tiles),
+spotlight search with live poster results, details page (hero + tabs, parallax, skeleton
+loading, rankings/tags/links/community stats/recommendations), favorites, Firebase auth
+(email+password, Google, Apple), settings, AniList linking, AniList watchlist view.
+Responsive down to 320px.
 
 Unfinished or parked — mostly deliberate, don't "fix" without asking:
 - `views/ComingSoon.tsx` and `views/Community.tsx` are one-line stubs. Their links now live
@@ -174,7 +202,12 @@ Known rough edges worth knowing before touching related code:
   var into the bundle at build time. Fine for a personal project; a real fix means moving the
   token exchange into a Cloud Function, which would also make OAuth work in production rather
   than dev only.
-- **`firestore.rules` allows any signed-in user to read/write any document.**
+- **`firestore.rules` allows any signed-in user to read/write any document** — including
+  other users' AniList access tokens. A hardened per-uid version exists in the working
+  copy but `.gitignore` excludes `firestore*`, so it is in no commit and has never been
+  deployed. `firebase deploy --only firestore:rules` applies it.
+- **The login backgrounds still ship in the bundle:** `src/images/maiden.jpg` is 5.4MB and
+  `usagi.jpeg` is 1.1MB.
 - **MUI is fully on v9** as of 2026-09-05; `@material-ui` v4 is gone. Note MUI requires
   `@emotion/*` at 11.14+ — 11.8 satisfies the peer range on paper but throws
   `emStyled is not a function` at runtime under vitest.
@@ -188,10 +221,11 @@ Known rough edges worth knowing before touching related code:
   so every call site needs a generic — and AniList's generated types are fully `Maybe<>`
   wrapped, which cascades null-handling changes into Favorites, Profile, AnilistWatchlist
   and Results. Three of those need sign-in to exercise, so the changes could not be
-  verified. Worth doing, but as its own task with a way to test signed-in views.
-- **`react-icons` is held at 4.3.1.** v5 types assume React 19 semantics and were
-  bundled into the React 19 upgrade attempt; they now work, but were reverted alongside
-  Apollo. Safe to bump independently.
+  verified. **That blocker is gone** — the signed-in e2e coverage added on 2026-09-05 is
+  exactly the way to test those views, so this is now unblocked and is the largest
+  outstanding upgrade.
+- **`graphql` is still on 16.3** (17.0.2 is out) and needs the codegen packages moved with
+  it.
 - **`typescript` must stay below 6.1.** `typescript-eslint` declares
   `typescript: ">=4.8.4 <6.1.0"`, so TypeScript 7 would break `yarn lint`.
 - **`@types/react` is pinned via `resolutions`** in `package.json`. MUI drags in
@@ -222,6 +256,13 @@ Known rough edges worth knowing before touching related code:
   `yarn e2e:live` is the opt-in drift check that does hit the real API — run it after any
   AniList-facing change, or when a real bug appears the suite did not catch. Fixture drift
   is now the main residual testing risk.
+- **The `authed` project runs serially with one local retry** (`fullyParallel: false`,
+  `retries: 1`). Those specs share one real Firebase account and each waits on Auth plus a
+  Firestore read; five in parallel timed out waiting for the signed-in shell. Every other
+  project is fixture-mocked and stays parallel, so a retry consumed there is worth looking
+  at rather than ignoring.
+- **Navigate with `waitUntil: 'domcontentloaded'`.** Only GraphQL is mocked — poster images
+  still come from AniList's CDN, and Playwright's default `load` waits for every one.
 - **Four Playwright projects.** `setup` signs in once and saves `e2e/.auth/user.json`;
   `public` holds the signed-out specs and must never be given a storageState (they assert
   signed-out behaviour); `authed` reuses the saved session; `live` is excluded from default
