@@ -31,7 +31,6 @@ export type AccessToken = {
 export type State = {
   user: User | null;
   featured: IFeatured | null;
-  results: Media[] | null;
   favorites: number[];
   anilist_user: AnilistUser | null;
 };
@@ -58,10 +57,6 @@ export type Action =
   | {
       type: 'set_favorites';
       favorites: number[];
-    }
-  | {
-      type: 'set_results';
-      results: Media[] | null;
     }
   | {
       type: 'set_featured';
