@@ -15,7 +15,6 @@ import Card from 'components/Card';
 import Rail from 'features/discover/Rail';
 import Loader from 'components/Loader';
 
-import { Media } from 'graphql/types';
 import { FEATURED_QUERY } from 'graphql/queries';
 import { useStateValue } from 'context';
 

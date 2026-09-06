@@ -1,0 +1,86 @@
+.heatmap {
+  /* The empty-day colour is a token so the dark-mode block can change it
+     without re-declaring .heatmap__day's background — which, coming after the
+     level modifiers at equal specificity, painted every level blank. */
+  --day-empty: rgba(0, 0, 0, 0.07);
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.heatmap::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.heatmap__months,
+.heatmap__grid {
+  display: grid;
+  grid-template-columns: repeat(53, 13px);
+  gap: 3px;
+  min-width: max-content;
+}
+
+.heatmap__months {
+  margin-bottom: 0.35rem;
+}
+
+.heatmap__months span {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.heatmap__grid {
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, 13px);
+}
+
+.heatmap__day {
+  width: 13px;
+  height: 13px;
+  border-radius: 3px;
+  background-color: var(--day-empty);
+}
+
+/* AniList's own levels, so this agrees with their profile rather than
+   re-bucketing the same numbers differently. */
+.heatmap__day--1 {
+  background-color: rgba(99, 102, 241, 0.35);
+}
+
+.heatmap__day--2 {
+  background-color: rgba(99, 102, 241, 0.6);
+}
+
+.heatmap__day--3 {
+  background-color: var(--accent-secondary);
+}
+
+.heatmap__day--4 {
+  background-color: var(--accent-primary);
+}
+
+.heatmap__key {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.6rem;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.heatmap__scale {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .heatmap {
+    --day-empty: rgba(255, 255, 255, 0.06);
+  }
+}

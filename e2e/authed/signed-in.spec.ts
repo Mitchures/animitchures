@@ -142,13 +142,27 @@ test.describe('signed-in views', () => {
     await expect(page.locator('.watchlist')).toBeVisible({ timeout: 20_000 });
   });
 
-  test('profile renders when the AniList profile is unavailable', async ({ page }) => {
+  test('profile shows the watching record', async ({ page }) => {
     await gotoSignedInHome(page);
     await page.locator('.navigation__footer a[href="/profile"]').click();
 
     await expect(page).toHaveURL(/\/profile$/);
-    await expect(page.locator('.profile')).toBeVisible({ timeout: 20_000 });
-    await expect(page.locator('.profile')).toContainText(DISPLAY_NAME);
+    await expect(page.locator('.profile')).toContainText(DISPLAY_NAME, { timeout: 20_000 });
+
+    // The page used to render an avatar and a name while the query behind it
+    // already fetched all of this.
+    await expect(page.locator('.profile__lede')).toContainText('days watched');
+    await expect(page.locator('.profile__vitals div')).toHaveCount(4);
+    await expect(page.locator('.genreOverview__chip').first()).toBeVisible();
+    await expect(page.locator('.profile__favourites a').first()).toBeVisible();
+
+    // 53 whole weeks, so the grid always ends on a complete column, and the
+    // shading must actually differ — a theme rule once flattened every level.
+    await expect(page.locator('.heatmap__grid .heatmap__day')).toHaveCount(371);
+    const lit = await page
+      .locator('.heatmap__day--1, .heatmap__day--2, .heatmap__day--3, .heatmap__day--4')
+      .count();
+    expect(lit).toBeGreaterThan(0);
   });
 });
 

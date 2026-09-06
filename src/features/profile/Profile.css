@@ -1,0 +1,240 @@
+.profile {
+  height: calc(100vh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
+  overflow-y: auto;
+}
+
+/* Full-bleed like the Discover and Details banners, and pulled under the mobile
+   header for the same reason. */
+.profile__banner {
+  position: relative;
+  height: 200px;
+  margin-top: calc(-1 * var(--header-height));
+  background-color: #101a28;
+  background-position: 50% 35%;
+  background-size: cover;
+}
+
+.profile__scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--scrim-bottom);
+}
+
+.profile__identity {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  gap: 1.25rem;
+  margin-top: -56px;
+  padding: 0 var(--x-axis-spacing);
+}
+
+.profile__avatar {
+  width: 112px !important;
+  height: 112px !important;
+  border-radius: 28px !important;
+  border: 4px solid var(--background, #edeef7);
+  box-sizing: border-box;
+  font-size: 40px !important;
+  font-weight: 800;
+}
+
+.profile__name {
+  padding-bottom: 0.5rem;
+  min-width: 0;
+}
+
+.profile__name h1 {
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.profile__name p {
+  margin-top: 0.15rem;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.profile__body {
+  padding: 1.75rem var(--x-axis-spacing) 3rem;
+}
+
+.profile__empty {
+  padding: 2.5rem 0;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--secondary);
+}
+
+/* The one loud thing on the page. */
+.profile__lede {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.profile__lede b {
+  font-size: clamp(46px, 7vw, 68px);
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.profile__lede span {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.profile__gloss {
+  margin-top: 0.6rem;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.profile__gloss em {
+  font-style: normal;
+  font-weight: 800;
+  color: var(--gold);
+}
+
+.profile__vitals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.profile__vitals b {
+  display: block;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.profile__vitals span {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.profile__section {
+  margin-top: 2.25rem;
+}
+
+/* SectionHeading pads horizontally for the Discover page; here the body already
+   does, so cancel it rather than double-indenting the headings. */
+.profile__section .sectionHeading {
+  padding: 0;
+  margin-bottom: 0.875rem;
+}
+
+.profile__favourites {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.profile__favourites img {
+  display: block;
+  width: 96px;
+  height: 144px;
+  object-fit: cover;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.06);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  transition: var(--transition);
+}
+
+.profile__favourites a:hover img {
+  opacity: 0.65;
+}
+
+.profile__feedRow {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.profile__feedRow:last-child {
+  border-bottom: none;
+}
+
+.profile__feedRow:hover {
+  opacity: 0.65;
+}
+
+.profile__feedRow img {
+  width: 38px;
+  height: 56px;
+  flex: none;
+  object-fit: cover;
+  border-radius: 7px;
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.profile__feedRow span {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--secondary);
+}
+
+.profile__feedRow span b {
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.profile__feedRow em {
+  flex: none;
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+@media screen and (max-width: 640px) {
+  .profile__identity {
+    margin-top: -44px;
+    gap: 0.875rem;
+  }
+
+  .profile__avatar {
+    width: 84px !important;
+    height: 84px !important;
+  }
+
+  .profile__favourites img {
+    width: 72px;
+    height: 108px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .profile__avatar {
+    border-color: var(--primary);
+  }
+
+  .profile__vitals,
+  .profile__feedRow {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .profile__feedRow span b {
+    color: white;
+  }
+}

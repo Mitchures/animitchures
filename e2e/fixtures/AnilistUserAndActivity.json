@@ -1,18 +1,1552 @@
 {
-  "errors": [
-    {
-      "message": "Not Found.",
-      "status": 404,
-      "locations": [
-        {
-          "line": 89,
-          "column": 5
-        }
-      ]
-    }
-  ],
   "data": {
-    "Page": null,
-    "User": null
+    "Page": {
+      "pageInfo": {
+        "total": 6,
+        "perPage": 25,
+        "currentPage": 1,
+        "lastPage": 1,
+        "hasNextPage": false,
+        "__typename": "PageInfo"
+      },
+      "activities": [
+        {
+          "id": 900000,
+          "type": "ANIME_LIST",
+          "replyCount": 0,
+          "status": "completed",
+          "progress": null,
+          "isLocked": false,
+          "isSubscribed": false,
+          "isLiked": false,
+          "likeCount": 28,
+          "createdAt": 1788534000,
+          "user": {
+            "id": 542244,
+            "name": "animitchures",
+            "avatar": {
+              "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1-GCsPm7waJ4kS.png",
+              "__typename": "UserAvatar"
+            },
+            "__typename": "User"
+          },
+          "media": {
+            "id": 21,
+            "type": "ANIME",
+            "status": "FINISHED",
+            "format": "TV",
+            "isAdult": false,
+            "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21-wf37VakJmZqs.jpg",
+            "title": {
+              "userPreferred": "ONE PIECE",
+              "__typename": "MediaTitle"
+            },
+            "coverImage": {
+              "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21-ELSYx3yMPcKM.jpg",
+              "__typename": "MediaCoverImage"
+            },
+            "startDate": {
+              "year": 1999,
+              "__typename": "FuzzyDate"
+            },
+            "__typename": "Media"
+          },
+          "__typename": "ListActivity"
+        },
+        {
+          "id": 900001,
+          "type": "ANIME_LIST",
+          "replyCount": 0,
+          "status": "watched episode",
+          "progress": "22",
+          "isLocked": false,
+          "isSubscribed": false,
+          "isLiked": false,
+          "likeCount": 15,
+          "createdAt": 1788361200,
+          "user": {
+            "id": 542244,
+            "name": "animitchures",
+            "avatar": {
+              "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1-GCsPm7waJ4kS.png",
+              "__typename": "UserAvatar"
+            },
+            "__typename": "User"
+          },
+          "media": {
+            "id": 154587,
+            "type": "ANIME",
+            "status": "FINISHED",
+            "format": "TV",
+            "isAdult": false,
+            "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/154587-ivXNJ23SM1D6.jpg",
+            "title": {
+              "userPreferred": "Sousou no Frieren",
+              "__typename": "MediaTitle"
+            },
+            "coverImage": {
+              "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx154587-qQTzQnEJJ3oB.jpg",
+              "__typename": "MediaCoverImage"
+            },
+            "startDate": {
+              "year": 2023,
+              "__typename": "FuzzyDate"
+            },
+            "__typename": "Media"
+          },
+          "__typename": "ListActivity"
+        },
+        {
+          "id": 900002,
+          "type": "ANIME_LIST",
+          "replyCount": 0,
+          "status": "watched episode",
+          "progress": "5",
+          "isLocked": false,
+          "isSubscribed": false,
+          "isLiked": false,
+          "likeCount": 20,
+          "createdAt": 1788188400,
+          "user": {
+            "id": 542244,
+            "name": "animitchures",
+            "avatar": {
+              "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1-GCsPm7waJ4kS.png",
+              "__typename": "UserAvatar"
+            },
+            "__typename": "User"
+          },
+          "media": {
+            "id": 16498,
+            "type": "ANIME",
+            "status": "FINISHED",
+            "format": "TV",
+            "isAdult": false,
+            "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/16498-8jpFCOcDmneX.jpg",
+            "title": {
+              "userPreferred": "Shingeki no Kyojin",
+              "__typename": "MediaTitle"
+            },
+            "coverImage": {
+              "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx16498-buvcRTBx4NSm.jpg",
+              "__typename": "MediaCoverImage"
+            },
+            "startDate": {
+              "year": 2013,
+              "__typename": "FuzzyDate"
+            },
+            "__typename": "Media"
+          },
+          "__typename": "ListActivity"
+        },
+        {
+          "id": 900003,
+          "type": "ANIME_LIST",
+          "replyCount": 0,
+          "status": "completed",
+          "progress": null,
+          "isLocked": false,
+          "isSubscribed": false,
+          "isLiked": false,
+          "likeCount": 10,
+          "createdAt": 1788015600,
+          "user": {
+            "id": 542244,
+            "name": "animitchures",
+            "avatar": {
+              "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1-GCsPm7waJ4kS.png",
+              "__typename": "UserAvatar"
+            },
+            "__typename": "User"
+          },
+          "media": {
+            "id": 101922,
+            "type": "ANIME",
+            "status": "FINISHED",
+            "format": "TV",
+            "isAdult": false,
+            "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/101922-33MtJGsUSx6C.jpg",
+            "title": {
+              "userPreferred": "Kimetsu no Yaiba",
+              "__typename": "MediaTitle"
+            },
+            "coverImage": {
+              "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx101922-WBsBl0ClmgYL.jpg",
+              "__typename": "MediaCoverImage"
+            },
+            "startDate": {
+              "year": 2019,
+              "__typename": "FuzzyDate"
+            },
+            "__typename": "Media"
+          },
+          "__typename": "ListActivity"
+        },
+        {
+          "id": 900004,
+          "type": "ANIME_LIST",
+          "replyCount": 0,
+          "status": "watched episode",
+          "progress": "2",
+          "isLocked": false,
+          "isSubscribed": false,
+          "isLiked": false,
+          "likeCount": 14,
+          "createdAt": 1787842800,
+          "user": {
+            "id": 542244,
+            "name": "animitchures",
+            "avatar": {
+              "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1-GCsPm7waJ4kS.png",
+              "__typename": "UserAvatar"
+            },
+            "__typename": "User"
+          },
+          "media": {
+            "id": 113415,
+            "type": "ANIME",
+            "status": "FINISHED",
+            "format": "TV",
+            "isAdult": false,
+            "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/113415-jQBSkxWAAk83.jpg",
+            "title": {
+              "userPreferred": "JUJUTSU KAISEN",
+              "__typename": "MediaTitle"
+            },
+            "coverImage": {
+              "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx113415-LHBAeoZDIsnF.jpg",
+              "__typename": "MediaCoverImage"
+            },
+            "startDate": {
+              "year": 2020,
+              "__typename": "FuzzyDate"
+            },
+            "__typename": "Media"
+          },
+          "__typename": "ListActivity"
+        },
+        {
+          "id": 900005,
+          "type": "ANIME_LIST",
+          "replyCount": 0,
+          "status": "watched episode",
+          "progress": "20",
+          "isLocked": false,
+          "isSubscribed": false,
+          "isLiked": false,
+          "likeCount": 6,
+          "createdAt": 1787670000,
+          "user": {
+            "id": 542244,
+            "name": "animitchures",
+            "avatar": {
+              "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1-GCsPm7waJ4kS.png",
+              "__typename": "UserAvatar"
+            },
+            "__typename": "User"
+          },
+          "media": {
+            "id": 1535,
+            "type": "ANIME",
+            "status": "FINISHED",
+            "format": "TV",
+            "isAdult": false,
+            "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/1535.jpg",
+            "title": {
+              "userPreferred": "DEATH NOTE",
+              "__typename": "MediaTitle"
+            },
+            "coverImage": {
+              "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1535-kUgkcrfOrkUM.jpg",
+              "__typename": "MediaCoverImage"
+            },
+            "startDate": {
+              "year": 2006,
+              "__typename": "FuzzyDate"
+            },
+            "__typename": "Media"
+          },
+          "__typename": "ListActivity"
+        }
+      ],
+      "__typename": "Page"
+    },
+    "User": {
+      "id": 542244,
+      "name": "animitchures",
+      "previousNames": [],
+      "avatar": {
+        "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1-GCsPm7waJ4kS.png",
+        "__typename": "UserAvatar"
+      },
+      "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/1-OquNCNB6srGe.jpg",
+      "about": "Mostly comedies and anything ufotable touches.",
+      "isFollowing": false,
+      "isFollower": false,
+      "donatorTier": 0,
+      "donatorBadge": null,
+      "createdAt": 1552489200,
+      "moderatorRoles": null,
+      "isBlocked": false,
+      "bans": [],
+      "options": {
+        "profileColor": "blue",
+        "__typename": "UserOptions"
+      },
+      "mediaListOptions": {
+        "scoreFormat": "POINT_100",
+        "__typename": "MediaListOptions"
+      },
+      "statistics": {
+        "anime": {
+          "count": 386,
+          "meanScore": 78.4,
+          "standardDeviation": 12.4,
+          "minutesWatched": 59184,
+          "episodesWatched": 1240,
+          "genrePreview": [
+            {
+              "genre": "Comedy",
+              "count": 1207,
+              "__typename": "UserGenreStatistic"
+            },
+            {
+              "genre": "Romance",
+              "count": 835,
+              "__typename": "UserGenreStatistic"
+            },
+            {
+              "genre": "Action",
+              "count": 728,
+              "__typename": "UserGenreStatistic"
+            },
+            {
+              "genre": "Drama",
+              "count": 611,
+              "__typename": "UserGenreStatistic"
+            },
+            {
+              "genre": "Slice of Life",
+              "count": 587,
+              "__typename": "UserGenreStatistic"
+            },
+            {
+              "genre": "Adventure",
+              "count": 502,
+              "__typename": "UserGenreStatistic"
+            },
+            {
+              "genre": "Fantasy",
+              "count": 466,
+              "__typename": "UserGenreStatistic"
+            },
+            {
+              "genre": "Sci-Fi",
+              "count": 331,
+              "__typename": "UserGenreStatistic"
+            },
+            {
+              "genre": "Mystery",
+              "count": 288,
+              "__typename": "UserGenreStatistic"
+            },
+            {
+              "genre": "Supernatural",
+              "count": 240,
+              "__typename": "UserGenreStatistic"
+            }
+          ],
+          "__typename": "UserStatistics"
+        },
+        "manga": {
+          "count": 41,
+          "meanScore": 74.2,
+          "standardDeviation": 9.8,
+          "chaptersRead": 3120,
+          "volumesRead": 214,
+          "genrePreview": [
+            {
+              "genre": "Comedy",
+              "count": 201,
+              "__typename": "UserGenreStatistic"
+            },
+            {
+              "genre": "Romance",
+              "count": 139,
+              "__typename": "UserGenreStatistic"
+            },
+            {
+              "genre": "Action",
+              "count": 121,
+              "__typename": "UserGenreStatistic"
+            },
+            {
+              "genre": "Drama",
+              "count": 101,
+              "__typename": "UserGenreStatistic"
+            },
+            {
+              "genre": "Slice of Life",
+              "count": 97,
+              "__typename": "UserGenreStatistic"
+            }
+          ],
+          "__typename": "UserStatistics"
+        },
+        "__typename": "UserStatisticTypes"
+      },
+      "stats": {
+        "activityHistory": [
+          {
+            "date": 1757170800,
+            "amount": 2,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1757430000,
+            "amount": 1,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1757862000,
+            "amount": 6,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1757948400,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1758121200,
+            "amount": 1,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1758466800,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1758553200,
+            "amount": 6,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1758639600,
+            "amount": 6,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1758898800,
+            "amount": 8,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1758985200,
+            "amount": 14,
+            "level": 4,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1759244400,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1759590000,
+            "amount": 7,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1759762800,
+            "amount": 8,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1759849200,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1759935600,
+            "amount": 1,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1760022000,
+            "amount": 8,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1760194800,
+            "amount": 9,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1760454000,
+            "amount": 4,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1760540400,
+            "amount": 4,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1760713200,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1760799600,
+            "amount": 12,
+            "level": 4,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1761058800,
+            "amount": 6,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1761145200,
+            "amount": 1,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1761318000,
+            "amount": 10,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1761404400,
+            "amount": 4,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1761490800,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1761577200,
+            "amount": 1,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1761663600,
+            "amount": 2,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1762095600,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1762182000,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1762700400,
+            "amount": 4,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1762873200,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1763132400,
+            "amount": 1,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1763218800,
+            "amount": 8,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1763305200,
+            "amount": 6,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1763650800,
+            "amount": 4,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1763737200,
+            "amount": 1,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1763823600,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1764342000,
+            "amount": 1,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1764428400,
+            "amount": 9,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1764514800,
+            "amount": 7,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1764687600,
+            "amount": 4,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1764774000,
+            "amount": 7,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1764946800,
+            "amount": 8,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1765033200,
+            "amount": 7,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1765292400,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1765378800,
+            "amount": 4,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1765551600,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1765638000,
+            "amount": 1,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1765810800,
+            "amount": 2,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1766502000,
+            "amount": 4,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1766847600,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1767538800,
+            "amount": 7,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1767711600,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1767970800,
+            "amount": 10,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1768057200,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1768230000,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1768575600,
+            "amount": 7,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1768662000,
+            "amount": 1,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1768748400,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1768834800,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1768921200,
+            "amount": 7,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1769266800,
+            "amount": 11,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1769785200,
+            "amount": 2,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1769871600,
+            "amount": 10,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1769958000,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1770130800,
+            "amount": 6,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1770217200,
+            "amount": 1,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1770303600,
+            "amount": 6,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1770476400,
+            "amount": 9,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1770649200,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1770994800,
+            "amount": 2,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1771081200,
+            "amount": 10,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1771254000,
+            "amount": 7,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1772031600,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1772118000,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1772204400,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1772290800,
+            "amount": 14,
+            "level": 4,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1772377200,
+            "amount": 1,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1772550000,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1772636400,
+            "amount": 2,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1772895600,
+            "amount": 2,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1773154800,
+            "amount": 4,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1773673200,
+            "amount": 8,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1774018800,
+            "amount": 8,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1774105200,
+            "amount": 8,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1774278000,
+            "amount": 6,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1774450800,
+            "amount": 7,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1774537200,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1774796400,
+            "amount": 6,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1774882800,
+            "amount": 6,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1775142000,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1775228400,
+            "amount": 6,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1775314800,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1775746800,
+            "amount": 6,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1776006000,
+            "amount": 8,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1776265200,
+            "amount": 2,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1776351600,
+            "amount": 8,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1776783600,
+            "amount": 7,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1776956400,
+            "amount": 8,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1777129200,
+            "amount": 4,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1777647600,
+            "amount": 14,
+            "level": 4,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1777734000,
+            "amount": 8,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1777906800,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1778338800,
+            "amount": 7,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1778511600,
+            "amount": 2,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1778857200,
+            "amount": 13,
+            "level": 4,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1778943600,
+            "amount": 2,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1779462000,
+            "amount": 4,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1779548400,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1779721200,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1779807600,
+            "amount": 4,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1779894000,
+            "amount": 2,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1779980400,
+            "amount": 6,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1780066800,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1780153200,
+            "amount": 11,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1780239600,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1780758000,
+            "amount": 12,
+            "level": 4,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1780844400,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1781017200,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1781190000,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1781276400,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1781362800,
+            "amount": 9,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1781622000,
+            "amount": 7,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1781708400,
+            "amount": 1,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1781794800,
+            "amount": 1,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1781881200,
+            "amount": 13,
+            "level": 4,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1781967600,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1782054000,
+            "amount": 1,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1782140400,
+            "amount": 1,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1782399600,
+            "amount": 8,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1782831600,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1783090800,
+            "amount": 10,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1783263600,
+            "amount": 7,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1783436400,
+            "amount": 4,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1783522800,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1783695600,
+            "amount": 14,
+            "level": 4,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1783782000,
+            "amount": 14,
+            "level": 4,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1783868400,
+            "amount": 4,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1784300400,
+            "amount": 9,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1784386800,
+            "amount": 6,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1784559600,
+            "amount": 1,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1784905200,
+            "amount": 4,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1785078000,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1785250800,
+            "amount": 1,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1785337200,
+            "amount": 4,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1785596400,
+            "amount": 12,
+            "level": 4,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1785769200,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1785855600,
+            "amount": 4,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1786201200,
+            "amount": 7,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1786460400,
+            "amount": 8,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1786806000,
+            "amount": 12,
+            "level": 4,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1786892400,
+            "amount": 4,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1787151600,
+            "amount": 1,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1787324400,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1787410800,
+            "amount": 7,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1787842800,
+            "amount": 5,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1787929200,
+            "amount": 1,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1788015600,
+            "amount": 10,
+            "level": 3,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1788102000,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1788274800,
+            "amount": 3,
+            "level": 1,
+            "__typename": "UserActivityHistory"
+          },
+          {
+            "date": 1788620400,
+            "amount": 4,
+            "level": 2,
+            "__typename": "UserActivityHistory"
+          }
+        ],
+        "__typename": "UserStats"
+      },
+      "favourites": {
+        "anime": {
+          "edges": [
+            {
+              "favouriteOrder": 0,
+              "node": {
+                "id": 21,
+                "type": "ANIME",
+                "status": "FINISHED",
+                "format": "TV",
+                "isAdult": false,
+                "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21-wf37VakJmZqs.jpg",
+                "title": {
+                  "userPreferred": "ONE PIECE",
+                  "__typename": "MediaTitle"
+                },
+                "coverImage": {
+                  "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21-ELSYx3yMPcKM.jpg",
+                  "__typename": "MediaCoverImage"
+                },
+                "startDate": {
+                  "year": 1999,
+                  "__typename": "FuzzyDate"
+                },
+                "__typename": "Media"
+              },
+              "__typename": "MediaEdge"
+            },
+            {
+              "favouriteOrder": 1,
+              "node": {
+                "id": 154587,
+                "type": "ANIME",
+                "status": "FINISHED",
+                "format": "TV",
+                "isAdult": false,
+                "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/154587-ivXNJ23SM1D6.jpg",
+                "title": {
+                  "userPreferred": "Sousou no Frieren",
+                  "__typename": "MediaTitle"
+                },
+                "coverImage": {
+                  "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx154587-qQTzQnEJJ3oB.jpg",
+                  "__typename": "MediaCoverImage"
+                },
+                "startDate": {
+                  "year": 2023,
+                  "__typename": "FuzzyDate"
+                },
+                "__typename": "Media"
+              },
+              "__typename": "MediaEdge"
+            },
+            {
+              "favouriteOrder": 2,
+              "node": {
+                "id": 16498,
+                "type": "ANIME",
+                "status": "FINISHED",
+                "format": "TV",
+                "isAdult": false,
+                "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/16498-8jpFCOcDmneX.jpg",
+                "title": {
+                  "userPreferred": "Shingeki no Kyojin",
+                  "__typename": "MediaTitle"
+                },
+                "coverImage": {
+                  "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx16498-buvcRTBx4NSm.jpg",
+                  "__typename": "MediaCoverImage"
+                },
+                "startDate": {
+                  "year": 2013,
+                  "__typename": "FuzzyDate"
+                },
+                "__typename": "Media"
+              },
+              "__typename": "MediaEdge"
+            },
+            {
+              "favouriteOrder": 3,
+              "node": {
+                "id": 101922,
+                "type": "ANIME",
+                "status": "FINISHED",
+                "format": "TV",
+                "isAdult": false,
+                "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/101922-33MtJGsUSx6C.jpg",
+                "title": {
+                  "userPreferred": "Kimetsu no Yaiba",
+                  "__typename": "MediaTitle"
+                },
+                "coverImage": {
+                  "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx101922-WBsBl0ClmgYL.jpg",
+                  "__typename": "MediaCoverImage"
+                },
+                "startDate": {
+                  "year": 2019,
+                  "__typename": "FuzzyDate"
+                },
+                "__typename": "Media"
+              },
+              "__typename": "MediaEdge"
+            },
+            {
+              "favouriteOrder": 4,
+              "node": {
+                "id": 113415,
+                "type": "ANIME",
+                "status": "FINISHED",
+                "format": "TV",
+                "isAdult": false,
+                "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/113415-jQBSkxWAAk83.jpg",
+                "title": {
+                  "userPreferred": "JUJUTSU KAISEN",
+                  "__typename": "MediaTitle"
+                },
+                "coverImage": {
+                  "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx113415-LHBAeoZDIsnF.jpg",
+                  "__typename": "MediaCoverImage"
+                },
+                "startDate": {
+                  "year": 2020,
+                  "__typename": "FuzzyDate"
+                },
+                "__typename": "Media"
+              },
+              "__typename": "MediaEdge"
+            },
+            {
+              "favouriteOrder": 5,
+              "node": {
+                "id": 1535,
+                "type": "ANIME",
+                "status": "FINISHED",
+                "format": "TV",
+                "isAdult": false,
+                "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/1535.jpg",
+                "title": {
+                  "userPreferred": "DEATH NOTE",
+                  "__typename": "MediaTitle"
+                },
+                "coverImage": {
+                  "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1535-kUgkcrfOrkUM.jpg",
+                  "__typename": "MediaCoverImage"
+                },
+                "startDate": {
+                  "year": 2006,
+                  "__typename": "FuzzyDate"
+                },
+                "__typename": "Media"
+              },
+              "__typename": "MediaEdge"
+            }
+          ],
+          "__typename": "MediaConnection"
+        },
+        "manga": {
+          "edges": [],
+          "__typename": "MediaConnection"
+        },
+        "characters": {
+          "edges": [],
+          "__typename": "CharacterConnection"
+        },
+        "staff": {
+          "edges": [],
+          "__typename": "StaffConnection"
+        },
+        "studios": {
+          "edges": [],
+          "__typename": "StudioConnection"
+        },
+        "__typename": "Favourites"
+      },
+      "__typename": "User"
+    }
   }
 }

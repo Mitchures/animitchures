@@ -13,7 +13,7 @@ import Loader from 'components/Loader';
 import Login from 'views/Login';
 import SignUp from 'views/SignUp';
 import Details from 'features/details/Details';
-import Profile from 'views/Profile';
+import Profile from 'features/profile/Profile';
 import Features from 'features/discover/Discover';
 import Results from 'features/browse/Browse';
 import Favorites from 'views/Favorites';
