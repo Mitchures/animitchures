@@ -13,7 +13,7 @@ import PopularityList from 'features/discover/PopularityList';
 import RankChart from 'features/discover/RankChart';
 import Card from 'components/Card';
 import Rail from 'features/discover/Rail';
-import Loader from 'components/Loader';
+import DiscoverSkeleton from './DiscoverSkeleton';
 
 import { FEATURED_QUERY } from 'graphql/queries';
 import { useStateValue } from 'context';
@@ -123,7 +123,7 @@ function Features() {
           {bucket('popular').length > 0 && <PopularityList media={bucket('popular')} />}
         </>
       ) : (
-        <Loader />
+        <DiscoverSkeleton />
       )}
     </motion.div>
   );

@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { collection, setDoc, doc } from 'firebase/firestore';
 
-import Loader from 'components/Loader';
+import './Callback.css';
 
 import { useStateValue } from 'context';
 import { ANILIST_VIEWER_QUERY } from 'graphql/queries';
@@ -90,7 +90,10 @@ function Callback() {
     }
   }, [data, user]);
 
-  return <Loader />;
+  // Not a skeleton: a skeleton promises "content of this shape is arriving
+  // here", and nothing arrives here — the page exchanges the code and
+  // redirects to settings. So it says what it is doing instead.
+  return <p className="callback">Linking your AniList account\u2026</p>;
 }
 
 export default Callback;

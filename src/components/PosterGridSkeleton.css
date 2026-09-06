@@ -1,0 +1,14 @@
+.posterGridSkeleton__cell {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+/* The poster block carries the aspect ratio; the caption below it is what
+   makes the cell the same height as a real Card. */
+.posterGridSkeleton__art {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  height: auto !important;
+}

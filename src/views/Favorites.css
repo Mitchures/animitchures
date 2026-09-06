@@ -39,3 +39,14 @@
     grid-column-gap: 0.875rem;
   }
 }
+
+.favorites__empty {
+  display: grid;
+  place-content: center;
+  height: 60vh;
+  max-width: 32ch;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.65;
+  color: var(--secondary);
+}
