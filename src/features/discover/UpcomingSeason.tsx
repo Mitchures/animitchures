@@ -5,6 +5,7 @@ import './UpcomingSeason.css';
 import Badge from 'components/Badge';
 import SectionHeading from 'components/SectionHeading';
 
+import { FeaturedMedia } from 'graphql/featured';
 import { mediaPath, seasonLabel } from 'helpers';
 
 const COUNT = 6;
@@ -17,7 +18,7 @@ const COUNT = 6;
  * cards use it, with the season itself as the badge. Titles without a banner
  * fall back to their cover, which crops acceptably at this aspect.
  */
-function UpcomingSeason({ media }: { media: any[] }) {
+function UpcomingSeason({ media }: { media: FeaturedMedia[] }) {
   const entries = (media ?? []).slice(0, COUNT);
   if (!entries.length) return null;
 

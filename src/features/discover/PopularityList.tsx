@@ -4,6 +4,7 @@ import './PopularityList.css';
 
 import SectionHeading from 'components/SectionHeading';
 
+import { FeaturedMedia } from 'graphql/featured';
 import { mediaPath } from 'helpers';
 
 const COUNT = 8;
@@ -23,8 +24,11 @@ const FORMAT_LABEL: Record<string, string> = { TV: 'TV', MOVIE: 'Film', ONA: 'ON
  * thing — a million people watched this — so it is set large and the bar is
  * gone.
  */
-function PopularityList({ media }: { media: any[] }) {
-  const entries = (media ?? []).filter((item) => item?.popularity).slice(0, COUNT);
+function PopularityList({ media }: { media: FeaturedMedia[] }) {
+  // filter() cannot narrow the element type, so restate what it guarantees.
+  const entries = (media ?? [])
+    .filter((item): item is FeaturedMedia & { popularity: number } => Boolean(item?.popularity))
+    .slice(0, COUNT);
   if (!entries.length) return null;
 
   return (
@@ -43,7 +47,7 @@ function PopularityList({ media }: { media: any[] }) {
                 {item.title.english ?? item.title.userPreferred}
               </span>
               <span className="popularity__meta">
-                {[FORMAT_LABEL[item.format] ?? item.format, item.startDate?.year]
+                {[(item.format && FORMAT_LABEL[item.format]) ?? item.format, item.startDate?.year]
                   .filter(Boolean)
                   .join(', ')}
               </span>

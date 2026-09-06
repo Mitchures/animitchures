@@ -4,11 +4,15 @@ import { motion } from 'framer-motion';
 
 import './AnilistWatchlist.css';
 
-import Card from 'components/Card';
+import Card, { CardMedia } from 'components/Card';
 import Loader from 'components/Loader';
 
 import { useStateValue } from 'context';
 import { ANILIST_USER_MEDIA_LIST_COLLECTION_QUERY } from 'graphql/queries';
+
+/** The parts of an AniList list collection this view walks. */
+type MediaListEntry = { id: number; media: CardMedia };
+type MediaList = { name?: string | null; entries: MediaListEntry[] };
 
 const motion_container = {
   hidden: { opacity: 0 },
@@ -51,7 +55,7 @@ function Watchlist() {
       {anilist_user && !loading ? (
         <>
           {collection &&
-            collection.map((list: any, index: number) => (
+            collection.map((list: MediaList, index: number) => (
               <div key={index}>
                 <h3>{list.name}</h3>
                 <motion.div
@@ -60,7 +64,7 @@ function Watchlist() {
                   animate="show"
                   className="watchlist__grid"
                 >
-                  {list.entries.map((entry: any) => (
+                  {list.entries.map((entry: MediaListEntry) => (
                     <motion.div key={entry.media.id} variants={motion_item}>
                       <Card {...entry.media} />
                     </motion.div>

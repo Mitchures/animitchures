@@ -4,6 +4,7 @@ import './RankChart.css';
 
 import SectionHeading from 'components/SectionHeading';
 
+import { FeaturedMedia } from 'graphql/featured';
 import { mediaPath } from 'helpers';
 
 const COUNT = 10;
@@ -16,7 +17,7 @@ const COUNT = 10;
  * numeral that the poster overlaps, which is the only place on Discover where
  * type is doing the work instead of artwork.
  */
-function RankChart({ media }: { media: any[] }) {
+function RankChart({ media }: { media: FeaturedMedia[] }) {
   const entries = (media ?? []).slice(0, COUNT);
   if (!entries.length) return null;
 

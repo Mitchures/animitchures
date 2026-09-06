@@ -87,7 +87,7 @@ function Settings() {
               </div>
               <div className="settings__column">
                 <ToggleSwitch
-                  isToggled={user.isAdult}
+                  isToggled={Boolean(user.isAdult)}
                   onToggle={() => updateIsAdult(!user.isAdult)}
                 />
               </div>

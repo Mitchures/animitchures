@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signInWithPopup, signInWithEmailAndPassword, AuthProvider } from 'firebase/auth';
 
@@ -21,7 +22,7 @@ function Login() {
       .catch((error) => alert(error.message));
   };
 
-  const signIn = (event: { preventDefault: () => void } | any) => {
+  const signIn = (event: MouseEvent<HTMLButtonElement>) => {
     event?.preventDefault();
 
     if (email.value && password.value) {

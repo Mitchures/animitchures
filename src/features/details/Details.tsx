@@ -27,7 +27,7 @@ import { DETAILS_EXTENDED_QUERY } from 'graphql/queries';
 import { authHeader } from 'helpers';
 
 function Details() {
-  const { id } = useParams<any>();
+  const { id } = useParams<{ id: string }>();
   const reduceMotion = useReducedMotion();
   const scrollContainerRef = useScrollContainer();
   // Read in an effect rather than via useScroll(): the window never scrolls

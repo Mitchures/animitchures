@@ -1,8 +1,5 @@
+import { Featured } from 'graphql/featured';
 import { Media, User as ALUser } from 'graphql/types';
-
-interface IFeatured {
-  [key: string]: { [key: string]: Media[] };
-}
 
 export type AnilistUser = ALUser;
 
@@ -30,7 +27,7 @@ export type AccessToken = {
 
 export type State = {
   user: User | null;
-  featured: IFeatured | null;
+  featured: Featured | null;
   favorites: number[];
   anilist_user: AnilistUser | null;
 };
@@ -60,7 +57,7 @@ export type Action =
     }
   | {
       type: 'set_featured';
-      featured: IFeatured;
+      featured: Featured;
     }
   | {
       type: 'update_user';

@@ -6,6 +6,7 @@ import './AiringThisWeek.css';
 
 import SectionHeading from 'components/SectionHeading';
 
+import { Featured, FeaturedBucket, FeaturedMedia } from 'graphql/featured';
 import { mediaPath } from 'helpers';
 
 const WEEK_SECONDS = 7 * 24 * 60 * 60;
@@ -25,7 +26,7 @@ const CARD_COUNT = 4;
 const DEFAULT_RUNTIME_MINUTES = 24;
 const MAX_ON_AIR_MINUTES = 90;
 
-const onAirWindow = (media: any) =>
+const onAirWindow = (media: FeaturedMedia) =>
   Math.min(media.duration ?? DEFAULT_RUNTIME_MINUTES, MAX_ON_AIR_MINUTES) * 60;
 
 /**
@@ -45,6 +46,11 @@ const formatCountdown = (secondsLeft: number) => {
   return `${minutes}m ${seconds}s`;
 };
 
+/** An entry the filter below has already proven has an airing date. */
+type Airing = FeaturedMedia & {
+  nextAiringEpisode: NonNullable<FeaturedMedia['nextAiringEpisode']>;
+};
+
 const MotionLink = motion.create(Link);
 
 /**
@@ -56,17 +62,18 @@ const MotionLink = motion.create(Link);
  * beside grey text did not read as urgent, which is the only thing this section
  * is for.
  */
-function AiringThisWeek({ featured }: { featured: Record<string, any> }) {
+function AiringThisWeek({ featured }: { featured: Featured }) {
   const [now, setNow] = useState(() => Math.floor(Date.now() / 1000));
   const reduceMotion = useReducedMotion();
 
   const upcoming = useMemo(() => {
-    const seen = new Map<number, any>();
+    const seen = new Map<number, Airing>();
     // Buckets overlap heavily — the same show is often trending *and* popular
     // this season — so dedupe before sorting.
-    Object.values(featured ?? {}).forEach((bucket: any) => {
-      (bucket?.media ?? []).forEach((media: any) => {
-        if (media?.nextAiringEpisode?.airingAt && !seen.has(media.id)) seen.set(media.id, media);
+    Object.values(featured ?? {}).forEach((bucket: FeaturedBucket | undefined) => {
+      (bucket?.media ?? []).forEach((media: FeaturedMedia) => {
+        if (media?.nextAiringEpisode?.airingAt && !seen.has(media.id))
+          seen.set(media.id, media as Airing);
       });
     });
 

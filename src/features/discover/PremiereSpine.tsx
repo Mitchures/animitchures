@@ -5,15 +5,16 @@ import './PremiereSpine.css';
 
 import SectionHeading from 'components/SectionHeading';
 
+import { FeaturedMedia } from 'graphql/featured';
 import { mediaPath, seasonLabel, mainStudio } from 'helpers';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 /** A break wider than this earns a visible gap rather than an even gutter. */
 const GAP_DAYS = 7;
 
-type Dated = { media: any; at: number | null; label: string };
+type Dated = { media: FeaturedMedia; at: number | null; label: string };
 
-const toDate = (media: any): number | null => {
+const toDate = (media: FeaturedMedia): number | null => {
   const { year, month, day } = media?.startDate ?? {};
   // A month without a day cannot be placed on the spine — AniList gives plenty
   // of those, and guessing the 1st would put a title on a date it does not have.
@@ -34,7 +35,7 @@ const toDate = (media: any): number | null => {
  * Titles with only a month go in a final group rather than being guessed onto a
  * day they do not have.
  */
-function PremiereSpine({ media }: { media: any[] }) {
+function PremiereSpine({ media }: { media: FeaturedMedia[] }) {
   const scroller = useRef<HTMLDivElement>(null);
   // Read once on mount rather than during render: Date.now() is impure, and
   // premiere dates do not move while you are looking at them.

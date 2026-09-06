@@ -9,6 +9,7 @@ import Badge from 'components/Badge';
 
 import { useStateValue } from 'context';
 import { addItemToFavorites, removeItemFromFavorites } from 'api';
+import { FeaturedBucket, FeaturedMedia } from 'graphql/featured';
 import { mediaPath, scoreTier } from 'helpers';
 
 const ROTATE_MS = 7000;
@@ -24,9 +25,9 @@ const untilAiring = (seconds: number) => {
   return `in ${Math.max(1, Math.floor(seconds / 60))}m`;
 };
 
-function Hero({ trending }: any) {
+function Hero({ trending }: { trending?: FeaturedBucket }) {
   const [{ user, favorites }, dispatch] = useStateValue();
-  const [featured] = useState(() => trending?.media.slice(0, FEATURE_COUNT) ?? []);
+  const [featured] = useState<FeaturedMedia[]>(() => trending?.media.slice(0, FEATURE_COUNT) ?? []);
   const [index, setIndex] = useState(0);
   const reduceMotion = useReducedMotion();
 
@@ -73,7 +74,7 @@ function Hero({ trending }: any) {
           <motion.img
             key={selected.id}
             className="hero__poster"
-            src={selected.coverImage.extraLarge ?? selected.coverImage.large}
+            src={selected.coverImage.extraLarge ?? selected.coverImage.large ?? undefined}
             alt={title}
             initial={reduceMotion ? undefined : { opacity: 0, y: 14 }}
             animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
@@ -113,7 +114,7 @@ function Hero({ trending }: any) {
             <h1 className="hero__title">{title}</h1>
 
             <div className="hero__tags">
-              {selected.genres.slice(0, 4).map((genre: string) => (
+              {(selected.genres ?? []).slice(0, 4).map((genre) => (
                 <span key={genre} className="hero__tag">
                   {genre}
                 </span>
@@ -146,7 +147,7 @@ function Hero({ trending }: any) {
         {/* Indicators rather than the old banner thumbnails: the poster now
             carries the artwork, and five thumbnails competed with it. */}
         <div className="hero__dots" role="tablist" aria-label="Featured anime">
-          {featured.map((item: any, itemIndex: number) => (
+          {featured.map((item: FeaturedMedia, itemIndex: number) => (
             <button
               key={item.id}
               type="button"

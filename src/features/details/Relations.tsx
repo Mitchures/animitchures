@@ -2,12 +2,21 @@ import './Relations.css';
 
 import Card from 'components/Card';
 
-import { Media, MediaEdge } from 'graphql/types';
+import { Media } from 'graphql/types';
+import { CardMedia } from 'components/Card';
 
-// Determine if media has related anime, no book related relations.
-const getRelations = (relations: any) => {
-  return relations.edges.filter((relation: any) => relation.node.type === 'ANIME');
+/** The part of a relation edge this section reads. */
+type Relation = {
+  id?: number | null;
+  relationType?: string | null;
+  node: CardMedia & { type?: string | null };
 };
+
+// Anime only — the relations list mixes in manga, which nothing here can open.
+const getRelations = (relations: Media['relations']): Relation[] =>
+  ((relations?.edges ?? []) as unknown as Relation[]).filter(
+    (relation) => relation?.node?.type === 'ANIME',
+  );
 
 function Relations({ relations }: Media) {
   return (
@@ -15,7 +24,7 @@ function Relations({ relations }: Media) {
       {relations && relations.edges && getRelations(relations).length > 0 && (
         <>
           <div className="relations__container">
-            {getRelations(relations).map((relation: MediaEdge) => (
+            {getRelations(relations).map((relation) => (
               <Card key={relation.id} {...relation.node} relationType={relation.relationType} />
             ))}
           </div>

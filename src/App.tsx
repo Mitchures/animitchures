@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { FirebaseError } from 'firebase/app';
+import { User as FirebaseUser } from 'firebase/auth';
 import { collection, setDoc, doc, getDoc, DocumentSnapshot } from 'firebase/firestore';
 
 import './App.css';
@@ -42,7 +43,7 @@ function App() {
   const authSettled = signedOut || !!user;
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((authUser: any) => {
+    const unsubscribe = auth.onAuthStateChanged((authUser: FirebaseUser | null) => {
       if (authUser) {
         // user has logged in...
         setSignedOut(false);

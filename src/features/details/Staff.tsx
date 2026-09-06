@@ -4,6 +4,13 @@ import CastChip from './CastChip';
 
 import { Media } from 'graphql/types';
 
+/** The part of a staff edge this section reads. */
+type StaffCredit = {
+  id?: number | null;
+  role?: string | null;
+  node: { name: { userPreferred: string }; image?: { large?: string | null } | null };
+};
+
 function Staff({ staff }: Media) {
   return (
     <div className="staff">
@@ -11,7 +18,7 @@ function Staff({ staff }: Media) {
         <>
           <h3>Staff</h3>
           <div className="staff__container">
-            {staff.edges.map((member: any) => (
+            {(staff.edges as StaffCredit[]).map((member) => (
               // No inset: a crew credit is one person, not a pairing.
               <CastChip
                 key={member.id}

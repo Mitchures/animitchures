@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import './GenreTiles.css';
 
+import { Featured, FeaturedBucket, FeaturedMedia } from 'graphql/featured';
+
 import SectionHeading from 'components/SectionHeading';
 
 const TILE_COUNT = 8;
@@ -33,11 +35,11 @@ const gradientFor = (genre: string) => {
  * loaded for the rails — so the shortcuts reflect what is actually on right
  * now rather than a hardcoded list that slowly goes stale.
  */
-function GenreTiles({ featured }: { featured: Record<string, any> }) {
+function GenreTiles({ featured }: { featured: Featured }) {
   const genres = useMemo(() => {
     const counts = new Map<string, number>();
-    Object.values(featured ?? {}).forEach((bucket: any) => {
-      (bucket?.media ?? []).forEach((media: any) => {
+    Object.values(featured ?? {}).forEach((bucket: FeaturedBucket | undefined) => {
+      (bucket?.media ?? []).forEach((media: FeaturedMedia) => {
         (media?.genres ?? []).forEach((genre: string) => {
           counts.set(genre, (counts.get(genre) ?? 0) + 1);
         });

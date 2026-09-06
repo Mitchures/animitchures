@@ -12,6 +12,9 @@ import { useStateValue } from 'context';
 import { Media } from 'graphql/types';
 import { SEARCH_QUERY } from 'graphql/queries';
 
+/** Just the shape fetchMore has to merge — not the whole query result. */
+type SearchPage = { Page?: { media?: Media[]; pageInfo?: unknown } };
+
 const PER_PAGE = 20;
 const SKELETON_COUNT = 12;
 
@@ -85,12 +88,15 @@ function Results() {
   const loadMore = () =>
     fetchMore({
       variables: { page: (pageInfo?.currentPage ?? 1) + 1 },
-      updateQuery: (previous: any, { fetchMoreResult }: any) => {
+      updateQuery: (
+        previous: SearchPage,
+        { fetchMoreResult }: { fetchMoreResult?: SearchPage },
+      ) => {
         if (!fetchMoreResult) return previous;
         return {
           Page: {
             ...fetchMoreResult.Page,
-            media: [...(previous?.Page?.media ?? []), ...fetchMoreResult.Page.media],
+            media: [...(previous?.Page?.media ?? []), ...(fetchMoreResult.Page?.media ?? [])],
           },
         };
       },

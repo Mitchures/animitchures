@@ -81,6 +81,10 @@ function Features() {
     }
   }, [data]);
 
+  /* Buckets can be absent — the query returns whichever AniList had — so read
+     them through one accessor rather than optional-chaining at every use. */
+  const bucket = (key: string) => featured?.[key]?.media ?? [];
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -92,12 +96,13 @@ function Features() {
         <>
           {/* No "Discover" heading: the rail already says where you are, and it
               only pushed the artwork down the page. */}
-          <Hero {...featured} />
+          <Hero trending={featured.trending} />
           <AiringThisWeek featured={featured} />
-          {featured.trending?.media?.length > 0 && (
+
+          {bucket('trending').length > 0 && (
             <Rail title="Trending now">
-              {featured.trending.media.map((mediaItem: Media) => (
-                <Card key={mediaItem.id} {...mediaItem} />
+              {bucket('trending').map((item) => (
+                <Card key={item.id} {...item} />
               ))}
             </Rail>
           )}
@@ -106,7 +111,7 @@ function Features() {
               are a way in, and nobody scrolls to the bottom to find one. */}
           <GenreTiles featured={featured} />
 
-          {featured.top?.media?.length > 0 && <RankChart media={featured.top.media} />}
+          {bucket('top').length > 0 && <RankChart media={bucket('top')} />}
 
           {/* Each of the remaining sections renders differently, because each
               is sitting on different material: this season has dates but no
@@ -114,11 +119,9 @@ function Features() {
               printing, and top-ranked has an order that says more than its
               scores do. A single Rail for all of them was why the page read as
               five copies of one thing. */}
-          {featured.season?.media?.length > 0 && <PremiereSpine media={featured.season.media} />}
-          {featured.nextSeason?.media?.length > 0 && (
-            <UpcomingSeason media={featured.nextSeason.media} />
-          )}
-          {featured.popular?.media?.length > 0 && <PopularityList media={featured.popular.media} />}
+          {bucket('season').length > 0 && <PremiereSpine media={bucket('season')} />}
+          {bucket('nextSeason').length > 0 && <UpcomingSeason media={bucket('nextSeason')} />}
+          {bucket('popular').length > 0 && <PopularityList media={bucket('popular')} />}
         </>
       ) : (
         <Loader />

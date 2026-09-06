@@ -6,6 +6,14 @@ import { Media } from 'graphql/types';
 import { titleCase } from 'helpers';
 
 /** The shape this component actually reads off an edge's voiceActors. */
+/** The part of a character edge this section reads. */
+type CharacterCredit = {
+  id?: number | null;
+  role?: string | null;
+  node: { name: { userPreferred: string }; image?: { large?: string | null } | null };
+  voiceActors?: VoiceActor[] | null;
+};
+
 type VoiceActor = {
   language?: string | null;
   name?: { userPreferred?: string | null } | null;
@@ -19,7 +27,7 @@ function Characters({ characters }: Media) {
         <>
           <h3>Characters</h3>
           <div className="characters__container">
-            {characters.edges.map((character: any) => {
+            {(characters.edges as CharacterCredit[]).map((character) => {
               // Japanese where there is one — the original performance for
               // almost everything here.
               const actor =
@@ -31,7 +39,7 @@ function Characters({ characters }: Media) {
                   key={character.id}
                   image={character.node.image?.large}
                   name={character.node.name.userPreferred}
-                  meta={titleCase(character.role)}
+                  meta={character.role ? titleCase(character.role) : undefined}
                   insetImage={actor?.image?.large}
                   insetName={actor?.name?.userPreferred}
                 />

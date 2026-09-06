@@ -9,7 +9,7 @@ import { useStateValue } from 'context';
 import { ANILIST_VIEWER_QUERY } from 'graphql/queries';
 import { authHeader } from 'helpers';
 import { db } from 'config';
-import { AccessToken } from 'context/types';
+import { AccessToken, AnilistUser } from 'context/types';
 import { saveAccessToken } from 'api';
 
 function Callback() {
@@ -52,7 +52,7 @@ function Callback() {
     setSkipQuery(false);
   };
 
-  const handleAnilistUser = async (anilist_user: any, userId: string) => {
+  const handleAnilistUser = async (anilist_user: AnilistUser, userId: string) => {
     const collectionRef = collection(db, 'anilist');
     const docRef = doc(collectionRef, `${userId}`);
     setDoc(docRef, anilist_user)
