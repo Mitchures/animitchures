@@ -4,6 +4,7 @@ import {
   Favorite,
   PlaylistPlay,
   InsightsOutlined,
+  CalendarMonthOutlined,
   Settings as SettingsIcon,
   Logout,
   Login,
@@ -45,6 +46,8 @@ export function getNavSections({ user, anilistUser }: Args): NavSection[] {
       heading: 'Menu',
       items: [
         { id: 'discover', label: 'Discover', to: '/', Icon: Explore, end: true },
+        // Public: the schedule is worth having without an account.
+        { id: 'calendar', label: 'Calendar', to: '/calendar', Icon: CalendarMonthOutlined },
         ...(user
           ? [{ id: 'favorites', label: 'Favorites', to: '/favorites', Icon: Favorite }]
           : []),

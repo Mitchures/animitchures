@@ -20,6 +20,7 @@ import StaffPage from 'features/people/StaffPage';
 import CharacterPage from 'features/people/CharacterPage';
 import StudioPage from 'features/studio/StudioPage';
 import Taste from 'features/taste/Taste';
+import Calendar from 'features/calendar/Calendar';
 import Settings from 'features/settings/Settings';
 import Callback from 'views/Callback';
 import ComingSoon from 'views/ComingSoon';
@@ -81,6 +82,7 @@ function App() {
               <Route path="/staff/:id/:name" element={<StaffPage />} />
               <Route path="/character/:id/:name" element={<CharacterPage />} />
               <Route path="/studio/:id/:name" element={<StudioPage />} />
+              <Route path="/calendar" element={<Calendar />} />
               {/* Private Routes */}
               {user && (
                 <>

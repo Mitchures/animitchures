@@ -1457,3 +1457,44 @@ export const TASTE_QUERY = gql`
     }
   }
 `;
+
+/**
+ * Everything airing in a window, for the calendar.
+ *
+ * AniList publishes schedules roughly two weeks ahead, so a month view is
+ * legitimately half empty most of the time — the calendar opens on Week for
+ * that reason. `perPage` is the maximum: a busy day carries close to thirty
+ * airings on its own, and a week of them overruns a single page.
+ */
+export const AIRING_SCHEDULE_QUERY = gql`
+  query AiringSchedule($start: Int!, $end: Int!, $page: Int = 1) {
+    Page(page: $page, perPage: 50) {
+      pageInfo {
+        hasNextPage
+        currentPage
+      }
+      airingSchedules(airingAt_greater: $start, airingAt_lesser: $end, sort: TIME) {
+        id
+        episode
+        airingAt
+        media {
+          id
+          title {
+            userPreferred
+            romaji
+            english
+            native
+          }
+          coverImage {
+            large
+            medium
+          }
+          format
+          episodes
+          averageScore
+          popularity
+        }
+      }
+    }
+  }
+`;
