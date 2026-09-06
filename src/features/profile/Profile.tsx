@@ -8,6 +8,7 @@ import './Profile.css';
 import SectionHeading from 'components/SectionHeading';
 import ActivityHeatmap from './ActivityHeatmap';
 import GenreOverview from './GenreOverview';
+import ProfileSkeleton from './ProfileSkeleton';
 
 import { useStateValue } from 'context';
 import { ANILIST_USER_AND_ACTIVITY_QUERY } from 'graphql/queries';
@@ -91,6 +92,8 @@ function Profile() {
             </div>
           </div>
 
+          {loading && !profile && <ProfileSkeleton />}
+
           <div className="profile__body">
             {!user.anilistLinked && (
               <p className="profile__empty">
@@ -105,7 +108,7 @@ function Profile() {
               </p>
             )}
 
-            {stats && (
+            {!loading && stats && (
               <>
                 <div className="profile__lede">
                   <b>{days}</b>
