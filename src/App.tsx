@@ -6,7 +6,7 @@ import { User as FirebaseUser } from 'firebase/auth';
 import './App.css';
 
 import AppShell from 'layout/AppShell';
-import Loader from 'components/Loader';
+import DiscoverSkeleton from 'features/discover/DiscoverSkeleton';
 
 import Login from 'views/Login';
 import SignUp from 'views/SignUp';
@@ -15,7 +15,7 @@ import Profile from 'features/profile/Profile';
 import Discover from 'features/discover/Discover';
 import Browse from 'features/browse/Browse';
 import Favorites from 'views/Favorites';
-import AnilistWatchlist from 'views/AnilistWatchlist';
+import Watchlist from 'features/watchlist/Watchlist';
 import Settings from 'views/Settings';
 import Callback from 'views/Callback';
 import ComingSoon from 'views/ComingSoon';
@@ -79,7 +79,7 @@ function App() {
                   <Route path="/coming-soon" element={<ComingSoon />} />
                   <Route path="/community" element={<Community />} />
                   <Route path="/favorites" element={<Favorites />} />
-                  <Route path="/anilist-watchlist" element={<AnilistWatchlist />} />
+                  <Route path="/anilist-watchlist" element={<Watchlist />} />
                   <Route path="/profile" element={<Profile />} />
                 </>
               )}
@@ -87,7 +87,10 @@ function App() {
               {/* Unknown routes go to root — but only once auth has settled.
                   Redirecting while it is still resolving is what threw signed-in
                   visitors off their own private routes on a refresh. */}
-              <Route path="*" element={authSettled ? <Navigate to="/" replace /> : <Loader />} />
+              <Route
+                path="*"
+                element={authSettled ? <Navigate to="/" replace /> : <DiscoverSkeleton />}
+              />
             </Route>
           </Routes>
         </AnimatePresence>

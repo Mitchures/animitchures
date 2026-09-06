@@ -1,0 +1,80 @@
+.wlSection {
+  margin-top: 2rem;
+}
+
+.wlSection__head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.7rem;
+}
+
+.wlSection__head h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+}
+
+/* The dot is the status colour language — small enough to be a mark rather
+   than a fill, which keeps five statuses from turning the page into a chart. */
+.wlSection__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex: none;
+  background-color: var(--secondary);
+}
+
+.wlSection__dot--current {
+  background-color: var(--action);
+}
+.wlSection__dot--completed {
+  background-color: var(--score-great);
+}
+.wlSection__dot--paused {
+  background-color: var(--score-mixed);
+}
+.wlSection__dot--dropped {
+  background-color: var(--score-poor);
+}
+
+.wlSection__count {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.wlSection__items {
+  display: flex;
+  flex-direction: column;
+}
+
+.wlSection__toggle {
+  /* See UpNextCard.css — the global `button` rule sets width/height. */
+  width: auto;
+  height: auto;
+  margin-top: 0.7rem;
+  border: 1px solid var(--row-rule, rgba(255, 255, 255, 0.12));
+  border-radius: 999px;
+  background: none;
+  color: var(--secondary);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.wlSection__toggle:hover {
+  opacity: 1;
+  color: var(--action) !important;
+  border-color: var(--action);
+}
+
+@media (prefers-color-scheme: light) {
+  .wlSection__toggle {
+    --row-rule: rgba(11, 22, 33, 0.15);
+  }
+}

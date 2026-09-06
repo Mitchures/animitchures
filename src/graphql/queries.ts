@@ -827,6 +827,10 @@ export const ANILIST_USER_MEDIA_LIST_COLLECTION_QUERY = gql`
       countryOfOrigin
       genres
       bannerImage
+      nextAiringEpisode {
+        episode
+        airingAt
+      }
       startDate {
         year
         month
