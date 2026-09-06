@@ -1,0 +1,45 @@
+.settingsGroup {
+  border: 1px solid var(--group-rule, rgba(255, 255, 255, 0.12));
+  border-radius: 14px;
+  padding: 0.3rem 1.1rem 1rem;
+  margin-bottom: 0.9rem;
+}
+
+.settingsGroup > header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  padding: 0.95rem 0 0.55rem;
+  border-bottom: 1px solid var(--group-rule, rgba(255, 255, 255, 0.1));
+  margin-bottom: 0.35rem;
+}
+
+.settingsGroup > header h3 {
+  margin: 0;
+  font-size: 0.96rem;
+  font-weight: 800;
+}
+
+.settingsGroup > header span {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+/* Tinted because everything inside leaves the app — worth showing rather
+   than hiding behind identical chrome. */
+.settingsGroup--external {
+  border-color: color-mix(in srgb, var(--action) 40%, transparent);
+  background-color: color-mix(in srgb, var(--action) 5%, transparent);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) .settingsGroup {
+    --group-rule: rgba(11, 22, 33, 0.14);
+  }
+}
+
+:root[data-theme='light'] .settingsGroup {
+  --group-rule: rgba(11, 22, 33, 0.14);
+}

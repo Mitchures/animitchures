@@ -3,13 +3,13 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { collection, setDoc, doc } from 'firebase/firestore';
 
-import Loader from 'components/Loader';
+import './Callback.css';
 
 import { useStateValue } from 'context';
 import { ANILIST_VIEWER_QUERY } from 'graphql/queries';
 import { authHeader } from 'helpers';
 import { db } from 'config';
-import { AccessToken } from 'context/types';
+import { AccessToken, AnilistUser } from 'context/types';
 import { saveAccessToken } from 'api';
 
 function Callback() {
@@ -52,18 +52,26 @@ function Callback() {
     setSkipQuery(false);
   };
 
-  const handleAnilistUser = async (anilist_user: any, userId: string) => {
-    const collectionRef = collection(db, 'anilist');
-    const docRef = doc(collectionRef, `${userId}`);
-    setDoc(docRef, anilist_user)
-      .then(() => {
-        dispatch({
-          type: 'set_anilist_user',
-          anilist_user,
-        });
-      })
-      .then(() => navigate('/settings'))
-      .catch((error) => alert(error.message));
+  const handleAnilistUser = async (anilist_user: AnilistUser, userId: string) => {
+    try {
+      await setDoc(doc(collection(db, 'anilist'), `${userId}`), anilist_user);
+
+      // Set the flag here rather than leaving it to the linkedAnilistAccount
+      // Cloud Function. That trigger fires onCreate, so re-linking an account
+      // overwrites the document without firing it — and it does nothing at all
+      // unless functions are deployed. Linking should not depend on either.
+      await setDoc(
+        doc(collection(db, 'users'), `${userId}`),
+        { anilistLinked: true },
+        { merge: true },
+      );
+
+      dispatch({ type: 'set_anilist_user', anilist_user });
+      if (user) dispatch({ type: 'update_user', user: { ...user, anilistLinked: true } });
+      navigate('/settings');
+    } catch (error) {
+      alert((error as Error).message);
+    }
   };
 
   useEffect(() => {
@@ -82,7 +90,10 @@ function Callback() {
     }
   }, [data, user]);
 
-  return <Loader />;
+  // Not a skeleton: a skeleton promises "content of this shape is arriving
+  // here", and nothing arrives here — the page exchanges the code and
+  // redirects to settings. So it says what it is doing instead.
+  return <p className="callback">Linking your AniList account\u2026</p>;
 }
 
 export default Callback;

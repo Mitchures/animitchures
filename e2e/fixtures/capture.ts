@@ -63,7 +63,7 @@ async function capturePublic(browser: Browser, seen: Set<string>): Promise<void>
   await page.locator('.spotlight__result').first().waitFor({ timeout: 25_000 });
   await page.waitForTimeout(1500);
   await page.locator('.spotlight__all').click();
-  await page.locator('.results__container .card').first().waitFor({ timeout: 25_000 });
+  await page.locator('.browse__container .card').first().waitFor({ timeout: 25_000 });
   await page.waitForTimeout(2500);
 
   await context.close();

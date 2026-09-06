@@ -1,0 +1,126 @@
+.rolePair {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 12px;
+  background-color: var(--pair-surface, rgba(255, 255, 255, 0.04));
+  transition: var(--transition);
+}
+
+.rolePair:hover {
+  background-color: var(--pair-surface-hover, rgba(255, 255, 255, 0.075));
+}
+
+/* Round and larger than the poster beside it: the face is the subject here,
+   the show is the context. */
+.rolePair__face {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid color-mix(in srgb, var(--action) 55%, transparent);
+}
+
+.rolePair__face > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Portraits are framed head-and-shoulders, so a centred crop cuts the chin. */
+  object-position: top;
+  display: block;
+  transition: var(--transition);
+}
+
+.rolePair:hover .rolePair__face > img {
+  transform: scale(1.08);
+}
+
+.rolePair__body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.rolePair__name {
+  display: block;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rolePair__name:hover {
+  color: var(--action) !important;
+}
+
+/* The pair is the click target; the title and poster are a second
+   destination and sit above the overlay. */
+.rolePair__name::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.rolePair__show,
+.rolePair__poster {
+  position: relative;
+  z-index: 2;
+}
+
+.rolePair__show,
+.rolePair__note {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rolePair__show:hover {
+  color: var(--action) !important;
+}
+
+.rolePair__poster {
+  flex: none;
+  width: 36px;
+  aspect-ratio: 2 / 3;
+  border-radius: 5px;
+  overflow: hidden;
+  opacity: 0.85;
+}
+
+.rolePair__poster > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.rolePair:hover .rolePair__poster {
+  opacity: 1;
+}
+
+@media (prefers-color-scheme: light) {
+  .rolePair {
+    --pair-surface: rgba(11, 22, 33, 0.05);
+    --pair-surface-hover: rgba(11, 22, 33, 0.09);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rolePair,
+  .rolePair__face > img {
+    transition: none;
+  }
+
+  .rolePair:hover .rolePair__face > img {
+    transform: none;
+  }
+}

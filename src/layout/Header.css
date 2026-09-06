@@ -1,0 +1,153 @@
+/* Desktop has no header: search is the spotlight overlay, and the logo and
+   account controls live in the rail. It returns below 960px, where the rail is
+   hidden and the logo and menu button have nowhere else to go. */
+.header {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.05); */
+  height: var(--header-height);
+  width: 100%;
+  /* Sticky so search and profile stay reachable. Translucent so the Details
+     banner passes beneath rather than colliding with it. */
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background-color: rgba(237, 238, 247, 0.72);
+  backdrop-filter: blur(16px);
+  /* backdrop-filter: blur(20px); */
+}
+
+/* Both are mobile-only affordances: the sidebar carries the logo on desktop,
+   and the overlay menu it opens is unreachable above 960px. */
+.header__mark {
+  display: none;
+}
+
+.header__menuButton {
+  display: none;
+}
+
+.header a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+.header__left {
+  flex: 0.5;
+  display: flex;
+  align-items: center;
+}
+
+.header__left > a {
+  display: flex;
+  align-items: center;
+  /* margin-left: 1.5rem; */
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.header__left > a > span {
+  color: var(--action);
+  /* font-size: 40px; */
+}
+
+.header__left > a > svg {
+  object-fit: contain;
+  height: 36px;
+}
+
+.header__left > a > svg .cls-1 {
+  fill: #f2f2f2;
+}
+
+.header__left > a > svg .cls-2 {
+  fill: #d1d1d1;
+}
+
+.header__left > a > svg .cls-3 {
+  fill: #3f4963;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .header {
+    background-color: rgba(11, 22, 33, 0.72);
+    /* border-bottom: 1px solid rgba(255, 255, 255, 0.15); */
+  }
+
+  :root:not([data-theme='light']) .header__left > a {
+    color: white;
+  }
+
+  :root:not([data-theme='light']) .header__left > a > svg {
+    /* fill: white; */
+  }
+}
+
+:root[data-theme='dark'] .header {
+  background-color: rgba(11, 22, 33, 0.72);
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.15); */
+}
+
+:root[data-theme='dark'] .header__left > a {
+  color: white;
+}
+
+:root[data-theme='dark'] .header__left > a > svg {
+  /* fill: white; */
+}
+
+@media screen and (max-width: 960px) {
+  .header {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0 1rem;
+  }
+
+  .header__mark {
+    display: flex;
+    align-items: center;
+    flex: none;
+  }
+
+  .header__mark img {
+    width: 38px;
+  }
+
+  .header__left {
+    flex: 1;
+  }
+
+  /* Notifications, avatar and name move into the overlay's footer. */
+  /* Matches .navigation__icon in the sidebar so the two read as one system. */
+  .header__menuButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 48px;
+    min-width: 48px;
+    height: 48px;
+    padding: 0.75rem;
+    color: var(--secondary);
+    border-radius: 18px;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .header__menuButton svg {
+    font-size: 24px;
+  }
+
+  .header__menuButton:hover {
+    color: white;
+    background-color: var(--action);
+  }
+}
+
+@media screen and (max-width: 960px) and (prefers-color-scheme: dark) {
+  .header__menuButton {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}

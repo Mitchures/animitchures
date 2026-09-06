@@ -1,0 +1,361 @@
+.navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Out of flow PERMANENTLY, with .app__body reserving the space via margin.
+     Going absolute only on hover would collapse the gap and shift the whole page
+     sideways mid-hover — measured, not theorised. */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 120;
+  width: var(--rail-width);
+  overflow-x: hidden;
+  transition: width 0.22s cubic-bezier(0.2, 0.7, 0.3, 1);
+  overflow-y: scroll;
+  /* height: calc(100vh - 80px); */
+  height: 100vh;
+  height: 100dvh;
+  padding-bottom: 1rem;
+  background-color: rgba(99, 102, 241, 0.05);
+  /* border-right: 1px solid rgba(0, 0, 0, 0.05); */
+  /* background-color: #F0F3FC; */
+  /* border-top-right-radius: 4rem; */
+  /* border-bottom-right-radius: 4rem; */
+}
+
+/* Hover changes width only. Because the rail is already out of flow, the content
+   beneath never moves. */
+.navigation:hover {
+  width: var(--rail-width-expanded);
+  background-color: #f2f3fb;
+  box-shadow: 8px 0 32px rgba(0, 0, 0, 0.18);
+}
+
+.navigation__logo {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 800;
+  /* Collapsed the rail is 72px, so the mark is centred; expanded it returns to
+     the left edge alongside the wordmark. */
+  justify-content: center;
+  padding: 1.75rem 0 1.5rem;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.navigation:hover .navigation__logo {
+  justify-content: flex-start;
+  padding-left: 1.375rem;
+}
+
+.navigation__logo > img {
+  width: 34px;
+  flex: none;
+}
+
+.navigation:hover .navigation__logo > img {
+  margin-right: 0.875rem;
+}
+
+.navigation__wordmark > span {
+  color: var(--action);
+  font-weight: 800;
+}
+
+/* Removed from layout, not merely transparent: at opacity 0 they still occupy
+   space, which pushed the icons off-centre and clipped the logo mark. */
+.navigation__wordmark,
+.navigation__container ul li a span {
+  display: none;
+}
+
+.navigation:hover .navigation__wordmark,
+.navigation:hover .navigation__container ul li a span {
+  display: inline;
+}
+
+/* Section headings are removed from layout, not merely hidden: at opacity 0 they
+   still reserve a box, which left conspicuous gaps between the collapsed icons. */
+.navigation__container h5 {
+  display: none;
+}
+
+.navigation:hover .navigation__container h5 {
+  display: block;
+}
+
+.navigation__container {
+  padding: 0.5rem 0 1rem;
+}
+
+.navigation__container h5 {
+  font-weight: 600;
+  /* Matches the nav links' indent so headings and icons share a left edge. */
+  padding: 0 0 0.875rem 1.375rem;
+  white-space: nowrap;
+}
+
+.navigation__container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.navigation:hover .navigation__container ul {
+  padding: 0 0 1.25rem;
+}
+
+.navigation__container ul li {
+  padding: 0.375rem 0;
+}
+
+.navigation:hover .navigation__container ul li {
+  padding: 0.5rem 0;
+}
+
+.navigation__container ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  color: var(--secondary);
+}
+
+.navigation:hover .navigation__container ul li a {
+  justify-content: flex-start;
+  padding-left: 1.375rem;
+}
+
+.navigation__container ul li a .navigation__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 0.75rem;
+  border-radius: 18px;
+}
+
+.navigation__container ul li a svg {
+  font-size: 24px;
+}
+
+.navigation__container ul li a span {
+  margin-left: 1rem;
+}
+
+.navigation__container ul li a:hover .navigation__icon {
+  background-color: var(--action);
+  color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* The expanded rail overlays content, so it needs an opaque ground of its own
+     or the page shows through it. */
+  :root:not([data-theme='light']) .navigation:hover {
+    background-color: #121c2b;
+    box-shadow: 8px 0 32px rgba(0, 0, 0, 0.45);
+  }
+
+  :root:not([data-theme='light']) .navigation {
+    /* background-color: rgba(255, 255, 255, 0.025); */
+    /* background-color: #1d1d1f; */
+    /* border-right: 1px solid rgba(255, 255, 255, 0.15); */
+  }
+
+  :root:not([data-theme='light']) .navigation__logo {
+    color: white;
+  }
+
+  :root:not([data-theme='light']) /* .navigation__container ul li a:hover span {
+    color: white;
+  } :root:not([data-theme='light']) */
+
+  .navigation__container ul li a .navigation__icon {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* The expanded rail overlays content, so it needs an opaque ground of its own
+     or the page shows through it. */
+:root[data-theme='dark'] .navigation:hover {
+  background-color: #121c2b;
+  box-shadow: 8px 0 32px rgba(0, 0, 0, 0.45);
+}
+
+:root[data-theme='dark'] .navigation {
+  /* background-color: rgba(255, 255, 255, 0.025); */
+  /* background-color: #1d1d1f; */
+  /* border-right: 1px solid rgba(255, 255, 255, 0.15); */
+}
+
+:root[data-theme='dark'] .navigation__logo {
+  color: white;
+}
+
+:root[data-theme='dark'] /* .navigation__container ul li a:hover span {
+    color: white;
+  } :root[data-theme='dark'] */
+
+  .navigation__container ul li a .navigation__icon {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+@media screen and (max-width: 960px) {
+  .navigation {
+    display: none;
+  }
+}
+
+/* Identity and notifications, pinned to the bottom of the rail. margin-top:auto
+   pushes them down; the rail is already a flex column at full height. */
+.navigation__footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.navigation__action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Overrides the global button rules in App.css (100% width, 54px tall, indigo
+     background), so the notifications button matches the nav links exactly. */
+  width: 100%;
+  height: auto;
+  padding: 0.375rem 0;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  color: var(--secondary);
+  background: none;
+  border-radius: 0;
+  white-space: nowrap;
+}
+
+.navigation__action:hover {
+  opacity: 1;
+  color: var(--action);
+}
+
+/* .navigation__icon is otherwise scoped to the nav list, so the footer icon would
+   render bare without this. */
+.navigation__action .navigation__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  padding: 0.75rem;
+  border-radius: 18px;
+  background-color: rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+}
+
+.navigation__action .navigation__icon svg {
+  font-size: 24px;
+}
+
+.navigation:hover .navigation__action {
+  justify-content: flex-start;
+  padding-left: 1.375rem;
+}
+
+/* Hidden while collapsed for the same reason as the nav labels: at opacity 0 they
+   would still occupy space and push the icon off-centre. */
+.navigation__action span {
+  display: none;
+}
+
+.navigation:hover .navigation__action span {
+  display: inline;
+  margin-left: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 48px matches .navigation__icon exactly (24px glyph + 0.75rem padding each
+   side), so the avatar occupies the same footprint as every other rail control
+   and the column reads as one consistent stack. */
+.navigation__avatar {
+  height: 48px !important;
+  width: 48px !important;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.navigation__action:hover .navigation__avatar {
+  border-color: var(--action);
+}
+
+.navigation__action:hover .navigation__icon {
+  background-color: var(--action);
+  color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .navigation__footer {
+    border-top-color: rgba(255, 255, 255, 0.08);
+  }
+
+  :root:not([data-theme='light']) .navigation__action .navigation__icon {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+:root[data-theme='dark'] .navigation__footer {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+:root[data-theme='dark'] .navigation__action .navigation__icon {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Active state for the footer items.
+   The global `a.active div` rule in App.css paints any child div with the
+   action colour — which is right for the icon pills, but the avatar is also a
+   div. Left alone, MUI's fallback initial (action-coloured text, inherited from
+   `a.active`) lands on an action-coloured circle and disappears. Forcing the
+   glyph white matches how the icon pills already render when active, and the
+   ring keeps the state legible for avatars that do have a photo. */
+.navigation__action.active .navigation__avatar {
+  color: #fff !important;
+  border-color: var(--action);
+}
+
+/* Search is a tool, not a destination, so it sits above the Menu heading with a
+   rule under it rather than joining the list. Anchored in the rail — which
+   already reserves its own width — it cannot overlap content, collide with the
+   sticky tab bar, or need to move when the rail expands. */ /* Three states, matching the destinations above it: grey at rest, action colour
+   on hover, and the selected treatment while the spotlight is open — the rail
+   shows you where you are, and search being open is one of those places.
+   Written out rather than relying on App.css's `a.active`, which only targets
+   anchors; this is a button. */
+.navigation__search.active .navigation__icon {
+  color: white;
+  background-color: var(--action);
+}
+
+.navigation__search.active span {
+  color: var(--primary);
+}
+
+.navigation__search {
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.875rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .navigation__search {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+  }
+}
+
+:root[data-theme='dark'] .navigation__search {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}

@@ -1,0 +1,46 @@
+.socialSkeleton {
+  padding: 1.5rem var(--x-axis-spacing) 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.socialSkeleton__faces {
+  display: flex;
+  gap: 1rem;
+}
+
+.socialSkeleton__face {
+  width: 66px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.socialSkeleton__feed {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.socialSkeleton__row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.55rem 0.6rem;
+}
+
+.socialSkeleton__body {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+@media screen and (max-width: 700px) {
+  .socialSkeleton__body > span:last-child {
+    display: none;
+  }
+}

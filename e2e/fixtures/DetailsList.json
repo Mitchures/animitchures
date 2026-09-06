@@ -1,68 +1,71 @@
 {
-  "data": {
-    "Page": {
-      "pageInfo": {
-        "total": 3,
-        "perPage": 15,
-        "currentPage": 1,
-        "lastPage": 1,
-        "hasNextPage": false,
-        "__typename": "PageInfo"
-      },
-      "media": [
-        {
-          "id": 1,
-          "isAdult": false,
-          "title": {
-            "userPreferred": "Cowboy Bebop",
-            "english": "Cowboy Bebop",
-            "romaji": "Cowboy Bebop",
-            "__typename": "MediaTitle"
-          },
-          "coverImage": {
-            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1-GCsPm7waJ4kS.png",
-            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1-GCsPm7waJ4kS.png",
-            "__typename": "MediaCoverImage"
-          },
-          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/1-OquNCNB6srGe.jpg",
-          "__typename": "Media"
-        },
-        {
-          "id": 5114,
-          "isAdult": false,
-          "title": {
-            "userPreferred": "Hagane no Renkinjutsushi: FULLMETAL ALCHEMIST",
-            "english": "Fullmetal Alchemist: Brotherhood",
-            "romaji": "Hagane no Renkinjutsushi: FULLMETAL ALCHEMIST",
-            "__typename": "MediaTitle"
-          },
-          "coverImage": {
-            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx5114-nSWCgQlmOMtj.jpg",
-            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx5114-nSWCgQlmOMtj.jpg",
-            "__typename": "MediaCoverImage"
-          },
-          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/5114-q0V5URebphSG.jpg",
-          "__typename": "Media"
-        },
-        {
-          "id": 9253,
-          "isAdult": false,
-          "title": {
-            "userPreferred": "Steins;Gate",
-            "english": "Steins;Gate",
-            "romaji": "Steins;Gate",
-            "__typename": "MediaTitle"
-          },
-          "coverImage": {
-            "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx9253-tIUXF2gfU8Sg.jpg",
-            "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx9253-tIUXF2gfU8Sg.jpg",
-            "__typename": "MediaCoverImage"
-          },
-          "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/n9253-JIhmKgBKsWUN.jpg",
-          "__typename": "Media"
-        }
-      ],
-      "__typename": "Page"
+ "data": {
+  "Page": {
+   "pageInfo": {
+    "total": 3,
+    "perPage": 15,
+    "currentPage": 1,
+    "lastPage": 1,
+    "hasNextPage": false,
+    "__typename": "PageInfo"
+   },
+   "media": [
+    {
+     "id": 1,
+     "isAdult": false,
+     "title": {
+      "userPreferred": "Cowboy Bebop",
+      "english": "Cowboy Bebop",
+      "romaji": "Cowboy Bebop",
+      "__typename": "MediaTitle",
+      "native": "\u30ab\u30a6\u30dc\u30fc\u30a4\u30d3\u30d0\u30c3\u30d7"
+     },
+     "coverImage": {
+      "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1-GCsPm7waJ4kS.png",
+      "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1-GCsPm7waJ4kS.png",
+      "__typename": "MediaCoverImage"
+     },
+     "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/1-OquNCNB6srGe.jpg",
+     "__typename": "Media"
+    },
+    {
+     "id": 5114,
+     "isAdult": false,
+     "title": {
+      "userPreferred": "Hagane no Renkinjutsushi: FULLMETAL ALCHEMIST",
+      "english": "Fullmetal Alchemist: Brotherhood",
+      "romaji": "Hagane no Renkinjutsushi: FULLMETAL ALCHEMIST",
+      "__typename": "MediaTitle",
+      "native": "\u92fc\u306e\u932c\u91d1\u8853\u5e2b FULLMETAL ALCHEMIST"
+     },
+     "coverImage": {
+      "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx5114-nSWCgQlmOMtj.jpg",
+      "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx5114-nSWCgQlmOMtj.jpg",
+      "__typename": "MediaCoverImage"
+     },
+     "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/5114-q0V5URebphSG.jpg",
+     "__typename": "Media"
+    },
+    {
+     "id": 9253,
+     "isAdult": false,
+     "title": {
+      "userPreferred": "Steins;Gate",
+      "english": "Steins;Gate",
+      "romaji": "Steins;Gate",
+      "__typename": "MediaTitle",
+      "native": "\u30b7\u30e5\u30bf\u30a4\u30f3\u30ba\u30fb\u30b2\u30fc\u30c8"
+     },
+     "coverImage": {
+      "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx9253-tIUXF2gfU8Sg.jpg",
+      "large": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx9253-tIUXF2gfU8Sg.jpg",
+      "__typename": "MediaCoverImage"
+     },
+     "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/n9253-JIhmKgBKsWUN.jpg",
+     "__typename": "Media"
     }
+   ],
+   "__typename": "Page"
   }
+ }
 }

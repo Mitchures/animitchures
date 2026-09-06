@@ -1,0 +1,309 @@
+.calendar {
+  height: calc(100vh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
+  overflow-y: auto;
+  padding: 1.25rem var(--x-axis-spacing) 3rem;
+}
+
+.calendar__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.calendar__when {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.calendar__when h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  /* Fixed so the arrows do not shuffle as the label's width changes. */
+  min-width: 210px;
+}
+
+.calendar__arrow,
+.calendar__today,
+.calendar__view,
+.calendar__more {
+  /* App.css styles every bare button as a full-width 54px form control. */
+  width: auto;
+  height: auto;
+  border: none;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.calendar__arrow {
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 0 0.35rem;
+  color: var(--secondary);
+  border-radius: 8px;
+}
+
+.calendar__arrow:hover,
+.calendar__today:hover {
+  opacity: 1;
+  color: var(--action) !important;
+}
+
+.calendar__today {
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: var(--secondary);
+  border: 1px solid var(--rule, rgba(255, 255, 255, 0.14));
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  margin-left: 0.4rem;
+}
+
+.calendar__views {
+  display: inline-flex;
+  gap: 0.2rem;
+  padding: 0.2rem;
+  border-radius: 9px;
+  background-color: var(--chip, rgba(255, 255, 255, 0.06));
+}
+
+.calendar__view {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--secondary);
+  border-radius: 7px;
+  padding: 0.32rem 0.75rem;
+}
+
+.calendar__view:hover {
+  opacity: 1;
+  color: var(--action) !important;
+}
+
+.calendar__view.is-active {
+  background-color: var(--action);
+  color: #fff !important;
+}
+
+.calendar__weekdays,
+.calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.calendar__weekdays > span {
+  font-size: 0.66rem;
+  font-weight: 800;
+  color: var(--secondary);
+  padding-left: 0.35rem;
+  margin-bottom: 0.3rem;
+}
+
+.calendar__cell {
+  background-color: var(--cell, rgba(255, 255, 255, 0.035));
+  border-radius: 9px;
+  padding: 0.4rem 0.35rem;
+  min-height: 112px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+/* The week has seven cells and the whole page to fill, so its cells are tall
+   and its chips carry the episode number. The month packs 35. */
+.calendar__grid--week .calendar__cell {
+  min-height: 62vh;
+  overflow-y: auto;
+  gap: 0.3rem;
+}
+
+.calendar__cell.is-today {
+  background-color: color-mix(in srgb, var(--action) 14%, transparent);
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--action) 50%, transparent);
+}
+
+.calendar__cell.is-outside {
+  opacity: 0.45;
+}
+
+.calendar__date {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--secondary);
+  padding-left: 0.2rem;
+  margin-bottom: 0.15rem;
+}
+
+.calendar__cell.is-today .calendar__date {
+  color: var(--action);
+}
+
+.calendar__chip {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: inherit;
+  border-radius: 6px;
+  padding: 0.15rem;
+}
+
+.calendar__chip:hover {
+  background-color: var(--chip, rgba(255, 255, 255, 0.07));
+}
+
+.calendar__chip > img {
+  width: 30px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 4px;
+  flex: none;
+}
+
+.calendar__chip--compact > img {
+  width: 15px;
+  border-radius: 2px;
+}
+
+.calendar__chipBody {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar__chipBody > b {
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: var(--action);
+  font-variant-numeric: tabular-nums;
+}
+
+.calendar__chipTitle {
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.calendar__chip--compact .calendar__chipBody {
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.calendar__chip--compact .calendar__chipTitle {
+  font-size: 0.6rem;
+  -webkit-line-clamp: 1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.calendar__chipBody > em {
+  font-style: normal;
+  font-size: 0.6rem;
+  color: var(--secondary);
+}
+
+.calendar__more {
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: var(--secondary);
+  text-align: left;
+  padding: 0.1rem 0.2rem;
+}
+
+.calendar__more:hover {
+  opacity: 1;
+  color: var(--action) !important;
+}
+
+.calendar__none {
+  font-size: 0.7rem;
+  color: var(--secondary);
+  opacity: 0.3;
+  padding-left: 0.25rem;
+}
+
+.calendar__agenda > section {
+  margin-bottom: 1.5rem;
+}
+
+.calendar__agenda h3 {
+  margin: 0 0 0.6rem;
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.calendar__agenda h3.is-today {
+  color: var(--action);
+}
+
+.calendar__agendaList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.4rem;
+}
+
+.calendar__empty {
+  display: grid;
+  place-content: center;
+  height: 40vh;
+  color: var(--secondary);
+}
+
+/* Light is the base; both dark routes override it. */
+.calendar {
+  --cell: rgba(11, 22, 33, 0.045);
+  --chip: rgba(11, 22, 33, 0.07);
+  --rule: rgba(11, 22, 33, 0.16);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .calendar {
+    --cell: rgba(255, 255, 255, 0.035);
+    --chip: rgba(255, 255, 255, 0.07);
+    --rule: rgba(255, 255, 255, 0.14);
+  }
+}
+
+:root[data-theme='dark'] .calendar {
+  --cell: rgba(255, 255, 255, 0.035);
+  --chip: rgba(255, 255, 255, 0.07);
+  --rule: rgba(255, 255, 255, 0.14);
+}
+
+@media screen and (max-width: 860px) {
+  /* Seven columns of anything legible does not fit a phone. The week becomes
+     a single column of days, which is what the agenda already is — so below
+     this width the two views converge by design. */
+  .calendar__weekdays {
+    display: none;
+  }
+
+  .calendar__grid--week {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .calendar__grid--week .calendar__cell {
+    min-height: 0;
+  }
+
+  .calendar__grid--month {
+    gap: 2px;
+  }
+
+  .calendar__grid--month .calendar__chipTitle {
+    display: none;
+  }
+}

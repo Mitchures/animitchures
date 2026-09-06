@@ -23,14 +23,14 @@ test.describe('search spotlight', () => {
     const banner = await page.locator('.details__banner').boundingBox();
     expect(Math.round(banner?.y ?? -1)).toBe(0);
 
-    // The trigger is anchored in the rail, which reserves its own width — so it
-    // cannot overlap the banner or the sticky tab bar the way a floating
-    // control did.
-    const trigger = page.locator('.navigation__search');
+    // The trigger is a floating action button pinned bottom-right, clear of
+    // the banner and the sticky tab bar at the top of the page.
+    const trigger = page.locator('.searchFab');
     await expect(trigger).toBeVisible();
-    const rail = await page.locator('.navigation').boundingBox();
-    const key = await trigger.boundingBox();
-    expect(key!.x + key!.width).toBeLessThanOrEqual(Math.ceil(rail!.x + rail!.width));
+    const fab = (await trigger.boundingBox())!;
+    const viewport = page.viewportSize()!;
+    expect(fab.x).toBeGreaterThan(viewport.width / 2);
+    expect(fab.y).toBeGreaterThan(viewport.height / 2);
   });
 
   test('opens with the keyboard and closes with escape', async ({ page }) => {
@@ -62,7 +62,7 @@ test.describe('search spotlight', () => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.hero')).toBeVisible({ timeout: 20_000 });
 
-    await page.locator('.navigation__search').click();
+    await page.locator('.searchFab').click();
     await page.locator('.spotlight__field input').fill('frieren');
 
     const results = page.locator('.spotlight__result');
@@ -84,12 +84,12 @@ test.describe('search spotlight', () => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.hero')).toBeVisible({ timeout: 20_000 });
 
-    await page.locator('.navigation__search').click();
+    await page.locator('.searchFab').click();
     await page.locator('.spotlight__field input').fill('frieren');
     await expect(page.locator('.spotlight__result').first()).toBeVisible({ timeout: 20_000 });
     await page.keyboard.press('Escape');
 
-    await page.locator('.navigation__search').click();
+    await page.locator('.searchFab').click();
     // Apollo keeps the last response, so results have to be gated on the
     // current term or the previous search's posters are still sitting there.
     await expect(page.locator('.spotlight__result')).toHaveCount(0);
@@ -100,7 +100,7 @@ test.describe('search spotlight', () => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.hero')).toBeVisible({ timeout: 20_000 });
 
-    await page.locator('.navigation__search').click();
+    await page.locator('.searchFab').click();
     await page.locator('.spotlight__field input').fill('frieren');
     await expect(page.locator('.spotlight__result').first()).toBeVisible({ timeout: 20_000 });
 
@@ -116,7 +116,9 @@ test.describe('search on mobile', () => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.header')).toBeVisible({ timeout: 20_000 });
     await expect(page.locator('.header .search input')).toBeVisible();
-    // The rail carries the spotlight trigger and the rail is hidden here.
     await expect(page.locator('.navigation')).toBeHidden();
+    // The spotlight trigger used to live in the rail, so it disappeared with
+    // it below 960px. As a FAB it survives, which is half the reason it moved.
+    await expect(page.locator('.searchFab')).toBeVisible();
   });
 });

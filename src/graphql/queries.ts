@@ -52,6 +52,8 @@ export const FEATURED_QUERY = gql`
     title {
       english
       userPreferred
+      romaji
+      native
     }
     coverImage {
       extraLarge
@@ -180,6 +182,8 @@ export const SEARCH_QUERY = gql`
         title {
           english
           userPreferred
+          romaji
+          native
         }
         coverImage {
           extraLarge
@@ -250,6 +254,7 @@ export const DETAILS_LIST_QUERY = gql`
           userPreferred
           english
           romaji
+          native
         }
         coverImage {
           extraLarge
@@ -269,6 +274,8 @@ export const DETAILS_QUERY = gql`
       title {
         userPreferred
         english
+        romaji
+        native
       }
       coverImage {
         extraLarge
@@ -344,6 +351,8 @@ export const DETAILS_EXTENDED_QUERY = gql`
             title {
               english
               userPreferred
+              romaji
+              native
             }
             format
             type
@@ -364,6 +373,7 @@ export const DETAILS_EXTENDED_QUERY = gql`
             id
             name {
               userPreferred
+              native
             }
             language: languageV2
             image {
@@ -374,6 +384,7 @@ export const DETAILS_EXTENDED_QUERY = gql`
             id
             name {
               userPreferred
+              native
             }
             image {
               large
@@ -389,6 +400,7 @@ export const DETAILS_EXTENDED_QUERY = gql`
             id
             name {
               userPreferred
+              native
             }
             language: languageV2
             image {
@@ -436,6 +448,9 @@ export const DETAILS_EXTENDED_QUERY = gql`
             id
             title {
               userPreferred
+              romaji
+              english
+              native
             }
             format
             type
@@ -546,6 +561,9 @@ export const ANILIST_USER_AND_ACTIVITY_QUERY = gql`
             bannerImage
             title {
               userPreferred
+              romaji
+              english
+              native
             }
             coverImage {
               large
@@ -667,6 +685,9 @@ export const ANILIST_USER_AND_ACTIVITY_QUERY = gql`
               bannerImage
               title {
                 userPreferred
+                romaji
+                english
+                native
               }
               coverImage {
                 large
@@ -689,6 +710,9 @@ export const ANILIST_USER_AND_ACTIVITY_QUERY = gql`
               bannerImage
               title {
                 userPreferred
+                romaji
+                english
+                native
               }
               coverImage {
                 large
@@ -706,6 +730,7 @@ export const ANILIST_USER_AND_ACTIVITY_QUERY = gql`
               id
               name {
                 userPreferred
+                native
               }
               image {
                 large
@@ -720,6 +745,7 @@ export const ANILIST_USER_AND_ACTIVITY_QUERY = gql`
               id
               name {
                 userPreferred
+                native
               }
               image {
                 large
@@ -827,6 +853,10 @@ export const ANILIST_USER_MEDIA_LIST_COLLECTION_QUERY = gql`
       countryOfOrigin
       genres
       bannerImage
+      nextAiringEpisode {
+        episode
+        airingAt
+      }
       startDate {
         year
         month
@@ -905,6 +935,9 @@ export const ANILIST_USER_NOTIFICATIONS_QUERY = gql`
             bannerImage
             title {
               userPreferred
+              romaji
+              english
+              native
             }
             coverImage {
               large
@@ -922,6 +955,9 @@ export const ANILIST_USER_NOTIFICATIONS_QUERY = gql`
             bannerImage
             title {
               userPreferred
+              romaji
+              english
+              native
             }
             coverImage {
               large
@@ -1125,6 +1161,9 @@ export const ANILIST_USER_NOTIFICATIONS_QUERY = gql`
             bannerImage
             title {
               userPreferred
+              romaji
+              english
+              native
             }
             coverImage {
               large
@@ -1143,6 +1182,9 @@ export const ANILIST_USER_NOTIFICATIONS_QUERY = gql`
             bannerImage
             title {
               userPreferred
+              romaji
+              english
+              native
             }
             coverImage {
               large
@@ -1159,6 +1201,376 @@ export const ANILIST_USER_NOTIFICATIONS_QUERY = gql`
           deletedMediaTitle
           reason
           createdAt
+        }
+      }
+    }
+  }
+`;
+
+/**
+ * A staff member and the characters they have played.
+ *
+ * `characters` is sorted by how beloved each character is rather than by
+ * recency: someone arriving from a cast chip is looking for the role they
+ * already know, which is almost never the most recent one.
+ */
+export const STAFF_QUERY = gql`
+  query StaffPage($id: Int!, $page: Int) {
+    Staff(id: $id) {
+      id
+      name {
+        full
+        native
+      }
+      image {
+        large
+      }
+      description(asHtml: false)
+      primaryOccupations
+      gender
+      homeTown
+      yearsActive
+      favourites
+      dateOfBirth {
+        year
+        month
+        day
+      }
+      characters(sort: FAVOURITES_DESC, page: $page, perPage: 24) {
+        pageInfo {
+          hasNextPage
+          currentPage
+        }
+        edges {
+          id
+          node {
+            id
+            name {
+              full
+              native
+            }
+            image {
+              large
+            }
+            favourites
+          }
+          media {
+            id
+            title {
+              userPreferred
+              romaji
+              english
+              native
+            }
+            coverImage {
+              large
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+/** A character, and every title they appear in with who voiced them. */
+export const CHARACTER_QUERY = gql`
+  query CharacterPage($id: Int!, $page: Int) {
+    Character(id: $id) {
+      id
+      name {
+        full
+        native
+      }
+      image {
+        large
+      }
+      description(asHtml: false)
+      gender
+      age
+      favourites
+      dateOfBirth {
+        year
+        month
+        day
+      }
+      media(sort: POPULARITY_DESC, page: $page, perPage: 24) {
+        pageInfo {
+          hasNextPage
+          currentPage
+        }
+        edges {
+          id
+          characterRole
+          node {
+            id
+            title {
+              userPreferred
+              romaji
+              english
+              native
+            }
+            coverImage {
+              large
+            }
+            seasonYear
+            averageScore
+            episodes
+          }
+          voiceActors(language: JAPANESE) {
+            id
+            name {
+              full
+              native
+            }
+            image {
+              large
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+/**
+ * A studio's filmography, in date order.
+ *
+ * `isMain: true` keeps this to productions the studio actually animated —
+ * without it the list fills with titles they only had a hand in. Sorted by
+ * date because a studio's story is chronological; popularity order would
+ * cherry-pick each year's best and hide the shape of their run.
+ */
+export const STUDIO_QUERY = gql`
+  query StudioPage($id: Int!, $page: Int) {
+    Studio(id: $id) {
+      id
+      name
+      favourites
+      isAnimationStudio
+      media(sort: START_DATE_DESC, isMain: true, page: $page, perPage: 36) {
+        pageInfo {
+          hasNextPage
+          currentPage
+        }
+        nodes {
+          id
+          title {
+            userPreferred
+            romaji
+            english
+            native
+          }
+          coverImage {
+            large
+          }
+          seasonYear
+          season
+          format
+          episodes
+          averageScore
+        }
+      }
+    }
+  }
+`;
+
+/**
+ * The statistics the profile query fetches and throws away.
+ *
+ * Kept separate from ANILIST_USER_AND_ACTIVITY_QUERY rather than folded into
+ * it: this is a much heavier selection, and the profile page renders none of
+ * it. One page paying for another page's data is how the profile query got
+ * fat in the first place.
+ *
+ * `scores` is the one that carries the page — it is the full distribution, so
+ * the rating curve is drawn from real buckets rather than being inferred from
+ * a mean and a standard deviation.
+ */
+export const TASTE_QUERY = gql`
+  query TastePage($id: Int, $name: String) {
+    User(id: $id, name: $name) {
+      id
+      name
+      mediaListOptions {
+        scoreFormat
+      }
+      statistics {
+        anime {
+          count
+          meanScore
+          standardDeviation
+          minutesWatched
+          episodesWatched
+          scores(sort: MEAN_SCORE) {
+            score
+            count
+          }
+          studios(sort: COUNT_DESC, limit: 6) {
+            count
+            meanScore
+            studio {
+              id
+              name
+            }
+          }
+          voiceActors(sort: COUNT_DESC, limit: 6) {
+            count
+            voiceActor {
+              id
+              name {
+                full
+                native
+              }
+              image {
+                large
+              }
+            }
+          }
+          tags(sort: COUNT_DESC, limit: 10) {
+            count
+            tag {
+              id
+              name
+            }
+          }
+          # UserStatisticsSort has no RELEASE_YEAR member — only COUNT, ID,
+          # MEAN_SCORE, PROGRESS and their DESC forms. ID orders by year here,
+          # and YearHistogram sorts again anyway.
+          releaseYears(sort: ID) {
+            releaseYear
+            count
+          }
+          formats(sort: COUNT_DESC) {
+            format
+            count
+          }
+          countries(sort: COUNT_DESC) {
+            country
+            count
+          }
+          lengths(sort: COUNT_DESC) {
+            length
+            count
+          }
+        }
+      }
+    }
+  }
+`;
+
+/**
+ * Everything airing in a window, for the calendar.
+ *
+ * AniList publishes schedules roughly two weeks ahead, so a month view is
+ * legitimately half empty most of the time — the calendar opens on Week for
+ * that reason. `perPage` is the maximum: a busy day carries close to thirty
+ * airings on its own, and a week of them overruns a single page.
+ */
+export const AIRING_SCHEDULE_QUERY = gql`
+  query AiringSchedule($start: Int!, $end: Int!, $page: Int = 1) {
+    Page(page: $page, perPage: 50) {
+      pageInfo {
+        hasNextPage
+        currentPage
+      }
+      airingSchedules(airingAt_greater: $start, airingAt_lesser: $end, sort: TIME) {
+        id
+        episode
+        airingAt
+        media {
+          id
+          # airingSchedules takes no isAdult argument — AniList only offers it
+          # on media queries — so this is filtered client-side instead.
+          isAdult
+          title {
+            userPreferred
+            romaji
+            english
+            native
+          }
+          coverImage {
+            large
+            medium
+          }
+          format
+          episodes
+          averageScore
+          popularity
+        }
+      }
+    }
+  }
+`;
+
+/**
+ * The activity of people you follow, plus who they are.
+ *
+ * Sampling the live feed first: 126 of 127 activities were "watched episode
+ * N" and only 28% shared a title, which is why the page does not try to
+ * cluster by show — most groups would be a single person.
+ */
+export const SOCIAL_FEED_QUERY = gql`
+  query SocialFeed($userId: Int!, $page: Int = 1) {
+    following: Page(perPage: 30) {
+      following(userId: $userId, sort: USERNAME) {
+        id
+        name
+        avatar {
+          large
+        }
+      }
+    }
+    feed: Page(page: $page, perPage: 30) {
+      pageInfo {
+        hasNextPage
+        currentPage
+      }
+      activities(isFollowing: true, sort: ID_DESC, type_in: [ANIME_LIST, TEXT]) {
+        ... on ListActivity {
+          id
+          type
+          status
+          progress
+          createdAt
+          likeCount
+          replyCount
+          user {
+            id
+            name
+            avatar {
+              large
+            }
+          }
+          media {
+            id
+            # Same as the calendar: no server-side adult filter on activities.
+            isAdult
+            title {
+              userPreferred
+              romaji
+              english
+              native
+            }
+            coverImage {
+              large
+            }
+            episodes
+          }
+        }
+        ... on TextActivity {
+          id
+          type
+          text
+          createdAt
+          likeCount
+          replyCount
+          user {
+            id
+            name
+            avatar {
+              large
+            }
+          }
         }
       }
     }

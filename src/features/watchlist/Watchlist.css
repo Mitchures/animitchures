@@ -1,0 +1,35 @@
+.watchlist {
+  height: calc(100vh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
+  overflow-y: auto;
+  padding: 0.25rem var(--x-axis-spacing) 3rem;
+}
+
+/* The up-next band is the only two-column part of the page — everything below
+   it is a single ledger, so the width belongs to the cards here. */
+.watchlist > .wlSection:first-child .wlSection__items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  gap: 0.7rem;
+}
+
+.watchlist__empty {
+  display: grid;
+  place-content: center;
+  height: 60vh;
+  max-width: 34ch;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.65;
+  color: var(--secondary);
+}
+
+@media screen and (max-width: 600px) {
+  .watchlist > .wlSection:first-child .wlSection__items {
+    /* Not plain `1fr`: that floors the track at the card's min-content, and a
+       title like "Yarikomi-zuki" has no break opportunity, so the row pushed
+       9px past the viewport. minmax(0, …) lets the track shrink and the title
+       clip instead. */
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -6,7 +6,7 @@ import { cloneDeep } from 'lodash';
 import './Favorites.css';
 
 import Card from 'components/Card';
-import Loader from 'components/Loader';
+import PosterGridSkeleton from 'components/PosterGridSkeleton';
 
 import { useStateValue } from 'context';
 import { Media } from 'graphql/types';
@@ -68,20 +68,21 @@ function Favorites() {
       exit={{ opacity: 0 }}
       className="favorites"
     >
-      {favoritesList.length > 0 ? (
-        <>
-          {!isLoading ? (
-            <div className="favorites__grid">
-              {getSortedMedia(favoritesList).map((mediaItem: Media) => (
-                <Card key={mediaItem.id} {...mediaItem} />
-              ))}
-            </div>
-          ) : (
-            <Loader />
-          )}
-        </>
+      {favoritesList.length === 0 ? (
+        // An empty list is not a loading state. It was wearing the loader —
+        // spinner and all — which told you to wait for something that was
+        // never coming.
+        <p className="favorites__empty">
+          No favourites yet. Tap the heart on any title and it lands here.
+        </p>
+      ) : isLoading ? (
+        <PosterGridSkeleton gridClassName="favorites__grid" count={favoritesList.length} />
       ) : (
-        <Loader placeholderText="You have no favorites..." />
+        <div className="favorites__grid">
+          {getSortedMedia(favoritesList).map((mediaItem: Media) => (
+            <Card key={mediaItem.id} {...mediaItem} />
+          ))}
+        </div>
       )}
     </motion.div>
   );

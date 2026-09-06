@@ -1,0 +1,129 @@
+.studio {
+  height: calc(100vh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
+  overflow-y: auto;
+}
+
+.studio__body {
+  padding: 0.5rem var(--x-axis-spacing) 3rem;
+}
+
+/* Year in a narrow gutter, that year's work flowing beside it. The rule under
+   the label is the spine of the timeline. */
+.studio__year {
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+
+.studio__yearLabel {
+  flex: none;
+  width: 56px;
+  padding-top: 0.15rem;
+}
+
+.studio__yearLabel b {
+  font-size: 0.92rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: var(--score-great);
+}
+
+.studio__yearLabel--tba b {
+  color: var(--gold);
+  font-size: 0.76rem;
+}
+
+.studio__yearLabel i {
+  display: block;
+  width: 1px;
+  height: calc(100% - 1.2rem);
+  margin: 0.45rem 0 0 0.4rem;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--score-great) 55%, transparent),
+    transparent
+  );
+}
+
+.studio__yearLabel--tba i {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--gold) 55%, transparent),
+    transparent
+  );
+}
+
+.studio__works {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.studio__work {
+  width: 108px;
+  color: inherit;
+}
+
+.studio__work > img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 9px;
+  display: block;
+  margin-bottom: 0.35rem;
+  transition: var(--transition);
+}
+
+.studio__work:hover > img {
+  transform: scale(1.04);
+}
+
+.studio__workTitle {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.studio__work:hover .studio__workTitle {
+  color: var(--action) !important;
+}
+
+.studio__workMeta {
+  display: block;
+  font-size: 0.66rem;
+  color: var(--secondary);
+  margin-top: 0.1rem;
+}
+
+.studio__empty {
+  display: grid;
+  place-content: center;
+  height: 60vh;
+  color: var(--secondary);
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .studio__yearLabel {
+    width: 42px;
+  }
+
+  .studio__work {
+    width: 88px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .studio__work > img {
+    transition: none;
+  }
+
+  .studio__work:hover > img {
+    transform: none;
+  }
+}

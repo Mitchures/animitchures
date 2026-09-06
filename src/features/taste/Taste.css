@@ -1,0 +1,200 @@
+.taste {
+  height: calc(100vh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
+  overflow-y: auto;
+}
+
+/* The lede and the curve share the hero: the sentence says the finding, the
+   plot shows the evidence for it. */
+.taste__hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 2.5rem;
+  align-items: center;
+  padding: 1.75rem var(--x-axis-spacing) 1.5rem;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--action) 14%, transparent),
+    transparent
+  );
+}
+
+.taste__lede h1 {
+  margin: 0 0 0.55rem;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.taste__lede p {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.7;
+  color: var(--secondary);
+}
+
+.taste__lede b {
+  color: inherit;
+  filter: brightness(1.6);
+}
+
+.taste__body {
+  padding: 0 var(--x-axis-spacing) 3rem;
+}
+
+/* The year histogram puts its labels at the bottom of its own box, so the
+   next heading landed on top of them. Space the run of sections rather than
+   patching the one collision. */
+.taste__body > .sectionHeading {
+  margin-top: 2rem;
+}
+
+.taste__columns + .sectionHeading {
+  margin-top: 2.25rem;
+}
+
+.taste__columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.5rem;
+}
+
+.taste__faces {
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.taste__face {
+  width: 72px;
+  text-align: center;
+  color: inherit;
+}
+
+.taste__face > img {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  object-fit: cover;
+  /* Portraits are head-and-shoulders; a centred crop takes the chin. */
+  object-position: top;
+  display: block;
+  margin: 0 auto 0.35rem;
+  border: 2px solid color-mix(in srgb, var(--action) 45%, transparent);
+  transition: var(--transition);
+}
+
+.taste__face:hover > img {
+  border-color: var(--action);
+  transform: scale(1.06);
+}
+
+.taste__face > span {
+  display: block;
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.taste__face:hover > span {
+  color: var(--action) !important;
+}
+
+.taste__face > em {
+  display: block;
+  font-style: normal;
+  font-size: 0.6rem;
+  color: var(--secondary);
+}
+
+.taste__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.taste__tag {
+  background-color: var(--chip, rgba(255, 255, 255, 0.07));
+  border-radius: 8px;
+  padding: 0.22rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.taste__tag > b {
+  color: var(--action);
+  margin-left: 0.35rem;
+  font-size: 0.9em;
+}
+
+.taste__formats {
+  display: flex;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.taste__format {
+  flex: 1 1 120px;
+  background-color: var(--chip, rgba(255, 255, 255, 0.05));
+  border-radius: 10px;
+  padding: 0.6rem 0.75rem;
+}
+
+/* The count is the fact; the format name is its label, not the other way
+   around. */
+.taste__format > b {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.taste__format > span {
+  display: block;
+  font-size: 0.66rem;
+  font-weight: 800;
+  color: var(--secondary);
+}
+
+.taste__format > em {
+  font-style: normal;
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: var(--action);
+}
+
+.taste__empty {
+  display: grid;
+  place-content: center;
+  height: 60vh;
+  max-width: 36ch;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.65;
+  color: var(--secondary);
+}
+
+@media (prefers-color-scheme: light) {
+  .taste {
+    --chip: rgba(11, 22, 33, 0.06);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .taste__hero,
+  .taste__columns {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .taste__face > img {
+    transition: none;
+  }
+
+  .taste__face:hover > img {
+    transform: none;
+  }
+}

@@ -130,25 +130,101 @@ test.describe('signed-in views', () => {
     await expect(page.locator('.navigation__footer a[href="/profile"]')).not.toHaveClass(/active/);
   });
 
-  test('watchlist renders when the AniList profile is unavailable', async ({ page }) => {
-    // The seeded AniList id is fabricated, so AniList genuinely answers
-    // "User not found". This asserts the view degrades rather than crashing —
-    // weaker than asserting content, but it is real error-path coverage and
-    // requires nobody's personal AniList data.
+  test('watchlist groups entries by status and shows progress', async ({ page }) => {
+    // The fixture used to be a captured "User not found" 404, so this page had
+    // never once been rendered with data by the suite — it only proved the
+    // view did not crash. It now carries a synthesised collection covering all
+    // three shapes the episode strip can take.
     await gotoSignedInHome(page);
     await navigateVia(page, 'Watchlist');
 
     await expect(page).toHaveURL(/\/anilist-watchlist$/);
-    await expect(page.locator('.watchlist')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.upNext').first()).toBeVisible({ timeout: 20_000 });
+
+    // Sections are ordered, and the in-progress band comes first.
+    await expect(page.locator('.wlSection__head h3').first()).toHaveText('Up next');
+    await expect(page.locator('.wlSection__head h3')).toContainText([
+      'Up next',
+      'Completed',
+      'Planning to watch',
+      'Paused',
+      'Dropped',
+    ]);
+
+    // Ticks for a short series, a bar for a long one, open-ended for a series
+    // with no announced total.
+    await expect(page.locator('.episodeStrip--bar').first()).toBeVisible();
+    await expect(page.locator('.episodeStrip--open').first()).toBeVisible();
+
+    // The pointer starts at (0,0), which is on the rail — and a hovered rail
+    // expands to 240px and swallows clicks on anything beneath it. Move off it
+    // first so this tests the button rather than the nav's overlay behaviour.
+    await page.mouse.move(900, 400);
+
+    // Long lists collapse to a preview until asked to open.
+    const completed = page.locator('.wlSection').filter({ hasText: 'Completed' });
+    await expect(completed.locator('.listRow')).toHaveCount(4);
+    await completed.getByRole('button', { name: /Show all 8/ }).click();
+    await expect(completed.locator('.listRow')).toHaveCount(8);
+    await completed.getByRole('button', { name: 'Show fewer' }).click();
+    await expect(completed.locator('.listRow')).toHaveCount(4);
   });
 
-  test('profile renders when the AniList profile is unavailable', async ({ page }) => {
+  test('taste renders the statistics the profile query threw away', async ({ page }) => {
+    await gotoSignedInHome(page);
+    await page.locator('.navigation a[href="/taste"]').click();
+
+    await expect(page).toHaveURL(/\/taste$/);
+    await expect(page.locator('.ratingCurve')).toBeVisible({ timeout: 20_000 });
+
+    // The lede states the finding; the curve is the evidence for it.
+    await expect(page.locator('.taste__lede p')).toContainText('more generous');
+
+    // One bar per score bucket, and the two means land where the data says.
+    // The marks are placed by interpolating between bucket centres, not on a
+    // flat 0-100 axis — that was wrong for every non-uniform distribution.
+    const plot = (await page.locator('.ratingCurve__plot').boundingBox())!;
+    const mine = (await page.locator('.ratingCurve__mark--mine').boundingBox())!;
+    const site = (await page.locator('.ratingCurve__mark--site').boundingBox())!;
+    const pct = (box: { x: number }) => Math.round(((box.x - plot.x) / plot.width) * 100);
+    expect(pct(mine)).toBeGreaterThan(pct(site));
+    expect(pct(mine)).toBeGreaterThan(65);
+    expect(pct(mine)).toBeLessThan(78);
+
+    // Studios and voice actors lead to the pages built for them.
+    await expect(page.locator('.rankedBars__row a[href^="/studio/"]').first()).toBeVisible();
+    await expect(page.locator('.taste__face[href^="/staff/"]').first()).toBeVisible();
+
+    // The Formats heading used to land on top of the year histogram's labels.
+    const years = (await page.locator('.yearHistogram').boundingBox())!;
+    const formats = (await page
+      .locator('.taste__body .sectionHeading')
+      .filter({ hasText: 'Formats' })
+      .boundingBox())!;
+    expect(formats.y).toBeGreaterThan(years.y + years.height);
+  });
+
+  test('profile shows the watching record', async ({ page }) => {
     await gotoSignedInHome(page);
     await page.locator('.navigation__footer a[href="/profile"]').click();
 
     await expect(page).toHaveURL(/\/profile$/);
-    await expect(page.locator('.profile')).toBeVisible({ timeout: 20_000 });
-    await expect(page.locator('.profile')).toContainText(DISPLAY_NAME);
+    await expect(page.locator('.profile')).toContainText(DISPLAY_NAME, { timeout: 20_000 });
+
+    // The page used to render an avatar and a name while the query behind it
+    // already fetched all of this.
+    await expect(page.locator('.profile__lede')).toContainText('days watched');
+    await expect(page.locator('.profile__vitals div')).toHaveCount(4);
+    await expect(page.locator('.genreOverview__chip').first()).toBeVisible();
+    await expect(page.locator('.profile__favourites a').first()).toBeVisible();
+
+    // 53 whole weeks, so the grid always ends on a complete column, and the
+    // shading must actually differ — a theme rule once flattened every level.
+    await expect(page.locator('.heatmap__grid .heatmap__day')).toHaveCount(371);
+    const lit = await page
+      .locator('.heatmap__day--1, .heatmap__day--2, .heatmap__day--3, .heatmap__day--4')
+      .count();
+    expect(lit).toBeGreaterThan(0);
   });
 });
 

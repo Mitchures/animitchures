@@ -1,8 +1,6 @@
+import { Preferences } from 'features/settings/preferences';
+import { Featured } from 'graphql/featured';
 import { Media, User as ALUser } from 'graphql/types';
-
-interface IFeatured {
-  [key: string]: { [key: string]: Media[] };
-}
 
 export type AnilistUser = ALUser;
 
@@ -19,6 +17,8 @@ export type User = {
   isAdult?: boolean;
   anilistLinked?: boolean;
   preferredWatchlist?: WatchlistFormat;
+  /** Settings that live in this app rather than on AniList. */
+  preferences?: Partial<Preferences>;
 };
 
 export type AccessToken = {
@@ -30,7 +30,7 @@ export type AccessToken = {
 
 export type State = {
   user: User | null;
-  featured: IFeatured | null;
+  featured: Featured | null;
   favorites: number[];
   anilist_user: AnilistUser | null;
 };
@@ -60,7 +60,7 @@ export type Action =
     }
   | {
       type: 'set_featured';
-      featured: IFeatured;
+      featured: Featured;
     }
   | {
       type: 'update_user';

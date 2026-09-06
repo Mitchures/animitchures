@@ -19,8 +19,8 @@ test.describe('browse', () => {
   test('a genre link lands on browse with that filter applied', async ({ page }) => {
     await page.goto(`${BROWSE}?genre=Action`, { waitUntil: 'domcontentloaded' });
 
-    await expect(page.locator('.results__header h3')).toHaveText('Action');
-    await expect(page.locator('.results__container .card').first()).toBeVisible({
+    await expect(page.locator('.browse__header h3')).toHaveText('Action');
+    await expect(page.locator('.browse__container .card').first()).toBeVisible({
       timeout: 20_000,
     });
     // Exactly one pill is lit, and it is the genre.
@@ -31,8 +31,8 @@ test.describe('browse', () => {
   test('a search shows what was searched for', async ({ page }) => {
     await page.goto(`${BROWSE}?search=frieren`, { waitUntil: 'domcontentloaded' });
     // The old page showed no heading at all for a search.
-    await expect(page.locator('.results__header h3')).toContainText('frieren');
-    await expect(page.locator('.results__container .card').first()).toBeVisible({
+    await expect(page.locator('.browse__header h3')).toContainText('frieren');
+    await expect(page.locator('.browse__container .card').first()).toBeVisible({
       timeout: 20_000,
     });
   });
@@ -51,7 +51,7 @@ test.describe('browse', () => {
     });
 
     await page.goto(`${BROWSE}?genre=Action`, { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.results__container .card').first()).toBeVisible({
+    await expect(page.locator('.browse__container .card').first()).toBeVisible({
       timeout: 20_000,
     });
 
@@ -67,7 +67,7 @@ test.describe('browse', () => {
 
   test('clearing filters keeps the search term', async ({ page }) => {
     await page.goto(`${BROWSE}?search=frieren&genre=Action`, { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.results__container .card').first()).toBeVisible({
+    await expect(page.locator('.browse__container .card').first()).toBeVisible({
       timeout: 20_000,
     });
 
@@ -84,21 +84,21 @@ test.describe('browse', () => {
   }) => {
     await page.goto(BROWSE, { waitUntil: 'domcontentloaded' });
 
-    await expect(page.locator('.results__header h3')).toHaveText('Browse anime');
-    await expect(page.locator('.results__header p')).toContainText('Pick a filter');
-    await expect(page.locator('.results__container .card')).toHaveCount(0);
+    await expect(page.locator('.browse__header h3')).toHaveText('Browse anime');
+    await expect(page.locator('.browse__header p')).toContainText('Pick a filter');
+    await expect(page.locator('.browse__container .card')).toHaveCount(0);
   });
 
   test('the heading lines up with the grid', async ({ page }) => {
     await page.goto(`${BROWSE}?genre=Action`, { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.results__container .card').first()).toBeVisible({
+    await expect(page.locator('.browse__container .card').first()).toBeVisible({
       timeout: 20_000,
     });
 
     // The page pads horizontally and the heading used to pad again on top,
     // leaving it indented further than the results below it.
-    const heading = await page.locator('.results__header').boundingBox();
-    const grid = await page.locator('.results__container').boundingBox();
+    const heading = await page.locator('.browse__header').boundingBox();
+    const grid = await page.locator('.browse__container').boundingBox();
     expect(Math.round(heading!.x)).toBe(Math.round(grid!.x));
   });
 });

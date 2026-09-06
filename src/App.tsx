@@ -1,31 +1,35 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import { FirebaseError } from 'firebase/app';
-import { collection, setDoc, doc, getDoc, DocumentSnapshot } from 'firebase/firestore';
+import { User as FirebaseUser } from 'firebase/auth';
 
 import './App.css';
 
-import AppShell from 'components/AppShell';
-import Loader from 'components/Loader';
+import AppShell from 'layout/AppShell';
+import DiscoverSkeleton from 'features/discover/DiscoverSkeleton';
 
 import Login from 'views/Login';
 import SignUp from 'views/SignUp';
-import Details from 'views/Details';
-import Profile from 'views/Profile';
-import Features from 'views/Features';
-import Results from 'views/Results';
+import Details from 'features/details/Details';
+import Profile from 'features/profile/Profile';
+import Discover from 'features/discover/Discover';
+import Browse from 'features/browse/Browse';
 import Favorites from 'views/Favorites';
-import AnilistWatchlist from 'views/AnilistWatchlist';
-import Settings from 'views/Settings';
+import Watchlist from 'features/watchlist/Watchlist';
+import StaffPage from 'features/people/StaffPage';
+import CharacterPage from 'features/people/CharacterPage';
+import StudioPage from 'features/studio/StudioPage';
+import Taste from 'features/taste/Taste';
+import Calendar from 'features/calendar/Calendar';
+import Social from 'features/social/Social';
+import Settings from 'features/settings/Settings';
 import Callback from 'views/Callback';
 import ComingSoon from 'views/ComingSoon';
 import Community from 'views/Community';
 
-import { auth, db } from 'config';
+import { auth } from 'config';
 import { useStateValue } from 'context';
-import { User, AnilistUser } from 'context/types';
-import { getFavorites, getAccessToken } from 'api';
+import { hydrateSession, clearSession } from 'api';
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -42,79 +46,20 @@ function App() {
   const authSettled = signedOut || !!user;
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((authUser: any) => {
-      if (authUser) {
-        // user has logged in...
-        setSignedOut(false);
-        const { uid, photoURL, displayName, email } = authUser;
-        // check if user already exists in db.
-        const docRef = doc(collection(db, 'users'), uid);
-        getDoc(docRef)
-          .then((docSnapshot: DocumentSnapshot) => {
-            if (docSnapshot.exists()) {
-              // get existing user data.
-              const data = docSnapshot.data();
-              if (data) {
-                const user = { ...data } as User;
-                // update db if any new information exists.
-                setDoc(docRef, user).catch((error: FirebaseError) => alert(error.message));
-                // get user favorites.
-                getFavorites(uid, dispatch);
-                // get anilist user if linked.
-                if (user.anilistLinked) {
-                  // get access token from database and store in local storage.
-                  if (!localStorage.getItem('token'))
-                    getAccessToken(uid).then((token) =>
-                      localStorage.setItem('token', JSON.stringify(token)),
-                    );
-                  // Get anilist user from database.
-                  const anilistDocRef = doc(collection(db, 'anilist'), uid);
-                  getDoc(anilistDocRef)
-                    .then((docSnapshot: DocumentSnapshot) => {
-                      if (docSnapshot.exists()) {
-                        const data = docSnapshot.data();
-                        if (data) {
-                          dispatch({
-                            type: 'set_anilist_user',
-                            anilist_user: data as AnilistUser,
-                          });
-                        }
-                      }
-                    })
-                    .catch((error: FirebaseError) => alert(error.message));
-                }
-                // set current user to existing user.
-                dispatch({
-                  type: 'login_user',
-                  user,
-                });
-              }
-            } else {
-              const user = {
-                uid,
-                displayName,
-                photoURL,
-                email,
-              };
-              // save new user to db.
-              setDoc(docRef, user).catch((error: FirebaseError) => alert(error.message));
-              // set current user to new user.
-              dispatch({
-                type: 'login_user',
-                user,
-              });
-            }
-          })
-          .catch((error: FirebaseError) => alert(error.message));
-      } else {
-        // user has logged out...
+    const unsubscribe = auth.onAuthStateChanged((authUser: FirebaseUser | null) => {
+      if (!authUser) {
         setSignedOut(true);
-        dispatch({
-          type: 'logout_user',
-        });
-        // Remove token from localStorage if any.
-        localStorage.removeItem('token');
+        clearSession(dispatch);
+        return;
       }
+
+      setSignedOut(false);
+      // Failures here are logged rather than alerted: every one of them has a
+      // fallback on screen, and a modal about a Firestore read is not something
+      // anyone can act on.
+      hydrateSession(authUser, dispatch).catch((error) =>
+        console.error('Could not load your account', error),
+      );
     });
 
     return () => {
@@ -131,8 +76,14 @@ function App() {
             <Route path="/sign-up" element={<SignUp />} />
             <Route element={<AppShell />}>
               <Route path="/callback" element={<Callback />} />
-              <Route path="/search/anime" element={<Results />} />
+              <Route path="/search/anime" element={<Browse />} />
               <Route path="/anime/:id/:title" element={<Details />} />
+              {/* Public: a cast chip should lead somewhere whether or not you
+                  are signed in — these were the app's biggest dead ends. */}
+              <Route path="/staff/:id/:name" element={<StaffPage />} />
+              <Route path="/character/:id/:name" element={<CharacterPage />} />
+              <Route path="/studio/:id/:name" element={<StudioPage />} />
+              <Route path="/calendar" element={<Calendar />} />
               {/* Private Routes */}
               {user && (
                 <>
@@ -140,15 +91,20 @@ function App() {
                   <Route path="/coming-soon" element={<ComingSoon />} />
                   <Route path="/community" element={<Community />} />
                   <Route path="/favorites" element={<Favorites />} />
-                  <Route path="/anilist-watchlist" element={<AnilistWatchlist />} />
+                  <Route path="/anilist-watchlist" element={<Watchlist />} />
                   <Route path="/profile" element={<Profile />} />
+                  <Route path="/taste" element={<Taste />} />
+                  <Route path="/social" element={<Social />} />
                 </>
               )}
-              <Route path="/" element={<Features />} />
+              <Route path="/" element={<Discover />} />
               {/* Unknown routes go to root — but only once auth has settled.
                   Redirecting while it is still resolving is what threw signed-in
                   visitors off their own private routes on a refresh. */}
-              <Route path="*" element={authSettled ? <Navigate to="/" replace /> : <Loader />} />
+              <Route
+                path="*"
+                element={authSettled ? <Navigate to="/" replace /> : <DiscoverSkeleton />}
+              />
             </Route>
           </Routes>
         </AnimatePresence>

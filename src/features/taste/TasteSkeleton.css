@@ -1,0 +1,96 @@
+.tasteSkeleton__hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 2.5rem;
+  align-items: center;
+  padding: 1.75rem var(--x-axis-spacing) 1.5rem;
+}
+
+.tasteSkeleton__lede {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.tasteSkeleton__plot {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 130px;
+}
+
+.tasteSkeleton__bar {
+  flex: 1 1 0;
+  display: block;
+}
+
+.tasteSkeleton__body {
+  padding: 0 var(--x-axis-spacing) 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.tasteSkeleton__columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.5rem;
+}
+
+.tasteSkeleton__block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.tasteSkeleton__rank {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.tasteSkeleton__rank > span:nth-child(2) {
+  flex: 1 1 auto;
+}
+
+.tasteSkeleton__faces {
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.tasteSkeleton__face {
+  width: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.tasteSkeleton__years {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 92px;
+}
+
+.tasteSkeleton__years > span {
+  flex: 1 1 0;
+}
+
+.tasteSkeleton__formats {
+  display: flex;
+  gap: 0.55rem;
+}
+
+.tasteSkeleton__formats > span {
+  flex: 1 1 0;
+}
+
+@media screen and (max-width: 900px) {
+  .tasteSkeleton__hero,
+  .tasteSkeleton__columns {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+}
