@@ -130,16 +130,44 @@ test.describe('signed-in views', () => {
     await expect(page.locator('.navigation__footer a[href="/profile"]')).not.toHaveClass(/active/);
   });
 
-  test('watchlist renders when the AniList profile is unavailable', async ({ page }) => {
-    // The seeded AniList id is fabricated, so AniList genuinely answers
-    // "User not found". This asserts the view degrades rather than crashing —
-    // weaker than asserting content, but it is real error-path coverage and
-    // requires nobody's personal AniList data.
+  test('watchlist groups entries by status and shows progress', async ({ page }) => {
+    // The fixture used to be a captured "User not found" 404, so this page had
+    // never once been rendered with data by the suite — it only proved the
+    // view did not crash. It now carries a synthesised collection covering all
+    // three shapes the episode strip can take.
     await gotoSignedInHome(page);
     await navigateVia(page, 'Watchlist');
 
     await expect(page).toHaveURL(/\/anilist-watchlist$/);
-    await expect(page.locator('.watchlist')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.upNext').first()).toBeVisible({ timeout: 20_000 });
+
+    // Sections are ordered, and the in-progress band comes first.
+    await expect(page.locator('.wlSection__head h3').first()).toHaveText('Up next');
+    await expect(page.locator('.wlSection__head h3')).toContainText([
+      'Up next',
+      'Completed',
+      'Planning to watch',
+      'Paused',
+      'Dropped',
+    ]);
+
+    // Ticks for a short series, a bar for a long one, open-ended for a series
+    // with no announced total.
+    await expect(page.locator('.episodeStrip--bar').first()).toBeVisible();
+    await expect(page.locator('.episodeStrip--open').first()).toBeVisible();
+
+    // The pointer starts at (0,0), which is on the rail — and a hovered rail
+    // expands to 240px and swallows clicks on anything beneath it. Move off it
+    // first so this tests the button rather than the nav's overlay behaviour.
+    await page.mouse.move(900, 400);
+
+    // Long lists collapse to a preview until asked to open.
+    const completed = page.locator('.wlSection').filter({ hasText: 'Completed' });
+    await expect(completed.locator('.listRow')).toHaveCount(4);
+    await completed.getByRole('button', { name: /Show all 8/ }).click();
+    await expect(completed.locator('.listRow')).toHaveCount(8);
+    await completed.getByRole('button', { name: 'Show fewer' }).click();
+    await expect(completed.locator('.listRow')).toHaveCount(4);
   });
 
   test('profile shows the watching record', async ({ page }) => {
