@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import { FirebaseError } from 'firebase/app';
 import { User as FirebaseUser } from 'firebase/auth';
-import { collection, setDoc, doc, getDoc, DocumentSnapshot } from 'firebase/firestore';
 
 import './App.css';
 
@@ -14,8 +12,8 @@ import Login from 'views/Login';
 import SignUp from 'views/SignUp';
 import Details from 'features/details/Details';
 import Profile from 'features/profile/Profile';
-import Features from 'features/discover/Discover';
-import Results from 'features/browse/Browse';
+import Discover from 'features/discover/Discover';
+import Browse from 'features/browse/Browse';
 import Favorites from 'views/Favorites';
 import AnilistWatchlist from 'views/AnilistWatchlist';
 import Settings from 'views/Settings';
@@ -23,10 +21,9 @@ import Callback from 'views/Callback';
 import ComingSoon from 'views/ComingSoon';
 import Community from 'views/Community';
 
-import { auth, db } from 'config';
+import { auth } from 'config';
 import { useStateValue } from 'context';
-import { User, AnilistUser } from 'context/types';
-import { getFavorites, getAccessToken } from 'api';
+import { hydrateSession, clearSession } from 'api';
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -44,85 +41,19 @@ function App() {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser: FirebaseUser | null) => {
-      if (authUser) {
-        // user has logged in...
-        setSignedOut(false);
-        const { uid, photoURL, displayName, email } = authUser;
-        // check if user already exists in db.
-        const docRef = doc(collection(db, 'users'), uid);
-        getDoc(docRef)
-          .then((docSnapshot: DocumentSnapshot) => {
-            if (docSnapshot.exists()) {
-              // get existing user data.
-              const data = docSnapshot.data();
-              if (data) {
-                const user = { ...data } as User;
-                // update db if any new information exists.
-                setDoc(docRef, user).catch((error: FirebaseError) => alert(error.message));
-                // get user favorites.
-                getFavorites(uid, dispatch);
-                // An anilist/{uid} document existing is what "linked" actually
-                // means. `anilistLinked` on the user doc is only a cache of
-                // that, written by a Cloud Function trigger — and that trigger
-                // fires onCreate, so re-linking an account never updates it,
-                // and it does nothing at all if functions are not deployed.
-                // Read the source of truth and repair the flag from it.
-                const anilistDocRef = doc(collection(db, 'anilist'), uid);
-                getDoc(anilistDocRef)
-                  .then((anilistSnapshot: DocumentSnapshot) => {
-                    if (!anilistSnapshot.exists()) return;
-                    const anilistData = anilistSnapshot.data();
-                    if (!anilistData) return;
-
-                    dispatch({
-                      type: 'set_anilist_user',
-                      anilist_user: anilistData as AnilistUser,
-                    });
-
-                    if (!localStorage.getItem('token'))
-                      getAccessToken(uid).then((token) =>
-                        localStorage.setItem('token', JSON.stringify(token)),
-                      );
-
-                    if (!user.anilistLinked) {
-                      const linked = { ...user, anilistLinked: true };
-                      setDoc(docRef, linked).catch((error: FirebaseError) => alert(error.message));
-                      dispatch({ type: 'update_user', user: linked });
-                    }
-                  })
-                  .catch((error: FirebaseError) => alert(error.message));
-                // set current user to existing user.
-                dispatch({
-                  type: 'login_user',
-                  user,
-                });
-              }
-            } else {
-              const user = {
-                uid,
-                displayName,
-                photoURL,
-                email,
-              };
-              // save new user to db.
-              setDoc(docRef, user).catch((error: FirebaseError) => alert(error.message));
-              // set current user to new user.
-              dispatch({
-                type: 'login_user',
-                user,
-              });
-            }
-          })
-          .catch((error: FirebaseError) => alert(error.message));
-      } else {
-        // user has logged out...
+      if (!authUser) {
         setSignedOut(true);
-        dispatch({
-          type: 'logout_user',
-        });
-        // Remove token from localStorage if any.
-        localStorage.removeItem('token');
+        clearSession(dispatch);
+        return;
       }
+
+      setSignedOut(false);
+      // Failures here are logged rather than alerted: every one of them has a
+      // fallback on screen, and a modal about a Firestore read is not something
+      // anyone can act on.
+      hydrateSession(authUser, dispatch).catch((error) =>
+        console.error('Could not load your account', error),
+      );
     });
 
     return () => {
@@ -139,7 +70,7 @@ function App() {
             <Route path="/sign-up" element={<SignUp />} />
             <Route element={<AppShell />}>
               <Route path="/callback" element={<Callback />} />
-              <Route path="/search/anime" element={<Results />} />
+              <Route path="/search/anime" element={<Browse />} />
               <Route path="/anime/:id/:title" element={<Details />} />
               {/* Private Routes */}
               {user && (
@@ -152,7 +83,7 @@ function App() {
                   <Route path="/profile" element={<Profile />} />
                 </>
               )}
-              <Route path="/" element={<Features />} />
+              <Route path="/" element={<Discover />} />
               {/* Unknown routes go to root — but only once auth has settled.
                   Redirecting while it is still resolving is what threw signed-in
                   visitors off their own private routes on a refresh. */}
