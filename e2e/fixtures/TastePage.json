@@ -1,0 +1,430 @@
+{
+ "data": {
+  "User": {
+   "__typename": "User",
+   "id": 6001782,
+   "name": "TestViewer",
+   "mediaListOptions": {
+    "__typename": "MediaListOptions",
+    "scoreFormat": "POINT_100"
+   },
+   "statistics": {
+    "__typename": "UserStatisticTypes",
+    "anime": {
+     "__typename": "UserStatistics",
+     "count": 458,
+     "meanScore": 76.4,
+     "standardDeviation": 13.8,
+     "minutesWatched": 59184,
+     "episodesWatched": 6212,
+     "scores": [
+      {
+       "__typename": "UserScoreStatistic",
+       "score": 10,
+       "count": 1
+      },
+      {
+       "__typename": "UserScoreStatistic",
+       "score": 20,
+       "count": 2
+      },
+      {
+       "__typename": "UserScoreStatistic",
+       "score": 30,
+       "count": 5
+      },
+      {
+       "__typename": "UserScoreStatistic",
+       "score": 40,
+       "count": 11
+      },
+      {
+       "__typename": "UserScoreStatistic",
+       "score": 50,
+       "count": 24
+      },
+      {
+       "__typename": "UserScoreStatistic",
+       "score": 60,
+       "count": 47
+      },
+      {
+       "__typename": "UserScoreStatistic",
+       "score": 70,
+       "count": 91
+      },
+      {
+       "__typename": "UserScoreStatistic",
+       "score": 80,
+       "count": 124
+      },
+      {
+       "__typename": "UserScoreStatistic",
+       "score": 90,
+       "count": 66
+      },
+      {
+       "__typename": "UserScoreStatistic",
+       "score": 100,
+       "count": 19
+      }
+     ],
+     "studios": [
+      {
+       "__typename": "UserStudioStatistic",
+       "count": 31,
+       "meanScore": 84,
+       "studio": {
+        "__typename": "Studio",
+        "id": 2,
+        "name": "Kyoto Animation"
+       }
+      },
+      {
+       "__typename": "UserStudioStatistic",
+       "count": 27,
+       "meanScore": 78,
+       "studio": {
+        "__typename": "Studio",
+        "id": 3,
+        "name": "MAPPA"
+       }
+      },
+      {
+       "__typename": "UserStudioStatistic",
+       "count": 22,
+       "meanScore": 80,
+       "studio": {
+        "__typename": "Studio",
+        "id": 4,
+        "name": "bones"
+       }
+      },
+      {
+       "__typename": "UserStudioStatistic",
+       "count": 19,
+       "meanScore": 77,
+       "studio": {
+        "__typename": "Studio",
+        "id": 5,
+        "name": "MADHOUSE"
+       }
+      },
+      {
+       "__typename": "UserStudioStatistic",
+       "count": 14,
+       "meanScore": 86,
+       "studio": {
+        "__typename": "Studio",
+        "id": 6,
+        "name": "ufotable"
+       }
+      },
+      {
+       "__typename": "UserStudioStatistic",
+       "count": 11,
+       "meanScore": 79,
+       "studio": {
+        "__typename": "Studio",
+        "id": 7,
+        "name": "Wit Studio"
+       }
+      }
+     ],
+     "voiceActors": [
+      {
+       "__typename": "UserVoiceActorStatistic",
+       "count": 46,
+       "voiceActor": {
+        "__typename": "Staff",
+        "id": 95185,
+        "name": {
+         "__typename": "StaffName",
+         "full": "Kana Hanazawa"
+        },
+        "image": {
+         "__typename": "StaffImage",
+         "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n95185-x8ZYvtN7SegC.png"
+        }
+       }
+      },
+      {
+       "__typename": "UserVoiceActorStatistic",
+       "count": 38,
+       "voiceActor": {
+        "__typename": "Staff",
+        "id": 95186,
+        "name": {
+         "__typename": "StaffName",
+         "full": "Yuuki Kaji"
+        },
+        "image": {
+         "__typename": "StaffImage",
+         "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n95672-T33YV7yCDKnL.png"
+        }
+       }
+      },
+      {
+       "__typename": "UserVoiceActorStatistic",
+       "count": 33,
+       "voiceActor": {
+        "__typename": "Staff",
+        "id": 95187,
+        "name": {
+         "__typename": "StaffName",
+         "full": "Aoi Yuuki"
+        },
+        "image": {
+         "__typename": "StaffImage",
+         "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n101686-PTd0lQZMsmcv.png"
+        }
+       }
+      },
+      {
+       "__typename": "UserVoiceActorStatistic",
+       "count": 29,
+       "voiceActor": {
+        "__typename": "Staff",
+        "id": 95188,
+        "name": {
+         "__typename": "StaffName",
+         "full": "Takehito Koyasu"
+        },
+        "image": {
+         "__typename": "StaffImage",
+         "large": "https://s4.anilist.co/file/anilistcdn/staff/large/n95160-jWevcH7BmfE1.jpg"
+        }
+       }
+      }
+     ],
+     "tags": [
+      {
+       "__typename": "UserTagStatistic",
+       "count": 58,
+       "tag": {
+        "__typename": "MediaTag",
+        "id": 100,
+        "name": "Coming of Age"
+       }
+      },
+      {
+       "__typename": "UserTagStatistic",
+       "count": 51,
+       "tag": {
+        "__typename": "MediaTag",
+        "id": 101,
+        "name": "Ensemble Cast"
+       }
+      },
+      {
+       "__typename": "UserTagStatistic",
+       "count": 47,
+       "tag": {
+        "__typename": "MediaTag",
+        "id": 102,
+        "name": "Male Protagonist"
+       }
+      },
+      {
+       "__typename": "UserTagStatistic",
+       "count": 39,
+       "tag": {
+        "__typename": "MediaTag",
+        "id": 103,
+        "name": "Tragedy"
+       }
+      },
+      {
+       "__typename": "UserTagStatistic",
+       "count": 31,
+       "tag": {
+        "__typename": "MediaTag",
+        "id": 104,
+        "name": "Time Skip"
+       }
+      },
+      {
+       "__typename": "UserTagStatistic",
+       "count": 28,
+       "tag": {
+        "__typename": "MediaTag",
+        "id": 105,
+        "name": "Found Family"
+       }
+      },
+      {
+       "__typename": "UserTagStatistic",
+       "count": 24,
+       "tag": {
+        "__typename": "MediaTag",
+        "id": 106,
+        "name": "Iyashikei"
+       }
+      },
+      {
+       "__typename": "UserTagStatistic",
+       "count": 21,
+       "tag": {
+        "__typename": "MediaTag",
+        "id": 107,
+        "name": "Urban Fantasy"
+       }
+      },
+      {
+       "__typename": "UserTagStatistic",
+       "count": 19,
+       "tag": {
+        "__typename": "MediaTag",
+        "id": 108,
+        "name": "School"
+       }
+      }
+     ],
+     "releaseYears": [
+      {
+       "__typename": "UserReleaseYearStatistic",
+       "releaseYear": 2011,
+       "count": 6
+      },
+      {
+       "__typename": "UserReleaseYearStatistic",
+       "releaseYear": 2012,
+       "count": 8
+      },
+      {
+       "__typename": "UserReleaseYearStatistic",
+       "releaseYear": 2013,
+       "count": 11
+      },
+      {
+       "__typename": "UserReleaseYearStatistic",
+       "releaseYear": 2014,
+       "count": 14
+      },
+      {
+       "__typename": "UserReleaseYearStatistic",
+       "releaseYear": 2015,
+       "count": 22
+      },
+      {
+       "__typename": "UserReleaseYearStatistic",
+       "releaseYear": 2016,
+       "count": 31
+      },
+      {
+       "__typename": "UserReleaseYearStatistic",
+       "releaseYear": 2017,
+       "count": 28
+      },
+      {
+       "__typename": "UserReleaseYearStatistic",
+       "releaseYear": 2018,
+       "count": 36
+      },
+      {
+       "__typename": "UserReleaseYearStatistic",
+       "releaseYear": 2019,
+       "count": 41
+      },
+      {
+       "__typename": "UserReleaseYearStatistic",
+       "releaseYear": 2020,
+       "count": 33
+      },
+      {
+       "__typename": "UserReleaseYearStatistic",
+       "releaseYear": 2021,
+       "count": 44
+      },
+      {
+       "__typename": "UserReleaseYearStatistic",
+       "releaseYear": 2022,
+       "count": 39
+      },
+      {
+       "__typename": "UserReleaseYearStatistic",
+       "releaseYear": 2023,
+       "count": 47
+      },
+      {
+       "__typename": "UserReleaseYearStatistic",
+       "releaseYear": 2024,
+       "count": 52
+      },
+      {
+       "__typename": "UserReleaseYearStatistic",
+       "releaseYear": 2025,
+       "count": 38
+      },
+      {
+       "__typename": "UserReleaseYearStatistic",
+       "releaseYear": 2026,
+       "count": 17
+      }
+     ],
+     "formats": [
+      {
+       "__typename": "UserFormatStatistic",
+       "count": 312,
+       "format": "TV"
+      },
+      {
+       "__typename": "UserFormatStatistic",
+       "count": 74,
+       "format": "MOVIE"
+      },
+      {
+       "__typename": "UserFormatStatistic",
+       "count": 41,
+       "format": "OVA"
+      },
+      {
+       "__typename": "UserFormatStatistic",
+       "count": 22,
+       "format": "ONA"
+      },
+      {
+       "__typename": "UserFormatStatistic",
+       "count": 9,
+       "format": "SPECIAL"
+      },
+      {
+       "__typename": "UserFormatStatistic",
+       "count": 5,
+       "format": "TV_SHORT"
+      }
+     ],
+     "countries": [
+      {
+       "__typename": "UserCountryStatistic",
+       "country": "JP",
+       "count": 441
+      },
+      {
+       "__typename": "UserCountryStatistic",
+       "country": "CN",
+       "count": 17
+      }
+     ],
+     "lengths": [
+      {
+       "__typename": "UserLengthStatistic",
+       "length": "13",
+       "count": 201
+      },
+      {
+       "__typename": "UserLengthStatistic",
+       "length": "26",
+       "count": 98
+      },
+      {
+       "__typename": "UserLengthStatistic",
+       "length": "1",
+       "count": 74
+      }
+     ]
+    }
+   }
+  }
+ }
+}

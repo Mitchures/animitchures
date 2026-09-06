@@ -1,0 +1,34 @@
+.yearHistogram {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 92px;
+  overflow-x: auto;
+}
+
+.yearHistogram__col {
+  flex: 1 1 0;
+  min-width: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.yearHistogram__col > i {
+  display: block;
+  border-radius: 3px 3px 0 0;
+  background: linear-gradient(
+    180deg,
+    var(--score-great),
+    color-mix(in srgb, var(--score-great) 35%, transparent)
+  );
+}
+
+.yearHistogram__col > span {
+  text-align: center;
+  font-size: 0.56rem;
+  font-weight: 700;
+  color: var(--secondary);
+  margin-top: 0.2rem;
+}

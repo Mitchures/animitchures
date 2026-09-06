@@ -170,6 +170,40 @@ test.describe('signed-in views', () => {
     await expect(completed.locator('.listRow')).toHaveCount(4);
   });
 
+  test('taste renders the statistics the profile query threw away', async ({ page }) => {
+    await gotoSignedInHome(page);
+    await page.locator('.navigation a[href="/taste"]').click();
+
+    await expect(page).toHaveURL(/\/taste$/);
+    await expect(page.locator('.ratingCurve')).toBeVisible({ timeout: 20_000 });
+
+    // The lede states the finding; the curve is the evidence for it.
+    await expect(page.locator('.taste__lede p')).toContainText('more generous');
+
+    // One bar per score bucket, and the two means land where the data says.
+    // The marks are placed by interpolating between bucket centres, not on a
+    // flat 0-100 axis — that was wrong for every non-uniform distribution.
+    const plot = (await page.locator('.ratingCurve__plot').boundingBox())!;
+    const mine = (await page.locator('.ratingCurve__mark--mine').boundingBox())!;
+    const site = (await page.locator('.ratingCurve__mark--site').boundingBox())!;
+    const pct = (box: { x: number }) => Math.round(((box.x - plot.x) / plot.width) * 100);
+    expect(pct(mine)).toBeGreaterThan(pct(site));
+    expect(pct(mine)).toBeGreaterThan(65);
+    expect(pct(mine)).toBeLessThan(78);
+
+    // Studios and voice actors lead to the pages built for them.
+    await expect(page.locator('.rankedBars__row a[href^="/studio/"]').first()).toBeVisible();
+    await expect(page.locator('.taste__face[href^="/staff/"]').first()).toBeVisible();
+
+    // The Formats heading used to land on top of the year histogram's labels.
+    const years = (await page.locator('.yearHistogram').boundingBox())!;
+    const formats = (await page
+      .locator('.taste__body .sectionHeading')
+      .filter({ hasText: 'Formats' })
+      .boundingBox())!;
+    expect(formats.y).toBeGreaterThan(years.y + years.height);
+  });
+
   test('profile shows the watching record', async ({ page }) => {
     await gotoSignedInHome(page);
     await page.locator('.navigation__footer a[href="/profile"]').click();

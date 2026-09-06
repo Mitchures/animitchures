@@ -1324,3 +1324,83 @@ export const STUDIO_QUERY = gql`
     }
   }
 `;
+
+/**
+ * The statistics the profile query fetches and throws away.
+ *
+ * Kept separate from ANILIST_USER_AND_ACTIVITY_QUERY rather than folded into
+ * it: this is a much heavier selection, and the profile page renders none of
+ * it. One page paying for another page's data is how the profile query got
+ * fat in the first place.
+ *
+ * `scores` is the one that carries the page — it is the full distribution, so
+ * the rating curve is drawn from real buckets rather than being inferred from
+ * a mean and a standard deviation.
+ */
+export const TASTE_QUERY = gql`
+  query TastePage($id: Int, $name: String) {
+    User(id: $id, name: $name) {
+      id
+      name
+      mediaListOptions {
+        scoreFormat
+      }
+      statistics {
+        anime {
+          count
+          meanScore
+          standardDeviation
+          minutesWatched
+          episodesWatched
+          scores(sort: MEAN_SCORE) {
+            score
+            count
+          }
+          studios(sort: COUNT_DESC, limit: 6) {
+            count
+            meanScore
+            studio {
+              id
+              name
+            }
+          }
+          voiceActors(sort: COUNT_DESC, limit: 6) {
+            count
+            voiceActor {
+              id
+              name {
+                full
+              }
+              image {
+                large
+              }
+            }
+          }
+          tags(sort: COUNT_DESC, limit: 10) {
+            count
+            tag {
+              id
+              name
+            }
+          }
+          releaseYears(sort: RELEASE_YEAR) {
+            releaseYear
+            count
+          }
+          formats(sort: COUNT_DESC) {
+            format
+            count
+          }
+          countries(sort: COUNT_DESC) {
+            country
+            count
+          }
+          lengths(sort: COUNT_DESC) {
+            length
+            count
+          }
+        }
+      }
+    }
+  }
+`;

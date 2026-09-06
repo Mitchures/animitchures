@@ -3,6 +3,7 @@ import {
   Explore,
   Favorite,
   PlaylistPlay,
+  InsightsOutlined,
   Settings as SettingsIcon,
   Logout,
   Login,
@@ -60,6 +61,12 @@ export function getNavSections({ user, anilistUser }: Args): NavSection[] {
                 label: 'Watchlist',
                 to: '/anilist-watchlist',
                 Icon: PlaylistPlay,
+              },
+              {
+                id: 'taste',
+                label: 'Taste',
+                to: '/taste',
+                Icon: InsightsOutlined,
               },
             ]
           : [],

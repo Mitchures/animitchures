@@ -19,6 +19,7 @@ import Watchlist from 'features/watchlist/Watchlist';
 import StaffPage from 'features/people/StaffPage';
 import CharacterPage from 'features/people/CharacterPage';
 import StudioPage from 'features/studio/StudioPage';
+import Taste from 'features/taste/Taste';
 import Settings from 'views/Settings';
 import Callback from 'views/Callback';
 import ComingSoon from 'views/ComingSoon';
@@ -89,6 +90,7 @@ function App() {
                   <Route path="/favorites" element={<Favorites />} />
                   <Route path="/anilist-watchlist" element={<Watchlist />} />
                   <Route path="/profile" element={<Profile />} />
+                  <Route path="/taste" element={<Taste />} />
                 </>
               )}
               <Route path="/" element={<Discover />} />
