@@ -23,7 +23,7 @@ test.describe('details data sections', () => {
   });
 
   test('the hero carries ranking badges', async ({ page }) => {
-    const badges = page.locator('.heroRankings__badge');
+    const badges = page.locator('.heroRankings .badge');
     await expect(badges).toHaveCount(2);
     // Only a top-100 placing earns a badge, and it reads as a rank.
     await expect(badges.first()).toContainText('#');

@@ -8,7 +8,6 @@ import './SearchSpotlight.css';
 
 import Skeleton from 'components/Skeleton';
 
-import { useStateValue } from 'context';
 import { Media } from 'graphql/types';
 import { SEARCH_QUERY } from 'graphql/queries';
 import { mediaPath } from 'helpers';
@@ -37,7 +36,6 @@ interface Props {
  * header returns with its own inline Search.
  */
 function SearchSpotlight({ open, onOpenChange }: Props) {
-  const [, dispatch] = useStateValue();
   const [term, setTerm] = useState('');
   const [active, setActive] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -60,12 +58,9 @@ function SearchSpotlight({ open, onOpenChange }: Props) {
 
   const goToResults = useCallback(() => {
     if (!query) return;
-    // Results merges pages into global state, so stale hits would otherwise be
-    // prepended to the new search. Same clear the old header search did.
-    dispatch({ type: 'set_results', results: null });
     navigate(`/search/anime?search=${encodeURIComponent(query)}`);
     close();
-  }, [query, dispatch, navigate, close]);
+  }, [query, navigate, close]);
 
   const openMedia = useCallback(
     (media: Media) => {

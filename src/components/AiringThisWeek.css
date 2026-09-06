@@ -2,14 +2,6 @@
   margin-bottom: 1.25rem;
 }
 
-.airing__header {
-  padding: 0 var(--x-axis-spacing);
-}
-
-.airing__header > h3 {
-  font-weight: 800;
-}
-
 .airing__row {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));

@@ -7,6 +7,10 @@ import './Features.css';
 import Hero from 'components/Hero';
 import AiringThisWeek from 'components/AiringThisWeek';
 import GenreTiles from 'components/GenreTiles';
+import PremiereSpine from 'components/PremiereSpine';
+import UpcomingSeason from 'components/UpcomingSeason';
+import PopularityList from 'components/PopularityList';
+import RankChart from 'components/RankChart';
 import Card from 'components/Card';
 import Rail from 'components/Rail';
 import Loader from 'components/Loader';
@@ -15,20 +19,9 @@ import { Media } from 'graphql/types';
 import { FEATURED_QUERY } from 'graphql/queries';
 import { useStateValue } from 'context';
 
-interface ITitles {
-  [key: string]: string;
-}
-
 const currentYear = new Date().getFullYear();
 const currentMonth = new Date().getMonth() + 1;
 
-const TITLES: ITitles = {
-  trending: 'Trending Now',
-  season: 'Popular This Season',
-  nextSeason: 'Upcoming Next Season',
-  popular: 'All Time Popular',
-  top: 'Top Ranked',
-};
 const SEASONS = [
   {
     name: 'WINTER',
@@ -101,17 +94,31 @@ function Features() {
               only pushed the artwork down the page. */}
           <Hero {...featured} />
           <AiringThisWeek featured={featured} />
-          {Object.keys(featured).map(
-            (key) =>
-              featured[key].media.length > 0 && (
-                <Rail key={key} title={TITLES[key]}>
-                  {featured[key].media.map((mediaItem: Media) => (
-                    <Card key={mediaItem.id} {...mediaItem} />
-                  ))}
-                </Rail>
-              ),
+          {featured.trending?.media?.length > 0 && (
+            <Rail title="Trending now">
+              {featured.trending.media.map((mediaItem: Media) => (
+                <Card key={mediaItem.id} {...mediaItem} />
+              ))}
+            </Rail>
           )}
+
+          {/* Genres sit high on the page, not buried under five rails — they
+              are a way in, and nobody scrolls to the bottom to find one. */}
           <GenreTiles featured={featured} />
+
+          {featured.top?.media?.length > 0 && <RankChart media={featured.top.media} />}
+
+          {/* Each of the remaining sections renders differently, because each
+              is sitting on different material: this season has dates but no
+              scores, next season has banner art, all-time has figures worth
+              printing, and top-ranked has an order that says more than its
+              scores do. A single Rail for all of them was why the page read as
+              five copies of one thing. */}
+          {featured.season?.media?.length > 0 && <PremiereSpine media={featured.season.media} />}
+          {featured.nextSeason?.media?.length > 0 && (
+            <UpcomingSeason media={featured.nextSeason.media} />
+          )}
+          {featured.popular?.media?.length > 0 && <PopularityList media={featured.popular.media} />}
         </>
       ) : (
         <Loader />

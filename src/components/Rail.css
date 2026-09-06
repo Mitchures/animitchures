@@ -2,14 +2,6 @@
   margin-bottom: 1.25rem;
 }
 
-.rail__header {
-  padding: 0 var(--x-axis-spacing);
-}
-
-.rail__header > h3 {
-  font-weight: 800;
-}
-
 .rail__viewport {
   position: relative;
 }
@@ -28,8 +20,11 @@
   height: 0 !important;
 }
 
+/* 7px each side, so adjacent posters sit 14px apart — the same gap the spine,
+   the genre tiles and the upcoming grid use. At 18px they were 36px apart and
+   the row read as loose. */
 .rail__scroller > .card {
-  padding: 1.25rem 1.125rem;
+  padding: 1rem 0.4375rem;
   scroll-snap-align: start;
 }
 
@@ -104,7 +99,7 @@
 
 @media screen and (max-width: 480px) {
   .rail__scroller > .card {
-    padding: 0.875rem 0.5rem;
+    padding: 0.875rem 0.3125rem;
   }
 }
 

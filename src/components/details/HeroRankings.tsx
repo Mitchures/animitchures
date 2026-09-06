@@ -1,5 +1,7 @@
 import './HeroRankings.css';
 
+import Badge from 'components/Badge';
+
 import { Media, MediaRank } from 'graphql/types';
 
 /** Only a top-100 placing is worth a badge; below that it is not a distinction. */
@@ -26,16 +28,13 @@ function HeroRankings({ rankings }: Media) {
   return (
     <div className="heroRankings">
       {badges.map((rank) => (
-        <span key={rank.id} className="heroRankings__badge">
-          <b>#{rank.rank}</b>
-          {/* `context` already reads as a phrase — "highest rated all time",
-              "most popular" — so it needs a year appended only when it is not
-              an all-time placing. */}
-          <span>
-            {rank.context}
-            {!rank.allTime && rank.year ? ` ${rank.year}` : ''}
-          </span>
-        </span>
+        // `context` already reads as a phrase — "highest rated all time",
+        // "most popular" — so it needs a year appended only when it is not an
+        // all-time placing.
+        <Badge key={rank.id} tone="gold" value={`#${rank.rank}`}>
+          {rank.context}
+          {!rank.allTime && rank.year ? ` ${rank.year}` : ''}
+        </Badge>
       ))}
     </div>
   );

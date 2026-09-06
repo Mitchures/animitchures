@@ -5,6 +5,8 @@ import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 import './Hero.css';
 
+import Badge from 'components/Badge';
+
 import { useStateValue } from 'context';
 import { addItemToFavorites, removeItemFromFavorites } from 'api';
 import { mediaPath, scoreTier } from 'helpers';
@@ -91,20 +93,20 @@ function Hero({ trending }: any) {
           >
             <div className="hero__badges">
               {selected.averageScore && (
-                <span
-                  className={`hero__badge hero__badge--score hero__badge--${scoreTier(
-                    selected.averageScore,
-                  )}`}
-                >
-                  ★ {selected.averageScore}
-                </span>
+                <Badge
+                  tone={scoreTier(selected.averageScore)}
+                  value={`★ ${selected.averageScore}`}
+                />
               )}
-              <span className="hero__badge">#{index + 1} Trending</span>
+              {/* Trending position is an accolade, like the ranking badges on
+                  Details — so it takes the same gold treatment. */}
+              <Badge tone="gold" value={`#${index + 1}`}>
+                Trending
+              </Badge>
               {selected.nextAiringEpisode && (
-                <span className="hero__badge">
-                  Ep {selected.nextAiringEpisode.episode}{' '}
+                <Badge value={`Ep ${selected.nextAiringEpisode.episode}`}>
                   {untilAiring(selected.nextAiringEpisode.timeUntilAiring)}
-                </span>
+                </Badge>
               )}
             </div>
 

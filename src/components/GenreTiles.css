@@ -2,14 +2,6 @@
   margin-bottom: 1.25rem;
 }
 
-.genreTiles__header {
-  padding: 0 var(--x-axis-spacing);
-}
-
-.genreTiles__header > h3 {
-  font-weight: 800;
-}
-
 .genreTiles__grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));

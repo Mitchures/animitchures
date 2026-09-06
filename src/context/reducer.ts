@@ -33,11 +33,6 @@ export const reducer = (state: State, action: Action): State => {
         anilist_user: null,
         // featured: null
       };
-    case 'set_results':
-      return {
-        ...state,
-        results: action.results,
-      };
     case 'set_favorites':
     case 'add_to_favorites':
     case 'remove_from_favorites':

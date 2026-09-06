@@ -3,6 +3,8 @@ import { motion, useReducedMotion } from 'framer-motion';
 
 import './Rail.css';
 
+import SectionHeading from 'components/SectionHeading';
+
 /**
  * A horizontally scrolling row of cards.
  *
@@ -11,7 +13,15 @@ import './Rail.css';
  * on the side there is more to see, snap points, and a reveal as the row comes
  * into view.
  */
-function Rail({ title, children }: { title: string; children: ReactNode }) {
+function Rail({
+  title,
+  detail,
+  children,
+}: {
+  title: string;
+  detail?: string;
+  children: ReactNode;
+}) {
   const scroller = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
   const [more, setMore] = useState({ before: false, after: false });
@@ -55,9 +65,7 @@ function Rail({ title, children }: { title: string; children: ReactNode }) {
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.45, ease: [0.2, 0.7, 0.3, 1] }}
     >
-      <div className="rail__header">
-        <h3>{title}</h3>
-      </div>
+      <SectionHeading title={title} detail={detail} />
       <div className="rail__viewport">
         {more.before && (
           <button
