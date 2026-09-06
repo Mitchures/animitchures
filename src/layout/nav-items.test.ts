@@ -27,7 +27,7 @@ test('signed in without anilist: favorites and settings appear, no Anilist secti
 test('signed in with anilist linked: watchlist appears', () => {
   const sections = getNavSections({ user, anilistUser });
 
-  expect(idsIn(sections, 'Anilist')).toEqual(['watchlist']);
+  expect(idsIn(sections, 'Anilist')).toEqual(['watchlist', 'taste']);
 });
 
 test('logout is flagged so consumers can style and wire it differently', () => {

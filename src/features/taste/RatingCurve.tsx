@@ -2,10 +2,8 @@ import { useMemo } from 'react';
 
 import './RatingCurve.css';
 
+import { positionOf, scaleDivisor, usableBuckets, SITE_MEAN } from './curve';
 import { ScoreBucket } from './types';
-
-/** AniList's own mean across every scored entry on the site, out of 100. */
-const SITE_MEAN = 69;
 
 interface Props {
   scores: ScoreBucket[];
@@ -32,9 +30,18 @@ function RatingCurve({ scores, mean }: Props) {
 
   const peak = Math.max(...bars.map((bucket) => bucket.count), 1);
   const top = bars[bars.length - 1].score;
-  // `scores` comes back on the account's own scale, so a 10-point account
-  // reports 1-10 and the site's out-of-100 mean has to come down to meet it.
-  const siteMean = top <= 5 ? SITE_MEAN / 20 : top <= 10 ? SITE_MEAN / 10 : SITE_MEAN;
+
+  /**
+   * `scores` comes back on the account's own scale — a 10-point account
+   * reports buckets of 6, 7, 8 — but `meanScore` is *always* out of 100,
+   * whatever the format. Verified against live accounts: one reports a mean
+   * of 79.75 against buckets that top out at 10. Both means therefore have to
+   * be brought onto the bucket scale before either can be plotted; leaving
+   * the user's alone pinned it to the far right of every non-100 account.
+   */
+  const divisor = top <= 5 ? 20 : top <= 10 ? 10 : 1;
+  const plottedMean = mean / divisor;
+  const siteMean = SITE_MEAN / divisor;
 
   /**
    * Where a score sits along the plot, as a percentage.
@@ -75,10 +82,10 @@ function RatingCurve({ scores, mean }: Props) {
 
         <span
           className="ratingCurve__mark ratingCurve__mark--mine"
-          style={{ left: `${positionOf(mean)}%` }}
+          style={{ left: `${positionOf(plottedMean)}%` }}
         >
           <i />
-          <em>you {Math.round(mean * 10) / 10}</em>
+          <em>you {Math.round(plottedMean * 10) / 10}</em>
         </span>
         <span
           className="ratingCurve__mark ratingCurve__mark--site"

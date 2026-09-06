@@ -1383,7 +1383,10 @@ export const TASTE_QUERY = gql`
               name
             }
           }
-          releaseYears(sort: RELEASE_YEAR) {
+          # UserStatisticsSort has no RELEASE_YEAR member — only COUNT, ID,
+          # MEAN_SCORE, PROGRESS and their DESC forms. ID orders by year here,
+          # and YearHistogram sorts again anyway.
+          releaseYears(sort: ID) {
             releaseYear
             count
           }
