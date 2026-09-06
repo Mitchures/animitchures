@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import './GenreTiles.css';
 
+import SectionHeading from 'components/SectionHeading';
+
 const TILE_COUNT = 8;
 
 /**
@@ -52,9 +54,7 @@ function GenreTiles({ featured }: { featured: Record<string, any> }) {
 
   return (
     <section className="genreTiles">
-      <div className="genreTiles__header">
-        <h3>Browse by genre</h3>
-      </div>
+      <SectionHeading title="Browse by genre" />
       <div className="genreTiles__grid">
         {genres.map((genre) => (
           <Link

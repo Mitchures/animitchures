@@ -9,6 +9,8 @@
   --action: #6366f1;
   --action-light: rgba(99, 102, 241, 0.15);
   --action-secondary: #ff5657;
+  /* Accolades — rankings, trending position. */
+  --gold: #facc15;
   /* Score severity tiers. See helpers/scoreTier for where the cuts fall. */
   --score-great: #26ae7f;
   --score-good: #facc15;

@@ -1,0 +1,62 @@
+.badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  white-space: nowrap;
+}
+
+/* The value inherits the tone's colour; the label stays quiet so the two halves
+   read as "figure" and "what it means" rather than competing. */
+.badge b {
+  font-size: 12px;
+  font-weight: 800;
+  color: inherit;
+}
+
+.badge > span {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* A plain fact: no accent, just legible over artwork. */
+.badge--neutral {
+  color: rgba(255, 255, 255, 0.92);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Every accented tone is the same chip in a different colour. Border and fill
+   are mixed from currentColor, so a tone is one value rather than three kept in
+   step by hand. */
+.badge--gold,
+.badge--great,
+.badge--good,
+.badge--mixed,
+.badge--poor {
+  border-color: color-mix(in srgb, currentColor 45%, transparent);
+  background-color: color-mix(in srgb, currentColor 16%, transparent);
+}
+
+.badge--gold {
+  color: var(--gold);
+}
+
+.badge--great {
+  color: var(--score-great);
+}
+
+.badge--good {
+  color: var(--score-good);
+}
+
+.badge--mixed {
+  color: var(--score-mixed);
+}
+
+.badge--poor {
+  color: var(--score-poor);
+}

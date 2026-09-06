@@ -5,28 +5,7 @@
   margin-bottom: 0.75rem;
 }
 
-/* Gold rather than the app's indigo: this is the one element in the hero that
-   is an accolade rather than a fact, and it should not read as another chip. */
-.heroRankings__badge {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.4rem;
-  padding: 0.3rem 0.7rem;
-  border-radius: 999px;
-  background-color: rgba(250, 204, 21, 0.16);
-  border: 1px solid rgba(250, 204, 21, 0.45);
-  backdrop-filter: blur(6px);
-}
-
-.heroRankings__badge b {
-  font-size: 12px;
-  font-weight: 800;
-  color: #facc15;
-}
-
-.heroRankings__badge > span {
-  font-size: 11px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.9);
+/* AniList returns the context lowercase ("highest rated all time"). */
+.heroRankings .badge > span {
   text-transform: capitalize;
 }

@@ -4,6 +4,8 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 
 import './AiringThisWeek.css';
 
+import SectionHeading from 'components/SectionHeading';
+
 import { mediaPath } from 'helpers';
 
 const WEEK_SECONDS = 7 * 24 * 60 * 60;
@@ -89,9 +91,7 @@ function AiringThisWeek({ featured }: { featured: Record<string, any> }) {
 
   return (
     <section className="airing">
-      <div className="airing__header">
-        <h3>Airing this week</h3>
-      </div>
+      <SectionHeading title="Airing this week" />
       <div className="airing__row">
         {/* layout + AnimatePresence: when one expires it fades out and the rest
             animate into the space rather than snapping across. */}
