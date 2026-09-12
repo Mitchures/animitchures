@@ -20,21 +20,6 @@ export default defineConfig(({ mode }) => ({
     // Must stay 3000: playwright.config.ts hardcodes this baseURL.
     port: 3000,
     strictPort: true,
-    proxy: {
-      // AniList's token endpoint sends no CORS headers, so the browser cannot
-      // POST to it directly. This previously required `npx local-cors-proxy`
-      // running on :8010 before account linking would work at all.
-      //
-      // Dev only. In a production build this path is not proxied — but the
-      // hardcoded localhost:8010 it replaces was equally dev-only, so this is
-      // not a regression. Production OAuth needs the token exchange moved into
-      // a Cloud Function, which is tracked separately.
-      '/anilist/token': {
-        target: 'https://anilist.co',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/anilist\/token/, '/api/v2/oauth/token'),
-      },
-    },
   },
   build: {
     // Must stay 'build', not Vite's default 'dist': firebase.json sets

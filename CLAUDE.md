@@ -37,16 +37,28 @@ Verified on Node v24 / yarn 1.22 as of 2026-09-05: 12 unit tests pass (1 skipped
 tests pass against both the dev server and the production build, `yarn lint` exits 0 with
 53 pre-existing warnings.
 
-### AniList OAuth is proxied by the dev server
+### AniList OAuth runs through a Cloud Function
 
-`src/views/Callback.tsx` POSTs the authorization code to `/anilist/token`, which
-`server.proxy` in `vite.config.mts` forwards to `https://anilist.co/api/v2/oauth/token`.
-AniList's token endpoint sends no CORS headers, so the browser can't call it directly.
+`src/views/Callback.tsx` calls the `exchangeAnilistCode` callable, which swaps the
+authorization code for an access token using the client secret and returns the token.
+Two things made this necessary: the secret cannot live in the browser (Vite inlines every
+`VITE_` var into the bundle), and AniList's token endpoint sends no CORS headers, so the
+browser could never call it directly. The dev server used to proxy it, which is why
+linking worked locally and nowhere else.
 
-No separate process is needed — the old `npx local-cors-proxy` step is gone. This is
-**dev-only**: a production build has nothing proxying that path, so account linking only
-works locally. Fixing that properly means moving the token exchange into a Cloud Function,
-which would also stop shipping the client secret to the browser.
+The **access token** still reaches the browser — `authHeader()` needs it to sign AniList
+GraphQL queries. Only the secret is server-side.
+
+The secret lives in Cloud Secret Manager, not in any env file:
+
+```bash
+firebase functions:secrets:set ANILIST_CLIENT_SECRET
+```
+
+Functions run on **Node 22** with `firebase-functions` 6 (`firebase-admin` 13). The three
+original triggers still use the v1 API via the `firebase-functions/v1` namespace — porting
+them to v2 would rewrite their signatures for no behavioural gain. Deploying v2 functions
+with secrets needs **firebase-tools 11 or newer**.
 
 ## Environment
 
@@ -55,7 +67,9 @@ beginning `VITE_`, and inlines them into the bundle at build time — there is n
 on Firebase Hosting to configure.
 
 - `VITE_API_KEY`, `VITE_AUTH_DOMAIN`, `VITE_PROJECT_ID`, `VITE_STORAGE_BUCKET`, `VITE_MESSAGING_SENDER_ID`, `VITE_APP_ID` — Firebase
-- `VITE_ANILIST_CLIENT_ID`, `VITE_ANILIST_CLIENT_SECRET`, `VITE_ANILIST_CALLBACK_URI` — AniList OAuth
+- `VITE_ANILIST_CLIENT_ID`, `VITE_ANILIST_CALLBACK_URI` — AniList OAuth. Both are public by
+  design. The **client secret is not here** — it is a Cloud Secret, read only by the
+  `exchangeAnilistCode` function.
 
 Read them via `import.meta.env.VITE_*`, never `process.env`. `.env.test` holds fake values
 so tests are deterministic; Vite's precedence puts it above `.env.local` in test mode.
@@ -67,7 +81,7 @@ even though those files exist locally.
 
 ```
 index.html           Vite entry point — lives at the project ROOT, not in public/
-vite.config.mts      dev server (:3000), build.outDir, vitest config, AniList proxy
+vite.config.mts      dev server (:3000), build.outDir, vitest config
 eslint.config.mjs    flat config; replaced the eslintConfig block in package.json
 playwright.config.ts e2e config; baseURL is hardcoded to http://localhost:3000
 e2e/                 Playwright specs (.spec.ts) — outside src so vitest ignores them
