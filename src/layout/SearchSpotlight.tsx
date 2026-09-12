@@ -31,9 +31,10 @@ interface Props {
  * cover art is how people recognise a title. The old header search had no live
  * results at all — it only navigated on submit.
  *
- * The trigger lives at the top of the rail, so open state is owned by AppShell
- * and this component is controlled. Below 960px the rail is hidden and the
- * header returns with its own inline Search.
+ * The trigger is a FAB rendered by AppShell, so open state is owned there and
+ * this component is controlled. The FAB is fixed to the viewport rather than
+ * to the rail, which is what lets this be the only search below 960px, where
+ * the rail is hidden and the header carries just the logo and the menu.
  */
 function SearchSpotlight({ open, onOpenChange }: Props) {
   const [term, setTerm] = useState('');
@@ -174,6 +175,13 @@ function SearchSpotlight({ open, onOpenChange }: Props) {
                 aria-label="Search anime"
                 autoComplete="off"
                 spellCheck={false}
+                // iOS applies all three independently of spellCheck, and
+                // romanised titles are exactly what its dictionary rewrites —
+                // "Gintama" and "Mushishi" do not survive autocorrect. The
+                // hint also relabels the keyboard's return key as Search.
+                autoCorrect="off"
+                autoCapitalize="none"
+                enterKeyHint="search"
               />
               <button type="button" className="spotlight__esc" onClick={close}>
                 esc

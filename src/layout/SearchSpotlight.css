@@ -8,6 +8,9 @@
   align-items: flex-start;
   padding: 11vh 1.5rem 1.5rem;
   background-color: rgba(6, 12, 20, 0.62);
+  /* Safari only understood the prefixed property until 18, so without this the
+     scrim is a flat wash on most iPhones in the wild rather than a blur. */
+  -webkit-backdrop-filter: blur(7px);
   backdrop-filter: blur(7px);
 }
 
@@ -34,11 +37,19 @@
   flex: none;
 }
 
+/* App.css styles every bare `input` as a standalone form control — a grey
+   rounded box with `margin-top: 0.5rem`. In here the panel is the field, so
+   each of those has to be undone: the margin pushed the text 4px below the
+   icon and the esc button, and the radius is the corner that shows up as soon
+   as a background does. Font size stays >= 16px or iOS zooms the viewport on
+   focus. */
 .spotlight__field input {
   flex: 1;
   min-width: 0;
   height: auto;
+  margin: 0;
   padding: 0;
+  border-radius: 0;
   font-size: 20px;
   font-weight: 700;
   line-height: 1.4;
@@ -193,6 +204,23 @@
   .spotlight__results {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
+  /* 11vh of it is a desktop proportion. On a phone the keyboard takes roughly
+     the bottom half the moment the field is focused, and `vh` does not shrink
+     to match, so the panel sat centred behind it. */
+  .spotlight__scrim {
+    padding: 4vh 1rem 1rem;
+  }
+}
+
+/* iOS paints a translucent grey rectangle over whatever is tapped. On the
+   posters it reads as a rendering fault rather than feedback — the active
+   outline is already the affordance. */
+.spotlight__field input,
+.spotlight__esc,
+.spotlight__result,
+.spotlight__all {
+  -webkit-tap-highlight-color: transparent;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -218,6 +246,13 @@
   :root:not([data-theme='light']) .spotlight__field input,
   :root:not([data-theme='light']) .spotlight__resultTitle {
     color: white;
+  }
+
+  /* `:root:not([data-theme='light']) input` in App.css is more specific than
+     the `background: none` above, so in dark mode the field wore a grey pill
+     that light mode never showed. Restated here, where it wins. */
+  :root:not([data-theme='light']) .spotlight__field input {
+    background-color: transparent;
   }
 
   :root:not([data-theme='light']) .spotlight__esc,
@@ -252,6 +287,11 @@
 :root[data-theme='dark'] .spotlight__field input,
 :root[data-theme='dark'] .spotlight__resultTitle {
   color: white;
+}
+
+/* Same override as the media-query branch above — see the note there. */
+:root[data-theme='dark'] .spotlight__field input {
+  background-color: transparent;
 }
 
 :root[data-theme='dark'] .spotlight__esc,
