@@ -25,8 +25,25 @@
   transition: var(--transition);
 }
 
+/* Brightness and a lift, not opacity.
+   Fading the tile to 0.65 faded its label with it — white text on a mid-tone
+   gradient, dimmed, on a dark page, which left the genre barely readable at
+   exactly the moment someone was pointing at it. */
 .genreTiles__tile:hover {
-  opacity: 0.65;
+  /* App.css has `a:hover { color: var(--action) !important }`, which at (0,1,1)
+     outranks this tile's own `color: white !important` at (0,1,0) — so every
+     genre label turned indigo on a coloured gradient the moment you pointed at
+     it. This selector is (0,2,0) and wins it back. */
+  color: white !important;
+  filter: brightness(1.15) saturate(1.08);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .genreTiles__tile:hover {
+    transform: none;
+  }
 }
 
 @media screen and (max-width: 960px) {

@@ -18,6 +18,26 @@
   padding: 0.875rem 0;
 }
 
+/* The poster fills its column here for the same reason it does on Browse —
+   see the note in Browse.css. */
+.favorites__grid .card,
+.favorites__grid .card__poster,
+.favorites__grid .card__label,
+.favorites__grid .card__labelTitle {
+  width: 100%;
+  max-width: 100%;
+}
+
+.favorites__grid .card__poster > img {
+  width: 100%;
+  height: auto;
+}
+
+.favorites__grid .card {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .favorites__placeholder {
   display: grid;
   place-content: center;

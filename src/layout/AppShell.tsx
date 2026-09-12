@@ -7,6 +7,8 @@ import MobileMenu from 'layout/MobileMenu';
 import SearchSpotlight, { SEARCH_SHORTCUT } from 'layout/SearchSpotlight';
 import SearchFab from 'layout/SearchFab';
 import { getNavSections } from 'layout/nav-items';
+import AnilistReconnect from 'components/AnilistReconnect';
+import { useAnilistReconnect } from 'features/settings/useAnilistReconnect';
 
 import { auth } from 'config';
 import { useStateValue, ScrollContainerProvider } from 'context';
@@ -28,6 +30,10 @@ function AppShell() {
   const location = useLocation();
   const navigate = useNavigate();
   const { preferences } = usePreferences();
+  // A refused AniList token breaks every write — progress, list status, AniList
+  // settings — from wherever you happen to be, so the warning belongs in the
+  // shell rather than on the one page that also loses its content.
+  const anilistExpired = useAnilistReconnect();
   const landed = useRef(false);
 
   const sections = getNavSections({ user, anilistUser: anilist_user });
@@ -61,6 +67,7 @@ function AppShell() {
       <div className="app__body" ref={scrollContainerRef}>
         <Header menuOpen={menuOpen} onMenuToggle={() => setMenuOpen((open) => !open)} />
         <ScrollContainerProvider value={scrollContainerRef}>
+          {anilistExpired && <AnilistReconnect variant="banner" />}
           <Outlet />
         </ScrollContainerProvider>
       </div>

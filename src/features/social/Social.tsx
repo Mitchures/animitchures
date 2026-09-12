@@ -10,6 +10,8 @@ import EpisodeStrip from 'features/watchlist/EpisodeStrip';
 import SocialSkeleton from './SocialSkeleton';
 
 import { useStateValue } from 'context';
+import { useAnilistReconnect } from 'features/settings/useAnilistReconnect';
+import AnilistReconnect from 'components/AnilistReconnect';
 import { SOCIAL_FEED_QUERY } from 'graphql/queries';
 import { authHeader, mediaPath } from 'helpers';
 import { FeedActivity, SocialUser } from './types';
@@ -19,6 +21,7 @@ const STRIP_MAX_TICKS = 26;
 
 function Social() {
   const [{ user, anilist_user }] = useStateValue();
+  const needsReconnect = useAnilistReconnect();
   // Impure during render, and the React Compiler rejects it.
   const [now] = useState(() => Math.floor(Date.now() / 1000));
 
@@ -48,6 +51,7 @@ function Social() {
       </p>
     );
   }
+  if (needsReconnect) return <AnilistReconnect what="the feed" />;
   if (loading && !activities.length) return <SocialSkeleton />;
   if (error) return <p className="social__empty">We could not load your feed.</p>;
 
