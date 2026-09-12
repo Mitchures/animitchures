@@ -8,6 +8,7 @@ import SearchSpotlight, { SEARCH_SHORTCUT } from 'layout/SearchSpotlight';
 import SearchFab from 'layout/SearchFab';
 import { getNavSections } from 'layout/nav-items';
 import AnilistReconnect from 'components/AnilistReconnect';
+import GlassFilters from 'layout/GlassFilters';
 import { useAnilistReconnect } from 'features/settings/useAnilistReconnect';
 
 import { auth } from 'config';
@@ -61,6 +62,7 @@ function AppShell() {
 
   return (
     <div className="app__container">
+      <GlassFilters />
       <Navigation sections={sections} user={user} onLogout={handleLogout} />
       <SearchFab open={searchOpen} onOpen={() => setSearchOpen(true)} shortcut={SEARCH_SHORTCUT} />
       <SearchSpotlight open={searchOpen} onOpenChange={setSearchOpen} />
