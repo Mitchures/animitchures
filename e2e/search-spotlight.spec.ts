@@ -112,13 +112,24 @@ test.describe('search spotlight', () => {
 test.describe('search on mobile', () => {
   test.use({ viewport: { width: 500, height: 900 } });
 
-  test('keeps the header bar and its inline search', async ({ page }) => {
+  test('the FAB is the only search, and the header just carries the logo', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.header')).toBeVisible({ timeout: 20_000 });
-    await expect(page.locator('.header .search input')).toBeVisible();
     await expect(page.locator('.navigation')).toBeHidden();
     // The spotlight trigger used to live in the rail, so it disappeared with
     // it below 960px. As a FAB it survives, which is half the reason it moved.
     await expect(page.locator('.searchFab')).toBeVisible();
+    // And the header's own inline field is gone with it — it was a second,
+    // worse search: no live results, and it only navigated on submit.
+    await expect(page.locator('.header .search')).toHaveCount(0);
+    await expect(page.locator('.header__mark img')).toBeVisible();
+  });
+
+  test('the FAB opens the spotlight at phone width', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('.header')).toBeVisible({ timeout: 20_000 });
+
+    await page.locator('.searchFab').click();
+    await expect(page.locator('.spotlight__field input')).toBeFocused();
   });
 });
