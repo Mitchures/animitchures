@@ -75,6 +75,9 @@
   color: var(--action-secondary);
 }
 
+/* A link to /profile, so it needs the affordances of one: the whole row is the
+   target, and the negative margin lets the pressed state span the overlay's
+   padding rather than stopping short of it. */
 .mobileMenu__user {
   display: flex;
   align-items: center;
@@ -82,6 +85,12 @@
   margin-top: auto;
   padding-top: 1.25rem;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobileMenu__user:active {
+  opacity: 0.6;
 }
 
 .mobileMenu__user img {

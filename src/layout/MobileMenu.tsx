@@ -102,14 +102,19 @@ function MobileMenu({ open, sections, user, onClose, onLogout }: Props) {
             ))}
           </nav>
 
+          {/* The one place your own name and face appear in the overlay, so it
+              is also where you would tap to reach your profile. onClose is
+              explicit rather than left to the route change: tapping it while
+              already on /profile navigates nowhere, and the overlay would
+              otherwise stay sitting over the page. */}
           {user && (
-            <div className="mobileMenu__user">
+            <Link to="/profile" className="mobileMenu__user" onClick={onClose}>
               {user.photoURL && <img src={user.photoURL} alt="" />}
               <span>
                 Signed in as
                 <b>{user.displayName ? user.displayName : user.email}</b>
               </span>
-            </div>
+            </Link>
           )}
         </motion.div>
       )}

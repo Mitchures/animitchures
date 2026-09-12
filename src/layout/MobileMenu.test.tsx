@@ -64,6 +64,18 @@ test('shows who is signed in', () => {
   expect(screen.getByText(/Mitchell/)).toBeInTheDocument();
 });
 
+test('the signed-in row links to the profile and closes the overlay', () => {
+  const { onClose } = setup();
+  const row = screen.getByText(/Mitchell/).closest('a');
+
+  expect(row).toHaveAttribute('href', '/profile');
+
+  // Closing is not left to the route change: tapping this while already on
+  // /profile navigates nowhere, and the overlay would stay over the page.
+  fireEvent.click(row!);
+  expect(onClose).toHaveBeenCalledTimes(1);
+});
+
 test('locks body scroll while open and restores it on unmount', () => {
   const { unmount } = setup();
   expect(document.body.style.overflow).toBe('hidden');
