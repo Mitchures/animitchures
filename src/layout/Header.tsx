@@ -3,7 +3,7 @@ import { Menu as MenuIcon } from '@mui/icons-material';
 
 import { Link } from 'react-router-dom';
 
-import Wordmark from '../images/animitchures-logo-with-text-480.png';
+import Logo from '../images/animitchures-logo.svg';
 
 interface Props {
   menuOpen: boolean;
@@ -18,16 +18,16 @@ interface Props {
  * FAB now and survives at every width, so the header field was a second, worse
  * way to do the same thing — no live results, and it navigated on submit only.
  *
- * Losing the field freed enough width for the full lockup rather than the bare
- * mark, which is the one place in the app the wordmark is shown as artwork —
- * the rail sets its own in Montserrat, since it has to appear and disappear
- * with the hover expansion and type can do that without a second asset.
+ * Losing the field freed enough width for the lockup rather than the bare mark.
+ * The wordmark is live text, as it is in the rail and on the login page — one
+ * SVG for the mark and no raster artwork anywhere.
  */
 function Header({ menuOpen, onMenuToggle }: Props) {
   return (
     <div className="header">
       <Link to="/" className="header__mark" aria-label="animitchures home">
-        <img src={Wordmark} alt="animitchures" />
+        <img src={Logo} alt="" />
+        <span>animitchures</span>
       </Link>
       <button
         type="button"

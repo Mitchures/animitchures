@@ -40,7 +40,7 @@ function Login() {
         <div className="login__header">
           <Link to="/">
             <img src={Logo} alt="animitchures" />
-            animitchures<span></span>
+            animitchures
           </Link>
         </div>
         <div className="login__container">

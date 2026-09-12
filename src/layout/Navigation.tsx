@@ -30,9 +30,7 @@ function Navigation({ sections, user, onLogout }: Props) {
     <div className="navigation">
       <Link to="/" className="navigation__logo">
         <img src={Logo} alt="animitchures" />
-        <span className="navigation__wordmark">
-          animitchures<span></span>
-        </span>
+        <span className="navigation__wordmark">animitchures</span>
       </Link>
       <div className="navigation__container">
         {destinations.map((section) => (

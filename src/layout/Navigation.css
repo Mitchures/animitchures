@@ -36,8 +36,10 @@
 .navigation__logo {
   display: flex;
   align-items: center;
+  font-family: 'Outfit', 'Montserrat', sans-serif;
   font-size: 20px;
-  font-weight: 800;
+  font-weight: 600;
+  letter-spacing: -0.022em;
   /* Collapsed the rail is 72px, so the mark is centred; expanded it returns to
      the left edge alongside the wordmark. */
   justify-content: center;
@@ -51,18 +53,15 @@
   padding-left: 1.375rem;
 }
 
+/* The mark is a little over 2:1, so it takes more width than the old square
+   one did to keep the same visual weight in a 72px rail. */
 .navigation__logo > img {
-  width: 34px;
+  width: 44px;
   flex: none;
 }
 
 .navigation:hover .navigation__logo > img {
   margin-right: 0.875rem;
-}
-
-.navigation__wordmark > span {
-  color: var(--action);
-  font-weight: 800;
 }
 
 /* Removed from layout, not merely transparent: at opacity 0 they still occupy

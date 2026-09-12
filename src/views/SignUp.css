@@ -27,20 +27,17 @@
 .signUp__header > a {
   display: flex;
   align-items: center;
-  /* margin-left: 1.5rem; */
-  font-size: 28px;
-  font-weight: 800;
+  gap: 0.7rem;
+  font-family: 'Outfit', 'Montserrat', sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.022em;
   color: var(--primary);
 }
 
-.signUp__header > a > span {
-  color: var(--action);
-  /* font-size: 40px; */
-}
-
 .signUp__header > a > img {
-  width: 50px;
-  margin-right: 0.875rem;
+  height: 26px;
+  width: auto;
 }
 
 .signUp__container {
