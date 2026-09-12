@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
 import { motion } from 'framer-motion';
-import { cloneDeep } from 'lodash';
 
 import './Favorites.css';
 
@@ -13,7 +12,12 @@ import { Media } from 'graphql/types';
 import { DETAILS_LIST_QUERY } from 'graphql/queries';
 
 const getSortedMedia = (list: Media[]) => {
-  const media = cloneDeep(list);
+  // Copied before sorting because the entries below are mutated, and the array
+  // comes straight from Apollo's cache — sorting it in place would reorder the
+  // cache itself. `structuredClone` replaces lodash's cloneDeep: lodash was in
+  // the bundle for this one call, and carries a code-injection advisory in
+  // `_.template` with no fixed release to upgrade to.
+  const media: Media[] = structuredClone(list);
   media.forEach((item: Media) => {
     if (item.title && !item.title.english) {
       item.title.english = item.title.userPreferred;
