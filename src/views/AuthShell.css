@@ -1,0 +1,390 @@
+/* ── the page ─────────────────────────────────────────────────────────────
+   Both auth pages render outside the app shell, so there is no rail, no
+   header, and `--header-height` does not apply. 100dvh rather than 100vh:
+   mobile browsers count their collapsing toolbar in vh, which left the card
+   pushed under the address bar. */
+.auth {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 80% at 12% 0%, rgba(99, 102, 241, 0.22), transparent 60%),
+    var(--primary);
+}
+
+/* ── the wall ─────────────────────────────────────────────────────────────
+   Inset negatively and rotated, so the tilt never exposes a corner. The grid
+   is wider than the viewport on purpose — the card covers the left third and
+   the scrim swallows the rest. */
+.auth__wall {
+  position: absolute;
+  inset: -18% -14%;
+  z-index: 0;
+}
+
+.auth__wallGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  transform: rotate(-8deg) scale(1.12);
+}
+
+.auth__wallGrid img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+  /* Covers arrive one by one from the CDN; without this the wall pops in as a
+     grid of flashes behind the form. */
+  animation: auth-fade 0.6s ease both;
+}
+
+@keyframes auth-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.auth__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    100deg,
+    rgba(11, 22, 33, 0.97) 30%,
+    rgba(11, 22, 33, 0.76) 58%,
+    rgba(11, 22, 33, 0.92) 100%
+  );
+}
+
+/* ── the card ─────────────────────────────────────────────────────────── */
+.auth__card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 420px;
+  margin: 3rem 0 3rem 7rem;
+  padding: 2.25rem;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(13, 24, 37, 0.82);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+}
+
+.auth__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1.6rem;
+  text-decoration: none;
+}
+
+.auth__brand img {
+  height: 26px;
+  width: auto;
+}
+
+.auth__brand span {
+  font-family: 'Outfit', 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.022em;
+  color: white;
+}
+
+.auth h1 {
+  font-family: 'Outfit', 'Montserrat', sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: white;
+  margin: 0 0 0.3rem;
+}
+
+.auth__sub {
+  margin: 0 0 1.4rem;
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+/* ── the form ─────────────────────────────────────────────────────────────
+   App.css styles every bare `input` as a light-mode form control with its own
+   margin, radius and blue focus ring. On this dark card every one of those has
+   to be undone, so the fields are styled here in full. */
+.auth__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.auth__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.auth__field label {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.auth__field input {
+  width: 100%;
+  margin: 0;
+  padding: 0.72rem 0.85rem;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 12px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.auth__field input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.auth__field input:focus {
+  outline: none;
+  border-color: var(--action);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+}
+
+.auth__field--invalid input,
+.auth__field--invalid input:focus {
+  border-color: var(--action-secondary);
+  box-shadow: 0 0 0 3px rgba(255, 86, 87, 0.22);
+}
+
+.auth__password {
+  position: relative;
+  display: block;
+}
+
+/* Padded so a long password never runs under the toggle. */
+.auth__password input {
+  padding-right: 4.2rem;
+}
+
+.auth__reveal {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  width: auto;
+  height: auto;
+  padding: 0.3rem 0.5rem;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  background: none;
+  border-radius: 8px;
+}
+
+.auth__reveal:hover {
+  opacity: 1;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.auth__hint {
+  font-size: 11.5px;
+  color: var(--action-secondary);
+}
+
+.auth__forgot {
+  align-self: flex-end;
+  margin-top: -0.35rem;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #8b8ff5;
+  text-decoration: none;
+}
+
+.auth__forgot:hover {
+  text-decoration: underline;
+}
+
+/* The one error that is about the attempt rather than a single field. */
+.auth__error {
+  margin: 0;
+  padding: 0.7rem 0.85rem;
+  border-radius: 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #ffb4b4;
+  background-color: rgba(255, 86, 87, 0.13);
+  border: 1px solid rgba(255, 86, 87, 0.3);
+}
+
+.auth__submit {
+  width: 100%;
+  height: auto;
+  margin-top: 0.2rem;
+  padding: 0.8rem;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 13px;
+}
+
+.auth__submit:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+.auth__rule {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0.15rem 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.auth__rule::before,
+.auth__rule::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+.auth__providers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+.auth__provider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  height: auto;
+  padding: 0.7rem 0.5rem;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 13px;
+}
+
+.auth__provider:hover {
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.13);
+}
+
+.auth__provider:disabled {
+  opacity: 0.5;
+}
+
+.auth__provider svg {
+  width: 17px;
+  height: 17px;
+  flex: none;
+}
+
+/* Apple's glyph is a single path with no fill of its own; Google's is four
+   paths that carry their own brand colours and must not be overridden. */
+.auth__provider--apple svg path {
+  fill: white;
+}
+
+.auth__alt {
+  margin: 0.35rem 0 0;
+  text-align: center;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.auth__alt a {
+  color: #8b8ff5;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth__alt a:hover {
+  text-decoration: underline;
+}
+
+/* ── narrower ─────────────────────────────────────────────────────────────
+   The old pages had no breakpoints at all: two `flex: 0.5` columns at every
+   width, so a phone got a half-width form beside a half-width photograph. */
+@media screen and (max-width: 1100px) {
+  .auth__card {
+    margin-left: 4rem;
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .auth {
+    justify-content: center;
+  }
+
+  .auth__card {
+    margin: 2rem 1.25rem;
+    max-width: 460px;
+  }
+
+  .auth__wallGrid {
+    grid-template-columns: repeat(4, 1fr);
+    transform: rotate(-8deg) scale(1.25);
+  }
+
+  /* Centred card, so the scrim has to be even rather than sided. */
+  .auth__scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(11, 22, 33, 0.9) 0%,
+      rgba(11, 22, 33, 0.82) 50%,
+      rgba(11, 22, 33, 0.95) 100%
+    );
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .auth__card {
+    margin: 1rem;
+    padding: 1.6rem 1.25rem;
+    border-radius: 20px;
+  }
+
+  .auth h1 {
+    font-size: 23px;
+  }
+
+  /* Stacked: two provider buttons side by side at 320px leave room for about
+     four characters of label each. */
+  .auth__providers {
+    grid-template-columns: 1fr;
+  }
+
+  .auth__wallGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth__wallGrid img {
+    animation: none;
+  }
+}

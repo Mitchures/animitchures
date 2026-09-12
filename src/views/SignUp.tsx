@@ -1,88 +1,131 @@
+import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-
-import './SignUp.css';
+import {
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  updateProfile,
+  AuthProvider,
+} from 'firebase/auth';
 
 import { auth } from 'config';
 import { useInput } from 'utils/hooks';
 
-import Logo from '../images/animitchures-logo.svg';
+import AuthShell from './AuthShell';
+import AuthProviders from './AuthProviders';
+import PasswordField from './PasswordField';
+import { authErrorMessage } from './auth-error';
 
 function SignUp() {
   const name = useInput('');
   const email = useInput('');
   const password = useInput('');
   const confirmPassword = useInput('');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSignUp = (event: { preventDefault: () => void }) => {
-    event.preventDefault();
+  // Only once the field has something in it — telling someone their empty
+  // confirmation does not match while they are still typing the first one is
+  // noise, not help.
+  const mismatch = !!confirmPassword.value && password.value !== confirmPassword.value;
 
-    if (
-      email.value &&
-      name.value &&
-      password.value &&
-      confirmPassword.value &&
-      password.value === confirmPassword.value
-    ) {
-      createUserWithEmailAndPassword(auth, email.value, password.value)
-        .then(({ user }) => {
-          // Modular SDK: updateProfile is a standalone function, not a method on
-          // user. The v8 form (user.updateProfile) throws TypeError, which is why
-          // signup used to alert and never navigate.
-          updateProfile(user, { displayName: name.value }).then(() => {
-            // On success route to home
-            navigate('/');
-          });
-        })
-        .catch((error) => alert(error.message));
-    } else {
-      alert('Please fill out all form fields.');
+  const signUpWithProvider = async (provider: AuthProvider) => {
+    setError('');
+    setBusy(true);
+    try {
+      await signInWithPopup(auth, provider);
+      navigate('/');
+    } catch (caught) {
+      setError(authErrorMessage(caught));
+      setBusy(false);
+    }
+  };
+
+  const signUp = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (busy) return;
+
+    if (!name.value || !email.value || !password.value || !confirmPassword.value) {
+      setError('Fill in every field to create your account.');
+      return;
+    }
+    if (mismatch) {
+      setError('Those passwords do not match.');
+      return;
+    }
+
+    setError('');
+    setBusy(true);
+    try {
+      const { user } = await createUserWithEmailAndPassword(auth, email.value, password.value);
+      await updateProfile(user, { displayName: name.value });
+      navigate('/');
+    } catch (caught) {
+      setError(authErrorMessage(caught));
+      setBusy(false);
     }
   };
 
   return (
-    <div className="signUp">
-      <div className="signUp__left">
-        <div className="signUp__header">
-          <Link to="/">
-            <img src={Logo} alt="animitchures" />
-            animitchures
-          </Link>
+    <AuthShell title="Create your account" subtitle="Start tracking what you watch.">
+      <form className="auth__form" onSubmit={signUp} noValidate>
+        {error && (
+          <p className="auth__error" role="alert">
+            {error}
+          </p>
+        )}
+
+        <div className="auth__field">
+          <label htmlFor="signup-name">Name</label>
+          <input
+            id="signup-name"
+            type="text"
+            autoComplete="name"
+            value={name.value}
+            onChange={name.onChange}
+          />
         </div>
-        <div className="signUp__container">
-          <div className="signUp__formContainer">
-            <h1>Sign Up</h1>
-            <form className="signUp__form">
-              <div>
-                <label htmlFor="signUp-name">Name</label>
-                <input type="text" id="signUp-name" {...name} />
-              </div>
-              <div>
-                <label htmlFor="signUp-email">Email</label>
-                <input type="email" id="signUp-email" {...email} />
-              </div>
-              <div>
-                <label htmlFor="signUp-password">Password</label>
-                <input type="password" id="signUp-password" {...password} />
-              </div>
-              <div>
-                <label htmlFor="signUp-confirmPassword">Confirm Password</label>
-                <input type="password" id="signUp-confirmPassword" {...confirmPassword} />
-              </div>
-              <button type="submit" onClick={handleSignUp}>
-                Sign Up
-              </button>
-            </form>
-            <hr />
-            <p>
-              Already have an account ? <Link to="/login">Sign in</Link>
-            </p>
-          </div>
+
+        <div className="auth__field">
+          <label htmlFor="signup-email">Email</label>
+          <input
+            id="signup-email"
+            type="email"
+            autoComplete="email"
+            value={email.value}
+            onChange={email.onChange}
+          />
         </div>
-      </div>
-      <div className="signUp__right"></div>
-    </div>
+
+        <PasswordField
+          id="signup-password"
+          label="Password"
+          autoComplete="new-password"
+          value={password.value}
+          onChange={password.onChange}
+        />
+
+        <PasswordField
+          id="signup-confirm"
+          label="Confirm password"
+          autoComplete="new-password"
+          value={confirmPassword.value}
+          onChange={confirmPassword.onChange}
+          invalid={mismatch}
+          hint={mismatch ? 'Those passwords do not match.' : undefined}
+        />
+
+        <button type="submit" className="auth__submit" disabled={busy}>
+          {busy ? 'Creating account…' : 'Create account'}
+        </button>
+
+        <AuthProviders onChoose={signUpWithProvider} busy={busy} />
+
+        <p className="auth__alt">
+          Already have an account? <Link to="/login">Sign in</Link>
+        </p>
+      </form>
+    </AuthShell>
   );
 }
 

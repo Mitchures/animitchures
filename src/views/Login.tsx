@@ -1,118 +1,102 @@
-import { MouseEvent } from 'react';
+import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signInWithPopup, signInWithEmailAndPassword, AuthProvider } from 'firebase/auth';
 
-import './Login.css';
-
-import { auth, appleProvider, googleProvider } from 'config';
+import { auth } from 'config';
 import { useInput } from 'utils/hooks';
 
-import Logo from '../images/animitchures-logo.svg';
+import AuthShell from './AuthShell';
+import AuthProviders from './AuthProviders';
+import PasswordField from './PasswordField';
+import { authErrorMessage } from './auth-error';
 
 function Login() {
   const email = useInput('');
   const password = useInput('');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const signInWithProvider = (provider: AuthProvider) => {
-    signInWithPopup(auth, provider)
-      .then(({ user }) => {
-        navigate('/');
-      })
-      .catch((error) => alert(error.message));
+  const signInWithProvider = async (provider: AuthProvider) => {
+    setError('');
+    setBusy(true);
+    try {
+      await signInWithPopup(auth, provider);
+      navigate('/');
+    } catch (caught) {
+      // Closing the popup is a decision, not a failure — authErrorMessage
+      // returns an empty string for it, and an empty string renders nothing.
+      setError(authErrorMessage(caught));
+      setBusy(false);
+    }
   };
 
-  const signIn = (event: MouseEvent<HTMLButtonElement>) => {
-    event?.preventDefault();
+  // onSubmit, not the button's onClick. With the handler on the button the
+  // Enter key fell through to the browser's default submit, which reloaded the
+  // page with the credentials in the query string.
+  const signIn = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (busy) return;
 
-    if (email.value && password.value) {
-      signInWithEmailAndPassword(auth, email.value, password.value)
-        .then(({ user }) => {
-          navigate('/');
-        })
-        .catch((error) => alert(error.message));
+    if (!email.value || !password.value) {
+      setError('Enter your email and password.');
+      return;
+    }
+
+    setError('');
+    setBusy(true);
+    try {
+      await signInWithEmailAndPassword(auth, email.value, password.value);
+      navigate('/');
+    } catch (caught) {
+      setError(authErrorMessage(caught));
+      setBusy(false);
     }
   };
 
   return (
-    <div className="login">
-      <div className="login__left">
-        <div className="login__header">
-          <Link to="/">
-            <img src={Logo} alt="animitchures" />
-            animitchures
-          </Link>
+    <AuthShell title="Welcome back" subtitle="Pick up where you left off.">
+      <form className="auth__form" onSubmit={signIn} noValidate>
+        {error && (
+          <p className="auth__error" role="alert">
+            {error}
+          </p>
+        )}
+
+        <div className="auth__field">
+          <label htmlFor="login-email">Email</label>
+          <input
+            id="login-email"
+            type="email"
+            autoComplete="email"
+            value={email.value}
+            onChange={email.onChange}
+          />
         </div>
-        <div className="login__container">
-          <div className="login__formContainer">
-            <h1>Login</h1>
-            <form className="login__form">
-              <div>
-                <label htmlFor="login-username">Email</label>
-                <input type="email" id="login-username" {...email} />
-              </div>
-              <div>
-                <label htmlFor="login-password">Password</label>
-                <input type="password" id="login-password" {...password} />
-              </div>
-              <button type="submit" onClick={signIn}>
-                Sign in
-              </button>
-            </form>
-            <hr />
-            <button
-              type="button"
-              className="login__withApple"
-              onClick={() => signInWithProvider(appleProvider)}
-            >
-              <div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlnsXlink="http://www.w3.org/1999/xlink"
-                  viewBox="0 0 512 512"
-                >
-                  <path d="M349.13 136.86c-40.32 0-57.36 19.24-85.44 19.24c-28.79 0-50.75-19.1-85.69-19.1c-34.2 0-70.67 20.88-93.83 56.45c-32.52 50.16-27 144.63 25.67 225.11c18.84 28.81 44 61.12 77 61.47h.6c28.68 0 37.2-18.78 76.67-19h.6c38.88 0 46.68 18.89 75.24 18.89h.6c33-.35 59.51-36.15 78.35-64.85c13.56-20.64 18.6-31 29-54.35c-76.19-28.92-88.43-136.93-13.08-178.34c-23-28.8-55.32-45.48-85.79-45.48z"></path>
-                  <path d="M340.25 32c-24 1.63-52 16.91-68.4 36.86c-14.88 18.08-27.12 44.9-22.32 70.91h1.92c25.56 0 51.72-15.39 67-35.11c14.72-18.77 25.88-45.37 21.8-72.66z"></path>
-                </svg>
-                <span>Continue with Apple</span>
-              </div>
-            </button>
-            <button
-              type="button"
-              className="login__withGoogle"
-              onClick={() => signInWithProvider(googleProvider)}
-            >
-              <div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlnsXlink="http://www.w3.org/1999/xlink"
-                  viewBox="0 0 48 48"
-                >
-                  <defs>
-                    <path
-                      id="a"
-                      d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"
-                    />
-                  </defs>
-                  <clipPath id="b">
-                    <use xlinkHref="#a" overflow="visible" />
-                  </clipPath>
-                  <path clipPath="url(#b)" fill="#FBBC05" d="M0 37V11l17 13z" />
-                  <path clipPath="url(#b)" fill="#EA4335" d="M0 11l17 13 7-6.1L48 14V0H0z" />
-                  <path clipPath="url(#b)" fill="#34A853" d="M0 37l30-23 7.9 1L48 0v48H0z" />
-                  <path clipPath="url(#b)" fill="#4285F4" d="M48 48L17 24l-4-3 35-10z" />
-                </svg>
-                <span>Continue with Google</span>
-              </div>
-            </button>
-            <p>
-              Don't have an account ? <Link to="/sign-up">Sign up</Link>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="login__right"></div>
-    </div>
+
+        <PasswordField
+          id="login-password"
+          label="Password"
+          autoComplete="current-password"
+          value={password.value}
+          onChange={password.onChange}
+        />
+
+        <Link className="auth__forgot" to="/login">
+          Forgot password?
+        </Link>
+
+        <button type="submit" className="auth__submit" disabled={busy}>
+          {busy ? 'Signing in…' : 'Sign in'}
+        </button>
+
+        <AuthProviders onChoose={signInWithProvider} busy={busy} />
+
+        <p className="auth__alt">
+          New here? <Link to="/sign-up">Create an account</Link>
+        </p>
+      </form>
+    </AuthShell>
   );
 }
 
