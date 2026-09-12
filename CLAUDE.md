@@ -33,9 +33,10 @@ sets `hosting.public` to `build`. Don't change one without the other.
 Cloud Functions live in `functions/` with their own `package.json`
 (`npm --prefix functions run build`, `firebase deploy --only functions`).
 
-Verified on Node v24 / yarn 1.22 as of 2026-09-05: 12 unit tests pass (1 skipped), 17 e2e
-tests pass against both the dev server and the production build, `yarn lint` exits 0 with
-53 pre-existing warnings.
+Verified on Node v24 / yarn 1.22 as of 2026-09-12: `yarn lint` exits 0 with 20 pre-existing
+warnings, and 58 e2e tests pass in the `public` project. Unit: 24 tests, of which **3 fail
+and 1 is skipped** — see "Current state" below; both are known and pre-existing, so a red
+`yarn test` is not something you broke.
 
 ### AniList OAuth runs through a Cloud Function
 
@@ -79,37 +80,56 @@ even though those files exist locally.
 
 ## Layout
 
+The `src/` tree is organised **by feature**, not by kind. A page and every part that only
+that page uses live in one directory together; `components/` holds only what two or more
+features share.
+
 ```
 index.html           Vite entry point — lives at the project ROOT, not in public/
 vite.config.mts      dev server (:3000), build.outDir, vitest config
 eslint.config.mjs    flat config; replaced the eslintConfig block in package.json
 playwright.config.ts e2e config; baseURL is hardcoded to http://localhost:3000
 e2e/                 Playwright specs (.spec.ts) — outside src so vitest ignores them
-public/              static files copied verbatim: favicon, manifest, logos, robots.txt
+public/              copied verbatim: favicon.svg/.ico, apple-touch-icon, logo192/512,
+                     manifest.json, robots.txt
 src/
   App.tsx            Router + the auth-state listener that hydrates global state on login
   index.tsx          React 19 createRoot; wraps App in ApolloProvider + StateProvider
   vite-env.d.ts      /// <reference types="vite/client" /> — types the asset imports
   test-utils.tsx     renderWithProviders() — RTL render wrapped in the app's providers
-  api/services/      Firestore reads/writes: favorites.ts, profile.ts, anilist.ts (tokens)
-  components/        Shared UI; components/details/* are Details-page sections
-                     Skeleton.tsx is a shimmer primitive (Details skeleton + spotlight)
-                     SearchSpotlight.tsx is global search; Hero/AiringThisWeek/Rail/
-                     GenreTiles are the Discover sections; CastChip is one cast credit
-  config/            firebase.ts (app, auth, db, storage, Apple/Google providers), apollo-client.ts
-  context/           useReducer-based global store (StateProvider, reducer, types, initialState)
-                     ScrollContainer.tsx shares the scrolling element (see "Scrolling" below)
-  graphql/           queries.ts, mutations.ts (handwritten), types.ts (GENERATED — don't edit)
-  helpers/           authHeader() (AniList token), mediaPath() (the /anime/:id/:slug rule,
-                     shared so Card and the spotlight cannot produce two URLs for one
-                     title), scoreTier() (score severity buckets)
+
+  layout/            The app shell. AppShell owns the routed Outlet and the open state for
+                     the mobile menu and the spotlight. Navigation is the desktop rail,
+                     Header the mobile top bar, MobileMenu the overlay it opens.
+                     SearchFab + SearchSpotlight are global search. nav-items.ts is the
+                     single source for what appears in the rail AND the overlay.
+  features/          One directory per page, each holding its own sections and skeleton:
+                     browse, calendar, details, discover, people, profile, settings,
+                     social, studio, taste, watchlist
+  views/             The routes that are not features: Login, SignUp, Callback, Favorites,
+                     and the ComingSoon / Community stubs
+  components/        Shared only. Card, Badge, SectionHeading, EntityHero, Skeleton
+                     (shimmer primitive), PosterGridSkeleton, SplitButton, ToggleSwitch
+  config/            firebase.ts (app, auth, db, storage, functions, Apple/Google
+                     providers), apollo-client.ts
+  context/           useReducer-based global store (StateProvider, reducer, types,
+                     initialState). ScrollContainer.tsx shares the scrolling element
+                     (see "Scrolling" below)
+  api/services/      Firestore reads/writes: favorites.ts, profile.ts, anilist.ts
+                     (tokens), session.ts
+  graphql/           queries.ts, mutations.ts, featured.ts (handwritten);
+                     types.ts (GENERATED — don't edit)
+  helpers/           authHeader() (AniList token), mediaPath() / entityPath() (URL rules,
+                     shared so no two call sites produce different URLs for one title),
+                     scoreTier(), mediaText(), titleLanguage()
   utils/hooks/       useInput, useTilt (pointer tilt — pair with a perspective wrapper)
-  views/             Route-level pages, each with a sibling .css
-functions/src/       Firebase Cloud Functions (auth + Firestore triggers)
+functions/src/       Cloud Functions: the exchangeAnilistCode callable + auth/Firestore
+                     triggers
 ```
 
 `tsconfig.json` sets `baseUrl: ./src`, so imports are absolute from `src`:
-`import Loader from 'components/Loader'`, not relative paths. Follow that convention.
+`import Card from 'components/Card'`, `import Discover from 'features/discover/Discover'`
+— not relative paths. Follow that convention.
 
 ## Architecture notes
 
@@ -130,28 +150,35 @@ the token.
 **Firestore collections** (all keyed by Firebase `uid`): `users`, `favorites` (`{ favorites: number[] }`),
 `anilist` (cached AniList Viewer), `tokens` (AniList access token).
 
-**Cloud Functions** (`functions/src/index.ts`): `createProfile` and `createFavorites` seed docs on
-user creation; `linkedAnilistAccount` flips `users/{uid}.anilistLinked` when an `anilist/{uid}` doc
-appears.
+**Cloud Functions** (`functions/src/index.ts`): `exchangeAnilistCode` is the OAuth token
+exchange (above). `createProfile` and `createFavorites` seed docs on user creation;
+`linkedAnilistAccount` flips `users/{uid}.anilistLinked` when an `anilist/{uid}` doc appears.
+The client does not depend on any of the three triggers — `App.tsx` reads-or-creates the
+user doc itself and `Callback.tsx` sets `anilistLinked` directly, because a trigger that
+fires `onCreate` does nothing when a document is overwritten.
 
 **Shell chrome.** `Navigation` is a 72px icon rail that expands to 240px on hover. It is
 absolutely positioned and `.app__body` reserves its width with a margin, so expanding it
 overlays the page instead of shifting it. Account controls — notifications, settings,
-profile, logout — sit in `.navigation__footer` at the bottom, and search sits at the top
-above the "Menu" heading.
+profile, logout — sit in `.navigation__footer` at the bottom. Search is **not** in the
+rail; it is a FAB (see below).
 
 **There is no desktop header.** `--header-height` is `0px` above 960px, which is what
 drives the Details banner pull-up, the sticky tab bar's offset and every
 `calc(100vh - var(--header-height))` view height from one token. `.header` is
 `display: none` there. Below 960px the rail is hidden, `--header-height` becomes 72px and
-the header returns — it still carries the logo and the `MobileMenu` button, plus its own
-inline `Search`.
+the header returns — carrying the logo lockup and the `MobileMenu` button, nothing else.
 
-**Search.** `SearchSpotlight` is an overlay opened from the rail, or with ⌘K / `/`;
+**Search.** `SearchSpotlight` is an overlay opened by `SearchFab`, or with ⌘K / `/`;
 escape closes, arrows move, enter opens, and focus returns to the trigger. It is
-controlled — `AppShell` owns the open state, because the trigger lives in `Navigation`.
-Results are gated on the current term: Apollo keeps the last response, so without that the
-previous search's posters are still there on reopen. Desktop only.
+controlled — `AppShell` owns the open state. Results are gated on the current term: Apollo
+keeps the last response, so without that the previous search's posters are still there on
+reopen.
+
+The trigger is a **fixed-position FAB**, not a rail item. It used to live at the top of the
+rail, which put an action inside a list of destinations and — worse — meant it disappeared
+below 960px along with the rail, so the mobile header needed a second, inferior inline
+search of its own. As a FAB it survives at every width and that duplicate is gone.
 
 **Discover.** A full-bleed `Hero` (crossfading slides, the active slide's poster, a
 sideways scrim, score tier badge, CTAs), `AiringThisWeek`, the `Rail` rows, then
@@ -159,7 +186,7 @@ sideways scrim, score tier badge, CTAs), `AiringThisWeek`, the `Rail` rows, then
 `duration` and `genres` all come back with it, so no section costs an extra request. An
 airing card retires itself once the episode's own runtime has elapsed (capped at 90
 minutes, defaulting to 24), fading out while the rest reflow and the next one backfills.
-Genre tiles link to `/search/anime?genre=`, which `Results` handles alongside `?search=` —
+Genre tiles link to `/search/anime?genre=`, which `Browse` handles alongside `?search=` —
 it falls back to `POPULARITY_DESC` there, since `SEARCH_MATCH` ranks by typed text.
 
 **Scrolling.** The window never scrolls: `.app__body` is a fixed-height `overflow-y: auto`
@@ -185,23 +212,35 @@ Private routes are rendered conditionally on `user` in the route tree, with `*` 
 ## Current state — what's done and what isn't
 
 Working: Discover (cinematic hero, live airing countdowns, snapping rails, genre tiles),
-spotlight search with live poster results, details page (hero + tabs, parallax, skeleton
-loading, rankings/tags/links/community stats/recommendations), favorites, Firebase auth
-(email+password, Google, Apple), settings, AniList linking, AniList watchlist view.
-Responsive down to 320px.
+spotlight search with live poster results, Browse with filters, details page (hero + tabs,
+parallax, skeleton loading, rankings/tags/links/community stats/recommendations), staff /
+character / studio pages, Watchlist (built around progress, not posters), Taste (statistics
+from the profile query), Calendar (week / month / agenda), Social (what people you follow
+have been watching), Profile, Settings (local preferences + the AniList account), favorites,
+Firebase auth (email+password, Google, Apple), AniList linking — which now works in
+production, not only in dev. Responsive down to 320px.
 
 Unfinished or parked — mostly deliberate, don't "fix" without asking:
-- `views/ComingSoon.tsx` and `views/Community.tsx` are one-line stubs. Their links now live
-  in `components/nav-items.ts` rather than commented-out JSX — add an entry there and they
-  appear in both the sidebar and the mobile overlay.
-- `components/ActivityMap.tsx` was deleted on 2026-09-05. It was the only `styled-components`
-  consumer and was already commented out of `Profile.tsx`, so it could not survive that
-  dependency's removal. Recoverable from git history.
+- `views/ComingSoon.tsx` and `views/Community.tsx` are stubs. Their links live in
+  `layout/nav-items.ts` rather than commented-out JSX — add an entry there and they appear
+  in both the rail and the mobile overlay.
+- **`nav-items.test.ts` has 3 failing tests** and has done since Calendar and Social were
+  added to the nav. The expectations are stale, not the code: they assert `['discover']`
+  and `['watchlist', 'taste']` where the nav now also returns `calendar` and `social`. A
+  five-minute fix nobody has made.
+- **Calendar and Social have no fixtures and no e2e coverage.** Skipped deliberately to get
+  the pages wired; both were verified by hand against the live schema. Adding coverage means
+  capturing `AiringSchedule` and `SocialFeed`.
 - The "Preferred Watchlist" `Select` in `Settings.tsx` is commented out (`TODO: maybe`).
   `WatchlistFormat` / `preferredWatchlist` exist in the types but are unused.
-- `views/Results.tsx` carries `// TODO: search logic still needs fixing` — pagination merges
-  results into global state and "Load more" relies on `refetch()`; it's fragile.
-- `SplitButton` writes AniList list status but doesn't reflect server state back.
+- The **bio / `about` field is deliberately absent from Settings** — it belongs on a
+  profile-edit page that does not exist yet.
+- The **bell icon in the nav footer does nothing**. Notifications were not built.
+- `features/details/Actions.tsx` carries the only `TODO` left in `src`: the AniList
+  save-entry feature. `SplitButton` writes list status but doesn't reflect server state back.
+- `components/ActivityMap.tsx` was deleted on 2026-09-05 as the last `styled-components`
+  consumer. The idea came back without it: `features/profile/ActivityHeatmap.tsx` is the
+  plain-CSS replacement.
 - `App.test.tsx` is the CRA default smoke test and is `test.skip`ped. It has never passed
   since the global store landed: it renders `<App />` with no providers, but `App` destructures
   a tuple from `useStateValue()` while `StateProvider` defaults the context to `{}`. Whoever
@@ -212,22 +251,26 @@ Known rough edges worth knowing before touching related code:
 - **Private routes vs. auth timing.** `user` is null on first render, so a hard refresh on
   `/favorites` (or any private route) hits the `*` catch-all and redirects to `/`. There's no
   "auth still resolving" state.
-- **AniList client secret ships to the browser** via `VITE_*`. Vite inlines every `VITE_`
-  var into the bundle at build time. Fine for a personal project; a real fix means moving the
-  token exchange into a Cloud Function, which would also make OAuth work in production rather
-  than dev only.
+- **The nav rail eats clicks down the left edge of every page.** `.navigation` is
+  `position: absolute` at 72px, expanding to 240px on hover, while `.app__body` only
+  reserves 72px. Approach anything in the left ~168px from the left and the rail expands
+  under the cursor and swallows the click. Invisible in screenshots; it only shows up when
+  something is actually clicked, which is why it keeps being rediscovered. Fix it as its own
+  change — likely by keeping the collapsed box at 72px and growing it on hover, rather than
+  sizing at 240px and relying on `overflow-x: hidden` for the visual.
 - **`firestore.rules` allows any signed-in user to read/write any document** — including
   other users' AniList access tokens. A hardened per-uid version exists in the working
   copy but `.gitignore` excludes `firestore*`, so it is in no commit and has never been
   deployed. `firebase deploy --only firestore:rules` applies it.
 - **The login backgrounds still ship in the bundle:** `src/images/maiden.jpg` is 5.4MB and
-  `usagi.jpeg` is 1.1MB.
+  `usagi.jpeg` is 1.1MB. `animitchures-logo-with-text.png` (182KB) is now referenced by
+  nothing at all — the README and the mobile header both moved to the SVG mark.
 - **MUI is fully on v9** as of 2026-09-05; `@material-ui` v4 is gone. Note MUI requires
   `@emotion/*` at 11.14+ — 11.8 satisfies the peer range on paper but throws
   `emStyled is not a function` at runtime under vitest.
 - **`@emotion/react` and `@emotion/styled` look unused but must stay** — MUI requires them
   as peer dependencies. Styling is otherwise plain CSS files.
-- **`@apollo/client` is deliberately held at 3.6.** A v4 upgrade was attempted on
+- **`@apollo/client` is deliberately held at 3.x** (currently `^3.5.10`). A v4 upgrade was attempted on
   2026-09-05 and reverted. v4 needs `rxjs` as a new peer, moves hooks to
   `@apollo/client/react` and `MockedProvider` to `@apollo/client/testing/react`, changes
   the `onError` callback to a single `error` argument, and moves `useLazyQuery` variables
@@ -245,15 +288,17 @@ Known rough edges worth knowing before touching related code:
 - **`@types/react` is pinned via `resolutions`** in `package.json`. MUI drags in
   `@types/react-is` and `@types/react-transition-group`, which pin `@types/react` 18; two
   copies produce `TS2786: cannot be used as a JSX component` on every icon.
-- **`yarn lint` reports 53 pre-existing warnings and exits 0.** Severities are tuned in
+- **`yarn lint` reports 20 pre-existing warnings and exits 0.** Severities are tuned in
   `eslint.config.mjs` to match what CRA's `react-app` preset reported, so this is the same debt
   that was always there — not a new gate. Note Vite does **not** lint during `build`, unlike CRA.
-- **`src/images/maiden.jpg` is 5.4 MB and `usagi.jpeg` is 1.1 MB**, used as the Login and SignUp
-  backgrounds. Both ship in the bundle.
+- **`firebase-functions` 6 and `firebase-admin` 13 are one major behind** (7 and 14 are out).
+  The CLI warns about it on every deploy. Advisory, not blocking — unlike the Node 16 runtime
+  that preceded them, which was decommissioned and could not deploy at all.
 - `api/services/favorites.ts` destructures `{ favorites }` from a possibly-`undefined` resolution,
   which throws if the doc is missing.
-- The main JS chunk is ~1 MB raw / ~343 kB gzipped, and Vite warns about it on every build.
-  No code splitting is set up; every route is in the one bundle.
+- The main JS chunk is **~1.5 MB raw / ~453 kB gzipped**, and Vite warns about it on every
+  build. No code splitting is set up; every route is in the one bundle, so each page added
+  since the reorganisation has gone straight into it.
 
 ## Conventions
 
