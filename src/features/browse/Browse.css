@@ -30,11 +30,45 @@
   gap: 1.25rem;
 }
 
+
+/* ── the track sets the size, not the poster ──────────────────────────────
+   A Card sizes itself from `--card-poster-height` at a 2:3 ratio, which is
+   right in a rail, where the row height is the constraint. In a fluid grid the
+   *column* is the constraint, and the two disagreed: at 768px the track was
+   227px and the card 160px, leaving 67px of dead space in every cell, and at
+   414px, 64px. `justify-items: center` then split it either side of each
+   poster, which is what read as a gap down the middle of the page.
+
+   Here the poster fills its column and the ratio gives the height. */
+.browse__container .card,
+.browse__container .card__poster,
+.browse__container .card__label,
+.browse__container .card__labelTitle {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* The height lives on the image, not on the wrapper the wrapper's name suggests
+   — `.card__poster` only carries the perspective useTilt rotates in. */
+.browse__container .card__poster > img {
+  width: 100%;
+  height: auto;
+}
+
+/* A Card's own side padding is breathing room in a rail. In a grid the gap
+   already provides it, and 0.875rem a side was 28px of the track that the
+   poster could not use. */
+.browse__container .card {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 /* Same footprint as a Card, so the grid does not reflow when results land. */
 .browse__skeleton {
   width: 100%;
-  max-width: calc(var(--card-poster-height) * 2 / 3);
-  height: var(--card-poster-height);
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
 }
 
 .browse__empty {

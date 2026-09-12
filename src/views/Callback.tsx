@@ -8,7 +8,7 @@ import './Callback.css';
 
 import { useStateValue } from 'context';
 import { ANILIST_VIEWER_QUERY } from 'graphql/queries';
-import { authHeader } from 'helpers';
+import { authHeader, clearAnilistTokenRefused } from 'helpers';
 import { db, functions } from 'config';
 import { AccessToken, AnilistUser } from 'context/types';
 import { saveAccessToken } from 'api';
@@ -44,6 +44,8 @@ function Callback() {
       });
       localStorage.setItem('token', JSON.stringify(token));
       await saveAccessToken(token, userId);
+      // The connection works again, so stop showing the reconnect notice.
+      clearAnilistTokenRefused();
       setSkipQuery(false);
     } catch (error) {
       // An authorization code is single-use, so a refresh of this page fails

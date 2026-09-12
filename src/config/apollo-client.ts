@@ -2,8 +2,35 @@ import { ApolloClient, createHttpLink, InMemoryCache, from } from '@apollo/clien
 import { onError } from '@apollo/client/link/error';
 
 import { nameLanguageVar, titleField } from 'helpers/title-language';
+import { isAuthRefusal, markAnilistTokenRefused } from 'helpers/anilist-session';
+import { hasStoredToken } from 'helpers/auth-header';
 
-const errorLink = onError(({ graphQLErrors, networkError }) => {
+/** A GraphQL error body, wherever it surfaced. */
+type MaybeErrorBody = { errors?: { message?: string | null }[] };
+
+/**
+ * AniList reports a refused token in two different places depending on how
+ * Apollo classified the response, so both are read.
+ *
+ * An expired or revoked token comes back as **HTTP 400** carrying a normal
+ * GraphQL error body. Apollo treats a non-2xx as a network error and hangs the
+ * parsed body off `networkError.result`, so the message is not in
+ * `graphQLErrors` where you would look for it first.
+ */
+const errorLink = onError(({ graphQLErrors, networkError, operation }) => {
+  const fromNetwork =
+    (networkError as (Error & { result?: MaybeErrorBody }) | undefined)?.result?.errors ?? [];
+  const messages = [...(graphQLErrors ?? []), ...fromNetwork].map((error) => error?.message);
+
+  // Only a token we actually sent and AniList refused means the connection is
+  // dead. The same "Unauthorized." comes back when no credentials were sent at
+  // all, which is the ordinary state of an account that never linked AniList —
+  // warning those people that their connection expired would be a lie.
+  if (hasStoredToken() && messages.some(isAuthRefusal)) {
+    console.warn(`[AniList] token refused on ${operation.operationName}; clearing it`);
+    markAnilistTokenRefused();
+  }
+
   if (graphQLErrors) {
     graphQLErrors.map(({ message, locations, path }) =>
       console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`),

@@ -27,7 +27,7 @@ setup('authenticate', async ({ page }) => {
   await mockAniList(page);
 
   await page.goto('/login', { waitUntil: 'domcontentloaded' });
-  await page.fill('#login-username', email);
+  await page.fill('#login-email', email);
   await page.fill('#login-password', password);
   await page.click('button[type="submit"]');
 
