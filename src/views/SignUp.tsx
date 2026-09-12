@@ -47,7 +47,7 @@ function SignUp() {
         <div className="signUp__header">
           <Link to="/">
             <img src={Logo} alt="animitchures" />
-            animitchures<span></span>
+            animitchures
           </Link>
         </div>
         <div className="signUp__container">
