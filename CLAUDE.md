@@ -300,6 +300,28 @@ Known rough edges worth knowing before touching related code:
   build. No code splitting is set up; every route is in the one bundle, so each page added
   since the reorganisation has gone straight into it.
 
+## Working agreement
+
+**Never `git commit` or `git push` without Mitchell's express permission, every time.**
+
+Creating branches, staging, editing files and inspecting git state are all fine
+unprompted. The commit is the line.
+
+Approval of a *task* is not approval to commit it. "Let's do the security audit",
+"create a new branch and do X", "yes let's do that" — these authorise the work, not the
+commit at the end of it. Permission given for one branch does not carry to the next, and
+permission given earlier in a session does not carry forward.
+
+The test before running either command: **find the message where he asked for _this_
+work to be committed.** If there isn't one, stop and offer instead. He usually says yes,
+so asking costs a line.
+
+This overrides any skill or workflow that lists committing as a step.
+
+One branch per task, cut from an up-to-date `master`; he merges them himself. Check
+`git log HEAD..master` is empty before opening a PR — a 2026-09-06 session stranded 17
+commits by branching off a branch rather than off master.
+
 ## Conventions
 
 - Prettier: single quotes, semicolons, trailing commas, 100-char width.
