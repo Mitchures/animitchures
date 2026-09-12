@@ -13,15 +13,38 @@
   position: sticky;
   top: 0;
   z-index: 99;
-  background-color: rgba(237, 238, 247, 0.62);
-  border-bottom: 1px solid rgba(11, 22, 33, 0.07);
-  /* Safari only understood the prefixed property until 18. Without it the bar
-     is flatly translucent on most iPhones in the wild rather than blurred.
-     The saturation is what makes it read as glass rather than as fog: posters
-     passing underneath keep their colour instead of washing out, and at 0.62
-     enough of them shows through to see it happening at all. */
-  -webkit-backdrop-filter: blur(20px) saturate(1.6);
-  backdrop-filter: blur(20px) saturate(1.6);
+  /* Liquid glass, in four layers that each do one job:
+       1 the backdrop, blurred and saturated — and, in Chromium, bent along the
+         bottom edge by the #glass-bar filter (see GlassFilters.tsx);
+       2 a tint, heavier behind the lockup and thin at the edge so the bend shows;
+       3 a specular rim — the bright hairline that says "surface";
+       4 a sheen falling from the top edge (::after), so it reads as lit from above.
+     Safari only understood the prefixed property until 18. */
+  background: linear-gradient(180deg, rgba(237, 238, 247, 0.62), rgba(237, 238, 247, 0.34));
+  -webkit-backdrop-filter: blur(9px) saturate(1.75) brightness(1.04);
+  backdrop-filter: blur(9px) saturate(1.75) brightness(1.04);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    inset 0 -1px 0 rgba(11, 22, 33, 0.1),
+    0 10px 30px -8px rgba(11, 22, 33, 0.15);
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0) 45%);
+}
+
+/* The refraction. Only where the engine runs SVG filters in backdrop-filter —
+   WebKit parses this, answers CSS.supports() true, and paints nothing, so the
+   gate is a class index.html sets from navigator.userAgentData instead. The
+   filter carries its own blur and saturation: Chromium drops any functions
+   listed after a url(). */
+.glass-refract .header {
+  -webkit-backdrop-filter: url(#glass-bar);
+  backdrop-filter: url(#glass-bar);
 }
 
 /* Both are mobile-only affordances: the sidebar carries the logo on desktop,
@@ -41,8 +64,15 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) .header {
-    background-color: rgba(11, 22, 33, 0.62);
-    border-bottom-color: rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, rgba(11, 22, 33, 0.46), rgba(11, 22, 33, 0.22));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.28),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.14),
+      0 10px 30px -8px rgba(0, 0, 0, 0.45);
+  }
+
+  :root:not([data-theme='light']) .header::after {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 45%);
   }
 
   :root:not([data-theme='light']) .header__mark span {
@@ -51,8 +81,15 @@
 }
 
 :root[data-theme='dark'] .header {
-  background-color: rgba(11, 22, 33, 0.62);
-  border-bottom-color: rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(11, 22, 33, 0.46), rgba(11, 22, 33, 0.22));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.14),
+    0 10px 30px -8px rgba(0, 0, 0, 0.45);
+}
+
+:root[data-theme='dark'] .header::after {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 45%);
 }
 
 :root[data-theme='dark'] .header__mark span {
@@ -71,6 +108,8 @@
     align-items: center;
     gap: 0.55rem;
     flex: none;
+    position: relative;
+    z-index: 1;
   }
 
   .header__mark img {
@@ -94,6 +133,8 @@
     align-items: center;
     justify-content: center;
     flex: none;
+    position: relative;
+    z-index: 1;
     width: 48px;
     min-width: 48px;
     height: 48px;
@@ -101,6 +142,7 @@
     color: var(--secondary);
     border-radius: 18px;
     background-color: rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
   }
 
   .header__menuButton svg {
@@ -114,7 +156,19 @@
 }
 
 @media screen and (max-width: 960px) and (prefers-color-scheme: dark) {
-  .header__menuButton {
-    background-color: rgba(255, 255, 255, 0.05);
+  :root:not([data-theme='light']) .header__menuButton {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.22),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+  }
+}
+
+@media screen and (max-width: 960px) {
+  :root[data-theme='dark'] .header__menuButton {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.22),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.18);
   }
 }

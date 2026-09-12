@@ -9,6 +9,11 @@
     <meta name="description" content="Browse and track anime, powered by AniList." />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
+    <!-- Only Chromium engines run SVG filters inside backdrop-filter, and only they
+         implement userAgentData. See src/layout/GlassFilters.tsx. -->
+    <script>
+      if ('userAgentData' in navigator) document.documentElement.classList.add('glass-refract');
+    </script>
     <title>animitchures</title>
   </head>
   <body>
