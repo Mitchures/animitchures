@@ -9,16 +9,16 @@
     "logs": "firebase functions:log"
   },
   "engines": {
-    "node": "16"
+    "node": "22"
   },
   "main": "lib/index.js",
   "dependencies": {
-    "firebase-admin": "^10.0.2",
-    "firebase-functions": "^3.18.0"
+    "firebase-admin": "^13.0.2",
+    "firebase-functions": "^6.3.2"
   },
   "devDependencies": {
-    "typescript": "^4.5.4",
-    "firebase-functions-test": "^0.2.0"
+    "typescript": "^5.7.3",
+    "firebase-functions-test": "^3.4.0"
   },
   "private": true
 }

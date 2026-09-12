@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, OAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
 import { getFirestore } from 'firebase/firestore';
+import { getFunctions } from 'firebase/functions';
 
 const firebaseApp = initializeApp({
   apiKey: import.meta.env.VITE_API_KEY,
@@ -23,5 +24,7 @@ const googleProvider = new GoogleAuthProvider();
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
 const storage = getStorage(firebaseApp);
+// Callables only — the AniList token exchange. Default region, us-central1.
+const functions = getFunctions(firebaseApp);
 
-export { db, auth, storage, appleProvider, googleProvider };
+export { db, auth, storage, functions, appleProvider, googleProvider };
