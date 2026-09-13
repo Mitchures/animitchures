@@ -36,7 +36,11 @@ function Watchlist() {
   const { loading, data, error } = useQuery(ANILIST_USER_MEDIA_LIST_COLLECTION_QUERY, {
     variables: { userId: anilist_user?.id, userName: anilist_user?.name, type: 'ANIME' },
     skip: !anilist_user,
-    pollInterval: 300_000, // 5 minutes
+    // Fifteen minutes, not five. A watchlist changes when *you* change it —
+    // and the mutations already write through the cache — so the poll only
+    // catches edits made elsewhere. At 47 KB a time against a 30-a-minute
+    // budget, three times an hour is plenty.
+    pollInterval: 900_000, // 15 minutes
   });
 
   const collection = data?.MediaListCollection;
