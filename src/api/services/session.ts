@@ -3,6 +3,7 @@ import { User as FirebaseUser } from 'firebase/auth';
 import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
 
 import { db } from 'config';
+import { clearStoredToken, hasStoredToken, storeToken } from 'helpers/auth-header';
 import { Action, AnilistUser, User } from 'context/types';
 import { getFavorites } from './favorites';
 import { getAccessToken } from './anilist';
@@ -56,12 +57,17 @@ export const hydrateSession = async (authUser: FirebaseUser, dispatch: Dispatch<
 
   if (!anilist) return;
 
-  dispatch({ type: 'set_anilist_user', anilist_user: anilist });
-
-  if (!localStorage.getItem('token')) {
+  // The token comes back into the browser *before* the profile is announced,
+  // and the order is the whole point. The reconnect notice is derived from an
+  // AniList profile existing with no token beside it, so dispatching the profile
+  // first opened a window — one Firestore read wide — in which every sign-in
+  // looked exactly like an expired session, and said so.
+  if (!hasStoredToken()) {
     const token = await getAccessToken(uid);
-    if (token) localStorage.setItem('token', JSON.stringify(token));
+    if (token) storeToken(token);
   }
+
+  dispatch({ type: 'set_anilist_user', anilist_user: anilist });
 
   // An anilist/{uid} document existing is what "linked" means; the flag on the
   // user document is a cache of it, written by a Cloud Function that fires
@@ -77,5 +83,5 @@ export const hydrateSession = async (authUser: FirebaseUser, dispatch: Dispatch<
 /** Clears everything the session put in place. */
 export const clearSession = (dispatch: Dispatch<Action>) => {
   dispatch({ type: 'logout_user' });
-  localStorage.removeItem('token');
+  clearStoredToken();
 };

@@ -8,7 +8,7 @@ import './Callback.css';
 
 import { useStateValue } from 'context';
 import { ANILIST_VIEWER_QUERY } from 'graphql/queries';
-import { authHeader, clearAnilistTokenRefused } from 'helpers';
+import { authHeader, clearAnilistTokenRefused, storeToken } from 'helpers';
 import { db, functions } from 'config';
 import { AccessToken, AnilistUser } from 'context/types';
 import { saveAccessToken } from 'api';
@@ -42,7 +42,7 @@ function Callback() {
         clientId: import.meta.env.VITE_ANILIST_CLIENT_ID,
         redirectUri: import.meta.env.VITE_ANILIST_CALLBACK_URI,
       });
-      localStorage.setItem('token', JSON.stringify(token));
+      storeToken(token);
       await saveAccessToken(token, userId);
       // The connection works again, so stop showing the reconnect notice.
       clearAnilistTokenRefused();
