@@ -1,0 +1,70 @@
+/* A strip above the routed content, matching AnilistReconnect's banner form.
+   Informational rather than actionable: the retry is already scheduled. */
+.rateLimit {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 var(--section-gap);
+  padding: 0.85rem 1.15rem;
+  border-radius: 14px;
+  border: 1px solid var(--action-light);
+  background-color: var(--action-light);
+}
+
+.rateLimit p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--primary);
+}
+
+.rateLimit__pulse {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--action);
+  animation: rateLimitPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes rateLimitPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.72);
+  }
+}
+
+/* The pulse is the only moving thing on an otherwise static notice, and its
+   whole job is to say "still working" — so it holds still rather than
+   disappearing when motion is unwelcome. */
+@media (prefers-reduced-motion: reduce) {
+  .rateLimit__pulse {
+    animation: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .rateLimit p {
+    color: white;
+  }
+}
+
+:root[data-theme='dark'] .rateLimit p {
+  color: white;
+}
+
+@media screen and (max-width: 600px) {
+  .rateLimit {
+    align-items: flex-start;
+  }
+
+  .rateLimit__pulse {
+    margin-top: 0.35rem;
+  }
+}
