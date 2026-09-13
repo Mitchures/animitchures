@@ -1,6 +1,8 @@
 import { test, expect } from '../anilist-mock';
 import type { Page } from '@playwright/test';
 
+import { seedAnilistToken } from '../seed-token';
+
 /**
  * What happens when AniList stops accepting the saved token.
  *
@@ -14,6 +16,17 @@ import type { Page } from '@playwright/test';
  * guess: an expired or revoked token comes back **HTTP 400** with "Invalid
  * token". Only a request carrying no credentials at all gets a 401.
  */
+/**
+ * These specs are destructive, and this puts back what they destroy.
+ *
+ * Making the app believe its token was refused makes it delete `tokens/{uid}`
+ * from Firestore — which is the correct behaviour, and against a real project
+ * it means the account is left looking unlinked for every run that follows.
+ */
+test.afterAll(async () => {
+  await seedAnilistToken();
+});
+
 const REFUSAL = {
   status: 400,
   contentType: 'application/json',

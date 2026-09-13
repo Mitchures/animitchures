@@ -12,6 +12,8 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 
+import { FAKE_TOKEN } from './seed-token';
+
 loadEnv({ path: '.env.test.local' });
 loadEnv({ path: '.env.local' });
 
@@ -64,14 +66,9 @@ async function main(): Promise<void> {
 
   await setDoc(doc(db, 'favorites', uid), { favorites: FAVORITE_IDS });
 
-  // Fabricated on purpose. Every AniList request is intercepted in tests, so this
-  // token is never sent anywhere and cannot act on any real AniList account.
-  await setDoc(doc(db, 'tokens', uid), {
-    token_type: 'Bearer',
-    access_token: 'e2e-fake-token-never-sent-to-anilist',
-    expires_in: 31536000,
-    refresh_token: 'e2e-fake-refresh-token',
-  });
+  // Shared with the token-expiry specs, which delete this document as part of
+  // what they exercise and put it back afterwards.
+  await setDoc(doc(db, 'tokens', uid), FAKE_TOKEN);
 
   await setDoc(doc(db, 'anilist', uid), {
     id: 999999,
