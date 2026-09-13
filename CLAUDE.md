@@ -33,10 +33,10 @@ sets `hosting.public` to `build`. Don't change one without the other.
 Cloud Functions live in `functions/` with their own `package.json`
 (`npm --prefix functions run build`, `firebase deploy --only functions`).
 
-Verified on Node v24 / yarn 1.22 as of 2026-09-12: `yarn lint` exits 0 with 20 pre-existing
-warnings, and 58 e2e tests pass in the `public` project. Unit: 24 tests, of which **3 fail
-and 1 is skipped** — see "Current state" below; both are known and pre-existing, so a red
-`yarn test` is not something you broke.
+Verified on Node v24 / yarn 1.22 as of 2026-09-13: `yarn lint` exits 0 with 15 pre-existing
+warnings; 76 e2e tests pass in the `public` project and 19 in `authed`. Unit: 56 tests, of
+which **3 fail and 1 is skipped** — see "Current state" below; both are known and
+pre-existing, so a red `yarn test` is not something you broke.
 
 ### AniList OAuth runs through a Cloud Function
 
@@ -76,7 +76,8 @@ Read them via `import.meta.env.VITE_*`, never `process.env`. `.env.test` holds f
 so tests are deterministic; Vite's precedence puts it above `.env.local` in test mode.
 
 Note: `.gitignore` also excludes `firebase.json`, `.firebaserc`, `firestore*`, and `storage.rules`,
-even though those files exist locally.
+even though those files exist locally — and `.env` plus every `.env.*` except the
+deliberately-fake `.env.test`.
 
 ## Layout
 
@@ -103,13 +104,16 @@ src/
                      Header the mobile top bar, MobileMenu the overlay it opens.
                      SearchFab + SearchSpotlight are global search. nav-items.ts is the
                      single source for what appears in the rail AND the overlay.
+                     GlassFilters.tsx holds the SVG filters behind the glass chrome.
   features/          One directory per page, each holding its own sections and skeleton:
                      browse, calendar, details, discover, people, profile, settings,
                      social, studio, taste, watchlist
-  views/             The routes that are not features: Login, SignUp, Callback, Favorites,
-                     and the ComingSoon / Community stubs
+  views/             The routes that are not features: Login and SignUp (both inside
+                     AuthShell, with AuthProviders, PasswordField and auth-error.ts),
+                     Callback, Favorites, and the ComingSoon / Community stubs
   components/        Shared only. Card, Badge, SectionHeading, EntityHero, Skeleton
-                     (shimmer primitive), PosterGridSkeleton, SplitButton, ToggleSwitch
+                     (shimmer primitive), PosterGridSkeleton, SplitButton, ToggleSwitch,
+                     AnilistReconnect (the expired-session notice, banner and panel)
   config/            firebase.ts (app, auth, db, storage, functions, Apple/Google
                      providers), apollo-client.ts
   context/           useReducer-based global store (StateProvider, reducer, types,
@@ -142,6 +146,39 @@ reads/creates the `users/{uid}` doc, loads favorites, and — if `anilistLinked`
 access token into `localStorage` and the AniList profile into state. On logout it clears state and
 the token.
 
+**When AniList refuses the token.** An expired or revoked token comes back as **HTTP 400
+"Invalid token"** — not 401; only a request with no credentials at all gets 401. The Apollo
+error link (`config/apollo-client.ts`) catches a refusal *of a token we actually sent* — the
+same "Unauthorized." arrives for accounts that simply never linked, which is a normal state —
+clears the browser copy and flips `anilistTokenRefusedVar` (`helpers/anilist-session.ts`).
+`useAnilistReconnect` deletes the dead `tokens/{uid}` document (or `hydrateSession` would read
+it straight back) and derives "needs reconnect" from an AniList profile existing with no token,
+which survives a reload with nothing persisted. `AppShell` shows the `AnilistReconnect` banner
+and Social its panel. Only 6 of 18 call sites send credentials — the Social feed, Details, and
+the three writes; Watchlist, Taste and Profile read public data by user id and are untouched.
+Clearing the token also lets the authenticated reads fall back to public mode, so after a
+refusal it is the *writes* that stay broken, which is what the banner says.
+
+**The rate limit is 30 requests a minute, not 90.** AniList has been running degraded for a
+long time; `x-ratelimit-limit: 30` is what the live API returns. Spending it gets HTTP 429
+with a Cloudflare **HTML** body, which is why it used to surface as `ServerParseError:
+Unexpected token '<'` and nothing about rate limits. A `RetryLink`
+(`helpers/anilist-rate-limit.ts`) retries a 429 — and only a 429, since a 400 is a refused
+token and retrying it would delay the reconnect prompt — four times with exponential backoff
+and jitter. `Retry-After` is read when present but usually is not: AniList's
+`access-control-expose-headers` lists only `X-RateLimit-*`, so a cross-origin read returns
+null and the backoff ladder takes over. The `RateLimitNotice` banner is **armed, not raised**,
+on the first refusal and only appears if the trouble outlasts `NOTICE_DELAY_MS` — showing it
+immediately put a warning on screen ahead of the skeletons it was explaining, for a problem
+that was usually over within two seconds.
+
+**Per-page request counts are already lean — one request per page**, and client-side
+navigation is properly cached (Discover, into a title, back, the same title again, three tab
+switches: two requests). Measure before optimising here; the `e2e/anilist-mock.ts` route is
+the hook, and counting offline costs no budget. What is *not* free is a reload — the cache is
+memory-only and nothing is persisted, so every refresh refetches, and `Featured` alone is
+173 KB.
+
 **Two data sources, kept separate.**
 - AniList (Apollo, `https://graphql.anilist.co`) — all media data. Authenticated calls pass
   `context: { headers: authHeader() }` per-operation; the token is *not* in the Apollo link chain.
@@ -169,6 +206,17 @@ drives the Details banner pull-up, the sticky tab bar's offset and every
 `display: none` there. Below 960px the rail is hidden, `--header-height` becomes 72px and
 the header returns — carrying the logo lockup and the `MobileMenu` button, nothing else.
 
+The header and the search FAB are **glass**: a thin tint, a specular rim, a sheen, and a
+blurred backdrop that — in Chromium only — also *bends* at the bar's bottom edge and
+magnifies through the button, via the SVG `feDisplacementMap` filters in
+`layout/GlassFilters.tsx` applied as `backdrop-filter: url()`. Three traps, all learned by
+rendering: Chromium silently drops every function listed after a `url()`, so blur and
+saturation live inside the filter; a blur primitive fades to transparent at the filter
+region's edge, so the region is larger than the element; and WebKit parses the `url()`,
+answers `CSS.supports()` **true**, and paints nothing, so support is gated by a class
+`index.html` sets from `navigator.userAgentData` (Chromium-only). Safari — every iPhone —
+gets the same glass without the bend, deliberately.
+
 **Search.** `SearchSpotlight` is an overlay opened by `SearchFab`, or with ⌘K / `/`;
 escape closes, arrows move, enter opens, and focus returns to the trigger. It is
 controlled — `AppShell` owns the open state. Results are gated on the current term: Apollo
@@ -182,7 +230,12 @@ search of its own. As a FAB it survives at every width and that duplicate is gon
 
 **Discover.** A full-bleed `Hero` (crossfading slides, the active slide's poster, a
 sideways scrim, score tier badge, CTAs), `AiringThisWeek`, the `Rail` rows, then
-`GenreTiles`. Everything is built from the one `Featured` query — `nextAiringEpisode`,
+`GenreTiles`. Its variables come from `featuredVariables()` in `graphql/featured.ts`, which
+`AuthShell` calls too — identical variables mean one cache entry, where previously the login
+page sent none and the sign-in path fetched 173 KB of `Featured` twice. That helper also owns
+the season maths: the old `getNextSeason` walked the list with `index < SEASONS.length - 1`,
+so FALL had no successor and September to November asked for `season: null`. Everything is
+built from the one `Featured` query — `nextAiringEpisode`,
 `duration` and `genres` all come back with it, so no section costs an extra request. An
 airing card retires itself once the episode's own runtime has elapsed (capped at 90
 minutes, defaulting to 24), fading out while the rest reflow and the next one backfills.
@@ -217,8 +270,11 @@ parallax, skeleton loading, rankings/tags/links/community stats/recommendations)
 character / studio pages, Watchlist (built around progress, not posters), Taste (statistics
 from the profile query), Calendar (week / month / agenda), Social (what people you follow
 have been watching), Profile, Settings (local preferences + the AniList account), favorites,
-Firebase auth (email+password, Google, Apple), AniList linking — which now works in
-production, not only in dev. Responsive down to 320px.
+Firebase auth (email+password, Google, Apple) on rebuilt Login and Sign-up pages (a wall of
+cover art behind a glass card, responsive to 320px, Enter submits, inline errors, both
+providers on both pages), AniList linking — which now works in production, not only in dev —
+and a clear reconnect prompt when that link expires. Rate-limit resilience: a 429 is retried
+with backoff rather than blanking the page. Responsive down to 320px.
 
 Unfinished or parked — mostly deliberate, don't "fix" without asking:
 - `views/ComingSoon.tsx` and `views/Community.tsx` are stubs. Their links live in
@@ -258,13 +314,13 @@ Known rough edges worth knowing before touching related code:
   something is actually clicked, which is why it keeps being rediscovered. Fix it as its own
   change — likely by keeping the collapsed box at 72px and growing it on hover, rather than
   sizing at 240px and relying on `overflow-x: hidden` for the visual.
-- **`firestore.rules` allows any signed-in user to read/write any document** — including
-  other users' AniList access tokens. A hardened per-uid version exists in the working
-  copy but `.gitignore` excludes `firestore*`, so it is in no commit and has never been
-  deployed. `firebase deploy --only firestore:rules` applies it.
-- **The login backgrounds still ship in the bundle:** `src/images/maiden.jpg` is 5.4MB and
-  `usagi.jpeg` is 1.1MB. `animitchures-logo-with-text.png` (182KB) is now referenced by
-  nothing at all — the README and the mobile header both moved to the SVG mark.
+- **`firestore.rules`, `storage.rules` and `firebase.json` are gitignored, so a change to
+  any of them is in no commit, no branch and no clone, and `git status` will never mention
+  it.** The hardened Firestore rules (each collection restricted to its owning uid, deny by
+  default), the Storage rules (deny all — the app does not use Storage) and the hosting
+  security headers were all deployed on 2026-09-12, but each sat in a working copy for a
+  week beforehand looking done. When you change one of these files, say plainly that it
+  needs a deploy.
 - **MUI is fully on v9** as of 2026-09-05; `@material-ui` v4 is gone. Note MUI requires
   `@emotion/*` at 11.14+ — 11.8 satisfies the peer range on paper but throws
   `emStyled is not a function` at runtime under vitest.
@@ -288,7 +344,7 @@ Known rough edges worth knowing before touching related code:
 - **`@types/react` is pinned via `resolutions`** in `package.json`. MUI drags in
   `@types/react-is` and `@types/react-transition-group`, which pin `@types/react` 18; two
   copies produce `TS2786: cannot be used as a JSX component` on every icon.
-- **`yarn lint` reports 20 pre-existing warnings and exits 0.** Severities are tuned in
+- **`yarn lint` reports 18 pre-existing warnings and exits 0.** Severities are tuned in
   `eslint.config.mjs` to match what CRA's `react-app` preset reported, so this is the same debt
   that was always there — not a new gate. Note Vite does **not** lint during `build`, unlike CRA.
 - **`firebase-functions` 6 and `firebase-admin` 13 are one major behind** (7 and 14 are out).
@@ -296,6 +352,10 @@ Known rough edges worth knowing before touching related code:
   that preceded them, which was decommissioned and could not deploy at all.
 - `api/services/favorites.ts` destructures `{ favorites }` from a possibly-`undefined` resolution,
   which throws if the doc is missing.
+- **The `DetailsList` fixture holds three favourites and reports `hasNextPage: false`,** so no
+  test walks the paging path in `views/Favorites.tsx`. A real 52-title list took four serial
+  requests at the old `perPage` of 15; it is 50 now, and Apollo's `fetchMore` owns the merging
+  rather than an accumulator in an effect. Simulate a longer list if you touch it.
 - The main JS chunk is **~1.5 MB raw / ~453 kB gzipped**, and Vite warns about it on every
   build. No code splitting is set up; every route is in the one bundle, so each page added
   since the reorganisation has gone straight into it.
@@ -348,6 +408,15 @@ commits by branching off a branch rather than off master.
   `public` holds the signed-out specs and must never be given a storageState (they assert
   signed-out behaviour); `authed` reuses the saved session; `live` is excluded from default
   runs by the `@live` tag, since Playwright otherwise runs every project.
+- **The token-expiry specs are destructive, and put back what they destroy.** Making the app
+  believe AniList refused its credential makes it delete `tokens/{uid}` from real Firestore —
+  correct behaviour, but it left the account looking permanently unlinked for every later run.
+  `e2e/seed-token.ts` restores it in an `afterAll`, and `yarn e2e` is idempotent as a result.
+  If a signed-in spec ever fails claiming the AniList session expired, check the document
+  exists before suspecting the app: that exact symptom cost a debugging session once, with the
+  suite faithfully reporting the truth about state it had itself deleted. Note `seed-token.ts`
+  loads `.env.local` itself — `playwright.config.ts` loads only `.env.test.local`, which has
+  the account credentials but not the Firebase project config.
 - **Signed-in testing needs two local files, both gitignored.** `.env.test.local` holds
   real credentials for a Firebase test account that exists in the production project, and
   `e2e/.auth/` holds its saved session. A fresh clone has neither. Recreate with
