@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/client';
 import './AuthShell.css';
 
 import { FEATURED_QUERY } from 'graphql/queries';
-import { FeaturedMedia } from 'graphql/featured';
+import { FeaturedMedia, featuredVariables } from 'graphql/featured';
 import Logo from '../images/animitchures-logo.svg';
 
 const WALL_COUNT = 28;
@@ -19,18 +19,27 @@ interface Props {
 /**
  * The frame both auth pages sit in: a wall of cover art, a scrim, and a card.
  *
- * The wall runs the same `Featured` query Discover does, with no variables —
- * every argument is optional and only the `trending` page is read. Two reasons
- * to reuse it rather than write a leaner one: Apollo caches by query, so
- * arriving at Discover after signing in costs nothing, and the e2e suite
- * already has a `Featured` fixture, so the auth pages need no new capture.
+ * The wall runs the same `Featured` query Discover does, with **the same
+ * variables** — which is the whole trick. Apollo caches by query *and*
+ * variables, so this used to send no variables where Discover sends season ones,
+ * and the sign-in path fetched 173 KB of Featured twice against a budget of 30
+ * requests a minute. Sharing `featuredVariables` makes the two a single cache
+ * entry, so signing in and landing on Discover costs nothing extra. Reusing the
+ * query also means the e2e suite needs no new fixture.
+ *
+ * `isAdult` is false rather than read from a profile because nobody is signed in
+ * on this page; Discover passes the real flag once there is one to read, and a
+ * visitor who has it set simply refetches on arrival.
  *
  * The wall is decoration and is treated as such — `errorPolicy: 'all'` keeps a
  * partial response usable, and if the query fails or is still in flight the
  * page renders complete on the gradient alone. Sign-in never waits on it.
  */
 function AuthShell({ title, subtitle, children }: Props) {
-  const { data } = useQuery(FEATURED_QUERY, { errorPolicy: 'all' });
+  const { data } = useQuery(FEATURED_QUERY, {
+    variables: featuredVariables(false),
+    errorPolicy: 'all',
+  });
 
   const posters: string[] = (data?.trending?.media ?? [])
     .map((media: FeaturedMedia) => media?.coverImage?.extraLarge ?? media?.coverImage?.large)

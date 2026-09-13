@@ -98,6 +98,14 @@
   position: relative;
 }
 
+/* Shell-level notices — an expired AniList session, AniList rate limiting —
+   render above the routed view. Each view owns its own gutters, so these had
+   none: the banner ran the full width of the scroll container and its top edge
+   sat flush against it, hard up under the browser chrome. */
+.app__notices {
+  padding: var(--y-axis-spacing) var(--x-axis-spacing) 0;
+}
+
 .app__body {
   flex: 1;
   min-width: 0;

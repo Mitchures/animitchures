@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useLazyQuery } from '@apollo/client';
+import { useEffect } from 'react';
+import { useQuery } from '@apollo/client';
 import { motion } from 'framer-motion';
 
 import './Favorites.css';
@@ -10,6 +10,21 @@ import PosterGridSkeleton from 'components/PosterGridSkeleton';
 import { useStateValue } from 'context';
 import { Media } from 'graphql/types';
 import { DETAILS_LIST_QUERY } from 'graphql/queries';
+
+/**
+ * AniList's ceiling for `perPage`. This was 15, which turned a 52-title list
+ * into four round trips — each waiting on the one before — against a budget of
+ * 30 requests a minute. At 50 the same list costs two.
+ *
+ * The e2e fixture holds three favourites and reports `hasNextPage: false`, so no
+ * test ever walked the paging path; it took simulating a real list to see it.
+ */
+const PER_PAGE = 50;
+
+/** Just the shape fetchMore has to merge — not the whole query result. */
+type FavoritesPage = {
+  Page?: { media?: Media[]; pageInfo?: { currentPage: number; hasNextPage: boolean } };
+};
 
 const getSortedMedia = (list: Media[]) => {
   // Copied before sorting because the entries below are mutated, and the array
@@ -34,36 +49,47 @@ const getSortedMedia = (list: Media[]) => {
 
 function Favorites() {
   const [{ favorites }] = useStateValue();
-  const [favoritesList, setFavoritesList] = useState<Media[]>([]);
-  const [isLoading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [perPage] = useState(15);
-  const [fetchFavorites, { loading, data }] = useLazyQuery(DETAILS_LIST_QUERY, {
-    variables: {
-      id_in: favorites,
-      type: 'ANIME',
-      page,
-      perPage,
-    },
+
+  /**
+   * Apollo accumulates the pages, rather than a local array built up in an
+   * effect. The previous version appended each response into component state,
+   * which meant two ways to show the wrong thing: the reducer rebuilds
+   * `favorites` on every dispatch, so re-setting the same list restarted the
+   * whole paged fetch, and each restart appended a second copy of every title
+   * onto what was already on screen. Deep-equal variables make a repeat dispatch
+   * free, and `fetchMore` owns the merging.
+   */
+  const { loading, data, fetchMore } = useQuery(DETAILS_LIST_QUERY, {
+    variables: { id_in: favorites, type: 'ANIME', page: 1, perPage: PER_PAGE },
+    skip: favorites.length === 0,
+    notifyOnNetworkStatusChange: true,
   });
 
-  useEffect(() => {
-    if (favorites.length > 0) fetchFavorites();
-  }, [favorites]);
+  const media: Media[] = data?.Page?.media ?? [];
+  const pageInfo = data?.Page?.pageInfo;
+  const hasMore = Boolean(pageInfo?.hasNextPage);
 
+  // Everything on one screen, so the next page is pulled as soon as a response
+  // says there is one rather than waiting for a scroll.
   useEffect(() => {
-    if (!loading && data) {
-      console.log(data);
-      const { media, pageInfo } = data.Page;
-      setFavoritesList((prev: Media[]) => [...prev, ...media]);
-      if (pageInfo.hasNextPage) {
-        setPage(page + 1);
-        fetchFavorites();
-      } else {
-        setLoading(false);
-      }
-    }
-  }, [data]);
+    if (!hasMore || loading) return;
+
+    fetchMore({
+      variables: { page: (pageInfo?.currentPage ?? 1) + 1 },
+      updateQuery: (
+        previous: FavoritesPage,
+        { fetchMoreResult }: { fetchMoreResult?: FavoritesPage },
+      ) => {
+        if (!fetchMoreResult) return previous;
+        return {
+          Page: {
+            ...fetchMoreResult.Page,
+            media: [...(previous?.Page?.media ?? []), ...(fetchMoreResult.Page?.media ?? [])],
+          },
+        };
+      },
+    });
+  }, [hasMore, loading, pageInfo?.currentPage, fetchMore]);
 
   return (
     <motion.div
@@ -72,18 +98,21 @@ function Favorites() {
       exit={{ opacity: 0 }}
       className="favorites"
     >
-      {favoritesList.length === 0 ? (
+      {favorites.length === 0 ? (
         // An empty list is not a loading state. It was wearing the loader —
         // spinner and all — which told you to wait for something that was
         // never coming.
         <p className="favorites__empty">
           No favourites yet. Tap the heart on any title and it lands here.
         </p>
-      ) : isLoading ? (
-        <PosterGridSkeleton gridClassName="favorites__grid" count={favoritesList.length} />
+      ) : media.length === 0 ? (
+        <PosterGridSkeleton
+          gridClassName="favorites__grid"
+          count={Math.min(favorites.length, PER_PAGE)}
+        />
       ) : (
         <div className="favorites__grid">
-          {getSortedMedia(favoritesList).map((mediaItem: Media) => (
+          {getSortedMedia(media).map((mediaItem: Media) => (
             <Card key={mediaItem.id} {...mediaItem} />
           ))}
         </div>

@@ -16,59 +16,20 @@ import Rail from 'features/discover/Rail';
 import DiscoverSkeleton from './DiscoverSkeleton';
 
 import { FEATURED_QUERY } from 'graphql/queries';
+import { featuredVariables } from 'graphql/featured';
 import { useStateValue } from 'context';
-
-const currentYear = new Date().getFullYear();
-const currentMonth = new Date().getMonth() + 1;
-
-const SEASONS = [
-  {
-    name: 'WINTER',
-    months: [1, 2, 12],
-  },
-  {
-    name: 'SPRING',
-    months: [3, 4, 5],
-  },
-  {
-    name: 'SUMMER',
-    months: [6, 7, 8],
-  },
-  {
-    name: 'FALL',
-    months: [9, 10, 11],
-  },
-];
 
 function Features() {
   const [{ featured, user }, dispatch] = useStateValue();
 
-  const getSeason = (month: number) => {
-    return SEASONS.find((season) => season.months.includes(month))?.name;
-  };
-
-  const getNextSeason = (month: number) => {
-    const currentSeason = getSeason(month);
-    return SEASONS.map(
-      (season, index) =>
-        season.name === currentSeason &&
-        index >= 0 &&
-        index < SEASONS.length - 1 &&
-        SEASONS[index + 1].name,
-    ).filter((item) => item)[0];
-  };
-
+  // The same call AuthShell makes, so the wall of cover art behind the login
+  // card warms this query's cache entry instead of fetching its own copy.
   const { data } = useQuery(FEATURED_QUERY, {
-    variables: {
-      type: 'ANIME',
-      season: getSeason(currentMonth),
-      seasonYear: currentYear,
-      nextSeason: getNextSeason(currentMonth),
-      // Pass next year only when the season is FALL towards the end of the current year.
-      nextYear: currentMonth <= 9 ? currentYear : currentYear + 1,
-      isAdult: user?.isAdult || false,
-    },
-    pollInterval: 300000, // 5 minutes
+    variables: featuredVariables(user?.isAdult || false),
+    // No polling. This was refetching 173 KB every five minutes against a
+    // 30-requests-a-minute budget, for data that turns over seasonally — and the
+    // airing countdowns it looked like it was serving are computed client-side
+    // from `airingAt`, so they tick without it.
   });
 
   useEffect(() => {

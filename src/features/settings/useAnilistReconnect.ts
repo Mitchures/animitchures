@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useReactiveVar } from '@apollo/client';
 
 import { useStateValue } from 'context';
-import { anilistTokenRefusedVar, hasStoredToken } from 'helpers';
+import { anilistTokenRefusedVar, anilistTokenVar } from 'helpers';
 import { deleteAccessToken } from 'api';
 
 /**
@@ -23,7 +23,10 @@ export const useAnilistReconnect = (): boolean => {
   const [{ user, anilist_user }] = useStateValue();
   const refused = useReactiveVar(anilistTokenRefusedVar);
 
-  const needsReconnect = !!anilist_user && !hasStoredToken();
+  // Subscribed, not read. localStorage notifies nobody, so reading it directly
+  // meant a token arriving after this first evaluated never cleared the notice.
+  const hasToken = useReactiveVar(anilistTokenVar);
+  const needsReconnect = !!anilist_user && !hasToken;
 
   useEffect(() => {
     // Only once the refusal actually happened. A signed-in user whose token is

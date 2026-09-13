@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { motion } from 'framer-motion';
@@ -11,12 +12,23 @@ import FilterBar, { Filters } from 'features/browse/FilterBar';
 import { useStateValue } from 'context';
 import { Media } from 'graphql/types';
 import { SEARCH_QUERY } from 'graphql/queries';
+import { useDebouncedValue } from 'utils/hooks';
 
 /** Just the shape fetchMore has to merge — not the whole query result. */
 type SearchPage = { Page?: { media?: Media[]; pageInfo?: unknown } };
 
 const PER_PAGE = 20;
 const SKELETON_COUNT = 12;
+
+/**
+ * How long the filters have to hold still before the query fires.
+ *
+ * Every filter change rewrites the URL, and the URL is what the query reads, so
+ * adjusting four controls in a row used to cost four requests out of a budget of
+ * thirty a minute. Short enough to feel immediate; long enough to collapse a
+ * run of changes into one.
+ */
+const FILTER_DEBOUNCE_MS = 350;
 
 /**
  * Browse and search, which are the same query with different arguments.
@@ -44,7 +56,24 @@ function Results() {
     sort: searchParams.get('sort') ?? '',
   };
 
+  // The controls above read `searchParams` directly, so they stay immediate and
+  // the back button still steps through every individual change. Only what the
+  // *query* reads is debounced.
+  const settled = useDebouncedValue(searchParams.toString(), FILTER_DEBOUNCE_MS);
+  const queried = useMemo(() => new URLSearchParams(settled), [settled]);
+
+  const queriedSearch = queried.get('search') ?? '';
+  const queriedFilters: Filters = {
+    genre: queried.get('genre') ?? '',
+    year: queried.get('year') ?? '',
+    format: queried.get('format') ?? '',
+    status: queried.get('status') ?? '',
+    sort: queried.get('sort') ?? '',
+  };
+
   const hasCriteria = Boolean(search) || Object.values(filters).some(Boolean);
+  const hasQueriedCriteria =
+    Boolean(queriedSearch) || Object.values(queriedFilters).some(Boolean);
 
   const { data, loading, error, fetchMore } = useQuery(SEARCH_QUERY, {
     variables: {
@@ -52,16 +81,16 @@ function Results() {
       isAdult: user?.isAdult || false,
       page: 1,
       perPage: PER_PAGE,
-      search: search || undefined,
-      genres: filters.genre ? [filters.genre] : undefined,
-      seasonYear: filters.year ? Number(filters.year) : undefined,
-      format: filters.format ? [filters.format] : undefined,
-      status: filters.status || undefined,
+      search: queriedSearch || undefined,
+      genres: queriedFilters.genre ? [queriedFilters.genre] : undefined,
+      seasonYear: queriedFilters.year ? Number(queriedFilters.year) : undefined,
+      format: queriedFilters.format ? [queriedFilters.format] : undefined,
+      status: queriedFilters.status || undefined,
       // SEARCH_MATCH ranks by how closely a title matches the typed text, which
       // is meaningless when nothing was typed.
-      sort: filters.sort || (search ? 'SEARCH_MATCH' : 'POPULARITY_DESC'),
+      sort: queriedFilters.sort || (queriedSearch ? 'SEARCH_MATCH' : 'POPULARITY_DESC'),
     },
-    skip: !hasCriteria,
+    skip: !hasQueriedCriteria,
     notifyOnNetworkStatusChange: true,
   });
 
