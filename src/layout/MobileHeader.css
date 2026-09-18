@@ -1,0 +1,59 @@
+.mobileHeader {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .mobileHeader {
+    position: sticky;
+    top: 0;
+    z-index: 110;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-height);
+    margin: 0 calc(-1 * var(--gutter));
+    padding: 0 var(--gutter);
+    background: var(--canvas);
+  }
+
+  .mobileHeader__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--ink);
+    font-family: var(--font-brand);
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+  }
+
+  .mobileHeader__brand:hover {
+    color: var(--ink) !important;
+  }
+
+  .mobileHeader__brand img {
+    width: 22px;
+  }
+
+  .mobileHeader__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .mobileHeader__avatar .MuiAvatar-root {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+    background: linear-gradient(135deg, #6366f1, #f345ae);
+  }
+
+  .mobileHeader__login {
+    padding: 0.5rem 0.875rem;
+    border-radius: var(--r-pill);
+    background: var(--card);
+    color: var(--ink);
+    font-size: 13px;
+    text-decoration: none;
+  }
+}

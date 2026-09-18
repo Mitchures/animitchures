@@ -1,0 +1,122 @@
+/* Design tokens for the SuperPower-reference redesign. Light values on :root,
+   dark under prefers-color-scheme (unless the user forced light) and under an
+   explicit data-theme="dark". Components read these and never declare a raw
+   colour, radius or duration of their own. */
+:root {
+  /* surfaces: three greys and nothing else for depth */
+  --canvas: #e8e8e9;
+  --card: #f3f3f4;
+  --nested: #ffffff;
+  --ink: #161616;
+  --muted: #8b8b90;
+  --lime: #e3ff3c;
+  --on-lime: #161616;
+  --on-tile: #ffffff;
+  /* frosted tile glass */
+  --tile-base: #d6d9e2;
+  --tile-base-2: #e4e6ec;
+  --tile-rim: rgba(255, 255, 255, 0.7);
+  --tile-grain: 0.9;
+  /* floating things only — cards never cast shadows */
+  --shadow-float: 0 12px 30px rgba(0, 0, 0, 0.08);
+  --shadow-drawer: 0 -20px 60px rgba(0, 0, 0, 0.18);
+  --glass-fill: rgba(255, 255, 255, 0.42);
+  /* For glass that sits *on* the data rather than behind it — the time strip's
+     puck and its reading. Opaque enough to read text against, translucent
+     enough that what it covers still carries through, which is the whole
+     point of it being glass. */
+  --glass-raised: rgba(255, 255, 255, 0.62);
+  --glass-rim: rgba(255, 255, 255, 0.75);
+  --dim: rgba(0, 0, 0, 0.18);
+  /* shape */
+  /* Continuous corners on every square surface — the reference's shape, and a
+     real CSS one: `corner-shape` pairs with `border-radius` rather than
+     replacing it, so an engine that does not know the property simply paints
+     the plain rounding and needs no fallback branch.
+     The radii are larger than the round ones they replaced because a squircle
+     at the *same* radius reads tighter, not rounder: its shoulders flatten and
+     the corner pulls in. 36px squircle is the round 28px look, continued. */
+  --r-card: 76px;
+  --r-inner: 34px;
+  --r-pill: 999px;
+  /* Padding for a squircled surface, derived from its own radius rather than
+     picked. Content sitting in a corner has to clear that corner's arc, and at
+     `--r-card` 76px an 18px pad left the episode card's tick strip and the
+     tiles' footers sitting on the curve. Deriving it means raising a radius
+     cannot silently break the spacing inside every card that reads it.
+     0.4 of the radius, floored at the old hand-picked values so a small radius
+     does not produce a cramped card. */
+  --pad-card: max(1.125rem, calc(var(--r-card) * 0.4));
+  --pad-inner: max(0.875rem, calc(var(--r-inner) * 0.42));
+  /* Pills, chips and avatars keep `round`: a superellipse at a radius clamped
+     to half the box flattens the ends of a pill and turns a circular avatar
+     into a blob. Only the square surfaces get the shape. */
+  --corner: squircle;
+  /* type */
+  --font-text: 'Inter Tight', -apple-system, 'Helvetica Neue', sans-serif;
+  --font-num: 'Doto', monospace;
+  --font-brand: 'Outfit', 'Inter Tight', sans-serif;
+  --track-display: -0.035em;
+  --track-body: -0.01em;
+  /* motion */
+  --t-fast: 180ms;
+  --t-base: 320ms;
+  --t-slow: 640ms;
+  --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+  --spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --stagger: 70ms;
+  /* shell */
+  --nav-width: 248px;
+  --gutter: 28px;
+  --tabbar-height: 72px;
+  /* Zero on desktop: there is no header there. Below 960px the mobile header
+     returns, and every view that offsets against this token follows. */
+  --header-height: 0px;
+}
+
+@media (max-width: 960px) {
+  :root {
+    --r-card: 52px;
+    --r-inner: 28px;
+    --gutter: 16px;
+    --header-height: 64px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --canvas: #101012;
+    --card: #1b1b1f;
+    --nested: #26262b;
+    --ink: #f2f2f3;
+    --muted: #8e8e95;
+    --tile-base: #1c1c22;
+    --tile-base-2: #26262d;
+    --tile-rim: rgba(255, 255, 255, 0.16);
+    --tile-grain: 0.55;
+    --shadow-float: 0 12px 30px rgba(0, 0, 0, 0.5);
+    --shadow-drawer: 0 -20px 60px rgba(0, 0, 0, 0.6);
+    --glass-fill: rgba(30, 30, 36, 0.42);
+    --glass-raised: rgba(30, 30, 36, 0.66);
+    --glass-rim: rgba(255, 255, 255, 0.14);
+    --dim: rgba(0, 0, 0, 0.4);
+  }
+}
+
+:root[data-theme='dark'] {
+  --canvas: #101012;
+  --card: #1b1b1f;
+  --nested: #26262b;
+  --ink: #f2f2f3;
+  --muted: #8e8e95;
+  --tile-base: #1c1c22;
+  --tile-base-2: #26262d;
+  --tile-rim: rgba(255, 255, 255, 0.16);
+  --tile-grain: 0.55;
+  --shadow-float: 0 12px 30px rgba(0, 0, 0, 0.5);
+  --shadow-drawer: 0 -20px 60px rgba(0, 0, 0, 0.6);
+  --glass-fill: rgba(30, 30, 36, 0.42);
+  --glass-raised: rgba(30, 30, 36, 0.66);
+  --glass-rim: rgba(255, 255, 255, 0.14);
+  --dim: rgba(0, 0, 0, 0.4);
+}

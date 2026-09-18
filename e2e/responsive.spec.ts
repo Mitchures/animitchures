@@ -21,14 +21,14 @@ const WIDTHS = [320, 375, 500, 768, 960, 961, 1280];
  */
 async function gotoDiscover(page: Page) {
   await page.goto('/', { waitUntil: 'networkidle' });
-  await page.locator('.hero').waitFor({ state: 'visible', timeout: 20_000 });
+  await page.locator('.slideHero').waitFor({ state: 'visible', timeout: 20_000 });
 }
 
 /**
  * Loads Discover but waits only for the app shell.
  *
- * Waits on .app__body rather than .header: the header is desktop-hidden now
- * that search is the spotlight overlay, so it is not a width-agnostic signal.
+ * Waits on .app__body rather than any chrome: the pill column is hidden below
+ * 960px and the tab bar above it, so neither is a width-agnostic signal.
  *
  * Prefer this for assertions about layout and navigation, which are pure CSS
  * and do not depend on media data. AniList rate-limits aggressively (429 with
@@ -57,20 +57,20 @@ test.describe('no horizontal overflow', () => {
 });
 
 test.describe('navigation handoff at the 960px boundary', () => {
-  test('below the breakpoint the hamburger replaces the sidebar', async ({ page }) => {
+  test('below the breakpoint the tab bar replaces the pill column', async ({ page }) => {
     await page.setViewportSize({ width: MOBILE_BREAKPOINT, height: 900 });
     await gotoShell(page);
 
-    await expect(page.locator('.header__menuButton')).toBeVisible();
-    await expect(page.locator('.navigation')).toBeHidden();
+    await expect(page.locator('.tabBar')).toBeVisible();
+    await expect(page.locator('.pillNav')).toBeHidden();
   });
 
-  test('above the breakpoint the sidebar returns and the hamburger goes', async ({ page }) => {
+  test('above the breakpoint the pill column returns and the tab bar goes', async ({ page }) => {
     await page.setViewportSize({ width: MOBILE_BREAKPOINT + 1, height: 900 });
     await gotoShell(page);
 
-    await expect(page.locator('.navigation')).toBeVisible();
-    await expect(page.locator('.header__menuButton')).toBeHidden();
+    await expect(page.locator('.pillNav')).toBeVisible();
+    await expect(page.locator('.tabBar')).toBeHidden();
   });
 
   test('exactly one navigation affordance exists at every width', async ({ page }) => {
@@ -78,59 +78,74 @@ test.describe('navigation handoff at the 960px boundary', () => {
       await page.setViewportSize({ width, height: 900 });
       await gotoShell(page);
 
-      const sidebar = await page.locator('.navigation').isVisible();
-      const hamburger = await page.locator('.header__menuButton').isVisible();
+      const column = await page.locator('.pillNav').isVisible();
+      const bar = await page.locator('.tabBar').isVisible();
 
       expect(
-        [sidebar, hamburger].filter(Boolean).length,
-        `at ${width}px: sidebar=${sidebar} hamburger=${hamburger}`,
+        [column, bar].filter(Boolean).length,
+        `at ${width}px: column=${column} bar=${bar}`,
       ).toBe(1);
     }
   });
+
+  test('the column is a fixed 248px and does not expand on hover', async ({ page }) => {
+    // It used to grow to 240px over the page, which is what made the left edge
+    // of every view swallow clicks.
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await gotoShell(page);
+
+    const before = await page.locator('.app__body').boundingBox();
+    await page.locator('.pillNav').hover();
+    await page.waitForTimeout(400);
+
+    await expect(page.locator('.pillNav')).toHaveCSS('width', '248px');
+    expect((await page.locator('.app__body').boundingBox())?.x).toBe(before?.x);
+  });
 });
 
-test.describe('overlay menu', () => {
+test.describe('the phone tab bar', () => {
   test.beforeEach(async ({ page }) => {
     await page.setViewportSize({ width: 500, height: 900 });
+    await gotoShell(page);
+  });
+
+  test('carries four public destinations and no More, which would open on nothing', async ({
+    page,
+  }) => {
+    // Signed out every public destination already has a slot, so the drawer
+    // would hold only a Log in row. The drawer's own behaviour is covered in
+    // the authed project, where it has content.
+    await expect(page.locator('.tabBar a')).toHaveCount(4);
+    await expect(page.locator('.tabBar__more')).toHaveCount(0);
+  });
+
+  test('marks the destination you are on', async ({ page }) => {
+    // Browse rather than Calendar: the calendar's AiringSchedule query has no
+    // captured fixture, and the mock throws rather than reaching the network.
+    await page.locator('.tabBar a', { hasText: 'Browse' }).click();
+
+    await expect(page).toHaveURL(/\/search\/anime$/);
+    await expect(page.locator('.tabBar a', { hasText: 'Browse' })).toHaveClass(
+      /tabBar__item--active/,
+    );
+  });
+
+  test('floats over the content rather than covering the last row of it', async ({ page }) => {
     await gotoDiscover(page);
-  });
+    const bar = (await page.locator('.tabBar').boundingBox())!;
+    const body = page.locator('.app__body');
 
-  test('opens from the hamburger and closes on Escape', async ({ page }) => {
-    await page.click('.header__menuButton');
-    await expect(page.getByRole('dialog')).toBeVisible();
+    // The scroll container reserves the bar's height plus a gap, so scrolling
+    // to the end still leaves the last card clear of it.
+    await body.evaluate((el) => el.scrollTo(0, el.scrollHeight));
+    await page.waitForTimeout(300);
+    const last = (await page.locator('.posterEchoCard').last().boundingBox())!;
 
-    await page.keyboard.press('Escape');
-    await expect(page.getByRole('dialog')).toBeHidden();
-  });
-
-  test('closes via the close button', async ({ page }) => {
-    await page.click('.header__menuButton');
-    await page.getByRole('button', { name: /close menu/i }).click();
-    await expect(page.getByRole('dialog')).toBeHidden();
-  });
-
-  test('closes on navigation rather than covering the new page', async ({ page }) => {
-    await page.click('.header__menuButton');
-    await page.getByRole('dialog').getByText('Discover').click();
-    await expect(page.getByRole('dialog')).toBeHidden();
-  });
-
-  test('locks body scroll while open', async ({ page }) => {
-    await page.click('.header__menuButton');
-    await expect(page.locator('body')).toHaveCSS('overflow', 'hidden');
-  });
-
-  test('does not overflow while open', async ({ page }) => {
-    await page.click('.header__menuButton');
-    const { scrollWidth, clientWidth } = await page.evaluate(() => ({
-      scrollWidth: document.documentElement.scrollWidth,
-      clientWidth: document.documentElement.clientWidth,
-    }));
-    expect(scrollWidth).toBe(clientWidth);
+    expect(last.y + last.height).toBeLessThanOrEqual(bar.y + 1);
   });
 });
 
-test.describe('hero', () => {
+test.describe('slide hero', () => {
   test('genre tags stay inside the banner instead of clipping', async ({ page }) => {
     for (const width of [320, 375, 500]) {
       await page.setViewportSize({ width, height: 900 });
@@ -138,7 +153,7 @@ test.describe('hero', () => {
 
       const clipped = await page.evaluate(() => {
         const limit = document.documentElement.clientWidth;
-        return [...document.querySelectorAll('.hero__tag')].filter(
+        return [...document.querySelectorAll('.slideHero__tags .chip')].filter(
           (el) => el.getBoundingClientRect().right > limit + 1,
         ).length;
       });
@@ -147,19 +162,26 @@ test.describe('hero', () => {
     }
   });
 
-  test('poster and copy sit side by side, and the poster shrinks on a phone', async ({ page }) => {
-    // The hero used to stack into a column below the breakpoint. It keeps the
-    // poster beside the copy at every width now — the poster shrinks instead,
-    // which is what stops the title being squeezed.
+  test('poster sits beside the copy, and gives way entirely on a narrow phone', async ({
+    page,
+  }) => {
     await page.setViewportSize({ width: 1280, height: 900 });
     await gotoDiscover(page);
-    const wide = await page.locator('.hero__poster').boundingBox();
-    const wideCopy = await page.locator('.hero__body').boundingBox();
-    expect(wideCopy!.x).toBeGreaterThan(wide!.x);
+    const wide = (await page.locator('.slideHero__poster').boundingBox())!;
+    const wideCopy = (await page.locator('.slideHero__body').boundingBox())!;
+    expect(wideCopy.x).toBeGreaterThan(wide.x);
+    expect((await page.locator('.slideHero').boundingBox())!.height).toBeGreaterThan(300);
 
     await page.setViewportSize({ width: 500, height: 900 });
     await gotoDiscover(page);
-    const narrow = await page.locator('.hero__poster').boundingBox();
-    expect(narrow!.width).toBeLessThan(wide!.width);
+    const narrow = (await page.locator('.slideHero__poster').boundingBox())!;
+    expect(narrow.width).toBeLessThan(wide.width);
+    expect((await page.locator('.slideHero').boundingBox())!.height).toBeLessThan(260);
+
+    // Below 400px the copy has no room to share, so the poster goes and the
+    // artwork behind the slide carries the art on its own.
+    await page.setViewportSize({ width: 320, height: 900 });
+    await gotoDiscover(page);
+    await expect(page.locator('.slideHero__poster')).toBeHidden();
   });
 });

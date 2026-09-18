@@ -7,6 +7,8 @@
  * beats it in either direction.
  */
 
+import { makeVar } from '@apollo/client';
+
 import { setNameLanguage, setTitleLanguage } from 'helpers/title-language';
 
 export type Theme = 'system' | 'light' | 'dark';
@@ -52,7 +54,19 @@ export const readCachedPreferences = (): Preferences => {
   }
 };
 
+/**
+ * The live copy, so a change re-renders whatever is reading it.
+ *
+ * Without this the only signal a preference changed was the `update_user`
+ * dispatch — which `usePreferences` skips when nobody is signed in. The theme
+ * applied to `<html>` immediately but every control showing its own value went
+ * stale until a reload, so a second click sent the same value again. Same
+ * pattern as `anilistTokenRefusedVar`.
+ */
+export const preferencesVar = makeVar<Preferences>(readCachedPreferences());
+
 export const cachePreferences = (preferences: Preferences): void => {
+  preferencesVar(preferences);
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(preferences));
   } catch {

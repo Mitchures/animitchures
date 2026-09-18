@@ -37,12 +37,6 @@
   --y-axis-spacing: 1.25rem;
   --left-spacing: 2rem;
   --right-spacing: 2rem;
-  /* Height of the header. Zero on desktop: search moved into the spotlight
-     overlay and the header had nothing left to hold, so it is display:none
-     there. Everything that offsets against it — the Details banner pull-up,
-     the sticky tab bar, the 100vh view heights — follows from this token.
-     Below 960px the header returns for the logo and menu button. */
-  --header-height: 0px;
   /* Poster height for Card. Card width derives from it at a 2:3 ratio, and
      the density setting scales both through one multiplier rather than a
      second set of sizes in every component. */
@@ -51,9 +45,6 @@
   /* Minimum track for the poster grids, on the same multiplier — scaling the
      card without the track leaves gaps between narrower cards. */
   --poster-track: calc(200px * var(--poster-scale));
-  /* Sidebar rail: collapsed by default, expands on hover as an overlay. */
-  --rail-width: 72px;
-  --rail-width-expanded: 240px;
 }
 
 /* Breakpoints. Custom properties cannot be used in media query conditions,
@@ -65,7 +56,6 @@
 
 @media (max-width: 960px) {
   :root {
-    --header-height: 72px;
     --x-axis-spacing: 1.5rem;
     --left-spacing: 1.5rem;
     --right-spacing: 1.5rem;
@@ -78,7 +68,6 @@
     --x-axis-spacing: 1rem;
     --left-spacing: 1rem;
     --right-spacing: 1rem;
-    --border-radius: 14px;
     --card-poster-base: 180px;
   }
 }
@@ -87,37 +76,58 @@
   position: relative;
   min-height: 100vh;
   min-height: 100dvh;
-  color: var(--secondary);
-  background: rgb(237, 238, 247);
-  background: linear-gradient(-90deg, rgba(237, 238, 247, 1) 65%, rgba(240, 225, 233, 1) 100%);
+  color: var(--ink);
+  background: var(--canvas);
 }
 
 .app__container {
   display: flex;
-  /* Anchors the expanded sidebar overlay. */
-  position: relative;
+  min-height: 100dvh;
+  background: var(--canvas);
 }
 
 /* Shell-level notices — an expired AniList session, AniList rate limiting —
-   render above the routed view. Each view owns its own gutters, so these had
-   none: the banner ran the full width of the scroll container and its top edge
-   sat flush against it, hard up under the browser chrome. */
+   render above the routed view. */
 .app__notices {
-  padding: var(--y-axis-spacing) var(--x-axis-spacing) 0;
+  padding: 1rem 0 0;
 }
 
+/* The one element that scrolls. Views read it through useScrollContainer().
+   `relative` so the top bar can sit over the page rather than above it. */
 .app__body {
+  position: relative;
   flex: 1;
   min-width: 0;
-  /* Reserves the rail's width; the rail itself is absolutely positioned so that
-     expanding it on hover cannot shift this. */
-  margin-left: var(--rail-width);
-  /* height: calc(100vh - 80px); */
-  height: 100vh;
   height: 100dvh;
-  width: 100%;
-  overflow: hidden;
-  overflow-y: auto;
+  padding: 0 var(--gutter);
+  overflow: hidden auto;
+}
+
+/* Desktop only: search and notifications, top-right of the page.
+
+   Out of flow deliberately. In flow it pushed every view down by its own
+   height, and the Details banner is full-bleed to the top edge — the whole
+   reason --header-height is 0 above 960px. It scrolls away with the page;
+   ⌘K still opens search from anywhere. */
+.app__topbar {
+  position: absolute;
+  right: var(--gutter);
+  top: 1.375rem;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+@media (max-width: 960px) {
+  .app__topbar {
+    display: none;
+  }
+
+  /* Room for the floating tab bar over the last row of content. */
+  .app__body {
+    padding-bottom: calc(var(--tabbar-height) + 32px);
+  }
 }
 
 hr {
@@ -151,30 +161,6 @@ a * {
 
 a:hover {
   color: var(--action) !important;
-}
-
-a.logout:hover {
-  color: var(--action-secondary) !important;
-}
-
-a.logout:hover div {
-  background-color: var(--action-secondary) !important;
-}
-
-a.active {
-  color: var(--action) !important;
-}
-
-a.active span {
-  color: var(--primary);
-}
-
-a.active svg {
-  fill: white;
-}
-
-a.active div {
-  background-color: var(--action) !important;
 }
 
 button {
@@ -240,9 +226,6 @@ button:focus {
     color: white;
   }
 
-  :root:not([data-theme='light']) a.active span {
-    color: white;
-  }
 }
 
 :root[data-theme='dark'] .app {
@@ -259,9 +242,6 @@ button:focus {
   color: white;
 }
 
-:root[data-theme='dark'] a.active span {
-  color: white;
-}
 
 @media screen and (max-width: 960px) {
   .app__body {

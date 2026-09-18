@@ -2,16 +2,19 @@ import { useState, useEffect, useRef } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useReactiveVar } from '@apollo/client';
 
-import Header from 'layout/Header';
-import Navigation from 'layout/Navigation';
-import MobileMenu from 'layout/MobileMenu';
+import { NotificationsNoneOutlined, SearchRounded } from '@mui/icons-material';
+
+import PillNav from 'layout/PillNav';
+import TabBar from 'layout/TabBar';
+import Drawer from 'layout/Drawer';
+import MobileHeader from 'layout/MobileHeader';
 import SearchSpotlight, { SEARCH_SHORTCUT } from 'layout/SearchSpotlight';
-import SearchFab from 'layout/SearchFab';
 import { getNavSections } from 'layout/nav-items';
+import IconButton from 'components/IconButton';
 import AnilistReconnect from 'components/AnilistReconnect';
 import RateLimitNotice from 'components/RateLimitNotice';
-import GlassFilters from 'layout/GlassFilters';
 import { useAnilistReconnect } from 'features/settings/useAnilistReconnect';
+import ThemeToggle from 'features/settings/ThemeToggle';
 import { anilistRateLimitedVar } from 'helpers/anilist-rate-limit';
 
 import { auth } from 'config';
@@ -20,7 +23,7 @@ import { usePreferences } from 'features/settings/usePreferences';
 
 /**
  * The signed-in app shell: sidebar + header + routed content.
- * Owns the mobile menu's open state, which is deliberately local rather than
+ * Owns the More drawer's open state, which is deliberately local rather than
  * in the global reducer — the reducer logs every action, and menu toggles
  * would drown the console.
  */
@@ -69,12 +72,26 @@ function AppShell() {
 
   return (
     <div className="app__container">
-      <GlassFilters />
-      <Navigation sections={sections} user={user} onLogout={handleLogout} />
-      <SearchFab open={searchOpen} onOpen={() => setSearchOpen(true)} shortcut={SEARCH_SHORTCUT} />
-      <SearchSpotlight open={searchOpen} onOpenChange={setSearchOpen} />
+      <PillNav sections={sections} user={user} onLogout={handleLogout} />
       <div className="app__body" ref={scrollContainerRef}>
-        <Header menuOpen={menuOpen} onMenuToggle={() => setMenuOpen((open) => !open)} />
+        <MobileHeader onSearch={() => setSearchOpen(true)} />
+        {/* Desktop only: search and notifications sit top-right of the page,
+            not in the nav — search is an action, not a destination. */}
+        <div className="app__topbar">
+          <ThemeToggle />
+          <IconButton
+            label={`Search anime (${SEARCH_SHORTCUT})`}
+            onClick={() => setSearchOpen(true)}
+            active={searchOpen}
+          >
+            <SearchRounded />
+          </IconButton>
+          {user && (
+            <IconButton label="Notifications">
+              <NotificationsNoneOutlined />
+            </IconButton>
+          )}
+        </div>
         <ScrollContainerProvider value={scrollContainerRef}>
           {(rateLimited || anilistExpired) && (
             <div className="app__notices">
@@ -85,7 +102,9 @@ function AppShell() {
           <Outlet />
         </ScrollContainerProvider>
       </div>
-      <MobileMenu
+      <SearchSpotlight open={searchOpen} onOpenChange={setSearchOpen} />
+      <TabBar sections={sections} moreOpen={menuOpen} onMore={() => setMenuOpen((open) => !open)} />
+      <Drawer
         open={menuOpen}
         sections={sections}
         user={user}

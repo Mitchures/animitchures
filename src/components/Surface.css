@@ -1,0 +1,25 @@
+.surface {
+  position: relative;
+}
+
+.surface--card {
+  background: var(--card);
+}
+
+.surface--nested {
+  background: var(--nested);
+}
+
+.surface--r-card {
+  border-radius: var(--r-card);
+  corner-shape: var(--corner);
+}
+
+.surface--r-inner {
+  border-radius: var(--r-inner);
+  corner-shape: var(--corner);
+}
+
+.surface--r-pill {
+  border-radius: var(--r-pill);
+}

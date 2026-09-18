@@ -1,0 +1,271 @@
+/* Construction approved in tiles-v3.html: cool-grey glass, circular colour
+   discs of fixed diameter behind it under a real blur, grain on top. */
+.frostedTile {
+  --mx: 50%;
+  --my: 50%;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 184px;
+  padding: var(--pad-card);
+  overflow: hidden;
+  border-radius: var(--r-card);
+  corner-shape: var(--corner);
+  background: linear-gradient(160deg, var(--tile-base-2), var(--tile-base));
+  color: var(--on-tile);
+  text-align: center;
+  text-decoration: none;
+  box-shadow:
+    0 30px 80px -40px var(--body),
+    inset 0 1px 0 var(--tile-rim);
+  transition:
+    transform var(--t-base) var(--ease),
+    box-shadow var(--t-base) var(--ease);
+}
+
+.frostedTile:hover {
+  transform: translateY(-4px);
+  color: var(--on-tile) !important;
+  box-shadow:
+    0 44px 100px -34px var(--body),
+    inset 0 1px 0 var(--tile-rim);
+}
+
+/* The colour layer: oversized, blurred for real, clipped by the card. */
+.frostedTile__fx {
+  position: absolute;
+  inset: -25%;
+  z-index: 0;
+  /* `translate`, so the hover's `transform` drift composes with it rather than
+     replacing it. */
+  translate: 0 var(--fx-lift, 0);
+  filter: blur(34px) saturate(1.15);
+  pointer-events: none;
+  transition: transform var(--t-slow) var(--ease);
+}
+
+.frostedTile:hover .frostedTile__fx {
+  transform: translate(calc((var(--mx) - 50%) * 0.12), calc((var(--my) - 50%) * 0.12));
+}
+
+.frostedTile__disc {
+  position: absolute;
+  display: block;
+  width: var(--d);
+  height: var(--d);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* The small variant: shorter, quieter, and every disc scales with --ds. */
+.frostedTile--sm {
+  --ds: 0.62;
+  --fx-lift: -8%;
+  min-height: 132px;
+  padding: 1rem 1.125rem;
+  border-radius: var(--r-inner);
+  corner-shape: var(--corner);
+}
+
+.frostedTile--sm .frostedTile__label {
+  font-size: 15px;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+}
+
+.frostedTile--sm .frostedTile__caption {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.frostedTile--sm .dotNumber {
+  font-size: 34px;
+}
+
+/* A faint scrim under the content, on this variant only: the palest palettes
+   otherwise leave white text on light glass. Above the colour, below the text. */
+.frostedTile--sm::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.16) 0%,
+    rgba(0, 0, 0, 0.02) 62%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+
+/* Grain. */
+.frostedTile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  opacity: var(--tile-grain);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+}
+
+/* `.frostedTile__deco` is excluded by name, not by accident: this selector is
+   more specific than any class a decoration could carry, so without the
+   exclusion it forces `position: relative` and a decorative element that was
+   meant to be absolute lands in the flow and inflates the card. */
+.frostedTile > :not(.frostedTile__fx, .frostedTile__deco) {
+  position: relative;
+  z-index: 2;
+}
+
+.frostedTile__deco {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Interior: label top, number + caption centred, footer on the bottom edge. */
+.frostedTile__label {
+  flex: none;
+  margin-bottom: auto;
+  font-size: 14px;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.18);
+}
+
+.frostedTile__number {
+  margin-top: 0;
+}
+
+.frostedTile__caption {
+  margin-top: 0.375rem;
+  margin-bottom: auto;
+  font-size: 13px;
+}
+
+.frostedTile__footer {
+  flex: none;
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 20px;
+  /* The strip can run the full content width — the season tile draws 31 ticks —
+     and at a 76px radius both its ends would then cross the bottom corners. */
+  max-width: calc(100% - var(--r-card) * 0.5);
+}
+
+/* band: caps in the top corners, body across the middle, accent floor */
+.frostedTile--band .frostedTile__disc:nth-child(1) {
+  --d: calc(220px * var(--ds, 1));
+  left: 26%;
+  top: 26%;
+  background: var(--cap);
+}
+.frostedTile--band .frostedTile__disc:nth-child(2) {
+  --d: calc(220px * var(--ds, 1));
+  left: 74%;
+  top: 26%;
+  background: var(--cap);
+}
+.frostedTile--band .frostedTile__disc:nth-child(3) {
+  --d: calc(280px * var(--ds, 1));
+  left: 50%;
+  top: 54%;
+  background: var(--body);
+}
+.frostedTile--band .frostedTile__disc:nth-child(4) {
+  --d: calc(480px * var(--ds, 1));
+  left: 50%;
+  top: 94%;
+  background: var(--accent);
+}
+
+/* blob: an arc offset to the right so the glass shows down the left */
+.frostedTile--blob .frostedTile__disc:nth-child(1) {
+  --d: calc(230px * var(--ds, 1));
+  left: 40%;
+  top: 52%;
+  background: var(--cap);
+}
+.frostedTile--blob .frostedTile__disc:nth-child(2) {
+  --d: calc(250px * var(--ds, 1));
+  left: 60%;
+  top: 50%;
+  background: var(--body);
+}
+.frostedTile--blob .frostedTile__disc:nth-child(3) {
+  --d: calc(200px * var(--ds, 1));
+  left: 78%;
+  top: 48%;
+  background: var(--accent);
+}
+.frostedTile--blob .frostedTile__disc:nth-child(4) {
+  display: none;
+}
+
+/* core: dead centre */
+.frostedTile--core .frostedTile__fx {
+  filter: blur(26px) saturate(1.2);
+}
+.frostedTile--core .frostedTile__disc:nth-child(1) {
+  --d: calc(520px * var(--ds, 1));
+  left: 50%;
+  top: 50%;
+  background: var(--cap);
+}
+.frostedTile--core .frostedTile__disc:nth-child(2) {
+  --d: calc(240px * var(--ds, 1));
+  left: 50%;
+  top: 50%;
+  background: var(--body);
+}
+.frostedTile--core .frostedTile__disc:nth-child(3) {
+  --d: calc(120px * var(--ds, 1));
+  left: 50%;
+  top: 50%;
+  background: var(--accent);
+}
+.frostedTile--core .frostedTile__disc:nth-child(4) {
+  display: none;
+}
+
+/* Footer marks. */
+.frostedTile__tick {
+  display: block;
+  width: 2px;
+  height: 9px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.frostedTile__tick--hi {
+  height: 20px;
+  background: var(--on-tile);
+}
+
+.frostedTile__tick--dim {
+  opacity: 0.4;
+}
+
+.frostedTile__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.frostedTile__dot--on {
+  background: var(--on-tile);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frostedTile,
+  .frostedTile__fx {
+    transition: none;
+  }
+
+  .frostedTile:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,185 @@
+.popularList {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.popularRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6875rem 1.25rem 0.6875rem 0.75rem;
+  border-radius: 26px;
+  corner-shape: var(--corner);
+  background: var(--card);
+  color: var(--ink);
+  text-decoration: none;
+  transition: background var(--t-fast) var(--ease);
+}
+
+.popularRow:hover {
+  background: var(--nested);
+  color: var(--ink) !important;
+}
+
+/* The leader sits on the lighter surface, so it reads as first before you have
+   read the numeral. */
+.popularRow--leader {
+  background: var(--nested);
+}
+
+/* The rank and the lit dots carry the title's own cover colour, held to a
+   lightness that can be seen on the row's surface.
+   Half of an all-time top six have pale covers — Demon Slayer's #f1c9ae, My
+   Hero Academia's #f1d643 — and those vanished on near-white. Mixing toward the
+   text colour fixed that but turned orange to brown and yellow to olive.
+   Clamping lightness in oklch leaves the hue and the chroma exactly as the cover
+   gave them and moves only the one thing that was wrong. */
+.popularRow {
+  --tone-lit: var(--tone, var(--muted));
+}
+
+@supports (color: oklch(from red l c h)) {
+  .popularRow {
+    --tone-lit: oklch(from var(--tone, #8b8f8a) min(l, 0.68) c h);
+  }
+}
+
+.popularRow__rank {
+  flex: none;
+  width: 52px;
+  text-align: center;
+  color: var(--tone-lit);
+}
+
+.popularRow__rank .dotNumber {
+  font-size: 34px;
+}
+
+/* Takes the slack. Everything else in the row is a fixed width, so without a
+   flexible column the row left 240px of empty surface on the right at 1440. */
+.popularRow__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.popularRow__title {
+  display: block;
+  overflow: hidden;
+  font-size: 15px;
+  line-height: 1.25;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.popularRow__meta {
+  display: block;
+  margin-top: 0.125rem;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* The dotted block from the foot of the reference's score tile. */
+.popularRow__matrix {
+  display: grid;
+  flex: none;
+  grid-template-columns: repeat(21, 1fr);
+  grid-template-rows: repeat(2, 5px);
+  /* A wider row gap than column gap: at 4px both ways the two rows read as one
+     thick dotted line rather than as a block. */
+  gap: 5px 4px;
+  align-content: center;
+  width: 290px;
+}
+
+.popularRow__matrix i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--muted);
+  opacity: 0.22;
+}
+
+.popularRow__matrix i.is-on {
+  background: var(--tone-lit);
+  opacity: 1;
+}
+
+.popularRow__matrix i.is-lime {
+  background: var(--lime);
+  opacity: 1;
+}
+
+.popularRow__count {
+  flex: none;
+  width: 112px;
+  text-align: right;
+}
+
+.popularRow__count .dotNumber {
+  display: block;
+}
+
+.popularRow__count small {
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.popularRow__badge {
+  flex: none;
+  width: 96px;
+  text-align: right;
+}
+
+.popularRow__leaderChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3125rem 0.6875rem;
+  border-radius: var(--r-pill);
+  background: var(--lime);
+  color: var(--on-lime);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+@supports (color: oklch(from red l c h)) {
+  /* On black it is a *dark* cover that disappears, so the clamp inverts. Guarded
+     the same way the tokens are, so the theme toggle wins in both directions. */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .popularRow {
+      --tone-lit: oklch(from var(--tone, #8b8f8a) max(l, 0.62) c h);
+    }
+  }
+
+  :root[data-theme='dark'] .popularRow {
+    --tone-lit: oklch(from var(--tone, #8b8f8a) max(l, 0.62) c h);
+  }
+}
+
+@media (max-width: 960px) {
+  .popularRow {
+    gap: 0.75rem;
+    padding: 0.625rem 1rem 0.625rem 0.5rem;
+  }
+
+  .popularRow__rank {
+    width: 38px;
+  }
+
+  .popularRow__rank .dotNumber {
+    font-size: 26px;
+  }
+
+  /* The matrix and the badge are the first things to go: the count is the fact,
+     and at this width there is no room to compare six of them anyway. */
+  .popularRow__matrix,
+  .popularRow__badge {
+    display: none;
+  }
+
+  .popularRow__count {
+    width: 88px;
+  }
+}

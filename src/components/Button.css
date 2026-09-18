@@ -1,0 +1,49 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: auto;
+  height: auto;
+  padding: 0.6875rem 1.125rem;
+  border: 0;
+  border-radius: var(--r-pill);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform var(--t-fast) var(--spring),
+    background var(--t-fast) var(--ease);
+}
+
+.button:hover {
+  opacity: 1;
+}
+
+.button:active {
+  transform: scale(0.97);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.button--nested,
+.button--nested:hover {
+  background: var(--nested);
+  color: var(--ink) !important;
+}
+
+.button--ink,
+.button--ink:hover {
+  background: var(--ink);
+  color: var(--canvas) !important;
+}
+
+.button--lime,
+.button--lime:hover {
+  background: var(--lime);
+  color: var(--on-lime) !important;
+}

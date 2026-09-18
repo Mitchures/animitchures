@@ -1,18 +1,25 @@
+import { ReactNode } from 'react';
+
 import './SectionHeading.css';
 
+interface Props {
+  title: string;
+  detail?: string;
+  action?: ReactNode;
+}
+
 /**
- * The heading above a Discover section.
- *
- * Shared because there are six sections now and each had its own copy of the
- * same two rules — the horizontal padding has to match the content beneath it,
- * and one drifting is invisible until you notice a heading sitting a few pixels
- * off from every other.
+ * Section title with an optional detail line and a right-aligned action
+ * ("See all"). Shared so the sections cannot drift a few pixels apart.
  */
-function SectionHeading({ title, detail }: { title: string; detail?: string }) {
+function SectionHeading({ title, detail, action }: Props) {
   return (
     <div className="sectionHeading">
-      <h3>{title}</h3>
-      {detail && <p>{detail}</p>}
+      <div>
+        <h2 className="sectionHeading__title">{title}</h2>
+        {detail && <p className="sectionHeading__detail">{detail}</p>}
+      </div>
+      {action && <div className="sectionHeading__action">{action}</div>}
     </div>
   );
 }

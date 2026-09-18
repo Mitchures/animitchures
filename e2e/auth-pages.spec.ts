@@ -46,7 +46,11 @@ test('the decorative poster wall never blocks the form', async ({ page }) => {
   // The wall is the one thing on these pages that needs the network. It must
   // not gate the form, so this answers the query with an error outright.
   await page.route('https://graphql.anilist.co/**', (route) =>
-    route.fulfill({ status: 500, contentType: 'application/json', body: '{"errors":[{"message":"down"}]}' }),
+    route.fulfill({
+      status: 500,
+      contentType: 'application/json',
+      body: '{"errors":[{"message":"down"}]}',
+    }),
   );
   await page.goto('/login', { waitUntil: 'domcontentloaded' });
 

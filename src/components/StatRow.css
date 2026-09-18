@@ -1,0 +1,32 @@
+.statRow {
+  display: flex;
+  align-items: center;
+  gap: 2.125rem;
+  margin-top: 1.375rem;
+}
+
+.statRow__stat {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 0.625rem;
+  color: var(--ink);
+}
+
+@media (max-width: 960px) {
+  .statRow {
+    gap: 1.125rem;
+    margin: 0.875rem calc(-1 * var(--gutter)) 0;
+    padding: 0 var(--gutter);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .statRow::-webkit-scrollbar {
+    display: none;
+  }
+
+  .statRow .dotNumber--md {
+    font-size: 24px;
+  }
+}

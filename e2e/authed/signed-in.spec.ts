@@ -5,103 +5,134 @@
  * Runs in the `authed` project, which supplies a saved signed-in session.
  * AniList is mocked from captured fixtures.
  *
- * Private routes are reached by clicking through the UI, not by page.goto():
- * direct navigation redirects to '/' because `user` is null on first render and
- * the '*' catch-all matches first. That bug is documented by its own test below.
+ * Destinations are reached by clicking through the pill column rather than by
+ * page.goto(), via the shared `navigateVia` — which also switches to the
+ * Library tab for the AniList destinations that live under it.
  */
 import { test, expect } from '../anilist-mock';
+import { navigateVia, waitForSignedInShell } from '../nav';
 
 const DISPLAY_NAME = process.env.E2E_DISPLAY_NAME ?? 'E2E Test User';
 
-/**
- * Waits for the signed-in shell, which only settles once Firebase resolves.
- *
- * Waits on the sidebar's Logout link being *attached*, not visible: below 960px
- * the sidebar is display:none and the avatar moves into the overlay, so neither
- * is a width-agnostic signal. The link is in the DOM at every width, and it only
- * exists at all when `user` is set — which is exactly the condition to wait for.
- */
 async function gotoSignedInHome(page: import('@playwright/test').Page) {
   // domcontentloaded, not the default `load`: only GraphQL is mocked, so
   // waiting for every poster image from AniList's CDN to finish is what made
   // these time out under parallel load.
   await page.goto('/', { waitUntil: 'domcontentloaded' });
-  await page
-    .locator('.navigation a:has-text("Logout")')
-    .waitFor({ state: 'attached', timeout: 20_000 });
+  await waitForSignedInShell(page);
 }
 
-/** Clicks a sidebar link. Desktop width only — the sidebar is hidden below 960px. */
-async function navigateVia(page: import('@playwright/test').Page, label: string) {
-  await page.locator('.navigation a', { hasText: label }).click();
+/** Opens the phone drawer, which carries what the tab bar does not. */
+async function openDrawer(page: import('@playwright/test').Page) {
+  await page.locator('.tabBar__more').click();
+  await expect(page.getByRole('dialog', { name: 'More' })).toBeVisible();
 }
 
 test.describe('signed-in shell', () => {
   test.use({ viewport: { width: 1280, height: 900 } });
 
-  test('the rail footer carries account controls and the signed-in identity', async ({ page }) => {
+  test('the account row carries the identity, settings and log out', async ({ page }) => {
     await gotoSignedInHome(page);
-    const footer = page.locator('.navigation__footer');
+    const account = page.locator('.pillNav__account');
 
-    // Account controls moved out of the header into the bottom of the rail.
-    await expect(page.locator('.navigation__avatar')).toBeVisible();
-    await expect(footer.getByRole('button', { name: 'Notifications' })).toHaveCount(1);
-    await expect(footer.getByRole('link', { name: 'Settings' })).toHaveCount(1);
-    await expect(footer.getByRole('link', { name: 'Profile' })).toHaveCount(1);
-    await expect(footer.getByRole('link', { name: 'Logout' })).toHaveCount(1);
+    await expect(account).toBeVisible();
+    await expect(account.getByRole('link', { name: 'Settings' })).toHaveCount(1);
+    await expect(account.getByRole('link', { name: 'Profile' })).toHaveCount(1);
+    await expect(account.getByRole('button', { name: 'Logout' })).toHaveCount(1);
 
     // The test account has no photoURL, so MUI's Avatar falls back to the first
-    // letter of its alt rather than rendering an <img>. Asserting that keeps the
-    // check honest about what is actually on screen; the full name is asserted in
-    // the mobile overlay test.
-    await expect(page.locator('.navigation__avatar')).toHaveText(DISPLAY_NAME[0]);
+    // letter of its alt rather than rendering an <img>.
+    await expect(page.locator('.pillNav__avatar')).toHaveText(DISPLAY_NAME[0]);
+    await expect(account).toContainText(DISPLAY_NAME);
   });
 
-  test('sidebar offers the signed-in destinations, not Login', async ({ page }) => {
+  test('search and notifications sit above the page, not in the navigation', async ({ page }) => {
     await gotoSignedInHome(page);
-    const nav = page.locator('.navigation');
+    const topbar = page.locator('.app__topbar');
 
-    // Asserts accessible names rather than visible text: the rail is collapsed to
-    // icons by default, so the labels are not rendered until it is hovered. The
-    // accessible name is what matters here anyway — it is the only thing a screen
-    // reader gets in the collapsed state.
-    for (const name of ['Discover', 'Favorites', 'Watchlist', 'Settings', 'Logout']) {
+    await expect(topbar.getByRole('button', { name: 'Notifications' })).toHaveCount(1);
+    await expect(topbar.getByRole('button', { name: /Search anime/ })).toHaveCount(1);
+    await expect(
+      page.locator('.pillNav').getByRole('button', { name: 'Notifications' }),
+    ).toHaveCount(0);
+  });
+
+  test('the column offers the signed-in destinations, not Login', async ({ page }) => {
+    await gotoSignedInHome(page);
+    const nav = page.locator('.pillNav');
+
+    for (const name of ['Discover', 'Calendar', 'Browse', 'Favorites']) {
       await expect(nav.getByRole('link', { name })).toHaveCount(1);
     }
-    await expect(nav.getByRole('link', { name: 'Profile' })).toHaveCount(1);
     await expect(nav.getByRole('link', { name: 'Login' })).toHaveCount(0);
+
+    // The AniList destinations live under the second tab, so they are not in
+    // the DOM until it is selected.
+    await expect(nav.getByRole('link', { name: 'Watchlist' })).toHaveCount(0);
+    await page.getByRole('tab', { name: 'Library' }).click();
+    for (const name of ['Watchlist', 'Taste', 'Social']) {
+      await expect(nav.getByRole('link', { name })).toHaveCount(1);
+    }
+    await expect(nav.getByRole('link', { name: 'Calendar' })).toHaveCount(0);
   });
 
   test('logout returns the app to its signed-out state', async ({ page }) => {
     await gotoSignedInHome(page);
-    await navigateVia(page, 'Logout');
+    await page.locator('.pillNav__logout').click();
 
-    // Signed out: the avatar goes and Login reappears in the sidebar.
-    await expect(page.locator('.navigation__avatar')).toHaveCount(0, { timeout: 20_000 });
-    await expect(page.locator('.navigation').getByText('Login')).toBeVisible();
+    // Signed out: the account row goes and Login reappears in the column.
+    await expect(page.locator('.pillNav__account')).toHaveCount(0, { timeout: 20_000 });
+    await expect(page.locator('.pillNav').getByRole('link', { name: 'Login' })).toBeVisible();
   });
 });
 
-test.describe('mobile overlay when signed in', () => {
+test.describe('the More drawer when signed in', () => {
   test.use({ viewport: { width: 500, height: 900 } });
 
-  test('overlay lists the signed-in destinations', async ({ page }) => {
+  test('holds what the tab bar does not, and names who is signed in', async ({ page }) => {
     await gotoSignedInHome(page);
-    await page.locator('.header__menuButton').click();
+    // Watchlist has a slot in the bar itself, so it is not in the drawer.
+    await expect(page.locator('.tabBar').getByRole('link', { name: 'Watchlist' })).toBeVisible();
 
+    await openDrawer(page);
     const dialog = page.getByRole('dialog');
-    await expect(dialog.getByText('Favorites')).toBeVisible();
-    await expect(dialog.getByText('Settings')).toBeVisible();
-    await expect(dialog.getByText('Watchlist')).toBeVisible();
-    await expect(dialog.getByText('Logout')).toBeVisible();
-    await expect(dialog.getByText('Login')).toHaveCount(0);
+
+    for (const name of ['Favorites', 'Taste', 'Social']) {
+      await expect(dialog.getByRole('link', { name })).toBeVisible();
+    }
+    await expect(dialog.getByRole('link', { name: 'Discover' })).toHaveCount(0);
+    await expect(page.locator('.drawer__account')).toContainText(DISPLAY_NAME);
+    await expect(dialog.getByRole('link', { name: 'Settings' })).toBeVisible();
+    await expect(dialog.getByRole('button', { name: 'Logout' })).toBeVisible();
   });
 
-  test('overlay footer identifies the signed-in user', async ({ page }) => {
+  test('closes on Escape, on the dim, on More again, and on navigating', async ({ page }) => {
     await gotoSignedInHome(page);
-    await page.locator('.header__menuButton').click();
 
-    await expect(page.locator('.mobileMenu__user')).toContainText(DISPLAY_NAME);
+    await openDrawer(page);
+    await page.keyboard.press('Escape');
+    await expect(page.getByRole('dialog')).toBeHidden();
+
+    await openDrawer(page);
+    await page.locator('.tabBar__more').click();
+    await expect(page.getByRole('dialog')).toBeHidden();
+
+    await openDrawer(page);
+    await page.getByRole('dialog').getByRole('link', { name: 'Favorites' }).click();
+    await expect(page.getByRole('dialog')).toBeHidden();
+    await expect(page).toHaveURL(/\/favorites$/);
+  });
+
+  test('locks the page behind it and does not overflow', async ({ page }) => {
+    await gotoSignedInHome(page);
+    await openDrawer(page);
+
+    await expect(page.locator('body')).toHaveCSS('overflow', 'hidden');
+    const { scrollWidth, clientWidth } = await page.evaluate(() => ({
+      scrollWidth: document.documentElement.scrollWidth,
+      clientWidth: document.documentElement.clientWidth,
+    }));
+    expect(scrollWidth).toBe(clientWidth);
   });
 });
 
@@ -117,17 +148,12 @@ test.describe('signed-in views', () => {
     await expect(page.locator('.favorites__grid .card')).toHaveCount(3, { timeout: 20_000 });
   });
 
-  test('settings renders and marks its rail item active', async ({ page }) => {
+  test('settings is reachable from the account row', async ({ page }) => {
     await gotoSignedInHome(page);
-    await navigateVia(page, 'Settings');
+    await page.locator('.pillNav__account').getByRole('link', { name: 'Settings' }).click();
 
     await expect(page).toHaveURL(/\/settings$/);
     await expect(page.locator('.settings')).toBeVisible({ timeout: 20_000 });
-
-    // The footer items are NavLinks, so they take the same .active treatment as
-    // the destinations above them rather than staying inert on their own page.
-    await expect(page.locator('.navigation__footer a[href="/settings"]')).toHaveClass(/active/);
-    await expect(page.locator('.navigation__footer a[href="/profile"]')).not.toHaveClass(/active/);
   });
 
   test('watchlist groups entries by status and shows progress', async ({ page }) => {
@@ -156,11 +182,6 @@ test.describe('signed-in views', () => {
     await expect(page.locator('.episodeStrip--bar').first()).toBeVisible();
     await expect(page.locator('.episodeStrip--open').first()).toBeVisible();
 
-    // The pointer starts at (0,0), which is on the rail — and a hovered rail
-    // expands to 240px and swallows clicks on anything beneath it. Move off it
-    // first so this tests the button rather than the nav's overlay behaviour.
-    await page.mouse.move(900, 400);
-
     // Long lists collapse to a preview until asked to open.
     const completed = page.locator('.wlSection').filter({ hasText: 'Completed' });
     await expect(completed.locator('.listRow')).toHaveCount(4);
@@ -172,7 +193,7 @@ test.describe('signed-in views', () => {
 
   test('taste renders the statistics the profile query threw away', async ({ page }) => {
     await gotoSignedInHome(page);
-    await page.locator('.navigation a[href="/taste"]').click();
+    await navigateVia(page, 'Taste');
 
     await expect(page).toHaveURL(/\/taste$/);
     await expect(page.locator('.ratingCurve')).toBeVisible({ timeout: 20_000 });
@@ -206,7 +227,7 @@ test.describe('signed-in views', () => {
 
   test('profile shows the watching record', async ({ page }) => {
     await gotoSignedInHome(page);
-    await page.locator('.navigation__footer a[href="/profile"]').click();
+    await page.locator('.pillNav__who').click();
 
     await expect(page).toHaveURL(/\/profile$/);
     await expect(page.locator('.profile')).toContainText(DISPLAY_NAME, { timeout: 20_000 });

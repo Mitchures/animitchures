@@ -1,0 +1,234 @@
+.comingLater {
+  display: grid;
+  grid-template-columns: 1.32fr 1fr;
+  gap: 14px;
+}
+
+/* ===== the lead ===== */
+.comingLater__lead {
+  align-items: stretch;
+  min-height: 252px;
+  padding: var(--pad-card);
+  text-align: left;
+}
+
+/* FrostedTile puts every child in one `__number` div, which is a single flex
+   item and lays its own children out inline. That is right for the one numeral
+   it was built for and wrong for a composed card: the title and the studio line
+   rendered on the same line, and `margin-bottom: auto` on the top row did
+   nothing. Making the slot the column instead is a local fix — the tile's own
+   interior rules stay untouched for every other caller. */
+.comingLater__lead .frostedTile__number {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0;
+}
+
+/* The same scrim `--sm` carries, for the same reason: this palette is derived
+   from a cover colour, and a pale cover (JUJUTSU KAISEN's is #78aee4) leaves
+   white text on light glass. Above the colour, below the content. */
+.comingLater__lead::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.04) 46%,
+    rgba(0, 0, 0, 0.34) 100%
+  );
+}
+
+.comingLater__leadTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.comingLater__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3125rem 0.6875rem;
+  border-radius: var(--r-pill);
+  background: var(--lime);
+  color: var(--on-lime);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+/* An explicit margin, not the top row's auto one: an auto margin collapses to
+   nothing once the card is at its minimum height, and the chip landed on the
+   poster. */
+.comingLater__leadPoster {
+  display: block;
+  width: 84px;
+  margin: 1rem 0 auto;
+  aspect-ratio: 2 / 3;
+  border-radius: 15px;
+  corner-shape: var(--corner);
+  object-fit: cover;
+  box-shadow: 0 18px 36px -12px rgba(0, 0, 0, 0.5);
+}
+
+.comingLater__leadTitle {
+  display: block;
+  max-width: 22ch;
+  margin-top: 0.875rem;
+  font-size: 23px;
+  letter-spacing: var(--track-display);
+  line-height: 1.12;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.25);
+}
+
+.comingLater__leadMeta {
+  display: block;
+  margin-top: 0.4375rem;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.comingLater__leadCount {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-top: 0.6875rem;
+}
+
+.comingLater__leadCount small {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* The tracker card's arcs, as an audience: concentric rings whose reach is set
+   by how many people are waiting. */
+.comingLater__ripple {
+  position: absolute;
+  right: -6%;
+  bottom: -38%;
+  width: var(--reach);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: repeating-radial-gradient(
+    circle at 50% 50%,
+    transparent 0 calc(var(--reach) / 14),
+    rgba(255, 255, 255, 0.34) calc(var(--reach) / 14) calc(var(--reach) / 14 + 1.5px)
+  );
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 38%, transparent 72%);
+  mask-image: radial-gradient(circle at 50% 50%, #000 38%, transparent 72%);
+}
+
+/* ===== the runners-up ===== */
+.comingLater__stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.comingLater__row {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 0.875rem;
+  min-height: 0;
+  padding: 0.625rem 1rem 0.625rem 0.625rem;
+  border-radius: var(--r-inner);
+  corner-shape: var(--corner);
+  background: var(--nested);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.comingLater__row:hover {
+  color: var(--ink) !important;
+}
+
+.comingLater__art {
+  flex: none;
+  width: 48px;
+}
+
+.comingLater__art .posterArt img {
+  border-radius: 11px;
+  corner-shape: var(--corner);
+}
+
+.comingLater__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.comingLater__title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.comingLater__meta {
+  display: block;
+  margin-top: 0.125rem;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.comingLater__reach {
+  display: flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 18px;
+  margin-top: 0.4375rem;
+}
+
+.comingLater__reach i {
+  width: 2.5px;
+  height: 6px;
+  border-radius: 1.5px;
+  background: var(--muted);
+  opacity: 0.28;
+}
+
+.comingLater__reach i.is-on {
+  height: 18px;
+  opacity: 1;
+}
+
+.comingLater__season {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  padding: 0.3125rem 0.625rem;
+  border-radius: var(--r-pill);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+.comingLater__rest {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+@media (max-width: 960px) {
+  .comingLater {
+    grid-template-columns: 1fr;
+  }
+
+  .comingLater__lead {
+    min-height: 228px;
+  }
+}

@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from 'react';
+import { useReactiveVar } from '@apollo/client';
 
 import { apolloClient } from 'config';
 import { useStateValue } from 'context';
@@ -9,7 +10,7 @@ import {
   Preferences,
   applyPreferences,
   cachePreferences,
-  readCachedPreferences,
+  preferencesVar,
 } from './preferences';
 
 /**
@@ -23,9 +24,12 @@ import {
 export function usePreferences() {
   const [{ user }, dispatch] = useStateValue();
 
+  // The reactive copy rather than a fresh localStorage read: this is what makes
+  // a change re-render the control that made it, signed in or not.
+  const cached = useReactiveVar(preferencesVar);
   const preferences: Preferences = {
     ...DEFAULT_PREFERENCES,
-    ...readCachedPreferences(),
+    ...cached,
     ...(user?.preferences ?? {}),
   };
 

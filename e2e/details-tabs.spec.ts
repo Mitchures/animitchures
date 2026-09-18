@@ -51,7 +51,7 @@ test.describe('details tabs', () => {
 
   test('switching tabs does not stack history entries', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.hero')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.slideHero')).toBeVisible({ timeout: 20_000 });
     await page.goto(DETAILS);
     await expect(page.locator('.details__hero')).toBeVisible({ timeout: 20_000 });
 
@@ -157,25 +157,10 @@ test.describe('details loading', () => {
   });
 });
 
-test.describe('sidebar rail', () => {
+test.describe('pill column', () => {
   test.use({ viewport: { width: 1280, height: 900 } });
 
-  test('expands on hover without shifting the content', async ({ page }) => {
-    await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.navigation')).toBeVisible({ timeout: 20_000 });
-
-    const before = await page.locator('.app__body').boundingBox();
-    await page.locator('.navigation').hover();
-    await page.waitForTimeout(400);
-    const railWidth = (await page.locator('.navigation').boundingBox())?.width ?? 0;
-    const after = await page.locator('.app__body').boundingBox();
-
-    expect(railWidth).toBeGreaterThan(200);
-    // The rail overlays rather than pushes: content must not move.
-    expect(after?.x).toBe(before?.x);
-  });
-
-  test('collapsed rail links still have accessible names', async ({ page }) => {
+  test('links keep accessible names', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.getByRole('link', { name: 'Discover' })).toHaveCount(1, { timeout: 20_000 });
   });

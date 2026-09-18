@@ -1,0 +1,106 @@
+.tabBar {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 130;
+  display: flex;
+  padding: 8px;
+  border-radius: var(--r-pill);
+  background: var(--glass-fill);
+  backdrop-filter: blur(26px) saturate(1.5);
+  -webkit-backdrop-filter: blur(26px) saturate(1.5);
+  box-shadow:
+    var(--shadow-float),
+    inset 0 1px 0 var(--glass-rim),
+    inset 0 0 0 1px color-mix(in srgb, var(--glass-rim) 50%, transparent);
+}
+
+/* One ink pill sliding between the items with the spring. */
+.tabBar__indicator {
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 0;
+  z-index: 0;
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  transition:
+    transform var(--t-base) var(--spring),
+    width var(--t-base) var(--spring);
+}
+
+.tabBar__indicator.is-hidden {
+  opacity: 0;
+}
+
+.tabBar__item {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: auto;
+  height: auto;
+  padding: 8px 0 6px;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-size: 10px;
+  font-weight: 400;
+  opacity: 0.72;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    color var(--t-fast),
+    opacity var(--t-fast);
+}
+
+.tabBar__item:hover {
+  opacity: 1;
+  color: var(--ink) !important;
+}
+
+.tabBar__item svg {
+  width: 20px;
+  height: 20px;
+  transition: transform var(--t-base) var(--spring);
+}
+
+.tabBar__item--active,
+.tabBar__more.is-open,
+.tabBar__item--active:hover,
+.tabBar__more.is-open:hover {
+  color: var(--canvas) !important;
+  opacity: 1;
+}
+
+.tabBar__item--active svg,
+.tabBar__more.is-open svg {
+  transform: translateY(-1px) scale(1.08);
+}
+
+.tabBar__item:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+@media (max-width: 360px) {
+  .tabBar__item span {
+    display: none;
+  }
+
+  .tabBar__item {
+    padding: 12px 0;
+  }
+}
+
+@media (min-width: 961px) {
+  .tabBar {
+    display: none;
+  }
+}

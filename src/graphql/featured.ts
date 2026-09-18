@@ -21,6 +21,8 @@ export interface FeaturedMedia {
   coverImage: {
     large?: string | null;
     extraLarge?: string | null;
+    /** AniList's dominant colour for the art. Seeds the frosted tile palettes. */
+    color?: string | null;
   };
   bannerImage?: string | null;
   genres?: string[] | null;

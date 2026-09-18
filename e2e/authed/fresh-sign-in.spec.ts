@@ -14,6 +14,7 @@
  * session away: a clean context is the whole point.
  */
 import { test, expect } from '../anilist-mock';
+import { waitForSignedInShell } from '../nav';
 
 const email = process.env.E2E_EMAIL;
 const password = process.env.E2E_PASSWORD;
@@ -45,9 +46,7 @@ test.describe('signing in from a clean browser', () => {
     await page.click('button[type="submit"]');
 
     await page.waitForURL('http://localhost:3000/');
-    await page
-      .locator('.navigation a:has-text("Logout")')
-      .waitFor({ state: 'attached', timeout: 30_000 });
+    await waitForSignedInShell(page, 30_000);
 
     // Well past the Firestore read that restores the token.
     await page.waitForTimeout(6000);
