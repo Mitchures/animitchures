@@ -1,0 +1,26 @@
+/* Four across on the sheet, two on a phone. `auto-fit` rather than a fixed
+   count, because a title with no score or no ranking renders three tiles or
+   two and a fixed four-column grid would leave a hole. */
+.heroFacts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+  /* Sits in the body column beside the poster, which is what uses the poster's
+     height up. Below the row it left a 120px hole, because the row is as tall
+     as the overhanging poster and the title block is half that. */
+  margin-top: 1.25rem;
+}
+
+@media screen and (max-width: 560px) {
+  /* Two across, not one. Four full-width tiles stack to ~360px and push the
+     synopsis off the first screen entirely. */
+  .heroFacts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .factTile {
+    padding: 0.75rem 0.875rem 0.875rem;
+    border-radius: 22px;
+  }
+}

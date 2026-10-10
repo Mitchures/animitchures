@@ -27,6 +27,12 @@
      point of it being glass. */
   --glass-raised: rgba(255, 255, 255, 0.62);
   --glass-rim: rgba(255, 255, 255, 0.75);
+  /* Glass that sits on artwork — the details hero's actions and fact tiles.
+     Dark in both themes, because the thing behind it is a photograph and not a
+     theme surface: a white pill over a bright banner bleaches to a blob. */
+  --glass-art: rgba(18, 18, 22, 0.34);
+  --glass-art-hover: rgba(18, 18, 22, 0.5);
+  --glass-art-rim: rgba(255, 255, 255, 0.26);
   --dim: rgba(0, 0, 0, 0.18);
   /* shape */
   /* Continuous corners on every square surface — the reference's shape, and a
@@ -65,6 +71,10 @@
   --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
   --spring: cubic-bezier(0.34, 1.4, 0.64, 1);
   --stagger: 70ms;
+  /* Discover's first row: the slider and the tile beside it share this, or the
+     two columns end their first row at different heights and the seam between
+     them reads as a mistake. */
+  --hero-height: 320px;
   /* shell */
   --nav-width: 248px;
   --gutter: 28px;
@@ -76,6 +86,7 @@
 
 @media (max-width: 960px) {
   :root {
+    --hero-height: 250px;
     --r-card: 52px;
     --r-inner: 28px;
     --gutter: 16px;
@@ -99,6 +110,9 @@
     --glass-fill: rgba(30, 30, 36, 0.42);
     --glass-raised: rgba(30, 30, 36, 0.66);
     --glass-rim: rgba(255, 255, 255, 0.14);
+    --glass-art: rgba(10, 10, 12, 0.42);
+    --glass-art-hover: rgba(10, 10, 12, 0.58);
+    --glass-art-rim: rgba(255, 255, 255, 0.18);
     --dim: rgba(0, 0, 0, 0.4);
   }
 }
@@ -118,5 +132,8 @@
   --glass-fill: rgba(30, 30, 36, 0.42);
   --glass-raised: rgba(30, 30, 36, 0.66);
   --glass-rim: rgba(255, 255, 255, 0.14);
+  --glass-art: rgba(10, 10, 12, 0.42);
+  --glass-art-hover: rgba(10, 10, 12, 0.58);
+  --glass-art-rim: rgba(255, 255, 255, 0.18);
   --dim: rgba(0, 0, 0, 0.4);
 }

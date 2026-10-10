@@ -1,12 +1,10 @@
 .relations__container {
   display: flex;
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: var(--border-radius);
-  padding: 1.25rem 0 0.875rem;
-  margin-top: 0.875rem;
-  margin-bottom: 1.25rem;
+  scrollbar-width: none;
+  padding: 0;
+  margin: 0;
 }
 
 .relations__container::-webkit-scrollbar {

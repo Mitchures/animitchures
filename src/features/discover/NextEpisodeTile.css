@@ -1,0 +1,154 @@
+/* FrostedTile hands every child to one `__number` div, which lays them out
+   inline. This tile is composed, so the slot becomes the column — the same fix
+   the Coming later lead card needs. */
+.nextEpisode {
+  /* Matches the slider it sits beside. At 300 against the slider's 320 the two
+     tiles started level and ended 20px apart, which read as a mistake. */
+  min-height: var(--hero-height);
+  align-items: stretch;
+  text-align: left;
+}
+
+.nextEpisode .frostedTile__number {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  margin: 0;
+}
+
+/* The scrim. `--on-tile` is white in both themes, so a pale cover colour would
+   leave white text on light glass. Above the colour, below the content. */
+.nextEpisode::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.24) 0%,
+    rgba(0, 0, 0, 0.05) 44%,
+    rgba(0, 0, 0, 0.32) 100%
+  );
+}
+
+.nextEpisode__eyebrow {
+  flex: none;
+  font-size: 12px;
+  opacity: 0.84;
+}
+
+.nextEpisode__dial {
+  position: relative;
+  flex: 1;
+  display: grid;
+  place-items: center;
+  margin: 0.125rem 0;
+}
+
+.nextEpisode__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Unlit is a shadow, not faint white: white at 30% over a mid-tone tile was
+   indistinguishable from white at 100%, so the ring showed no progress. */
+.nextEpisode__ticks line {
+  stroke: #000;
+  stroke-width: 1.2;
+  opacity: 0.26;
+}
+
+.nextEpisode__ticks line.is-lit {
+  stroke: var(--on-tile);
+  stroke-width: 2.2;
+  opacity: 0;
+  /* One orchestrated moment: the lit run fills in clock order, once, on load. */
+  animation: nextEpisodeSweep 220ms ease-out var(--delay, 0ms) forwards;
+}
+
+@keyframes nextEpisodeSweep {
+  to {
+    opacity: 1;
+  }
+}
+
+/* The one lime on the tile: the head of what is left to wait. */
+.nextEpisode__ticks line.is-head {
+  stroke: var(--lime);
+  stroke-width: 3;
+  opacity: 1;
+}
+
+/* The figure sits on the ring's centre and the unit hangs off it. Stacked in
+   the flow the pair centred as a block, which pushed the numeral 10px above the
+   circle it sits inside — visible as soon as you look for it. */
+.nextEpisode__centre {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.nextEpisode__figure {
+  display: block;
+  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.3);
+}
+
+.nextEpisode__centre small {
+  position: absolute;
+  top: calc(100% + 0.3125rem);
+  left: 50%;
+  translate: -50% 0;
+  font-size: 12px;
+  opacity: 0.86;
+  white-space: nowrap;
+}
+
+.nextEpisode__foot {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.nextEpisode__poster {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  corner-shape: var(--corner);
+  object-fit: cover;
+  box-shadow: 0 8px 18px -6px rgba(0, 0, 0, 0.5);
+}
+
+.nextEpisode__title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.nextEpisode__sub {
+  display: block;
+  margin-top: 0.0625rem;
+  font-size: 11px;
+  opacity: 0.86;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nextEpisode__ticks line.is-lit {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+

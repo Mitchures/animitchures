@@ -83,6 +83,13 @@ export const seasonCountdown = (featured: Featured | null | undefined, nowSecond
 };
 
 /** The favourite worth putting on the page: highest scored of those still airing. */
+/**
+ * **Nothing renders this.** Discover's aside used to switch its card between
+ * the season countdown and this, and on 2026-09-18 the countdown ring took over
+ * the "what's next for you" job — soonest rather than highest-rated, because
+ * the tile's claim is that the episode is next. Kept with its tests; delete it
+ * if a profile or watchlist surface never wants it.
+ */
 export const highestRatedAiringFavorite = (
   featured: Featured | null | undefined,
   favorites: number[],
@@ -594,4 +601,77 @@ export const stripColumns = (strip: Strip): StripColumn[] => {
       points: points.sort((a, b) => (b.media.popularity ?? 0) - (a.media.popularity ?? 0)),
     }))
     .sort((a, b) => a.day - b.day);
+};
+
+/* ===== the next-episode ring =====
+ *
+ * What the tile above the season card counts down to.
+ */
+
+/**
+ * How long a gap the ring measures the wait against.
+ *
+ * A weekly show's gap, which is what almost everything on AniList is. A
+ * premiere has no previous episode to measure from, so it falls back to the
+ * same window — the alternative, leaving the ring empty, says nothing.
+ */
+export const EPISODE_GAP = 7 * DAY;
+
+export interface NextEpisode {
+  media: Airing;
+  /** Seconds until it airs. */
+  wait: number;
+  /** How much of the gap has gone, 0..1 — the ring's fill. */
+  elapsed: number;
+  /** True when the countdown is to something on the viewer's own list. */
+  mine: boolean;
+}
+
+/**
+ * The episode the ring counts down to.
+ *
+ * Prefers the soonest of the viewer's own favourites and falls back to the
+ * soonest thing airing at all, so the tile has something to say signed out —
+ * where there is no account to link and `LinkTile` would be noise.
+ *
+ * Soonest, not highest-rated: the tile's claim is "this is next", and the
+ * highest-rated favourite is often days behind something else on the list.
+ */
+export const nextEpisode = (
+  featured: Featured | null | undefined,
+  favorites: number[],
+  nowSeconds: number,
+): NextEpisode | undefined => {
+  const airing = uniqueMedia(featured)
+    .filter(isAiring)
+    .filter((media) => media.nextAiringEpisode.airingAt > nowSeconds)
+    .sort((a, b) => a.nextAiringEpisode.airingAt - b.nextAiringEpisode.airingAt);
+  if (!airing.length) return undefined;
+
+  const ids = new Set(favorites);
+  const mineFirst = airing.find((media) => ids.has(media.id));
+  const media = mineFirst ?? airing[0];
+  const wait = media.nextAiringEpisode.airingAt - nowSeconds;
+  return {
+    media,
+    wait,
+    elapsed: Math.min(1, Math.max(0, 1 - wait / EPISODE_GAP)),
+    mine: Boolean(mineFirst),
+  };
+};
+
+/**
+ * The wait as one figure and one word — days, then hours, then minutes.
+ *
+ * One unit across the whole range is either always huge or always tiny, and the
+ * unit has to stay a single word: "days until episode 16" was wider than the
+ * ring and crossed its ticks.
+ */
+export const waitLabel = (seconds: number): { value: number; unit: string } => {
+  const days = Math.floor(seconds / DAY);
+  if (days >= 1) return { value: days, unit: days === 1 ? 'day' : 'days' };
+  const hours = Math.floor(seconds / 3600);
+  if (hours >= 1) return { value: hours, unit: hours === 1 ? 'hour' : 'hours' };
+  const minutes = Math.max(0, Math.floor(seconds / 60));
+  return { value: minutes, unit: minutes === 1 ? 'minute' : 'minutes' };
 };

@@ -12,6 +12,7 @@ import SectionHeading from 'components/SectionHeading';
 import Button from 'components/Button';
 import EpisodeCard from 'components/EpisodeCard';
 import TileDeck, { DeckSlide } from 'components/TileDeck';
+import NextEpisodeTile from 'features/discover/NextEpisodeTile';
 import EpisodeRow from 'components/EpisodeRow';
 import PosterEchoCard from 'components/PosterEchoCard';
 import ComingLater from 'features/discover/ComingLater';
@@ -27,12 +28,12 @@ import {
   airingTonight,
   topRated,
   seasonCountdown,
-  highestRatedAiringFavorite,
   weekDots,
   whenLabel,
   genreCounts,
   seasonWeeks,
   stripModel,
+  nextEpisode,
   comingLater,
   allTimePopular,
   busiestDay,
@@ -115,6 +116,7 @@ function Discover() {
       genres: genreCounts(featured),
       weeks: seasonWeeks(featured, nowSeconds),
       timeStrip: stripModel(featured, nowSeconds),
+      next: nextEpisode(featured, favorites ?? [], nowSeconds),
       later: comingLater(featured),
       popular: allTimePopular(featured),
       busiest: busiestDay(week),
@@ -126,7 +128,6 @@ function Discover() {
       scores: scoreShare(featured),
       longest: longestRunning(featured),
       formats: formatMix(featured),
-      favouriteAiring: highestRatedAiringFavorite(featured, favorites ?? []),
     };
     // `now` is derived from nowSeconds, which is in the list.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -143,10 +144,10 @@ function Discover() {
     days,
     trending,
     topFour,
-    favouriteAiring,
     genres,
     weeks,
     timeStrip,
+    next,
     later,
     popular,
     busiest,
@@ -177,10 +178,9 @@ function Discover() {
   const seasonTitleCount =
     weeks.weeks.reduce((total, entry) => total + entry.premieres.length, 0) + weeks.undated.length;
 
-  const nextFavourite = user && favouriteAiring;
-  const favouriteWhen = favouriteAiring
-    ? whenLabel(favouriteAiring.nextAiringEpisode.airingAt, now)
-    : '';
+  // LinkTile only has something to offer a signed-in account that has not
+  // linked yet. Signed out there is nothing to link, so the ring takes the slot.
+  const showLinkTile = Boolean(user) && !anilist_user;
 
   /* The three widget decks — one time horizon each, `filter(Boolean)` so a
      slide whose figure is not there simply does not exist rather than printing
@@ -361,37 +361,27 @@ function Discover() {
         </div>
 
         <aside className="discover__side discover__rise" style={rise(4)}>
-          <LinkTile />
-          {nextFavourite && favouriteAiring ? (
-            <InfoCard
-              title={favouriteAiring.title.english ?? favouriteAiring.title.userPreferred}
-              value={favouriteWhen.split(',')[0]}
-              unit={favouriteWhen.split(', ')[1]}
-              progress={
-                favouriteAiring.episodes
-                  ? (favouriteAiring.nextAiringEpisode.episode - 1) / favouriteAiring.episodes
-                  : 0
-              }
-              caption={`Episode ${favouriteAiring.nextAiringEpisode.episode}${
-                favouriteAiring.episodes ? ` of ${favouriteAiring.episodes}` : ''
-              }. Your highest-rated ${anilist_user ? 'show' : 'favourite'} still airing.`}
-              poster={favouriteAiring.coverImage.large ?? undefined}
-            />
-          ) : (
-            <InfoCard
-              title={seasonName}
-              value={<DotNumber value={season?.days ?? 0} size="md" />}
-              unit="days"
-              progress={seasonProgress}
-              caption={
-                season
-                  ? `${season.count} premieres. ${
-                      season.first?.title.english ?? season.first?.title.userPreferred
-                    } airs first.`
-                  : 'Schedule not announced yet.'
-              }
-            />
-          )}
+          {/* One slot, two tenants. LinkTile when there is an account to link;
+              the countdown ring whenever there is not — signed out, or signed
+              in and already connected — which is what used to leave a 300px
+              square of this column empty. */}
+          {showLinkTile ? <LinkTile /> : next && <NextEpisodeTile next={next} now={now} />}
+          {/* The card keeps the season and nothing else. It used to switch
+              between the season and your next favourite episode, and with the
+              ring above it counting down too that was the same fact twice. */}
+          <InfoCard
+            title={seasonName}
+            value={<DotNumber value={season?.days ?? 0} size="md" />}
+            unit="days"
+            progress={seasonProgress}
+            caption={
+              season
+                ? `${season.count} premieres. ${
+                    season.first?.title.english ?? season.first?.title.userPreferred
+                  } airs first.`
+                : 'Schedule not announced yet.'
+            }
+          />
         </aside>
       </div>
 

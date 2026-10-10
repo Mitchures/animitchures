@@ -10,9 +10,10 @@ import Summary from 'features/details/Summary';
 import Relations from 'features/details/Relations';
 import Characters from 'features/details/Characters';
 import Staff from 'features/details/Staff';
-import Actions from 'features/details/Actions';
-import HeroMeta from 'features/details/HeroMeta';
-import HeroRankings from 'features/details/HeroRankings';
+import { Layers, MenuBook, People, PlayCircleOutlined, Workspaces } from '@mui/icons-material';
+
+import HeroActions from 'features/details/HeroActions';
+import HeroFacts from 'features/details/HeroFacts';
 import WhereToWatch from 'features/details/WhereToWatch';
 import MediaTags from 'features/details/MediaTags';
 import MediaStats from 'features/details/MediaStats';
@@ -34,13 +35,19 @@ function Details() {
   // here, and a MotionValue keeps scroll updates out of React's render path.
   const scrollY = useMotionValue(0);
 
-  // Banner drifts at ~34% of scroll speed while the hero moves against it and
-  // fades out. Input ranges are px of scroll, matched to the 620px banner;
-  // useTransform clamps, so a taller banner cannot push the translation past
-  // the over-extension that hides the image's top edge.
+  /* The parallax, kept. The banner drifts down at roughly a third of scroll
+     speed while the glass sheet and everything under it travel at full speed,
+     so the art slides behind the card rather than with it.
+     Input ranges are px of scroll and `useTransform` clamps, so a taller
+     banner cannot push the translation past the over-extension that keeps the
+     image's top edge out of view.
+     The sheet itself is **not** translated: it is in the flow now and carries
+     the tabs and the body below it, so moving it would drag them with it. The
+     actions do drift, at half the banner's rate, because they belong to the
+     art rather than to the page. */
   const bannerY = useTransform(scrollY, [0, 620], [0, 210]);
-  const heroY = useTransform(scrollY, [0, 620], [0, -60]);
-  const heroOpacity = useTransform(scrollY, [200, 460], [1, 0]);
+  const actionsY = useTransform(scrollY, [0, 620], [0, 105]);
+  const actionsOpacity = useTransform(scrollY, [120, 320], [1, 0]);
   // The title reappears in the tab bar as the hero's copy leaves.
   const compactOpacity = useTransform(scrollY, [280, 440], [0, 1]);
   const [selected, setSelected] = useState<Media | null>(null);
@@ -96,6 +103,7 @@ function Details() {
     {
       id: 'overview',
       label: 'Overview',
+      icon: <MenuBook />,
       content: (
         <div className="details__overview">
           <div className="details__overviewMain">
@@ -103,8 +111,11 @@ function Details() {
             <Characters {...selected} />
             <Staff {...selected} />
             {selected.trailer && (
-              <>
-                <h3>Trailer</h3>
+              <div className="details__trailer">
+                <h3>
+                  <PlayCircleOutlined />
+                  Trailer
+                </h3>
                 <div className="details__iframeWrapper">
                   <iframe
                     src={`https://www.youtube.com/embed/${selected.trailer.id}`}
@@ -114,7 +125,7 @@ function Details() {
                     className="details__iframe"
                   />
                 </div>
-              </>
+              </div>
             )}
           </div>
           {/* Facts, links and tags — the reference column. The main column
@@ -130,16 +141,19 @@ function Details() {
     (selected.stats?.scoreDistribution?.length || selected.stats?.statusDistribution?.length) && {
       id: 'community',
       label: 'Community',
+      icon: <People />,
       content: <MediaStats {...selected} />,
     },
     animeRelations.length > 0 && {
       id: 'relations',
       label: 'Relations',
+      icon: <Layers />,
       content: <Relations {...selected} />,
     },
     animeRecommendations.length > 0 && {
       id: 'recommendations',
       label: 'More like this',
+      icon: <Workspaces />,
       content: <Recommendations {...selected} />,
     },
   ].filter(Boolean) as DetailsTab[];
@@ -152,25 +166,39 @@ function Details() {
       className="details"
     >
       <div className="details__banner">
-        {/* The image is its own layer so it can translate independently of the
-            scrim and the content sitting on top of it. */}
+        {/* The clip is here, around the art alone. On the banner itself it also
+            clipped the actions, so the list-status menu opened to y=-171 and a
+            third of it was unreachable. */}
+        <div className="details__bannerClip">
+          {/* The image is its own layer so it can translate independently of the
+              scrim and the sheet sitting over it. */}
+          <motion.div
+            className="details__bannerImage"
+            style={{
+              backgroundImage: `url(${
+                selected.bannerImage ? selected.bannerImage : selected.coverImage?.extraLarge
+              })`,
+              y: reduceMotion ? undefined : bannerY,
+            }}
+          />
+          <div className="details__bannerScrim" />
+        </div>
         <motion.div
-          className="details__bannerImage"
+          className="details__bannerActions"
           style={{
-            backgroundImage: `url(${
-              selected.bannerImage ? selected.bannerImage : selected.coverImage?.extraLarge
-            })`,
-            y: reduceMotion ? undefined : bannerY,
-          }}
-        />
-        <div className="details__bannerScrim"></div>
-        <motion.div
-          className="details__hero"
-          style={{
-            y: reduceMotion ? undefined : heroY,
-            opacity: reduceMotion ? undefined : heroOpacity,
+            y: reduceMotion ? undefined : actionsY,
+            opacity: reduceMotion ? undefined : actionsOpacity,
           }}
         >
+          <HeroActions media={selected} />
+        </motion.div>
+      </div>
+
+      {/* The glass sheet rides up over the banner, which is what makes the art
+          read as light behind frosted glass rather than as a photo with text
+          on it — and it works whether the banner is dark or blown out. */}
+      <div className="details__sheet">
+        <div className="details__sheetRow">
           <div className="details__posterWrap" {...tiltProps}>
             <motion.img
               className="details__poster"
@@ -181,9 +209,10 @@ function Details() {
             />
           </div>
           <div className="details__heroBody">
-            <HeroRankings {...selected} />
             <h1 className="details__title">{selected.title?.userPreferred}</h1>
-            {altTitles.length > 0 && <p className="details__altTitles">{altTitles.join(' · ')}</p>}
+            {altTitles.length > 0 && (
+              <p className="details__altTitles">{altTitles.join(' · ')}</p>
+            )}
             {selected.genres && selected.genres.length > 0 && (
               <motion.div
                 className="details__tags"
@@ -207,10 +236,9 @@ function Details() {
                 ))}
               </motion.div>
             )}
-            <HeroMeta media={selected} />
+            <HeroFacts media={selected} />
           </div>
-          <Actions media={selected} />
-        </motion.div>
+        </div>
       </div>
       <DetailsTabs
         tabs={tabs}

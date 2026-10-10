@@ -1,3 +1,5 @@
+import { BarChart } from '@mui/icons-material';
+
 import './MediaStats.css';
 
 import { Media } from 'graphql/types';
@@ -13,12 +15,21 @@ const STATUS_LABEL: Record<string, string> = {
   PLANNING: 'Planning',
 };
 
+/**
+ * The five statuses, as a run of one hue.
+ *
+ * They were five unrelated colours from the old palette — indigo, green, amber
+ * — which read as five categories with opinions about each other. A single hue
+ * stepping in lightness says what this actually is: shares of one whole, in
+ * order. Completed is the darkest because it is both the largest share and the
+ * end of the sequence.
+ */
 const STATUS_COLOR: Record<string, string> = {
-  CURRENT: 'var(--action)',
-  COMPLETED: 'var(--success)',
-  PAUSED: '#f59e0b',
-  DROPPED: 'var(--action-secondary)',
-  PLANNING: 'var(--accent-secondary)',
+  COMPLETED: 'color-mix(in srgb, var(--ink) 72%, transparent)',
+  CURRENT: 'color-mix(in srgb, var(--ink) 55%, transparent)',
+  PLANNING: 'color-mix(in srgb, var(--ink) 38%, transparent)',
+  PAUSED: 'color-mix(in srgb, var(--ink) 25%, transparent)',
+  DROPPED: 'color-mix(in srgb, var(--ink) 14%, transparent)',
 };
 
 const format = (value: number) => value.toLocaleString();
@@ -46,7 +57,10 @@ function MediaStats({ stats }: Media) {
 
   return (
     <div className="mediaStats">
-      <h3>Community</h3>
+      <h3>
+        <BarChart />
+        Community
+      </h3>
 
       {scores.length > 0 && (
         <div className="mediaStats__block">
@@ -59,7 +73,9 @@ function MediaStats({ stats }: Media) {
                 title={`${format(entry!.amount ?? 0)} gave it ${entry!.score}`}
               >
                 <div
-                  className="mediaStats__barFill"
+                  className={`mediaStats__barFill${
+                    (entry!.amount ?? 0) === peak ? ' mediaStats__barFill--peak' : ''
+                  }`}
                   // Heights are relative to the tallest bucket, not to the
                   // total: against the total, every bar would be a sliver.
                   style={{ height: `${((entry!.amount ?? 0) / peak) * 100}%` }}

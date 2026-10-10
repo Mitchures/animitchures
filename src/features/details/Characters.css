@@ -2,7 +2,9 @@
   display: grid;
   /* Three across on a wide column, collapsing to one on a phone. min() lets the
      track shrink below its floor rather than overflowing the page. */
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
-  gap: 0.75rem;
-  padding: 0.875rem 0 0;
+  /* Two across on the overview's main column, one on a phone. Three made each
+     chip too narrow for a voice actor's full name beside a character's. */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 0.625rem;
+  padding: 0;
 }

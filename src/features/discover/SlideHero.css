@@ -1,7 +1,7 @@
 .slideHero {
   position: relative;
   isolation: isolate;
-  height: 320px;
+  height: var(--hero-height);
   overflow: hidden;
   border-radius: var(--r-card);
   corner-shape: var(--corner);
@@ -177,7 +177,9 @@
 
 @media (max-width: 960px) {
   .slideHero {
-    height: 250px;
+    /* --hero-height already drops at this width; kept as a guard for any
+       surface that sets the token itself. */
+    height: var(--hero-height);
   }
 
   .slideHero__in {

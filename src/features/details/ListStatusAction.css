@@ -1,0 +1,163 @@
+.listStatus {
+  position: relative;
+}
+
+/* Square at rest so the row of actions stays uniform; it widens to name the
+   status as the pointer arrives or it takes focus. `width` is animated rather
+   than `transform`, because the buttons beside it have to move out of the way
+   — a scaled button would overlap them instead. */
+.listStatus__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 20px;
+  corner-shape: var(--corner);
+  background: var(--glass-art);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow: inset 0 0 0 1px var(--glass-art-rim);
+  transition:
+    width var(--t-base) var(--spring),
+    gap var(--t-base) var(--ease),
+    padding var(--t-base) var(--ease),
+    border-radius var(--t-base) var(--ease),
+    background var(--t-fast) var(--ease);
+}
+
+.listStatus__trigger svg {
+  flex: none;
+  width: 20px;
+  height: 20px;
+}
+
+.listStatus__trigger b {
+  max-width: 0;
+  overflow: hidden;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0;
+  transition:
+    opacity 140ms var(--ease),
+    max-width var(--t-base) var(--ease);
+}
+
+.listStatus:hover .listStatus__trigger,
+.listStatus:focus-within .listStatus__trigger,
+.listStatus__trigger[aria-expanded='true'] {
+  width: var(--open-width);
+  gap: 0.5625rem;
+  padding: 0 1.125rem;
+  border-radius: var(--r-pill);
+  background: var(--glass-art-hover);
+}
+
+.listStatus:hover .listStatus__trigger b,
+.listStatus:focus-within .listStatus__trigger b,
+.listStatus__trigger[aria-expanded='true'] b {
+  max-width: 10rem;
+  opacity: 1;
+}
+
+/* Solid once a status is set, translucent when there is none. Fill rather than
+   colour, because lime is already spent on the favourite and two accents in a
+   row of four would make neither mean anything. */
+.listStatus__trigger--set {
+  background: rgba(255, 255, 255, 0.9);
+  color: #161616;
+  box-shadow: none;
+}
+
+.listStatus:hover .listStatus__trigger--set,
+.listStatus:focus-within .listStatus__trigger--set,
+.listStatus__trigger--set[aria-expanded='true'] {
+  background: #fff;
+}
+
+.listStatus__trigger:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* Downward, in two columns. Upward it did not fit: six rows are 336px and the
+   trigger sits 174px down the page, so the top third opened off-screen. Two
+   columns halve the height, and downward it sits over the glass sheet — the
+   actions paint above the sheet, so it is visible there. */
+.listStatus__menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.5625rem);
+  z-index: 8;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px;
+  width: max-content;
+  margin: 0;
+  padding: 0.375rem;
+  list-style: none;
+  border-radius: 24px;
+  corner-shape: var(--corner);
+  background: var(--glass-art);
+  -webkit-backdrop-filter: blur(18px) saturate(1.5);
+  backdrop-filter: blur(18px) saturate(1.5);
+  box-shadow:
+    inset 0 0 0 1px var(--glass-art-rim),
+    0 18px 40px rgba(0, 0, 0, 0.34);
+}
+
+.listStatus__option {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  width: 100%;
+  padding: 0.5625rem 0.75rem;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 13.5px;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.listStatus__option svg {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  opacity: 0.9;
+}
+
+.listStatus__option:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.listStatus__option:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+}
+
+.listStatus__option--on {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.listStatus__tick {
+  margin-left: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .listStatus__trigger,
+  .listStatus__trigger b {
+    transition: none;
+  }
+}

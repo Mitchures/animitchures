@@ -124,8 +124,9 @@ src/
                      Button, IconButton, DotNumber (every numeral in the app). Composites:
                      FrostedTile, ScoreChip, InfoCard, LinkTile, StatRow, EpisodeCard,
                      EpisodeRow, PosterEchoCard, SectionHeading, TileDeck (a
-                     FrostedTile that cycles figures). Not yet redesigned:
-                     Card, Badge, EntityHero, Skeleton (shimmer primitive),
+                     FrostedTile that cycles figures), FactTile (a figure in a
+                     squircle with an icon chip). Not yet redesigned:
+                     Card, EntityHero, Skeleton (shimmer primitive),
                      PosterGridSkeleton, SplitButton, ToggleSwitch, AnilistReconnect
   config/            firebase.ts (app, auth, db, storage, functions, Apple/Google
                      providers), apollo-client.ts
@@ -439,8 +440,50 @@ read it with `useScrollContainer()` and drive a `MotionValue` from its `scrollTo
 (`Details.tsx` is the worked example). `useInView` is unaffected — IntersectionObserver
 still resolves against the viewport.
 
-**Details page.** A hero over the banner (poster, title, alternative titles, genres, four
-stat chips, actions) followed by tabs: Overview, Characters, Staff, Relations. The active
+**Details page.** Rebuilt to the reference on 2026-09-18 as **stacked glass**: a 340px band
+of banner art, then a glass sheet pulled 104px up over it carrying the poster, the title,
+the genre chips and four `FactTile`s. The poster hangs above the sheet's top edge and is the
+one thing crossing the seam, which is what ties the two together. The banner reads as light
+behind frosted glass rather than as a photo with text on it, so it works whether the art is
+dark or blown out — and Cowboy Bebop has **no `coverImage.color` at all**, so this page
+cannot be colour-derived the way the home page's tiles are.
+
+Three things about it are load-bearing:
+
+1. **The glass on artwork is dark-tinted, not white.** `--glass-art` is
+   `rgba(18, 18, 22, 0.34)` with a light rim, in both themes. A white translucent button over
+   a bright banner bleaches to a flat blob and the icon inside it disappears; the reference
+   gets away with white because its ground is a pastel gradient and a banner is not.
+2. **The hero's actions sit at the *bottom* right of the art, not the top.** At the top they
+   landed in the same corner as `.app__topbar`'s theme, search and notification buttons — and
+   that bar is `position: absolute`, so it overlays the banner rather than pushing it down.
+   Five buttons in one corner read as one confused row. Back stays top-left, where the top
+   bar is not.
+3. **The parallax lives on the banner image alone.** The sheet is in the flow and carries the
+   tabs and the body below it, so translating it would drag them. The image still drifts at
+   ~34% of scroll speed (`bannerY`, 0→210px over 620px of scroll, against a 260px
+   over-extension) and the actions drift at half that, because they belong to the art. The
+   old `heroY` / `heroOpacity` went with the old in-banner hero.
+
+`HeroFacts` replaced `HeroMeta`'s chip row and `HeroRankings`' badges, which between them
+said format, episodes, runtime, status and two rankings — six things in two registers, none
+prominent. Four `FactTile`s with icon chips are scannable, and the rest of those fields were
+already in the sidebar. A tile is dropped rather than rendered empty, because plenty of
+titles have no score and an unaired one has no ranking. Deleting `HeroRankings` orphaned
+`components/Badge`, which is gone too.
+
+`SplitButton` moved from the deleted `Actions` onto the sheet rather than onto the art: it
+opens a dropdown, and a menu over a photograph is unreadable. It is the only thing that
+actually writes list status, so losing it with `Actions` would have been a real regression.
+It still carries its old styling.
+
+The tabs are pills now, matching the navigation, and take an icon each — they were the only
+underlined thing left in the app. **Everything below the tabs still runs on the old CSS**
+(`Summary`, `Sidebar`, `Characters`, `Staff`, `MediaStats`, `MediaTags`, `WhereToWatch`,
+`Recommendations`), so the page is two-toned at the tab boundary until that phase lands.
+
+The old shape, for reference: a hero over the banner (poster, title, alternative titles,
+genres, four stat chips, actions) followed by tabs: Overview, Characters, Staff, Relations. The active
 tab lives in `?tab=`, written with `replace` so switching tabs does not stack history;
 an unknown value falls back to Overview. Tabs are only rendered when they have content —
 Relations is gated on the ANIME filter it applies internally, not on `edges.length`.

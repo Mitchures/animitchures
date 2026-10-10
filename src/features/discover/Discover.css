@@ -26,8 +26,14 @@
   min-width: 0;
 }
 
+/* Takes the slack so the two columns end level. The aside is the taller of the
+   pair — 300px of ring plus a 218px card against 320 of slider plus 184 of
+   widgets — so without this the widget row stopped 14px above the season card
+   and the grid's own stretch hid the gap inside `.discover__main`. The tiles
+   have a min-height, so growing into it is invisible. */
 .discover__widgets {
   display: grid;
+  flex: 1;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
 }

@@ -1,12 +1,58 @@
+/* Shorter than it was, because the words moved off it onto the sheet. It is a
+   band of art now rather than a full-height hero, and the sheet overlaps its
+   bottom third. */
 .details__banner {
   position: relative;
-  display: flex;
-  align-items: flex-end;
-  min-height: 620px;
+  min-height: 340px;
   margin-top: calc(-1 * var(--header-height));
-  padding: calc(var(--header-height) + 1rem) var(--x-axis-spacing) 2rem;
   background-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Clips the art, not the banner. The parallax image over-extends 260px above
+   its box, so something has to clip it — but on the banner the same rule also
+   clipped the hero's actions, and the list-status menu opened off-screen. */
+.details__bannerClip {
+  position: absolute;
+  inset: 0;
   overflow: hidden;
+}
+
+.details__bannerActions {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* The wrapper is inert so it does not swallow clicks on the art; the buttons
+   inside it are not. */
+.details__bannerActions .heroActions {
+  pointer-events: auto;
+}
+
+/* The sheet. Glass over the art, pulled up into it, carrying the poster, the
+   title and the facts — and in the flow, so the tabs and the body follow it.
+   That is why the parallax lives on the banner image alone: translating the
+   sheet would drag everything below it. */
+.details__sheet {
+  position: relative;
+  z-index: 2;
+  margin: -104px var(--x-axis-spacing) 0;
+  padding: var(--pad-card);
+  border-radius: 52px;
+  corner-shape: var(--corner);
+  background: var(--glass-raised);
+  -webkit-backdrop-filter: blur(26px) saturate(1.6);
+  backdrop-filter: blur(26px) saturate(1.6);
+  box-shadow:
+    inset 0 1px 0 var(--glass-rim),
+    0 24px 60px -30px rgba(0, 0, 0, 0.4);
+}
+
+.details__sheetRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.375rem;
 }
 
 /* Extended 200px past the top of the banner so the parallax translation never
@@ -33,29 +79,25 @@
   background: var(--scrim-bottom);
 }
 
-.details__hero {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: flex-end;
-  gap: 1.75rem;
-  width: 100%;
-}
-
 /* The perspective lives on the wrapper so the poster can tilt in 3D; sizing
-   moves here too, since the img is now 100% of it. */
+   moves here too, since the img is now 100% of it.
+   It hangs above the sheet's top edge, overlapping the banner — the one thing
+   that crosses the seam, which is what ties the two together. */
 .details__posterWrap {
   flex: none;
-  width: 320px;
+  width: 168px;
+  margin-top: -84px;
   perspective: 1100px;
 }
 
 .details__poster {
   display: block;
   width: 100%;
+  aspect-ratio: 2 / 3;
   object-fit: cover;
-  border-radius: var(--border-radius);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+  border-radius: 26px;
+  corner-shape: var(--corner);
+  box-shadow: 0 22px 46px -16px rgba(0, 0, 0, 0.6);
   transform-style: preserve-3d;
 }
 
@@ -64,21 +106,21 @@
   min-width: 0;
 }
 
+/* On the sheet now, not on the art, so it takes the theme's ink and drops the
+   shadow it needed to survive a photograph. */
 .details__title {
-  font-size: clamp(26px, 3.4vw, 44px);
-  font-weight: 800;
-  color: white;
-  letter-spacing: -0.025em;
-  line-height: 1.1;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.65);
+  font-size: clamp(24px, 2.8vw, 36px);
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: var(--track-display);
+  line-height: 1.06;
 }
 
 .details__altTitles {
-  margin-top: 0.4rem;
+  margin-top: 0.3125rem;
   font-size: 13px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.72);
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+  font-weight: 400;
+  color: var(--muted);
 }
 
 .details__tags {
@@ -88,25 +130,15 @@
   margin-top: 0.75rem;
 }
 
+/* Reads the Chip token set rather than its own colours, now that it sits on a
+   theme surface instead of on the banner. */
 .details__tag {
-  padding: 0.3rem 0.7rem;
-  font-size: 11px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.92);
-  background-color: rgba(0, 0, 0, 0.55);
-  border-radius: 8px;
-  backdrop-filter: blur(6px);
-}
-
-/* The hero already carries its own spacing, so Actions drops the top margin it
-   needed when it sat under the poster in the old left column. */
-.details__hero .actions {
-  flex: none;
-  margin: 0;
-}
-
-.details__hero .actions button {
-  margin-bottom: 0;
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--r-pill);
+  background: var(--card);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 400;
 }
 
 /* Overview keeps the old two-column shape — prose on the left, stats on the
@@ -119,14 +151,16 @@
 }
 
 .details__overviewMain {
+  display: flex;
+  flex-direction: column;
+  /* `gap`, not a sibling margin: the panel rule below sets `margin: 0` at two
+     classes' specificity, which beat `.details__overviewMain > * + *` and left
+     three of the four panels touching. */
+  gap: 0.875rem;
   min-width: 0;
 }
 
-/* One rhythm for every section in the column, rather than each component
-   carrying its own trailing margin and disagreeing with its neighbours. */
-.details__overviewMain > * + * {
-  margin-top: 2rem;
-}
+
 
 /* Stats and tags share the right column. No sticky here: with the tag list in
    it the column is taller than the viewport, and sticky on something that does
@@ -134,7 +168,6 @@
 .details__overviewSide {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
   min-width: 0;
 }
 
@@ -164,34 +197,117 @@
 }
 
 @media screen and (max-width: 768px) {
-  /* Actions drops below the text rather than competing with it for width. */
-  .details__hero {
-    flex-wrap: wrap;
+  .details__banner {
+    min-height: 260px;
+  }
+
+  .details__sheet {
+    margin-top: -76px;
+    border-radius: 40px;
   }
 
   .details__posterWrap {
-    width: 240px;
-  }
-
-  .details__hero .actions {
-    width: 100%;
+    width: 128px;
+    margin-top: -62px;
   }
 }
 
 @media screen and (max-width: 480px) {
   .details__banner {
-    min-height: 420px;
-    padding-bottom: 1.5rem;
+    min-height: 220px;
   }
 
-  .details__hero {
+  /* The poster stops hanging over the seam and sits in the row: at this width
+     a 128px poster beside a wrapped title leaves the title about ten
+     characters, and the overhang is the first thing worth giving up. */
+  .details__sheetRow {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
   }
 
   .details__posterWrap {
-    /* A 2:3 poster at full width would be ~515px tall at this breakpoint. */
-    width: 170px;
+    width: 116px;
+    margin-top: -58px;
   }
+}
+
+/* ===================== the body, below the tabs =====================
+   Every section is a panel on the same surface with the same heading, rather
+   than each component carrying its own background, radius and heading weight
+   and disagreeing with its neighbours. The components keep their own internal
+   layout; only the shell is shared. */
+.details__overview .summary,
+.details__overview .characters,
+.details__overview .staff,
+.details__overview .sidebar,
+.details__overview .whereToWatch,
+.details__overview .mediaTags,
+.details__overview .mediaStats,
+.details__overview .recommendations,
+.details__trailer {
+  margin: 0;
+  padding: 1.25rem 1.375rem 1.375rem;
+  border-radius: var(--r-inner);
+  corner-shape: var(--corner);
+  background: var(--nested);
+}
+
+/* One heading for the whole body. The icon is a flex child rather than a
+   pseudo-element so each section can name its own. */
+.details__overview h3,
+.details__trailer h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.75rem;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: var(--track-display);
+  color: var(--ink);
+}
+
+.details__overview h3 svg,
+.details__trailer h3 svg {
+  width: 17px;
+  height: 17px;
+  opacity: 0.45;
+}
+
+.details__overview p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--sub);
+}
+
+.details__overviewSide {
+  gap: 0.875rem;
+}
+
+/* Relations and Recommendations live in tabs of their own, so they need the
+   same panel shell the overview's sections get — otherwise switching tabs
+   changes register from cards-on-a-panel to cards-on-the-canvas. */
+.detailsTabs__panel > .relations,
+.detailsTabs__panel > .recommendations,
+.detailsTabs__panel > .mediaStats {
+  margin: 0;
+  padding: 1.25rem 1.375rem 1.375rem;
+  border-radius: var(--r-inner);
+  corner-shape: var(--corner);
+  background: var(--nested);
+}
+
+.detailsTabs__panel > * > h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.75rem;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: var(--track-display);
+  color: var(--ink);
+}
+
+.detailsTabs__panel > * > h3 svg {
+  width: 17px;
+  height: 17px;
+  opacity: 0.45;
 }

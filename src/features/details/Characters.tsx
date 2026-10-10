@@ -1,3 +1,5 @@
+import { People } from '@mui/icons-material';
+
 import './Characters.css';
 
 import CastChip from './CastChip';
@@ -24,13 +26,21 @@ type VoiceActor = {
 };
 
 function Characters({ characters }: Media) {
+  const credits = (characters?.edges ?? []) as CharacterCredit[];
+  // Nothing at all rather than a panel holding only its heading: the wrapper
+  // carries the card's background, so an empty one is a grey block.
+  if (!credits.length) return null;
+
   return (
     <div className="characters">
-      {characters && characters.edges && characters.edges.length > 0 && (
+      {credits.length > 0 && (
         <>
-          <h3>Characters</h3>
+          <h3>
+            <People />
+            Characters
+          </h3>
           <div className="characters__container">
-            {(characters.edges as CharacterCredit[]).map((character) => {
+            {credits.map((character) => {
               // Japanese where there is one — the original performance for
               // almost everything here.
               const actor =

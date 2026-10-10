@@ -1,3 +1,5 @@
+import { Layers } from '@mui/icons-material';
+
 import './Relations.css';
 
 import Card from 'components/Card';
@@ -19,17 +21,21 @@ const getRelations = (relations: Media['relations']): Relation[] =>
   );
 
 function Relations({ relations }: Media) {
+  const related = getRelations(relations);
+  // Nothing rather than an empty panel: the wrapper is the card's background.
+  if (!related.length) return null;
+
   return (
     <div className="relations">
-      {relations && relations.edges && getRelations(relations).length > 0 && (
-        <>
-          <div className="relations__container">
-            {getRelations(relations).map((relation) => (
-              <Card key={relation.id} {...relation.node} relationType={relation.relationType} />
-            ))}
-          </div>
-        </>
-      )}
+      <h3>
+        <Layers />
+        Related
+      </h3>
+      <div className="relations__container">
+        {related.map((relation) => (
+          <Card key={relation.id} {...relation.node} relationType={relation.relationType} />
+        ))}
+      </div>
     </div>
   );
 }
