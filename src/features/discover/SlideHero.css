@@ -1,0 +1,303 @@
+/* The hero follows the theme (2026-10-11): in light mode the scrim is white and
+   the copy is ink, in dark the scrim is near-black and the copy is light — the
+   same rule the rest of the page runs on, where it used to be a dark card in
+   both. Everything on the artwork reads these four locals, so the shared Chip
+   and ScoreChip keep their own colours everywhere else. `--ink` already flips
+   with the theme; only the scrim and the glass need their dark values. */
+.slideHero {
+  --hero-ink: var(--ink);
+  --hero-scrim: 255, 255, 255;
+  --hero-glass: rgba(255, 255, 255, 0.5);
+  --hero-glass-rim: rgba(255, 255, 255, 0.7);
+  position: relative;
+  isolation: isolate;
+  height: var(--hero-height);
+  overflow: hidden;
+  border-radius: var(--r-card);
+  corner-shape: var(--corner);
+  background: var(--card);
+  color: var(--hero-ink);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .slideHero {
+    --hero-scrim: 8, 8, 10;
+    --hero-glass: rgba(16, 16, 20, 0.38);
+    --hero-glass-rim: rgba(255, 255, 255, 0.22);
+    background: #111;
+  }
+}
+
+:root[data-theme='dark'] .slideHero {
+  --hero-scrim: 8, 8, 10;
+  --hero-glass: rgba(16, 16, 20, 0.38);
+  --hero-glass-rim: rgba(255, 255, 255, 0.22);
+  background: #111;
+}
+
+.slideHero__image {
+  position: absolute;
+  inset: 0;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  will-change: transform;
+}
+
+/* Sideways rather than upward: the copy sits on the left, and a bottom-up
+   gradient would darken the artwork without protecting the text. */
+.slideHero__scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(var(--hero-scrim), 0.88) 0%,
+      rgba(var(--hero-scrim), 0.6) 42%,
+      rgba(var(--hero-scrim), 0.05) 78%
+    ),
+    linear-gradient(0deg, rgba(var(--hero-scrim), 0.6) 0%, rgba(var(--hero-scrim), 0) 45%);
+}
+
+/* The glass on the artwork takes the hero's theme: the genre chips, the score
+   chip and the favourite button. */
+.slideHero .chip--glass,
+.slideHero .scoreChip {
+  background: var(--hero-glass);
+  color: var(--hero-ink);
+}
+
+.slideHero .scoreChip {
+  box-shadow:
+    inset 0 1px 0 var(--hero-glass-rim),
+    inset 0 0 0 1px rgba(var(--hero-scrim), 0.08),
+    0 10px 30px -12px rgba(0, 0, 0, 0.3);
+}
+
+.slideHero .scoreChip .dotNumber {
+  text-shadow: 0 1px 0 rgba(var(--hero-scrim), 0.35);
+}
+
+.slideHero__score {
+  position: absolute;
+  right: 28px;
+  top: 22px;
+  z-index: 2;
+}
+
+.slideHero__in {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: 22px;
+  padding: 26px 28px;
+}
+
+.slideHero__poster {
+  flex: none;
+  /* The same poster as the Top rated cards (148×212 on --r-inner), so the two
+     read as one object; the 320px band leaves it 56px of clearance. */
+  width: 148px;
+  height: 212px;
+  border-radius: var(--r-inner);
+  corner-shape: var(--corner);
+  object-fit: cover;
+  box-shadow: 0 24px 48px -18px rgba(0, 0, 0, 0.6);
+}
+
+.slideHero__body {
+  min-width: 0;
+}
+
+.slideHero__meta {
+  overflow: hidden;
+  font-size: 13px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  opacity: 0.85;
+}
+
+.slideHero__title {
+  max-width: 20ch;
+  margin-top: 0.5rem;
+  font-weight: 400;
+  font-size: 34px;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+}
+
+.slideHero__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 0.75rem;
+}
+
+.slideHero__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.slideHero__favorite {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--hero-glass);
+  color: var(--hero-ink);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  cursor: pointer;
+  transition: transform var(--t-fast) var(--spring);
+}
+
+.slideHero__favorite:hover {
+  opacity: 1;
+  color: var(--hero-ink) !important;
+}
+
+.slideHero__favorite:active {
+  transform: scale(0.94);
+}
+
+.slideHero__favorite svg {
+  width: 18px;
+  height: 18px;
+}
+
+.slideHero__pages {
+  position: absolute;
+  right: 28px;
+  bottom: 28px;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+}
+
+/* The active bar fills over the rotation, so the slider explains itself
+   without a visible countdown. */
+.slideHero__page {
+  width: 18px;
+  height: 2px;
+  padding: 0;
+  border: 0;
+  border-radius: 1px;
+  background: color-mix(in srgb, var(--hero-ink) 40%, transparent);
+  cursor: pointer;
+  transition:
+    width var(--t-base) var(--ease),
+    background var(--t-base) var(--ease);
+}
+
+.slideHero__page.is-on {
+  position: relative;
+  width: 30px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--hero-ink) 35%, transparent);
+}
+
+.slideHero__page.is-on::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform-origin: left;
+  background: var(--hero-ink);
+  animation: slideHero-fill 7s linear;
+}
+
+@keyframes slideHero-fill {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (max-width: 960px) {
+  .slideHero {
+    /* --hero-height already drops at this width; kept as a guard for any
+       surface that sets the token itself. */
+    height: var(--hero-height);
+  }
+
+  .slideHero__in {
+    padding: 18px;
+    gap: 16px;
+  }
+
+  .slideHero__poster {
+    width: 84px;
+    height: 120px;
+    border-radius: 18px;
+    corner-shape: var(--corner);
+  }
+
+  /* Two lines and no further: the longest real titles run past forty
+     characters, and a third line pushed the copy up under the score chip. */
+  .slideHero__title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    max-width: none;
+    overflow: hidden;
+    font-size: 21px;
+  }
+
+  /* Room for the score chip above, so a long title cannot slide under it. */
+  .slideHero__body {
+    padding-right: 72px;
+  }
+
+  /* Four genres wrap to two rows at this width and cost more height than they
+     are worth; three fit on one. */
+  .slideHero__tags .chip:nth-child(n + 4) {
+    display: none;
+  }
+
+  .slideHero__meta {
+    font-size: 11px;
+  }
+
+  .slideHero__score {
+    right: 16px;
+    top: 14px;
+  }
+
+  .slideHero__pages {
+    right: 16px;
+    bottom: 16px;
+  }
+}
+
+/* Narrow phones: the poster leaves the copy about 110px, which is not a
+   column. The artwork is still behind everything, so dropping the poster
+   costs nothing and gives the title the width it needs. */
+@media (max-width: 400px) {
+  .slideHero__poster {
+    display: none;
+  }
+
+  .slideHero__body {
+    padding-right: 64px;
+  }
+
+  .slideHero__tags .chip:nth-child(n + 3) {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slideHero__page.is-on::after {
+    animation: none;
+    transform: scaleX(1);
+  }
+}

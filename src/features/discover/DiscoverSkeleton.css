@@ -1,53 +1,75 @@
-.discoverSkeleton__hero {
-  /* The real hero is a full-bleed panel below the (zero-height) desktop
-     header; matching its height is what stops the rail below jumping. */
-  height: min(72vh, 620px);
+.discoverSkeleton {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  gap: 0.85rem;
-  padding: 0 var(--x-axis-spacing) 2.5rem;
+  /* Matches `.discover`'s own top pad, so the first row of figures lands in the
+     same place the skeleton put it. */
+  padding: 3.4375rem 0 3rem;
 }
 
-.discoverSkeleton__cta {
+.discoverSkeleton__stats {
   display: flex;
-  gap: 0.75rem;
-  margin-top: 0.6rem;
+  gap: 2.125rem;
 }
 
-.discoverSkeleton__rail {
-  padding: 1.5rem var(--x-axis-spacing) 0;
+.discoverSkeleton__strip {
+  margin-top: 1.125rem;
+}
+
+.discoverSkeleton__grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 14px;
+  margin-top: 1.375rem;
+}
+
+.discoverSkeleton__main {
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: 14px;
+  min-width: 0;
+}
+
+.discoverSkeleton__widgets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.discoverSkeleton__side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.discoverSkeleton__heading {
+  margin: 2rem 0 0.875rem;
 }
 
 .discoverSkeleton__cards {
-  display: flex;
-  gap: 1.25rem;
-  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
 }
 
-.discoverSkeleton__card {
-  flex: none;
-  width: 200px;
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-}
-
-.discoverSkeleton__art {
-  width: 100%;
-  aspect-ratio: 2 / 3;
-  height: auto !important;
-}
-
-@media screen and (max-width: 960px) {
-  .discoverSkeleton__hero {
-    height: min(60vh, 460px);
+@media (max-width: 960px) {
+  .discoverSkeleton__grid,
+  .discoverSkeleton__widgets,
+  .discoverSkeleton__cards {
+    grid-template-columns: 1fr;
   }
 
-  .discoverSkeleton__card {
-    width: 140px;
+  .discoverSkeleton__widgets {
+    display: flex;
+    gap: 10px;
+  }
+
+  .discoverSkeleton__widgets > * {
+    flex: none;
+    width: 158px;
+  }
+
+  .discoverSkeleton__stats {
+    gap: 1.125rem;
+    overflow: hidden;
   }
 }

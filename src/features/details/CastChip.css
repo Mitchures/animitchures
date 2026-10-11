@@ -2,18 +2,19 @@
    cut out of the card rather than stuck on top. Declared as a token because
    the chip background differs by colour scheme. */
 .castChip {
-  --chip-bg: #f7f8fc;
-  --face: 72px;
+  --chip-bg: var(--card);
+  --face: 56px;
   /* Derived, not a second literal: the inset is defined as a proportion of the
      portrait, so changing the portrait keeps the pairing in proportion. */
   --inset: calc(var(--face) * 0.6);
 
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 0.75rem 1rem 0.75rem 0.75rem;
+  gap: 0.75rem;
+  padding: 0.5rem 0.875rem 0.5rem 0.5rem;
   background-color: var(--chip-bg);
-  border-radius: var(--border-radius);
+  border-radius: 22px;
+  corner-shape: var(--corner);
 }
 
 .castChip__faces {
@@ -28,8 +29,9 @@
   width: var(--face);
   height: var(--face);
   object-fit: cover;
-  border-radius: 16px;
-  background-color: rgba(11, 22, 33, 0.06);
+  border-radius: 15px;
+  corner-shape: var(--corner);
+  background-color: var(--nested);
   transition: transform 0.22s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
 
@@ -66,7 +68,7 @@
   height: var(--inset);
   object-fit: cover;
   border-radius: 50%;
-  border: 3px solid var(--chip-bg);
+  border: 2.5px solid var(--chip-bg);
   background-color: var(--chip-bg);
   transition: transform 0.22s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
@@ -95,27 +97,26 @@
 .castChip__body h5 {
   margin: 0;
   padding: 0;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1.25;
-  color: var(--primary);
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.22;
+  color: var(--ink);
 }
 
 .castChip__body p {
-  margin: 0.15rem 0 0;
+  margin: 0.0625rem 0 0;
   padding: 0;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--secondary);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted);
 }
 
 .castChip__insetName {
   display: block;
-  margin-top: 0.2rem;
+  margin-top: 0.0625rem;
   font-size: 11px;
-  font-weight: 600;
-  color: var(--secondary);
-  opacity: 0.75;
+  font-weight: 400;
+  color: var(--muted);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -133,29 +134,18 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .castChip {
-    --chip-bg: #16202f;
-  }
-
-  :root:not([data-theme='light']) .castChip__body h5 {
-    color: white;
-  }
+/* Both of the chip's links stay in the ink; a chip that recolours on hover in a
+   grid of eighteen of them is a lot of flashing for no information. */
+.castChip__body h5 a,
+a.castChip__insetName {
+  color: inherit;
 }
 
-:root[data-theme='dark'] .castChip {
-  --chip-bg: #16202f;
-}
-
-:root[data-theme='dark'] .castChip__body h5 {
-  color: white;
-}
-
-/* The chip's two links share the chip's colour and pick up the app's purple on
-   hover, rather than each face having its own idea of what a link looks like. */
 .castChip__body h5 a:hover,
 a.castChip__insetName:hover {
-  color: var(--action) !important;
+  color: var(--ink) !important;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 /* --- whole-card click target --- */

@@ -1,0 +1,90 @@
+.iconButton {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    background var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--spring);
+}
+
+.iconButton svg {
+  width: 18px;
+  height: 18px;
+}
+
+.iconButton:hover {
+  background: var(--nested);
+  color: var(--ink) !important;
+  opacity: 1;
+}
+
+.iconButton:active {
+  transform: scale(0.94);
+}
+
+.iconButton--active {
+  background: var(--ink);
+  color: var(--canvas);
+}
+
+.iconButton:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* ===== glass: the squircle that floats on artwork ===== */
+
+/* Dark-tinted rather than white. Over a bright banner a white translucent
+   button bleaches to a flat white blob and the icon inside it vanishes; the
+   reference gets away with white because its ground is a soft pastel gradient,
+   and a banner is not. */
+.iconButton--glass {
+  width: 46px;
+  height: 46px;
+  border-radius: 20px;
+  corner-shape: var(--corner);
+  background: var(--glass-art);
+  color: #fff;
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow: inset 0 0 0 1px var(--glass-art-rim);
+}
+
+.iconButton--glass svg {
+  width: 20px;
+  height: 20px;
+}
+
+.iconButton--glass:hover {
+  background: var(--glass-art-hover);
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+
+.iconButton--glass:active {
+  transform: translateY(-2px) scale(0.94);
+}
+
+/* The one lime on the hero. */
+.iconButton--glass.iconButton--active {
+  background: var(--lime);
+  color: var(--on-lime);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.iconButton--glass.iconButton--active:hover {
+  background: var(--lime);
+  color: var(--on-lime) !important;
+}
+
+.iconButton--glass:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}

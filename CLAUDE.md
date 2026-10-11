@@ -33,10 +33,15 @@ sets `hosting.public` to `build`. Don't change one without the other.
 Cloud Functions live in `functions/` with their own `package.json`
 (`npm --prefix functions run build`, `firebase deploy --only functions`).
 
-Verified on Node v24 / yarn 1.22 as of 2026-09-13: `yarn lint` exits 0 with 15 pre-existing
-warnings; 76 e2e tests pass in the `public` project and 19 in `authed`. Unit: 56 tests, of
-which **3 fail and 1 is skipped** — see "Current state" below; both are known and
-pre-existing, so a red `yarn test` is not something you broke.
+Verified on Node v24 / yarn 1.22 as of 2026-10-10: `yarn lint` exits 0 with 15 pre-existing
+warnings; `yarn e2e` is 95 passing across `setup`, `public` and `authed`, and `yarn e2e:live`
+passes against the real API. Unit: **117 passing, 1 skipped** (`App.test.tsx`, the CRA
+default — see "Current state"). A red `yarn test` now *is* something you broke: the three
+stale `nav-items` failures were fixed on 2026-09-18.
+
+`yarn test` and `yarn test:watch` pin `TZ=Asia/Tokyo`, because the Discover derivations are
+tested against a fixture captured at a known JST instant and the day-boundary maths would
+otherwise depend on the machine's timezone.
 
 ### AniList OAuth runs through a Cloud Function
 
@@ -99,21 +104,31 @@ src/
   vite-env.d.ts      /// <reference types="vite/client" /> — types the asset imports
   test-utils.tsx     renderWithProviders() — RTL render wrapped in the app's providers
 
+  styles/tokens.css  Every colour, radius, duration and curve, light and dark. Imported
+                     first from index.css. Component CSS reads tokens and declares no raw
+                     colour, radius or duration of its own.
   layout/            The app shell. AppShell owns the routed Outlet and the open state for
-                     the mobile menu and the spotlight. Navigation is the desktop rail,
-                     Header the mobile top bar, MobileMenu the overlay it opens.
-                     SearchFab + SearchSpotlight are global search. nav-items.ts is the
-                     single source for what appears in the rail AND the overlay.
-                     GlassFilters.tsx holds the SVG filters behind the glass chrome.
+                     the More drawer and the spotlight. PillNav is the fixed desktop
+                     column, TabBar the floating phone bar, Drawer what More opens,
+                     MobileHeader the phone top bar. SearchSpotlight is global search,
+                     opened from the top bar or ⌘K. nav-items.ts is the single source for
+                     all three renderers; useSlidingIndicator.ts drives the one moving
+                     pill they share.
   features/          One directory per page, each holding its own sections and skeleton:
-                     browse, calendar, details, discover, people, profile, settings,
-                     social, studio, taste, watchlist
+                     browse, calendar, details, discover, favorites, people, profile,
+                     settings, social, studio, taste, watchlist
   views/             The routes that are not features: Login and SignUp (both inside
                      AuthShell, with AuthProviders, PasswordField and auth-error.ts),
-                     Callback, Favorites, and the ComingSoon / Community stubs
-  components/        Shared only. Card, Badge, SectionHeading, EntityHero, Skeleton
-                     (shimmer primitive), PosterGridSkeleton, SplitButton, ToggleSwitch,
-                     AnilistReconnect (the expired-session notice, banner and panel)
+                     Callback, and the ComingSoon / Community stubs
+  components/        The design system, shared only. Primitives: Surface, Pill, Chip,
+                     Button, IconButton, DotNumber (every numeral in the app). Composites:
+                     FrostedTile, ScoreChip, InfoCard, LinkTile, StatRow, EpisodeCard,
+                     EpisodeRow, PosterEchoCard, SectionHeading, TileDeck (a
+                     FrostedTile that cycles figures), FactTile (a figure in a
+                     squircle with an icon chip). Not yet redesigned:
+                     Card (colour-corrected to the tokens, not restructured),
+                     EntityHero, Skeleton (shimmer primitive), PosterGridSkeleton,
+                     ToggleSwitch, AnilistReconnect
   config/            firebase.ts (app, auth, db, storage, functions, Apple/Google
                      providers), apollo-client.ts
   context/           useReducer-based global store (StateProvider, reducer, types,
@@ -194,53 +209,277 @@ The client does not depend on any of the three triggers — `App.tsx` reads-or-c
 user doc itself and `Callback.tsx` sets `anilistLinked` directly, because a trigger that
 fires `onCreate` does nothing when a document is overwritten.
 
-**Shell chrome.** `Navigation` is a 72px icon rail that expands to 240px on hover. It is
-absolutely positioned and `.app__body` reserves its width with a margin, so expanding it
-overlays the page instead of shifting it. Account controls — notifications, settings,
-profile, logout — sit in `.navigation__footer` at the bottom. Search is **not** in the
-rail; it is a FAB (see below).
+**Shell chrome.** `PillNav` is a **fixed 248px** column of pills: wordmark, the two big
+text tabs (Explore / Library), the destinations, then the account row with the avatar,
+Settings and Log out. Fixed, not hover-expanding — the old rail sized itself at 240px and
+relied on `overflow-x: hidden`, so the left ~168px of every page swallowed clicks. A single
+`--nested` pill slides between destinations (`useSlidingIndicator`) rather than each item
+lighting up.
+
+Below 960px the column is hidden and `TabBar` takes over: a floating frosted pill 16px from
+the edges holding four destinations plus **More**, which springs `Drawer` up from behind it.
+`getBarItems` always fills the four slots — Watchlist when AniList is linked, else
+Favorites, else Login — and `getDrawerItems` holds the remainder. **More is hidden when
+signed out**, because every public destination already has a slot and the drawer would open
+on nothing; signed in it always shows, since the account row lives there. `MobileHeader`
+carries the brand, search and avatar, nothing else.
 
 **There is no desktop header.** `--header-height` is `0px` above 960px, which is what
 drives the Details banner pull-up, the sticky tab bar's offset and every
-`calc(100vh - var(--header-height))` view height from one token. `.header` is
-`display: none` there. Below 960px the rail is hidden, `--header-height` becomes 72px and
-the header returns — carrying the logo lockup and the `MobileMenu` button, nothing else.
+`calc(100vh - var(--header-height))` view height from one token. Search and notifications
+sit in `.app__topbar`, which is **`position: absolute`** for that reason: in flow it pushed
+every view down by its own height and the Details banner stopped reaching the top edge.
+Below 960px `--header-height` becomes 64px and `MobileHeader` returns.
 
-The header and the search FAB are **glass**: a thin tint, a specular rim, a sheen, and a
-blurred backdrop that — in Chromium only — also *bends* at the bar's bottom edge and
-magnifies through the button, via the SVG `feDisplacementMap` filters in
-`layout/GlassFilters.tsx` applied as `backdrop-filter: url()`. Three traps, all learned by
-rendering: Chromium silently drops every function listed after a `url()`, so blur and
-saturation live inside the filter; a blur primitive fades to transparent at the filter
-region's edge, so the region is larger than the element; and WebKit parses the `url()`,
-answers `CSS.supports()` **true**, and paints nothing, so support is gated by a class
-`index.html` sets from `navigator.userAgentData` (Chromium-only). Safari — every iPhone —
-gets the same glass without the bend, deliberately.
+The tab bar and drawer are **glass** — plain `backdrop-filter: blur()` with a light rim.
+The Chromium-only `feDisplacementMap` refraction is gone with `GlassFilters.tsx` and the
+`navigator.userAgentData` gate in `index.html`: WebKit renders this, so every iPhone gets
+the same glass as Chrome. If that bend is ever wanted back, the traps are in git history
+(Chromium drops every function after a `url()`; a blur primitive fades out at the filter
+region's edge; WebKit answers `CSS.supports()` true and paints nothing).
 
-**Search.** `SearchSpotlight` is an overlay opened by `SearchFab`, or with ⌘K / `/`;
+**Search.** `SearchSpotlight` is an overlay opened by the top bar's search button, or with ⌘K / `/`;
 escape closes, arrows move, enter opens, and focus returns to the trigger. It is
 controlled — `AppShell` owns the open state. Results are gated on the current term: Apollo
 keeps the last response, so without that the previous search's posters are still there on
 reopen.
 
-The trigger is a **fixed-position FAB**, not a rail item. It used to live at the top of the
-rail, which put an action inside a list of destinations and — worse — meant it disappeared
-below 960px along with the rail, so the mobile header needed a second, inferior inline
-search of its own. As a FAB it survives at every width and that duplicate is gone.
+The trigger is **not** a nav item: search is an action, not a destination. It has one home
+at each width — `.app__topbar` above 960px, `MobileHeader` below — which replaced the
+floating action button that replaced the rail item.
 
-**Discover.** A full-bleed `Hero` (crossfading slides, the active slide's poster, a
-sideways scrim, score tier badge, CTAs), `AiringThisWeek`, the `Rail` rows, then
-`GenreTiles`. Its variables come from `featuredVariables()` in `graphql/featured.ts`, which
-`AuthShell` calls too — identical variables mean one cache entry, where previously the login
-page sent none and the sign-in path fetched 173 KB of `Featured` twice. That helper also owns
-the season maths: the old `getNextSeason` walked the list with `index < SEASONS.length - 1`,
-so FALL had no successor and September to November asked for `season: null`. Everything is
-built from the one `Featured` query — `nextAiringEpisode`,
-`duration` and `genres` all come back with it, so no section costs an extra request. An
-airing card retires itself once the episode's own runtime has elapsed (capped at 90
-minutes, defaulting to 24), fading out while the rest reflow and the next one backfills.
-Genre tiles link to `/search/anime?genre=`, which `Browse` handles alongside `?search=` —
-it falls back to `POPULARITY_DESC` there, since `SEARCH_MATCH` ranks by typed text.
+**Discover runs the width of the screen** (2026-10-11): the 1180px cap came off because a
+wide display left a third of it empty. The slider and the three widget decks take the room;
+the 300px aside keeps its size; the card rows **add cards rather than stretching them** —
+`useFitCount` measures the row with a `ResizeObserver` (a callback ref, because the rows
+mount after the skeleton) and the row renders as many as fit, four at the old width and up
+to six. Genres show two rows of that, so the page asks `genreCounts` for twelve. **Top rated
+stays a fixed four** (`TOP_RATED`) whose cards scale with the width — five was tried and
+looked worse. The time
+strip is **hidden behind `SHOW_TIME_STRIP`** pending a refinement pass; the skeleton's strip
+slot is phone-only while it is off.
+
+**Discover** is the A1 dashboard. **There is no greeting** — it came off on 2026-09-18
+because a welcome line said nothing, so the `StatRow` of dot-matrix figures opens the page.
+`.discover`'s top padding is therefore the whole gap above it, and it is tuned to line that
+row up with `PillNav`'s Explore / Library tab across the gutter — **centres, not baselines**,
+since the tab is 28px Inter Tight and the figures are 30px Doto. If the column's own top
+spacing changes, that padding has to move with it, in `Discover.css` and
+`DiscoverSkeleton.css` both. `derive.ts` still exports a tested `greeting()` that nothing
+renders; a signed-in header or a profile page is its next home.
+
+The page is: a `StatRow` of dot-matrix figures, the `TimeStrip`,
+then a grid of `SlideHero` over three `TileDeck` widgets with `LinkTile` + `InfoCard`
+beside them, then `EpisodeCard`s and `PosterEchoCard`s, `SeasonWeeks`, `GenreTiles`,
+`ComingLater` and `PopularList`. Below 960px the strip becomes
+`DayPills` + an `EpisodeRow`, and the widgets become a snapping rail.
+
+**The three widgets are `TileDeck`s, not static tiles.** Each cycles three figures on one
+time horizon — tonight, this week, the moment — six seconds a slide, the decks offset by
+`DECK_STAGGER_MS` so they never flip together, which reads as a glitch rather than as three
+independent readouts. They replaced three tiles holding one fact each, two of which repeated
+something the page already said: the third was the season countdown, which is on the
+`InfoCard` beside it almost word for word.
+
+A deck is a list of `DeckSlide`s that the page filters, so **a figure that is not there
+produces no slide rather than a zero** — on a quiet night the Tonight deck holds one slide,
+stops cycling and drops its pager, falling back to the tick footer. Rotation pauses on hover
+*and* on focus: auto-advancing content needs a way to stop and hover alone leaves a keyboard
+user without one, so `FrostedTile` takes `onPointerEnter` / `onFocus` / `onBlur`
+pass-throughs (pass-throughs rather than a DOM spread, because the tile already owns
+`onPointerMove` and `onPointerLeave` for the colour layer's drift). The pager stays
+decorative rather than becoming buttons: buttons inside a link are invalid markup and a click
+on one would navigate. Reduced motion keeps the content and drops the movement — instant
+swap, ten seconds a slide — since stopping the rotation would hide two thirds of what the
+tile says.
+
+**Four slide ideas were computed and dropped, and are not worth re-proposing:** finales and
+premieres this week (neither exists in a typical week — both are zero in the fixture), how
+far through the season we are (**negative** for the quarter before a season starts, and the
+countdown card already owns that window), the season's best score (every unaired title has a
+null `averageScore`, so the whole bucket is null) and studio of the season (the leader has
+two titles and everything else has one).
+
+Two things the real data forced:
+
+- **`bestScored` breaks ties on popularity.** Re:ZERO Season 4 and BLEACH both score 90 in
+  the fixture week, so without a tiebreak the winner came down to AniList's bucket order and
+  BLEACH filled three of the nine slides.
+- **Tonight's third slide is `mostAwaited`, not the best score.** Tonight's highest-scored
+  title is usually also its first episode, so two of three slides named the same show; the
+  slide excludes the first-up title explicitly.
+
+**`TimeStrip` opens the page** — one static strip of the next 35 days, placed by air date
+across and by how many people are waiting up. It replaced `WeekStrip` (eight day columns of
+one week) on 2026-09-18. Three things about it are load-bearing:
+
+1. **A filled speck is a continuing episode; a ring is a premiere.** That one distinction
+   carries the strip's whole statement, because the premieres are not spread out: in the
+   fixture September holds 14 continuing episodes and 1 premiere while October holds 9
+   premieres and nothing continuing. So it reads left to right as specks turning into rings
+   and says "a season is handing over" with no copy. A ring needs a **7px minimum diameter**
+   — at 4.5px with a 1.6px stroke it is a solid dot again and the distinction is lost. The
+   earlier version marked week boundaries with tall lines instead, which was furniture
+   dressed as structure.
+2. **One tall mark: off the scale.** `upperFence()` is the interquartile rule, so this is a
+   property of the response rather than a named title. ONE PIECE's 747,774 against a fence of
+   167,894 is the only one in the fixture, and lifting it out of the band gives the other 25
+   **1.7× more vertical room**.
+3. **Hovering snaps a glass puck to the nearest *day*, not to a dot.** The unit of the answer
+   is then unambiguous, a day with seven episodes is as easy to point at as a lone one, and
+   the gesture is `PillNav`'s sliding indicator, so the strip reads as part of the app rather
+   than as a chart. Its date label sits **above** the capsule: below it crossed the tick row,
+   and inside it the capsule's own height clipped it.
+
+The collision pass is what makes a packed day legible, and it is needed because **neither
+axis separates same-day episodes on its own.** Two air at exactly 22:30 with 30,550 and
+38,390 waiting, which is 2.4px apart on a 90px band; and at 32px a day an hour is 1.3px, so
+x cannot express time of day either. So x snaps to the day and the column is spread
+vertically by the radii its dots actually have, which costs nothing the axis could have said.
+
+Layout is **measured**, via `ResizeObserver` on the plot, so the placement recomputes on a
+resize. Position the puck with `left` and leave the centring to the stylesheet: an inline
+`translate` overwrites the CSS `translate: -50%` and leaves the capsule's edge on the pointer.
+`--glass-raised` is the token for glass that sits *on* the data — opaque enough to read text
+against, translucent enough that what it covers carries through. There is deliberately **no
+colour wash behind the strip**; one was built and dropped, so the board is a plain
+translucent panel.
+
+**Every figure is derived in `features/discover/derive.ts`** — a pure module tested against
+`e2e/fixtures/Featured.json`, because the page's whole claim is that its counts are true and
+a wrong count looks exactly like a right one. Nothing on the page costs a second request:
+it is all the one `Featured` query, whose variables come from `featuredVariables()` in
+`graphql/featured.ts`, which `AuthShell` calls too — identical variables mean one cache
+entry, where previously the login page sent none and the sign-in path fetched 173 KB of
+`Featured` twice. That helper also owns the season maths: the old `getNextSeason` walked the
+list with `index < SEASONS.length - 1`, so FALL had no successor and September to November
+asked for `season: null`.
+
+The tiles' palettes are seeded from each title's `coverImage.color` (`helpers/tile-palette.ts`),
+so the colour comes from the content. `e2e/live.spec.ts` asserts that colour still arrives —
+without it the tiles fall back to a fixed green that looks deliberate.
+
+`GenreTiles` sits fourth from the end: eight `FrostedTile`s at `size="tall"` with `live`,
+portrait 3:4 cards after Apple Music's "made for you" tiles (2026-10-11), the genre name set
+as the figure in the section heading's display treatment and no count — it was a stat on a
+door. `live` sets the discs drifting: each is an ellipse turning on its own co-prime period
+(37/43/53/61s) while it travels, so the colour folds rather than slides, and `--phase` from
+the caller starts each tile at a different point. Two things the tall variant needed: a
+**colour floor** (the fourth disc, body colour, painted under the other three) because
+drifting discs otherwise leave bare glass behind them and Apple's cards are never bare;
+and its rules sit **after the treatment rules** in `FrostedTile.css`, because blob and core
+hide that fourth disc at equal specificity and order decides. The motion animates the
+discs only — `.frostedTile__fx`'s `animation` belongs to Discover's entrance bloom. Each
+genre's colour **and** treatment come from `GENRE_TILES` in `helpers/tile-palette.ts`,
+assigned rather than derived: seeding from `coverImage.color` collapses, because Attack on
+Titan leads Action, Drama, Fantasy *and* Mystery. The palettes come from one formula — cap
+L84, body L64/S62, accent a +26° hue shift at L57 — so accents shift hue sideways instead
+of darkening out of the family.
+
+`SeasonWeeks` ("Starting this season") is a snapping rail of week cards, one per calendar
+week of the season, each naming its most-anticipated premiere. It **bleeds to the screen
+edge below 960px only**; at desktop a rail running past the content column read as a
+mistake rather than as a hint that it scrolls.
+
+`ComingLater` and `PopularList` close the page, and between them they consume the
+`nextSeason` and `popular` buckets that used to be fetched and unused. Both are deliberately
+asymmetric, because a row of equal cards says nothing about which entry matters:
+
+- **Coming later** gives the most-awaited next-season title a `FrostedTile` in its own cover
+  colour, `live` like the genre cards (2026-10-11) — with a body-colour floor and its discs
+  spread across the width, because the core treatment's concentric discs uncovered the card
+  once they were turning ellipses. The ripple of concentric rings it used to carry is gone;
+  Mitchell cut it the same day. The three runners-up are quiet rows with a tick strip showing their
+  reach against the lead. The lime "Most awaited" chip is the only lime in the section.
+- **All-time popular** compares six titles with a dotted matrix: **one dot per 25,000
+  members across 42 slots.** Scaled from zero instead, an all-time top six all read 80–100
+  per cent and the block says nothing; quantised this way they read 42, 40, 39, 38, 35, 34.
+  The matrix quantises, so the exact figure is printed beside it. The leader's row sits on
+  `--nested` and its last four dots go lime.
+
+Two things `ComingLater` needed that are worth knowing before composing another tile:
+
+1. **`FrostedTile` puts every child in one `frostedTile__number` div,** which is a single
+   flex item laying its own children out inline. That is right for the one numeral it was
+   built for; a composed card must restyle that slot as the column (`.comingLater__lead
+   .frostedTile__number`) or its title and caption render on the same line.
+2. **A cover-derived palette is normalised, not passed through** (2026-10-11).
+   `paletteFromColor` keeps the cover's hue and fixes the lightness to the genre formula —
+   cap L84, body L64, accent +26° at L57, saturation held to 40–70. It used to hand the
+   cover colour straight through as the body with the accent mixed toward black, so
+   Overgeared's dark brown made a near-black "Airing next" tile in light mode and JUJUTSU
+   KAISEN's `#78aee4` left white text on near-white glass. The scrim `::before` on
+   `.frostedTile--sm`, the lead card and the ring tile stays, since `--on-tile` is white in
+   both themes.
+
+`PopularList` clamps lightness rather than mixing toward the text colour:
+`oklch(from var(--tone) min(l, 0.68) c h)`, inverted to `max()` in dark. Half of an all-time
+top six have pale covers that vanish on a near-white row, and mixing toward `--ink` fixed
+that but turned orange to brown and yellow to olive. Relative colour syntax is behind an
+`@supports` guard with the raw colour as the fallback.
+
+**Favorites** was rebuilt on the design system on 2026-10-11 (`features/favorites/`, option B
+of the companion mockups), and it opens the way Discover does: a `live` `FrostedTile` in the
+**Supernatural genre's palette** (Mitchell's pick over a cover-derived colour, which would
+change whenever a favourite was added) carrying the count, four `FactTile`s beside it, and a
+"Next up" column of `EpisodeRow`s for the favourites airing this week — **not rendered when
+nothing is airing**, and the facts take its room. Then "The shelf": `PosterEchoCard`s, a
+fixed four per row, A to Z. Every figure comes from `features/favorites/derive.ts`, tested
+against the home fixture's `top` bucket because `e2e/fixtures/DetailsList.json` predates the
+wider query and holds only titles and covers — **recapture it** when the live API is next
+hit. Three things to know:
+
+1. **`DETAILS_LIST_QUERY` now asks for the same fields as `Featured`** (score, genres,
+   episodes, duration, start year, main studio, next episode, cover colour) so the page's
+   `Favorite` type *is* `FeaturedMedia` and Discover's components take it unchanged. One
+   request, as before.
+2. **`PosterEchoCard` grew two slots:** `badge` (anything for the top-left corner — the lime
+   "Ep 7 · Tue" chip here) and `meta` (studio · year). `rank` is optional now; given neither,
+   the corner keeps its height so the posters stay level.
+3. **The heart is a sibling of the card, not a child.** A button inside a link is invalid
+   markup and a click on it would navigate, so `.favorites__card` wraps the link and the
+   remove button side by side. Removing dispatches straight to the store, and the list
+   query re-runs on the new ids.
+
+**Squircle corners.** Square surfaces use the reference's continuous corner, via
+`corner-shape: var(--corner)` where `--corner` is `squircle`. It **pairs with**
+`border-radius` rather than replacing it, so an engine that does not know the property paints
+the plain rounding and no fallback branch is needed. Measured as supported in Chromium 153
+and WebKit 26.6, and it survives the production minifier — 21 declarations reach the bundle.
+
+Three things to know before extending it:
+
+1. **A squircle at the same radius reads *tighter*, not rounder** — its shoulders flatten and
+   the corner pulls in, because `squircle` is `superellipse(2)`, whose |x|⁴+|y|⁴=1 curve is
+   fuller than a circle's. So the radii went up with the shape, and kept going: `--r-card` is
+   **76px** (52px below 960px) and `--r-inner` 34px. Matching the reference means both
+   changes, not just the one.
+
+   **Raising a radius silently breaks the spacing inside every card that reads it,** which is
+   why the padding is derived from it rather than picked:
+
+   ```css
+   --pad-card:  max(1.125rem, calc(var(--r-card)  * 0.4));
+   --pad-inner: max(0.875rem, calc(var(--r-inner) * 0.42));
+   ```
+
+   Content x px in from a side clears the bottom edge by
+   `r − r·(1−((r−x)/r)⁴)^(1/4)` — at `--r-card` 76px, an 18px pad left only 7.5px, and the
+   episode card's tick strip and the tiles' footers sat on the curve. Two things still needed
+   hand-fixing: `EpisodeCard`'s min-height went 190→244px, because its run strip uses
+   `margin-top: auto` and there was no slack left to spend; and `.frostedTile__footer` took a
+   `max-width: calc(100% - var(--r-card) * 0.5)`, because the season tile's 31 ticks crossed
+   both bottom corners at full width.
+2. **Pills, chips, avatars and switches keep `round` on purpose.** A superellipse at a radius
+   clamped to half the box flattens a pill's ends and turns a circular avatar into a blob.
+   `--r-pill` carries no `corner-shape`, which is what keeps them out of it.
+3. **`getComputedStyle().cornerShape` is not a reliable check** — several distinct keywords
+   serialise to `superellipse(2)` in Chromium 153 while rendering differently. Screenshot it.
+
+It is applied only to the **phase-1 surfaces**: everything reading `--r-card` / `--r-inner`,
+plus the raw-radius surfaces in `layout/`, `features/discover/` and the redesigned
+`components/`. Details, Profile, Watchlist, Settings and AuthShell still carry their old
+radii and get the shape when their own phase lands, so the app is two-toned here as well.
 
 **Scrolling.** The window never scrolls: `.app__body` is a fixed-height `overflow-y: auto`
 box. So `useScroll()` from framer-motion silently produces zeros, and window scroll
@@ -249,22 +488,94 @@ read it with `useScrollContainer()` and drive a `MotionValue` from its `scrollTo
 (`Details.tsx` is the worked example). `useInView` is unaffected — IntersectionObserver
 still resolves against the viewport.
 
-**Details page.** A hero over the banner (poster, title, alternative titles, genres, four
-stat chips, actions) followed by tabs: Overview, Characters, Staff, Relations. The active
+**Details page.** Rebuilt to the reference on 2026-09-18 as **stacked glass**: a 340px band
+of banner art, then a glass sheet pulled 104px up over it carrying the poster, the title,
+the genre chips and four `FactTile`s. The poster hangs above the sheet's top edge and is the
+one thing crossing the seam, which is what ties the two together. The banner reads as light
+behind frosted glass rather than as a photo with text on it, so it works whether the art is
+dark or blown out — and Cowboy Bebop has **no `coverImage.color` at all**, so this page
+cannot be colour-derived the way the home page's tiles are.
+
+Three things about it are load-bearing:
+
+1. **The glass on artwork is dark-tinted, not white.** `--glass-art` is
+   `rgba(18, 18, 22, 0.34)` with a light rim, in both themes. A white translucent button over
+   a bright banner bleaches to a flat blob and the icon inside it disappears; the reference
+   gets away with white because its ground is a pastel gradient and a banner is not.
+2. **The hero's actions sit at the *bottom* right of the art, not the top.** At the top they
+   landed in the same corner as `.app__topbar`'s theme, search and notification buttons — and
+   that bar is `position: absolute`, so it overlays the banner rather than pushing it down.
+   Five buttons in one corner read as one confused row. Back stays top-left, where the top
+   bar is not.
+3. **The parallax lives on the banner image alone.** The sheet is in the flow and carries the
+   tabs and the body below it, so translating it would drag them. The image still drifts at
+   ~34% of scroll speed (`bannerY`, 0→210px over 620px of scroll, against a 260px
+   over-extension) and the actions drift at half that, because they belong to the art. The
+   old `heroY` / `heroOpacity` went with the old in-banner hero.
+
+`HeroFacts` replaced `HeroMeta`'s chip row and `HeroRankings`' badges, which between them
+said format, episodes, runtime, status and two rankings — six things in two registers, none
+prominent. Four `FactTile`s with icon chips are scannable, and the rest of those fields were
+already in the sidebar. A tile is dropped rather than rendered empty, because plenty of
+titles have no score and an unaired one has no ranking. Deleting `HeroRankings` orphaned
+`components/Badge`, which is gone too.
+
+List status is `ListStatusAction`, among the hero's glass actions: a squircle that grows
+into a pill on hover or focus, with the icon reflecting the status — tick for completed, eye
+for watching, bookmark for planned, list icon when it is not on the list. It replaced
+`components/SplitButton`, which was MUI's `ButtonGroup` plus `Popper`, `Paper` and
+`MenuList` rendering a full-width blue bar; dropping those and `react-icons` took **80 kB
+off the bundle**. Two things it needed: its label is `max-width: 0` at rest, not just
+`opacity: 0` — invisible text still takes space, and 70px of it centred in a 46px clipped
+box pushed the icon clean out of view, so the button rendered as a blank white squircle. And
+its menu opens **downward in two columns**: six rows are 336px, the trigger sits 174px down
+the page, and the banner's own `overflow: hidden` was clipping it to y = −171 — the clip now
+lives on a wrapper around the art alone. It still does not reflect server state back (the
+outstanding `TODO` on this feature).
+
+The tabs are pills now, matching the navigation, and take an icon each — they were the only
+underlined thing left in the app. **The body is on the design system too** (2026-10-10):
+every section is a panel on `--nested` with one heading treatment and an icon, laid out with
+`gap` on a flex column rather than sibling margins — the panel rule's `margin: 0` at two
+classes' specificity silently beat `.details__overviewMain > * + *` and left three of four
+panels touching. The sidebar is an icon-row list with `DotNumber` figures. `Characters` and
+`Staff` return null when empty rather than rendering a heading-only grey block. The
+Relations and Recommendations tabs still render `components/Card`, which has been
+colour-corrected to the tokens but not restructured.
+
+**`App.css` had `a:hover { color: var(--action) !important }`**, a global that painted every
+link in the app indigo on hover and made each redesigned surface fight it with its own
+`!important`. It is `--ink` now. The un-redesigned pages lose an indigo hover they were never
+designed around and get their own with their phase. The rest of the old token block in
+`App.css` (`--primary`, `--action`, `--accent-secondary`, `--scrim-bottom`…) is still
+defined and still read by Profile, Browse and the two banners, so **a details-page style
+that references one of them actively paints the old palette** — grep for `var(--action`,
+`var(--accent`, `var(--scrim` before declaring a page done.
+
+The old shape, for reference: a hero over the banner (poster, title, alternative titles,
+genres, four stat chips, actions) followed by tabs: Overview, Characters, Staff, Relations. The active
 tab lives in `?tab=`, written with `replace` so switching tabs does not stack history;
 an unknown value falls back to Overview. Tabs are only rendered when they have content —
 Relations is gated on the ANIME filter it applies internally, not on `edges.length`.
 The banner image is its own layer, extended 200px above the banner so its parallax
 translation (max 165px) never exposes an edge. Every effect is off under
-`prefers-reduced-motion`. `DetailsSkeleton` deliberately avoids the real `details__*`
-class names — the e2e suite waits on `.details__hero` to know data arrived.
+`prefers-reduced-motion`. `DetailsSkeleton` mirrors the stacked-glass hero metric for
+metric (340px band, −104px sheet, −84px poster overhang) so the swap does not jump, and
+deliberately avoids the real `details__*` class names — the e2e suite waits on
+`.details__sheet` to know data arrived.
 
 **Routing.** All routes except `/login` and `/sign-up` render inside a Navigation + Header shell.
 Private routes are rendered conditionally on `user` in the route tree, with `*` → `<Navigate to="/" />`.
 
 ## Current state — what's done and what isn't
 
-Working: Discover (cinematic hero, live airing countdowns, snapping rails, genre tiles),
+**Design system, phase 1 (2026-09-18):** `styles/tokens.css`, the shared components listed
+under `components/` above, Discover and the navigation were rebuilt to the SuperPower
+reference design in light and dark. Every other page still runs on its old CSS until its own
+phase — so the app is deliberately two-toned right now. The spec and plan are in
+`docs/superpowers/` (gitignored, working copy only).
+
+Working: Discover (A1 dashboard — see above),
 spotlight search with live poster results, Browse with filters, details page (hero + tabs,
 parallax, skeleton loading, rankings/tags/links/community stats/recommendations), staff /
 character / studio pages, Watchlist (built around progress, not posters), Taste (statistics
@@ -280,10 +591,6 @@ Unfinished or parked — mostly deliberate, don't "fix" without asking:
 - `views/ComingSoon.tsx` and `views/Community.tsx` are stubs. Their links live in
   `layout/nav-items.ts` rather than commented-out JSX — add an entry there and they appear
   in both the rail and the mobile overlay.
-- **`nav-items.test.ts` has 3 failing tests** and has done since Calendar and Social were
-  added to the nav. The expectations are stale, not the code: they assert `['discover']`
-  and `['watchlist', 'taste']` where the nav now also returns `calendar` and `social`. A
-  five-minute fix nobody has made.
 - **Calendar and Social have no fixtures and no e2e coverage.** Skipped deliberately to get
   the pages wired; both were verified by hand against the live schema. Adding coverage means
   capturing `AiringSchedule` and `SocialFeed`.
@@ -292,8 +599,11 @@ Unfinished or parked — mostly deliberate, don't "fix" without asking:
 - The **bio / `about` field is deliberately absent from Settings** — it belongs on a
   profile-edit page that does not exist yet.
 - The **bell icon in the nav footer does nothing**. Notifications were not built.
-- `features/details/Actions.tsx` carries the only `TODO` left in `src`: the AniList
-  save-entry feature. `SplitButton` writes list status but doesn't reflect server state back.
+- **Squircles cover the redesigned surfaces only.** The other pages get them with their own
+  phase — see "Squircle corners" under Architecture notes.
+- `features/details/ListStatusAction.tsx` writes AniList list status but does not reflect
+  server state back — a refused mutation leaves the button claiming a change that did not
+  happen. The outstanding `TODO` on that feature; it predates the redesign.
 - `components/ActivityMap.tsx` was deleted on 2026-09-05 as the last `styled-components`
   consumer. The idea came back without it: `features/profile/ActivityHeatmap.tsx` is the
   plain-CSS replacement.
@@ -307,13 +617,6 @@ Known rough edges worth knowing before touching related code:
 - **Private routes vs. auth timing.** `user` is null on first render, so a hard refresh on
   `/favorites` (or any private route) hits the `*` catch-all and redirects to `/`. There's no
   "auth still resolving" state.
-- **The nav rail eats clicks down the left edge of every page.** `.navigation` is
-  `position: absolute` at 72px, expanding to 240px on hover, while `.app__body` only
-  reserves 72px. Approach anything in the left ~168px from the left and the rail expands
-  under the cursor and swallows the click. Invisible in screenshots; it only shows up when
-  something is actually clicked, which is why it keeps being rediscovered. Fix it as its own
-  change — likely by keeping the collapsed box at 72px and growing it on hover, rather than
-  sizing at 240px and relying on `overflow-x: hidden` for the visual.
 - **`firestore.rules`, `storage.rules` and `firebase.json` are gitignored, so a change to
   any of them is in no commit, no branch and no clone, and `git status` will never mention
   it.** The hardened Firestore rules (each collection restricted to its owning uid, deny by
@@ -344,7 +647,7 @@ Known rough edges worth knowing before touching related code:
 - **`@types/react` is pinned via `resolutions`** in `package.json`. MUI drags in
   `@types/react-is` and `@types/react-transition-group`, which pin `@types/react` 18; two
   copies produce `TS2786: cannot be used as a JSX component` on every icon.
-- **`yarn lint` reports 18 pre-existing warnings and exits 0.** Severities are tuned in
+- **`yarn lint` reports 15 pre-existing warnings and exits 0.** Severities are tuned in
   `eslint.config.mjs` to match what CRA's `react-app` preset reported, so this is the same debt
   that was always there — not a new gate. Note Vite does **not** lint during `build`, unlike CRA.
 - **`firebase-functions` 6 and `firebase-admin` 13 are one major behind** (7 and 14 are out).
@@ -386,7 +689,15 @@ commits by branching off a branch rather than off master.
 
 - Prettier: single quotes, semicolons, trailing commas, 100-char width.
 - Styling is plain CSS, one `.css` file per component/view, BEM-ish
-  (`.features`, `.features__header`).
+  (`.features`, `.features__header`). **Component CSS reads tokens only** — no raw
+  colours, radii or durations. Plain CSS is global, so check a new component's class
+  name is not already taken: `components/EpisodeRow` is named that way because
+  `features/watchlist/ListRow` already owns `.listRow`.
+- **Every numeral renders through `DotNumber`** — scores, ranks, counts, episode numbers.
+  Doto is for figures only, never prose.
+- Animate `translate`/`scale` rather than `transform` where an element also has a hover
+  transform: an animation with a `forwards` fill wins the cascade for the property it
+  animates, so animating `transform` permanently beats the hover.
 - Page transitions use `framer-motion` (`initial`/`animate`/`exit` opacity) at the view root.
 - Unit tests are `src/**/*.test.{ts,tsx}` and run under vitest with `globals: true` — use
   `vi.fn()`, not `jest.fn()`, and render via `renderWithProviders` from `test-utils`.

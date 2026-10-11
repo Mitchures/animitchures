@@ -1,64 +1,29 @@
 .genreTiles {
-  margin-bottom: 1.25rem;
-}
-
-.genreTiles__grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.75rem;
-  padding: 0.875rem var(--x-axis-spacing) 0;
+  /* `--cols` from `useFitCount`, two rows of it; 4 before it measures. */
+  grid-template-columns: repeat(var(--cols, 4), 1fr);
+  gap: 12px;
 }
 
-.genreTiles__tile {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 72px;
-  padding: 0 0.75rem;
-  font-size: 15px;
-  font-weight: 800;
-  color: white !important;
-  text-align: center;
-  text-decoration: none;
-  border-radius: var(--border-radius);
-  /* Matches the app's button convention rather than inventing a hover. */
-  transition: var(--transition);
+/* The one place in the app a word is set like a figure: the section heading's
+   display treatment — Inter Tight 400 at display tracking — scaled up to the
+   card. Doto stays for numerals only. */
+.genreTiles__title {
+  font-size: clamp(26px, 2.8vw, 36px);
+  font-weight: 400;
+  letter-spacing: var(--track-display);
+  line-height: 0.98;
+  text-wrap: balance;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.28);
 }
 
-/* Brightness and a lift, not opacity.
-   Fading the tile to 0.65 faded its label with it — white text on a mid-tone
-   gradient, dimmed, on a dark page, which left the genre barely readable at
-   exactly the moment someone was pointing at it. */
-.genreTiles__tile:hover {
-  /* App.css has `a:hover { color: var(--action) !important }`, which at (0,1,1)
-     outranks this tile's own `color: white !important` at (0,1,0) — so every
-     genre label turned indigo on a coloured gradient the moment you pointed at
-     it. This selector is (0,2,0) and wins it back. */
-  color: white !important;
-  filter: brightness(1.15) saturate(1.08);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .genreTiles__tile:hover {
-    transform: none;
-  }
-}
-
-@media screen and (max-width: 960px) {
-  .genreTiles__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media screen and (max-width: 520px) {
-  .genreTiles__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+@media (max-width: 960px) {
+  .genreTiles {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 
-  .genreTiles__tile {
-    height: 60px;
-    font-size: 13px;
+  .genreTiles__title {
+    font-size: 30px;
   }
 }

@@ -1,0 +1,28 @@
+.dotNumber {
+  font-family: var(--font-num);
+  font-weight: 700;
+  font-variation-settings: 'ROND' 100;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.dotNumber--xs {
+  font-size: 13px;
+}
+
+.dotNumber--sm {
+  font-size: 22px;
+}
+
+.dotNumber--md {
+  font-size: 30px;
+}
+
+.dotNumber--lg {
+  font-size: 46px;
+}
+
+.dotNumber--xl {
+  font-size: 64px;
+}

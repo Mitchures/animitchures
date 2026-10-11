@@ -1,0 +1,59 @@
+.episodeRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.875rem 0.625rem 0.625rem;
+  border-radius: 26px;
+  corner-shape: var(--corner);
+  background: var(--card);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.episodeRow:hover {
+  color: var(--ink) !important;
+}
+
+.episodeRow--lead {
+  background: var(--nested);
+}
+
+.episodeRow img {
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.episodeRow__body {
+  min-width: 0;
+}
+
+.episodeRow__eyebrow {
+  font-size: 11px;
+  color: var(--ink);
+}
+
+.episodeRow__title {
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.episodeRow__when {
+  margin-top: 0.125rem;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.episodeRow__number {
+  flex: none;
+  margin-left: auto;
+  text-align: right;
+}
+
+.episodeRow__number small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+}

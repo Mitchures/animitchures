@@ -1,11 +1,185 @@
 .discover {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - var(--header-height));
-  height: calc(100dvh - var(--header-height));
-  overflow-y: auto;
+  /* No max-width (2026-10-11): the page runs the width of the screen. The
+     slider takes the room, the 300px aside keeps its size, and the card rows
+     add cards rather than stretching them — see `useFitCount`. */
+  /* The stat row opens the page now that the greeting is gone, so this pad is
+     the whole gap above it, and it is set to line the row up with the pill
+     column's Explore / Library tab across the gutter — that pairing is the
+     first thing the eye reads at this width.
+     Centres, not baselines: the tab is 28px Inter Tight and the figures are
+     30px Doto, and a dot-matrix face does not sit on an alphabetic baseline.
+     If `PillNav`'s own top spacing changes, this has to move with it. */
+  padding: 3.4375rem 0 3rem;
 }
 
-.discover > div {
-  margin-bottom: 1.25rem;
+.discover__grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 14px;
+  margin-top: 1.375rem;
+}
+
+.discover__main {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+/* Takes the slack so the two columns end level. The aside is the taller of the
+   pair — 300px of ring plus a 218px card against 320 of slider plus 184 of
+   widgets — so without this the widget row stopped 14px above the season card
+   and the grid's own stretch hid the gap inside `.discover__main`. The tiles
+   have a min-height, so growing into it is invisible. */
+.discover__widgets {
+  display: grid;
+  flex: 1;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.discover__side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* The card takes the height the link tile leaves, so the column ends flush
+   with the widgets beside it. Alone — signed out, or with AniList linked — it
+   sizes to its content instead, because one stretched card reads as an empty
+   panel rather than a filled column. */
+.discover__side .infoCard:not(:only-child) {
+  flex: 1;
+}
+
+.discover__cards {
+  display: grid;
+  /* `--cols` is set inline by the row from `useFitCount`; 4 before it measures. */
+  grid-template-columns: repeat(var(--cols, 4), 1fr);
+  gap: 14px;
+}
+
+.discover__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.discover__phoneOnly {
+  display: none;
+}
+
+.discover__desktopOnly {
+  display: block;
+}
+
+.discover__cards.discover__desktopOnly {
+  display: grid;
+}
+
+@media (max-width: 960px) {
+  .discover {
+    /* Below 960px the mobile header is in flow and already provides the gap. */
+    padding-top: 0.5rem;
+  }
+
+  .discover__grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* A snapping rail, with the third tile peeking in so it is clear there is
+     more than two. */
+  .discover__widgets {
+    display: flex;
+    gap: 10px;
+    margin: 0 calc(-1 * var(--gutter));
+    padding: 0 var(--gutter);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    /* See SeasonWeeks.css: without this, snapping eats the rail's padding and
+       the first tile sits a gutter left of everything else. */
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+
+  .discover__widgets::-webkit-scrollbar {
+    display: none;
+  }
+
+  .discover__widgets .frostedTile {
+    flex: none;
+    width: 158px;
+    min-height: 158px;
+    scroll-snap-align: start;
+  }
+
+  .discover__cards--top {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .discover__phoneOnly {
+    display: block;
+  }
+
+  .discover__list.discover__phoneOnly {
+    display: flex;
+  }
+
+  .discover__desktopOnly,
+  .discover__cards.discover__desktopOnly {
+    display: none;
+  }
+}
+
+/* The page's one orchestrated moment: each band rises 14px as it fades in,
+   70ms after the one above it.
+
+   `translate` and `scale` rather than `transform`: an animation with a
+   forwards fill wins the cascade for the property it animates, so animating
+   `transform` here would permanently beat the tiles' own hover lift. The
+   individual properties compose with it instead. */
+.discover__rise {
+  opacity: 0;
+  translate: 0 14px;
+  animation: discover-rise var(--t-slow) var(--ease) forwards;
+  animation-delay: calc(var(--i, 0) * var(--stagger));
+}
+
+@keyframes discover-rise {
+  to {
+    opacity: 1;
+    translate: none;
+  }
+}
+
+/* The colour behind the glass blooms to size as the tile lands, like a light
+   coming on behind it. */
+.discover__rise .frostedTile__fx {
+  animation: discover-bloom 900ms var(--ease) both;
+  animation-delay: calc(var(--i, 0) * var(--stagger));
+}
+
+@keyframes discover-bloom {
+  from {
+    scale: 0.6;
+  }
+
+  to {
+    scale: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .discover__rise {
+    translate: none;
+    animation-duration: var(--t-fast);
+    animation-delay: 0s;
+  }
+
+  .discover__rise .frostedTile__fx {
+    animation: none;
+  }
 }

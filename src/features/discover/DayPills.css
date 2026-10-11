@@ -1,0 +1,54 @@
+.dayPills {
+  display: flex;
+  gap: 6px;
+  margin: 0.875rem calc(-1 * var(--gutter)) 0;
+  padding: 0 var(--gutter);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.dayPills::-webkit-scrollbar {
+  display: none;
+}
+
+.dayPill {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 0.375rem;
+  width: auto;
+  height: auto;
+  padding: 9px 12px;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background var(--t-fast) var(--ease);
+}
+
+.dayPill:hover {
+  opacity: 1;
+  color: var(--ink) !important;
+}
+
+.dayPill .dotNumber {
+  color: var(--muted);
+}
+
+.dayPill.is-on {
+  background: var(--ink);
+  color: var(--canvas);
+}
+
+.dayPill.is-on .dotNumber {
+  color: var(--canvas);
+}
+
+.dayPill:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}

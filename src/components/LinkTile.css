@@ -1,0 +1,32 @@
+.linkTile {
+  min-height: 150px;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.linkTile .frostedTile__number {
+  margin: 0;
+}
+
+.linkTile__label {
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.linkTile__plus {
+  position: absolute;
+  right: 0.875rem;
+  top: 0.875rem;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  color: #161616;
+}
+
+.linkTile__plus svg {
+  width: 20px;
+  height: 20px;
+}

@@ -1,3 +1,5 @@
+import { Workspaces } from '@mui/icons-material';
+
 import './Recommendations.css';
 
 import Card from 'components/Card';
@@ -21,6 +23,10 @@ function Recommendations({ recommendations }: Media) {
 
   return (
     <div className="recommendations">
+      <h3>
+        <Workspaces />
+        If you liked this
+      </h3>
       <div className="recommendations__container">
         {suggestions.map((node) => (
           <Card key={node!.id} {...node!.mediaRecommendation} />

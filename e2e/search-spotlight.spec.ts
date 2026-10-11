@@ -11,6 +11,17 @@ import { test, expect } from './anilist-mock';
  * test waits on the specific element it asserts against instead.
  */
 
+/**
+ * The spotlight's trigger, whichever chrome is on screen: the page's top bar
+ * above 960px, the mobile header below it. The floating action button it
+ * replaced is gone — search is an action with one home at each width.
+ */
+const searchButton = (page: import('@playwright/test').Page) =>
+  page
+    .locator('.app__topbar, .mobileHeader')
+    .getByRole('button', { name: /Search anime/ })
+    .first();
+
 test.describe('search spotlight', () => {
   test.use({ viewport: { width: 1280, height: 900 } });
 
@@ -18,24 +29,23 @@ test.describe('search spotlight', () => {
     await page.goto('/anime/1/cowboy-bebop', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.details__hero')).toBeVisible({ timeout: 20_000 });
 
-    await expect(page.locator('.header')).toBeHidden();
+    await expect(page.locator('.mobileHeader')).toBeHidden();
     // --header-height is 0 on desktop, so nothing offsets the banner down.
     const banner = await page.locator('.details__banner').boundingBox();
     expect(Math.round(banner?.y ?? -1)).toBe(0);
 
-    // The trigger is a floating action button pinned bottom-right, clear of
-    // the banner and the sticky tab bar at the top of the page.
-    const trigger = page.locator('.searchFab');
+    // The trigger sits in the page's own top bar, top-right of the content.
+    const trigger = searchButton(page);
     await expect(trigger).toBeVisible();
-    const fab = (await trigger.boundingBox())!;
+    const box = (await trigger.boundingBox())!;
     const viewport = page.viewportSize()!;
-    expect(fab.x).toBeGreaterThan(viewport.width / 2);
-    expect(fab.y).toBeGreaterThan(viewport.height / 2);
+    expect(box.x).toBeGreaterThan(viewport.width / 2);
+    expect(box.y).toBeLessThan(viewport.height / 2);
   });
 
   test('opens with the keyboard and closes with escape', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.hero')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.slideHero')).toBeVisible({ timeout: 20_000 });
 
     await page.keyboard.press('ControlOrMeta+k');
     await expect(page.getByRole('dialog', { name: 'Search anime' })).toBeVisible();
@@ -48,7 +58,7 @@ test.describe('search spotlight', () => {
 
   test('"/" opens it, but not while typing in a field', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.hero')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.slideHero')).toBeVisible({ timeout: 20_000 });
 
     await page.keyboard.press('/');
     await expect(page.getByRole('dialog', { name: 'Search anime' })).toBeVisible();
@@ -60,9 +70,9 @@ test.describe('search spotlight', () => {
 
   test('typing shows poster results and enter opens one', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.hero')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.slideHero')).toBeVisible({ timeout: 20_000 });
 
-    await page.locator('.searchFab').click();
+    await searchButton(page).click();
     await page.locator('.spotlight__field input').fill('frieren');
 
     const results = page.locator('.spotlight__result');
@@ -82,14 +92,14 @@ test.describe('search spotlight', () => {
 
   test('reopening does not show the previous search', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.hero')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.slideHero')).toBeVisible({ timeout: 20_000 });
 
-    await page.locator('.searchFab').click();
+    await searchButton(page).click();
     await page.locator('.spotlight__field input').fill('frieren');
     await expect(page.locator('.spotlight__result').first()).toBeVisible({ timeout: 20_000 });
     await page.keyboard.press('Escape');
 
-    await page.locator('.searchFab').click();
+    await searchButton(page).click();
     // Apollo keeps the last response, so results have to be gated on the
     // current term or the previous search's posters are still sitting there.
     await expect(page.locator('.spotlight__result')).toHaveCount(0);
@@ -98,9 +108,9 @@ test.describe('search spotlight', () => {
 
   test('see-all goes to the full results page', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.hero')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.slideHero')).toBeVisible({ timeout: 20_000 });
 
-    await page.locator('.searchFab').click();
+    await searchButton(page).click();
     await page.locator('.spotlight__field input').fill('frieren');
     await expect(page.locator('.spotlight__result').first()).toBeVisible({ timeout: 20_000 });
 
@@ -112,24 +122,23 @@ test.describe('search spotlight', () => {
 test.describe('search on mobile', () => {
   test.use({ viewport: { width: 500, height: 900 } });
 
-  test('the FAB is the only search, and the header just carries the logo', async ({ page }) => {
+  test('the header carries the logo and the one search button', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.header')).toBeVisible({ timeout: 20_000 });
-    await expect(page.locator('.navigation')).toBeHidden();
-    // The spotlight trigger used to live in the rail, so it disappeared with
-    // it below 960px. As a FAB it survives, which is half the reason it moved.
-    await expect(page.locator('.searchFab')).toBeVisible();
-    // And the header's own inline field is gone with it — it was a second,
-    // worse search: no live results, and it only navigated on submit.
-    await expect(page.locator('.header .search')).toHaveCount(0);
-    await expect(page.locator('.header__mark img')).toBeVisible();
+    await expect(page.locator('.mobileHeader')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.pillNav')).toBeHidden();
+
+    await expect(searchButton(page)).toBeVisible();
+    // No inline field: it was a second, worse search — no live results, and it
+    // only navigated on submit.
+    await expect(page.locator('.mobileHeader input')).toHaveCount(0);
+    await expect(page.locator('.mobileHeader__brand img')).toBeVisible();
   });
 
-  test('the FAB opens the spotlight at phone width', async ({ page }) => {
+  test('the header button opens the spotlight at phone width', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.header')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.mobileHeader')).toBeVisible({ timeout: 20_000 });
 
-    await page.locator('.searchFab').click();
+    await searchButton(page).click();
     await expect(page.locator('.spotlight__field input')).toBeFocused();
   });
 });

@@ -25,7 +25,7 @@ test.describe('details tabs', () => {
 
   test('clicking a tab updates the URL', async ({ page }) => {
     await page.goto(DETAILS);
-    await expect(page.locator('.details__hero')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.details__sheet')).toBeVisible({ timeout: 20_000 });
 
     await page.getByRole('tab', { name: 'Relations' }).click();
     await expect(page).toHaveURL(/tab=relations/);
@@ -51,9 +51,9 @@ test.describe('details tabs', () => {
 
   test('switching tabs does not stack history entries', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.hero')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.slideHero')).toBeVisible({ timeout: 20_000 });
     await page.goto(DETAILS);
-    await expect(page.locator('.details__hero')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.details__sheet')).toBeVisible({ timeout: 20_000 });
 
     await page.getByRole('tab', { name: 'Relations' }).click();
     await page.getByRole('tab', { name: 'More like this' }).click();
@@ -70,7 +70,7 @@ test.describe('details hero', () => {
 
   test('the banner parallaxes without exposing its top edge', async ({ page }) => {
     await page.goto(DETAILS);
-    await expect(page.locator('.details__hero')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.details__sheet')).toBeVisible({ timeout: 20_000 });
 
     const translate = () =>
       page
@@ -97,7 +97,7 @@ test.describe('details hero', () => {
 
   test('the title reappears in the tab bar once the hero scrolls away', async ({ page }) => {
     await page.goto(DETAILS);
-    await expect(page.locator('.details__hero')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.details__sheet')).toBeVisible({ timeout: 20_000 });
 
     const compact = page.locator('.detailsTabs__title');
     await expect(compact).toHaveCSS('opacity', '0');
@@ -110,7 +110,7 @@ test.describe('details hero', () => {
   test('the favorite button is unavailable when signed out', async ({ page }) => {
     // Actions renders nothing without a user, so the hero must not offer it.
     await page.goto(DETAILS);
-    await expect(page.locator('.details__hero')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.details__sheet')).toBeVisible({ timeout: 20_000 });
 
     await expect(page.getByRole('button', { name: /favorites/i })).toHaveCount(0);
   });
@@ -121,7 +121,7 @@ test.describe('details hero with reduced motion', () => {
 
   test('nothing translates and the compact title is simply present', async ({ page }) => {
     await page.goto(DETAILS);
-    await expect(page.locator('.details__hero')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.details__sheet')).toBeVisible({ timeout: 20_000 });
 
     await scrollBody(page, 600);
     await page.waitForTimeout(600);
@@ -130,7 +130,7 @@ test.describe('details hero with reduced motion', () => {
       .locator('.details__bannerImage')
       .evaluate((el) => new DOMMatrixReadOnly(getComputedStyle(el).transform).m42);
     expect(moved).toBe(0);
-    await expect(page.locator('.details__hero')).toHaveCSS('opacity', '1');
+    await expect(page.locator('.details__sheet')).toHaveCSS('opacity', '1');
     await expect(page.locator('.detailsTabs__title')).toHaveCSS('opacity', '1');
   });
 });
@@ -148,34 +148,19 @@ test.describe('details loading', () => {
 
     await page.goto(DETAILS);
     await expect(page.locator('.detailsSkeleton')).toBeVisible({ timeout: 20_000 });
-    // Critical: the suite waits on .details__hero to know data has arrived. A
+    // Critical: the suite waits on .details__sheet to know data has arrived. A
     // skeleton wearing that class would satisfy every such wait prematurely.
-    await expect(page.locator('.details__hero')).toHaveCount(0);
+    await expect(page.locator('.details__sheet')).toHaveCount(0);
 
-    await expect(page.locator('.details__hero')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.details__sheet')).toBeVisible({ timeout: 20_000 });
     await expect(page.locator('.detailsSkeleton')).toHaveCount(0);
   });
 });
 
-test.describe('sidebar rail', () => {
+test.describe('pill column', () => {
   test.use({ viewport: { width: 1280, height: 900 } });
 
-  test('expands on hover without shifting the content', async ({ page }) => {
-    await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.navigation')).toBeVisible({ timeout: 20_000 });
-
-    const before = await page.locator('.app__body').boundingBox();
-    await page.locator('.navigation').hover();
-    await page.waitForTimeout(400);
-    const railWidth = (await page.locator('.navigation').boundingBox())?.width ?? 0;
-    const after = await page.locator('.app__body').boundingBox();
-
-    expect(railWidth).toBeGreaterThan(200);
-    // The rail overlays rather than pushes: content must not move.
-    expect(after?.x).toBe(before?.x);
-  });
-
-  test('collapsed rail links still have accessible names', async ({ page }) => {
+  test('links keep accessible names', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.getByRole('link', { name: 'Discover' })).toHaveCount(1, { timeout: 20_000 });
   });

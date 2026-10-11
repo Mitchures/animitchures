@@ -14,7 +14,7 @@ import Details from 'features/details/Details';
 import Profile from 'features/profile/Profile';
 import Discover from 'features/discover/Discover';
 import Browse from 'features/browse/Browse';
-import Favorites from 'views/Favorites';
+import Favorites from 'features/favorites/Favorites';
 import Watchlist from 'features/watchlist/Watchlist';
 import StaffPage from 'features/people/StaffPage';
 import CharacterPage from 'features/people/CharacterPage';

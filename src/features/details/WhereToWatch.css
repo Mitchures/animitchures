@@ -6,7 +6,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin: 0.875rem 0 0;
+  margin: 0;
 }
 
 /* A second group ("Links" under "Where to watch") needs air above its heading,
@@ -17,13 +17,13 @@
 }
 
 .whereToWatch__link {
-  padding: 0.5rem 0.9rem;
+  padding: 0.5625rem 0.875rem;
   font-size: 13px;
-  font-weight: 700;
-  color: var(--secondary);
+  font-weight: 400;
+  color: var(--muted);
   text-decoration: none;
-  border-radius: 12px;
-  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: var(--r-pill);
+  background-color: var(--card);
   transition:
     color 0.16s,
     background-color 0.16s;
@@ -33,22 +33,19 @@
    globally, which otherwise paints this text the same indigo as its own hover
    background and makes the label vanish. */
 .whereToWatch__link:hover {
-  color: white !important;
-  background-color: var(--action);
+  color: var(--ink) !important;
+  background-color: var(--canvas);
 }
 
-/* Somewhere you can actually press play, so it leads. */
+/* Somewhere you can actually press play, so it leads: solid ink where the
+   other links are card-grey. A fill rather than a tint, and no second accent. */
 .whereToWatch__link--stream {
-  color: var(--action);
-  background-color: var(--action-light);
+  color: var(--canvas);
+  background-color: var(--ink);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .whereToWatch__link {
-    background-color: rgba(255, 255, 255, 0.06);
-  }
-}
-
-:root[data-theme='dark'] .whereToWatch__link {
-  background-color: rgba(255, 255, 255, 0.06);
+.whereToWatch__link--stream:hover {
+  color: var(--canvas) !important;
+  background-color: var(--ink);
+  opacity: 0.86;
 }

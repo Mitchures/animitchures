@@ -1,0 +1,131 @@
+.drawer__dim {
+  position: fixed;
+  inset: 0;
+  z-index: 125;
+  background: var(--dim);
+}
+
+.drawer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 128;
+  padding: 0.875rem var(--gutter) calc(var(--tabbar-height) + 32px);
+  border-radius: 44px 44px 0 0;
+  corner-shape: var(--corner);
+  background: color-mix(in srgb, var(--canvas) 72%, transparent);
+  color: var(--ink);
+  backdrop-filter: blur(30px) saturate(1.4);
+  -webkit-backdrop-filter: blur(30px) saturate(1.4);
+  box-shadow:
+    var(--shadow-drawer),
+    inset 0 1px 0 var(--glass-rim);
+}
+
+.drawer__grab {
+  display: block;
+  width: 44px;
+  height: 5px;
+  margin: 0 auto 1.125rem;
+  border-radius: 3px;
+  background: var(--muted);
+  opacity: 0.5;
+}
+
+.drawer__title {
+  margin: 0 0.25rem 1rem;
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: var(--track-display);
+}
+
+.drawer__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.drawer__list .pill {
+  padding: 1rem 1.125rem;
+  background: color-mix(in srgb, var(--nested) 55%, transparent);
+  font-size: 16px;
+}
+
+.drawer__list .pill svg {
+  width: 20px;
+  height: 20px;
+}
+
+.drawer__section {
+  margin: 0.75rem 0.5rem 0.625rem;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.drawer__account {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-top: 1.25rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--nested) 55%, transparent);
+}
+
+.drawer__who {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  color: var(--ink);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.drawer__who:hover {
+  color: var(--ink) !important;
+}
+
+.drawer__avatar.MuiAvatar-root {
+  width: 30px;
+  height: 30px;
+  font-size: 13px;
+  background: linear-gradient(135deg, #6366f1, #f345ae);
+}
+
+.drawer__actions {
+  display: flex;
+  gap: 0.375rem;
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.drawer__actions a,
+.drawer__actions button {
+  width: auto;
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 400;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.drawer__actions a:hover,
+.drawer__actions button:hover {
+  opacity: 1;
+  color: var(--ink) !important;
+}
+
+@media (min-width: 961px) {
+  .drawer,
+  .drawer__dim {
+    display: none;
+  }
+}

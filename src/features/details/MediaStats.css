@@ -8,8 +8,8 @@
 
 .mediaStats__caption {
   font-size: 12px;
-  font-weight: 700;
-  color: var(--secondary);
+  font-weight: 400;
+  color: var(--muted);
   margin-bottom: 0.6rem;
 }
 
@@ -31,15 +31,23 @@
 }
 
 .mediaStats__barFill {
-  border-radius: 6px 6px 0 0;
-  background: linear-gradient(180deg, var(--action), rgba(99, 102, 241, 0.45));
+  border-radius: 6px 6px 3px 3px;
+  background: var(--muted);
+  opacity: 0.38;
   min-height: 2px;
+}
+
+/* The tallest bucket takes the lime: one mark on the chart, on the score most
+   people actually gave it. */
+.mediaStats__barFill--peak {
+  background: var(--lime);
+  opacity: 1;
 }
 
 .mediaStats__barLabel {
   font-size: 10px;
-  font-weight: 700;
-  color: var(--secondary);
+  font-weight: 400;
+  color: var(--muted);
   text-align: center;
 }
 
@@ -67,8 +75,8 @@
   align-items: center;
   gap: 0.4rem;
   font-size: 12px;
-  font-weight: 600;
-  color: var(--secondary);
+  font-weight: 400;
+  color: var(--muted);
 }
 
 .mediaStats__dot {
@@ -79,16 +87,6 @@
 }
 
 .mediaStats__key b {
-  color: var(--primary);
-  font-weight: 700;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .mediaStats__key b {
-    color: white;
-  }
-}
-
-:root[data-theme='dark'] .mediaStats__key b {
-  color: white;
+  color: var(--ink);
+  font-weight: 500;
 }

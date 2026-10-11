@@ -1,5 +1,3 @@
-.summary > p {
-  font-weight: 600;
-  padding: 0.875rem 0;
-  margin-bottom: 1.25rem;
-}
+/* Body text is styled once, by `.details__overview p` in Details.css. This file
+   used to set `font-weight: 600` here, which won over that rule and rendered the
+   synopsis as a block of bold white. Nothing is left for it to say. */

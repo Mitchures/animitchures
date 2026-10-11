@@ -1,0 +1,74 @@
+/* The label, figure and caption all swap together, so they animate together.
+   `translate` rather than `transform`, because the tile's hover lift owns
+   `transform` and an animation with a `forwards` fill would beat it for good. */
+.tileDeck .frostedTile__label,
+.tileDeck .tileDeck__value,
+.tileDeck .frostedTile__caption {
+  animation: tileDeckSwap 420ms var(--ease) both;
+}
+
+.tileDeck .frostedTile__caption {
+  animation-delay: 60ms;
+}
+
+@keyframes tileDeckSwap {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.tileDeck__value {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.375rem;
+}
+
+.tileDeck__value small {
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+/* The pager replaces the tick footer on a cycling tile. Same 20px height, so
+   the tile's interior does not shift between a deck and a static tile. */
+.tileDeck__pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 20px;
+}
+
+.tileDeck__pager i {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--on-tile);
+  opacity: 0.34;
+  transition:
+    opacity var(--t-fast) var(--ease),
+    width var(--t-base) var(--ease);
+}
+
+/* The active dot stretches to a bar rather than only brightening: position in
+   the deck is then readable at a glance rather than by comparing brightness. */
+.tileDeck__pager i.is-on {
+  width: 18px;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tileDeck .frostedTile__label,
+  .tileDeck .tileDeck__value,
+  .tileDeck .frostedTile__caption {
+    animation: none;
+  }
+
+  .tileDeck__pager i {
+    transition: none;
+  }
+}

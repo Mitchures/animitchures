@@ -1,14 +1,36 @@
 .sectionHeading {
-  padding: 0 var(--x-axis-spacing);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 2rem 0 0.875rem;
 }
 
-.sectionHeading > h3 {
-  font-weight: 800;
+.sectionHeading__title {
+  font-weight: 400;
+  font-size: 26px;
+  letter-spacing: var(--track-display);
+  color: var(--ink);
 }
 
-.sectionHeading > p {
-  margin-top: 0.15rem;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--secondary);
+.sectionHeading__detail {
+  margin-top: 0.25rem;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+@media (max-width: 960px) {
+  .sectionHeading {
+    margin: 1.625rem 0 0.75rem;
+  }
+
+  .sectionHeading__title {
+    font-size: 22px;
+  }
+
+  .sectionHeading__detail {
+    font-size: 12px;
+  }
 }

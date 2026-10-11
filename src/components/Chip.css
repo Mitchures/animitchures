@@ -1,0 +1,35 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.3125rem 0.625rem;
+  border-radius: var(--r-pill);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.chip--neutral {
+  background: var(--card);
+  color: var(--ink);
+}
+
+.chip--lime {
+  background: var(--lime);
+  color: var(--on-lime);
+  font-weight: 500;
+}
+
+.chip--ink {
+  background: var(--ink);
+  color: var(--canvas);
+}
+
+.chip--glass {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--on-tile);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}

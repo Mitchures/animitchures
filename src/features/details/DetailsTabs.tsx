@@ -6,6 +6,8 @@ import './DetailsTabs.css';
 export interface DetailsTab {
   id: string;
   label: string;
+  /** Optional, and it earns its place: the tabs are a set you scan. */
+  icon?: ReactNode;
   content: ReactNode;
 }
 
@@ -42,6 +44,7 @@ function DetailsTabs({ tabs, trailing }: { tabs: DetailsTab[]; trailing?: ReactN
             className={`detailsTabs__tab${tab.id === active.id ? ' detailsTabs__tab--active' : ''}`}
             onClick={() => select(tab.id)}
           >
+            {tab.icon}
             {tab.label}
           </button>
         ))}

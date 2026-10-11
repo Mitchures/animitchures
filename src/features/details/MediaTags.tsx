@@ -1,3 +1,5 @@
+import { Sell } from '@mui/icons-material';
+
 import { useState } from 'react';
 
 import './MediaTags.css';
@@ -27,7 +29,10 @@ function MediaTags({ tags }: Media) {
 
   return (
     <div className="mediaTags">
-      <h3>Tags</h3>
+      <h3>
+        <Sell />
+        Tags
+      </h3>
       <div className="mediaTags__row">
         {safe.map((tag) => (
           <span key={tag.id} className="mediaTags__tag" title={tag.description ?? undefined}>

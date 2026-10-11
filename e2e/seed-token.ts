@@ -42,14 +42,16 @@ export const FAKE_TOKEN = {
 };
 
 export async function seedAnilistToken(): Promise<void> {
-  const app = getApps()[0] ?? initializeApp({
-    apiKey: required('VITE_API_KEY'),
-    authDomain: required('VITE_AUTH_DOMAIN'),
-    projectId: required('VITE_PROJECT_ID'),
-    storageBucket: required('VITE_STORAGE_BUCKET'),
-    messagingSenderId: required('VITE_MESSAGING_SENDER_ID'),
-    appId: required('VITE_APP_ID'),
-  });
+  const app =
+    getApps()[0] ??
+    initializeApp({
+      apiKey: required('VITE_API_KEY'),
+      authDomain: required('VITE_AUTH_DOMAIN'),
+      projectId: required('VITE_PROJECT_ID'),
+      storageBucket: required('VITE_STORAGE_BUCKET'),
+      messagingSenderId: required('VITE_MESSAGING_SENDER_ID'),
+      appId: required('VITE_APP_ID'),
+    });
 
   const auth = getAuth(app);
   const db = getFirestore(app);

@@ -1,75 +1,54 @@
-import { useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { CSSProperties } from 'react';
 
 import './GenreTiles.css';
 
-import { Featured, FeaturedBucket, FeaturedMedia } from 'graphql/featured';
+import FrostedTile from 'components/FrostedTile';
+import { useFitCount } from 'features/discover/useFitCount';
+import { genreTile } from 'helpers';
 
-import SectionHeading from 'components/SectionHeading';
-
-const TILE_COUNT = 8;
-
-/**
- * Gradients keyed by genre name rather than by position, so a genre keeps its
- * colour as the trending data shifts underneath it.
- */
-const GRADIENTS = [
-  'linear-gradient(135deg, #6366f1, #9b50f4)',
-  'linear-gradient(135deg, #f345ae, #f59e0b)',
-  'linear-gradient(135deg, #26ae7f, #6366f1)',
-  'linear-gradient(135deg, #9b50f4, #f345ae)',
-  'linear-gradient(135deg, #f59e0b, #ff5657)',
-  'linear-gradient(135deg, #0ea5e9, #6366f1)',
-  'linear-gradient(135deg, #ff5657, #9b50f4)',
-  'linear-gradient(135deg, #14b8a6, #0ea5e9)',
-];
-
-const gradientFor = (genre: string) => {
-  let hash = 0;
-  for (let i = 0; i < genre.length; i += 1) hash = (hash * 31 + genre.charCodeAt(i)) >>> 0;
-  return GRADIENTS[hash % GRADIENTS.length];
-};
+interface Props {
+  genres: { genre: string; count: number }[];
+}
 
 /**
- * Genres to browse, ranked by how often they appear across everything already
- * loaded for the rails — so the shortcuts reflect what is actually on right
- * now rather than a hardcoded list that slowly goes stale.
+ * A way into browsing, as eight portrait cards after Apple Music's "made for
+ * you" tiles: the genre name set as the figure on slowly folding colour.
+ *
+ * The same `FrostedTile` as the page's widgets at its `tall` size, so there is
+ * one object to learn rather than a lookalike. Each genre's colour and
+ * treatment come from `GENRE_TILES`, which is why Action is the same red and
+ * the same shape everywhere it appears. The count is not shown — it was a
+ * stat on a door, and the door is the point.
+ *
+ * `--phase` offsets each tile's motion so the row never moves in unison; the
+ * step is a prime share of the periods so no two tiles ever line up.
+ *
+ * Two rows, as many columns as fit: eight genres at the old 1180px, up to
+ * twelve on a wide display. AniList has 18, so the rows are always full.
  */
-function GenreTiles({ featured }: { featured: Featured }) {
-  const genres = useMemo(() => {
-    const counts = new Map<string, number>();
-    Object.values(featured ?? {}).forEach((bucket: FeaturedBucket | undefined) => {
-      (bucket?.media ?? []).forEach((media: FeaturedMedia) => {
-        (media?.genres ?? []).forEach((genre: string) => {
-          counts.set(genre, (counts.get(genre) ?? 0) + 1);
-        });
-      });
-    });
-
-    return [...counts.entries()]
-      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-      .slice(0, TILE_COUNT)
-      .map(([genre]) => genre);
-  }, [featured]);
-
+function GenreTiles({ genres }: Props) {
+  const [ref, cols] = useFitCount(230, 12, 4, 6);
   if (!genres.length) return null;
 
   return (
-    <section className="genreTiles">
-      <SectionHeading title="Browse by genre" />
-      <div className="genreTiles__grid">
-        {genres.map((genre) => (
-          <Link
+    <div ref={ref} className="genreTiles" style={{ '--cols': cols } as CSSProperties}>
+      {genres.slice(0, cols * 2).map(({ genre }, index) => {
+        const { treatment, palette } = genreTile(genre);
+        return (
+          <FrostedTile
             key={genre}
-            className="genreTiles__tile"
-            style={{ backgroundImage: gradientFor(genre) }}
+            size="tall"
+            live
+            treatment={treatment}
+            palette={palette}
+            style={{ '--phase': `-${(index * 11.3) % 47}s` } as CSSProperties}
             to={`/search/anime?genre=${encodeURIComponent(genre)}`}
           >
-            {genre}
-          </Link>
-        ))}
-      </div>
-    </section>
+            <span className="genreTiles__title">{genre}</span>
+          </FrostedTile>
+        );
+      })}
+    </div>
   );
 }
 

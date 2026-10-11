@@ -259,8 +259,30 @@ export const DETAILS_LIST_QUERY = gql`
         coverImage {
           extraLarge
           large
+          color
         }
         bannerImage
+        genres
+        format
+        averageScore
+        episodes
+        duration
+        startDate {
+          year
+        }
+        studios(isMain: true) {
+          edges {
+            isMain
+            node {
+              name
+            }
+          }
+        }
+        nextAiringEpisode {
+          airingAt
+          episode
+          timeUntilAiring
+        }
       }
     }
   }

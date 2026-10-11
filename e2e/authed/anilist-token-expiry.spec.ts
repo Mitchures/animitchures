@@ -1,4 +1,5 @@
 import { test, expect } from '../anilist-mock';
+import { navigateVia, waitForSignedInShell } from '../nav';
 import type { Page } from '@playwright/test';
 
 import { seedAnilistToken } from '../seed-token';
@@ -35,7 +36,7 @@ const REFUSAL = {
 
 async function gotoSignedInHome(page: Page) {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
-  await page.locator('.navigation a:has-text("Logout")').waitFor({ state: 'attached', timeout: 20_000 });
+  await waitForSignedInShell(page);
 }
 
 /** Puts a token in place, so the app believes it has a working connection. */
@@ -90,7 +91,7 @@ test.describe('a refused AniList token', () => {
     // Details is the first authenticated read most people hit. Any of them will
     // do — the point is that the warning follows you rather than living on one
     // page you might never open.
-    await page.locator('.navigation a', { hasText: 'Social' }).click();
+    await navigateVia(page, 'Social');
 
     const banner = page.locator('.anilistReconnect--banner');
     await expect(banner).toBeVisible({ timeout: 20_000 });
@@ -106,7 +107,7 @@ test.describe('a refused AniList token', () => {
     await withStoredToken(page);
     await refuseAuthenticatedRequests(page);
     await gotoSignedInHome(page);
-    await page.locator('.navigation a', { hasText: 'Social' }).click();
+    await navigateVia(page, 'Social');
 
     const panel = page.locator('.anilistReconnect:not(.anilistReconnect--banner)');
     await expect(panel).toBeVisible({ timeout: 20_000 });
@@ -117,7 +118,7 @@ test.describe('a refused AniList token', () => {
     await withStoredToken(page);
     await refuseAuthenticatedRequests(page);
     await gotoSignedInHome(page);
-    await page.locator('.navigation a', { hasText: 'Social' }).click();
+    await navigateVia(page, 'Social');
     await expect(page.locator('.anilistReconnect--banner')).toBeVisible({ timeout: 20_000 });
 
     // Left in place it would be resent on every request, and read back out of
@@ -133,7 +134,7 @@ test.describe('a refused AniList token', () => {
 
     // Watchlist reads the list publicly by user id, so a dead token is not its
     // problem and it must not be dressed up as one.
-    await page.locator('.navigation a', { hasText: 'Watchlist' }).click();
+    await navigateVia(page, 'Watchlist');
     await expect(page.locator('.watchlist')).toBeVisible({ timeout: 20_000 });
     await expect(page.locator('.anilistReconnect:not(.anilistReconnect--banner)')).toHaveCount(0);
   });
@@ -143,7 +144,7 @@ test.describe('a refused AniList token', () => {
     // every test above.
     await withStoredToken(page);
     await gotoSignedInHome(page);
-    await page.locator('.navigation a', { hasText: 'Watchlist' }).click();
+    await navigateVia(page, 'Watchlist');
 
     await expect(page.locator('.watchlist')).toBeVisible({ timeout: 20_000 });
     await expect(page.locator('.anilistReconnect')).toHaveCount(0);
