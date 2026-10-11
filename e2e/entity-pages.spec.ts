@@ -60,7 +60,7 @@ test.describe('entity pages', () => {
 
   test('details no longer dead-ends: chips and the studio link out', async ({ page }) => {
     await page.goto(DETAILS, { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.details__hero')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.details__sheet')).toBeVisible({ timeout: 20_000 });
 
     await expect(page.locator('.sidebar__link[href^="/studio/"]').first()).toBeVisible();
 

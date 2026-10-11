@@ -70,13 +70,18 @@
   will-change: transform;
 }
 
-/* Deliberately heavy. Text sits directly on the image here, and a light or busy
-   banner will otherwise swallow the title. The top stop is darker than the
-   middle so the translucent sticky header stays readable over it too. */
+/* Neutral, not the old navy `--scrim-bottom`. Lighter than it used to be too:
+   no text sits on the art any more, so it only has to hold the back button at
+   the top and the actions near the bottom. */
 .details__bannerScrim {
   position: absolute;
   inset: 0;
-  background: var(--scrim-bottom);
+  background: linear-gradient(
+    180deg,
+    rgba(6, 6, 8, 0.46) 0%,
+    rgba(6, 6, 8, 0.1) 40%,
+    rgba(6, 6, 8, 0.56) 100%
+  );
 }
 
 /* The perspective lives on the wrapper so the poster can tilt in 3D; sizing

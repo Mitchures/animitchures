@@ -1,26 +1,53 @@
-/* Mirrors the real hero's metrics so the swap is not a jump: same banner
-   min-height, same negative header offset, same poster width and gaps. */
+/* Mirrors Details.css metric for metric — banner height, sheet pull-up, poster
+   overhang, pad and radii — so the swap to real content is not a jump. If a
+   number changes there, it changes here. */
 .detailsSkeleton__banner {
-  display: flex;
-  align-items: flex-end;
-  min-height: 620px;
+  position: relative;
+  min-height: 340px;
   margin-top: calc(-1 * var(--header-height));
-  padding: calc(var(--header-height) + 1rem) var(--x-axis-spacing) 2rem;
-  background-color: #101a28;
+  background-color: var(--card);
 }
 
-.detailsSkeleton__hero {
+.detailsSkeleton__back {
+  position: absolute;
+  top: calc(var(--header-height) + 1.125rem);
+  left: var(--x-axis-spacing);
+}
+
+.detailsSkeleton__actions {
+  position: absolute;
+  right: var(--x-axis-spacing);
+  bottom: 120px;
   display: flex;
-  align-items: flex-end;
-  gap: 1.75rem;
-  width: 100%;
+  gap: 0.5625rem;
+}
+
+.detailsSkeleton__sheet {
+  position: relative;
+  z-index: 2;
+  margin: -104px var(--x-axis-spacing) 0;
+  padding: var(--pad-card);
+  border-radius: 52px;
+  corner-shape: var(--corner);
+  background: var(--nested);
+}
+
+.detailsSkeleton__sheetRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.375rem;
+}
+
+.detailsSkeleton__poster {
+  flex: none;
+  margin-top: -84px;
 }
 
 .detailsSkeleton__body {
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 0.75rem;
-  flex: 1;
   min-width: 0;
 }
 
@@ -30,68 +57,34 @@
   gap: 0.5rem;
 }
 
+.detailsSkeleton__facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+  margin-top: 0.5rem;
+}
+
 .detailsSkeleton__bar {
   display: flex;
-  gap: 2rem;
-  padding: 1.125rem var(--x-axis-spacing);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  gap: 0.375rem;
+  margin: 0.875rem var(--x-axis-spacing) 0;
+  padding: 0.375rem 0;
 }
 
 .detailsSkeleton__panel {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 320px;
-  gap: 2rem;
+  gap: 1rem;
   align-items: start;
   padding: 1.5rem var(--x-axis-spacing) 2rem;
 }
 
-.detailsSkeleton__main {
-  display: flex;
-  flex-direction: column;
-  gap: 0.875rem;
-  min-width: 0;
-}
-
-/* Mirrors .details__overviewSide: facts block, links, tags. */
+.detailsSkeleton__main,
 .detailsSkeleton__side {
   display: flex;
   flex-direction: column;
   gap: 0.875rem;
   min-width: 0;
-}
-
-/* Mirrors the cast chip grid — same three-across track and 72px portrait. */
-.detailsSkeleton__chips {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
-  gap: 0.75rem;
-}
-
-.detailsSkeleton__chip {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.75rem 1rem 0.75rem 0.75rem;
-  border-radius: var(--r-inner);
-  background-color: rgba(0, 0, 0, 0.04);
-}
-
-.detailsSkeleton__chipBody {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  flex: 1;
-  min-width: 0;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .detailsSkeleton__chip {
-    background-color: rgba(255, 255, 255, 0.04);
-  }
-}
-
-:root[data-theme='dark'] .detailsSkeleton__chip {
-  background-color: rgba(255, 255, 255, 0.04);
 }
 
 @media screen and (max-width: 960px) {
@@ -101,35 +94,20 @@
 }
 
 @media screen and (max-width: 768px) {
-  .detailsSkeleton__hero {
-    flex-wrap: wrap;
-  }
-}
-
-@media screen and (max-width: 480px) {
   .detailsSkeleton__banner {
-    min-height: 420px;
-    padding-bottom: 1.5rem;
+    min-height: 260px;
   }
 
-  .detailsSkeleton__hero {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+  .detailsSkeleton__sheet {
+    margin-top: -76px;
+    border-radius: 40px;
   }
 
-  .detailsSkeleton__hero > .skeleton:first-child {
-    width: 170px !important;
-    height: 240px !important;
+  .detailsSkeleton__poster {
+    margin-top: -62px;
   }
-}
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .detailsSkeleton__bar {
-    border-bottom-color: rgba(255, 255, 255, 0.08);
+  .detailsSkeleton__actions {
+    bottom: 92px;
   }
-}
-
-:root[data-theme='dark'] .detailsSkeleton__bar {
-  border-bottom-color: rgba(255, 255, 255, 0.08);
 }

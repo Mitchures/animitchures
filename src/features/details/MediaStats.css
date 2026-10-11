@@ -75,7 +75,7 @@
   align-items: center;
   gap: 0.4rem;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--muted);
 }
 
@@ -88,15 +88,5 @@
 
 .mediaStats__key b {
   color: var(--ink);
-  font-weight: 700;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .mediaStats__key b {
-    color: white;
-  }
-}
-
-:root[data-theme='dark'] .mediaStats__key b {
-  color: white;
+  font-weight: 500;
 }

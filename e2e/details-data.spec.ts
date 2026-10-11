@@ -19,7 +19,7 @@ test.describe('details data sections', () => {
 
   test.beforeEach(async ({ page }) => {
     await page.goto(DETAILS, { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.details__hero')).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('.details__sheet')).toBeVisible({ timeout: 20_000 });
   });
 
   test('the hero carries ranking badges', async ({ page }) => {

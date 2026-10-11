@@ -10,21 +10,3 @@
 .relations__container::-webkit-scrollbar {
   width: 0 !important;
 }
-
-.relations__container > .card:first-child {
-  padding-left: var(--left-spacing);
-}
-
-.relations__container > .card:last-child {
-  padding-right: var(--right-spacing);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .relations__container {
-    background-color: rgba(0, 0, 0, 0.15);
-  }
-}
-
-:root[data-theme='dark'] .relations__container {
-  background-color: rgba(0, 0, 0, 0.15);
-}

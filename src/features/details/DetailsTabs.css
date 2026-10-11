@@ -11,9 +11,16 @@
   align-items: center;
   gap: 0.375rem;
   /* Clear of the sheet above it, which it was flush against. */
-  margin: 0.875rem var(--x-axis-spacing) 0;
-  padding: 0.375rem 0;
-  background: transparent;
+  margin: 0.875rem 0 0;
+  /* Full-bleed with the gutter as padding, not as margin: this bar is sticky,
+     and a margin left a strip either side where scrolled content showed past it. */
+  padding: 0.375rem var(--x-axis-spacing) 0.5rem;
+  /* Glass over the canvas. Stripping the old navy backdrop had left it
+     transparent, and a sticky bar with no backdrop sits on whatever scrolls
+     under it — the pills were landing on the synopsis. */
+  background: color-mix(in srgb, var(--canvas) 86%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  backdrop-filter: blur(16px) saturate(1.2);
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -74,7 +81,7 @@
   padding-left: 1rem;
   max-width: 40%;
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 400;
   color: var(--ink);
   white-space: nowrap;
   overflow: hidden;
@@ -91,28 +98,4 @@
 
 .detailsTabs__panel {
   padding: 1.5rem var(--x-axis-spacing) 2rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .detailsTabs__bar {
-    background-color: rgba(11, 22, 33, 0.82);
-    border-bottom-color: rgba(255, 255, 255, 0.08);
-  }
-
-  :root:not([data-theme='light']) .detailsTabs__tab--active,
-  :root:not([data-theme='light']) .detailsTabs__tab:hover,
-  :root:not([data-theme='light']) .detailsTabs__title {
-    color: white;
-  }
-}
-
-:root[data-theme='dark'] .detailsTabs__bar {
-  background-color: rgba(11, 22, 33, 0.82);
-  border-bottom-color: rgba(255, 255, 255, 0.08);
-}
-
-:root[data-theme='dark'] .detailsTabs__tab--active,
-:root[data-theme='dark'] .detailsTabs__tab:hover,
-:root[data-theme='dark'] .detailsTabs__title {
-  color: white;
 }
