@@ -19,9 +19,18 @@ interface Props {
   /**
    * `sm` scales every disc diameter down with it. Without that the discs —
    * sized for a 168px tile — flood a shorter one and it reads as a flat
-   * gradient card rather than colour behind glass.
+   * gradient card rather than colour behind glass. `tall` is the portrait
+   * genre card: 3:4, the children centred as the figure, and a colour floor
+   * under the discs so the card is never bare glass.
    */
-  size?: 'md' | 'sm';
+  size?: 'md' | 'sm' | 'tall';
+  /**
+   * Sets the colour discs drifting — each an ellipse turning on its own long
+   * period while it travels, so their edges fold over one another. Opt-in,
+   * because the page's widgets are read, and a figure on moving colour is
+   * harder to read than one on still colour. Stopped under reduced motion.
+   */
+  live?: boolean;
   /** Merged after the palette variables — the entrance stagger index. */
   style?: CSSProperties;
   /**
@@ -64,6 +73,7 @@ function FrostedTile({
   to,
   className = '',
   size = 'md',
+  live = false,
   style: extraStyle,
   decoration,
   children,
@@ -115,8 +125,8 @@ function FrostedTile({
     </>
   );
   const cls = `frostedTile frostedTile--${treatment}${
-    size === 'sm' ? ' frostedTile--sm' : ''
-  } ${className}`.trim();
+    size === 'md' ? '' : ` frostedTile--${size}`
+  }${live ? ' frostedTile--live' : ''} ${className}`.trim();
   const handlers = {
     onPointerMove: follow,
     onPointerLeave: reset,

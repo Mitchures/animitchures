@@ -33,7 +33,7 @@ sets `hosting.public` to `build`. Don't change one without the other.
 Cloud Functions live in `functions/` with their own `package.json`
 (`npm --prefix functions run build`, `firebase deploy --only functions`).
 
-Verified on Node v24 / yarn 1.22 as of 2026-09-18: `yarn lint` exits 0 with 16 pre-existing
+Verified on Node v24 / yarn 1.22 as of 2026-10-10: `yarn lint` exits 0 with 15 pre-existing
 warnings; `yarn e2e` is 95 passing across `setup`, `public` and `authed`, and `yarn e2e:live`
 passes against the real API. Unit: **117 passing, 1 skipped** (`App.test.tsx`, the CRA
 default — see "Current state"). A red `yarn test` now *is* something you broke: the three
@@ -115,19 +115,20 @@ src/
                      all three renderers; useSlidingIndicator.ts drives the one moving
                      pill they share.
   features/          One directory per page, each holding its own sections and skeleton:
-                     browse, calendar, details, discover, people, profile, settings,
-                     social, studio, taste, watchlist
+                     browse, calendar, details, discover, favorites, people, profile,
+                     settings, social, studio, taste, watchlist
   views/             The routes that are not features: Login and SignUp (both inside
                      AuthShell, with AuthProviders, PasswordField and auth-error.ts),
-                     Callback, Favorites, and the ComingSoon / Community stubs
+                     Callback, and the ComingSoon / Community stubs
   components/        The design system, shared only. Primitives: Surface, Pill, Chip,
                      Button, IconButton, DotNumber (every numeral in the app). Composites:
                      FrostedTile, ScoreChip, InfoCard, LinkTile, StatRow, EpisodeCard,
                      EpisodeRow, PosterEchoCard, SectionHeading, TileDeck (a
                      FrostedTile that cycles figures), FactTile (a figure in a
                      squircle with an icon chip). Not yet redesigned:
-                     Card, EntityHero, Skeleton (shimmer primitive),
-                     PosterGridSkeleton, SplitButton, ToggleSwitch, AnilistReconnect
+                     Card (colour-corrected to the tokens, not restructured),
+                     EntityHero, Skeleton (shimmer primitive), PosterGridSkeleton,
+                     ToggleSwitch, AnilistReconnect
   config/            firebase.ts (app, auth, db, storage, functions, Apple/Google
                      providers), apollo-client.ts
   context/           useReducer-based global store (StateProvider, reducer, types,
@@ -247,6 +248,17 @@ The trigger is **not** a nav item: search is an action, not a destination. It ha
 at each width — `.app__topbar` above 960px, `MobileHeader` below — which replaced the
 floating action button that replaced the rail item.
 
+**Discover runs the width of the screen** (2026-10-11): the 1180px cap came off because a
+wide display left a third of it empty. The slider and the three widget decks take the room;
+the 300px aside keeps its size; the card rows **add cards rather than stretching them** —
+`useFitCount` measures the row with a `ResizeObserver` (a callback ref, because the rows
+mount after the skeleton) and the row renders as many as fit, four at the old width and up
+to six. Genres show two rows of that, so the page asks `genreCounts` for twelve. **Top rated
+stays a fixed four** (`TOP_RATED`) whose cards scale with the width — five was tried and
+looked worse. The time
+strip is **hidden behind `SHOW_TIME_STRIP`** pending a refinement pass; the skeleton's strip
+slot is phone-only while it is off.
+
 **Discover** is the A1 dashboard. **There is no greeting** — it came off on 2026-09-18
 because a welcome line said nothing, so the `StatRow` of dot-matrix figures opens the page.
 `.discover`'s top padding is therefore the whole gap above it, and it is tuned to line that
@@ -347,13 +359,22 @@ The tiles' palettes are seeded from each title's `coverImage.color` (`helpers/ti
 so the colour comes from the content. `e2e/live.spec.ts` asserts that colour still arrives —
 without it the tiles fall back to a fixed green that looks deliberate.
 
-`GenreTiles` sits fourth from the end: eight `FrostedTile`s at `size="sm"`, which scales every disc
-diameter off one `--ds` variable — discs sized for a 168px widget flood a 132px tile and it
-reads as a flat gradient card. Each genre's colour **and** treatment come from `GENRE_TILES`
-in `helpers/tile-palette.ts`, assigned rather than derived: seeding from `coverImage.color`
-collapses, because Attack on Titan leads Action, Drama, Fantasy *and* Mystery. The palettes
-come from one formula — cap L84, body L64/S62, accent a +26° hue shift at L57 — so accents
-shift hue sideways instead of darkening out of the family.
+`GenreTiles` sits fourth from the end: eight `FrostedTile`s at `size="tall"` with `live`,
+portrait 3:4 cards after Apple Music's "made for you" tiles (2026-10-11), the genre name set
+as the figure in the section heading's display treatment and no count — it was a stat on a
+door. `live` sets the discs drifting: each is an ellipse turning on its own co-prime period
+(37/43/53/61s) while it travels, so the colour folds rather than slides, and `--phase` from
+the caller starts each tile at a different point. Two things the tall variant needed: a
+**colour floor** (the fourth disc, body colour, painted under the other three) because
+drifting discs otherwise leave bare glass behind them and Apple's cards are never bare;
+and its rules sit **after the treatment rules** in `FrostedTile.css`, because blob and core
+hide that fourth disc at equal specificity and order decides. The motion animates the
+discs only — `.frostedTile__fx`'s `animation` belongs to Discover's entrance bloom. Each
+genre's colour **and** treatment come from `GENRE_TILES` in `helpers/tile-palette.ts`,
+assigned rather than derived: seeding from `coverImage.color` collapses, because Attack on
+Titan leads Action, Drama, Fantasy *and* Mystery. The palettes come from one formula — cap
+L84, body L64/S62, accent a +26° hue shift at L57 — so accents shift hue sideways instead
+of darkening out of the family.
 
 `SeasonWeeks` ("Starting this season") is a snapping rail of week cards, one per calendar
 week of the season, each naming its most-anticipated premiere. It **bleeds to the screen
@@ -365,9 +386,10 @@ mistake rather than as a hint that it scrolls.
 asymmetric, because a row of equal cards says nothing about which entry matters:
 
 - **Coming later** gives the most-awaited next-season title a `FrostedTile` in its own cover
-  colour with a ripple of concentric rings behind it — the rings reach further the more
-  people are waiting, capped at a round 300,000 so the gesture means the same thing from one
-  season to the next. The three runners-up are quiet rows with a tick strip showing their
+  colour, `live` like the genre cards (2026-10-11) — with a body-colour floor and its discs
+  spread across the width, because the core treatment's concentric discs uncovered the card
+  once they were turning ellipses. The ripple of concentric rings it used to carry is gone;
+  Mitchell cut it the same day. The three runners-up are quiet rows with a tick strip showing their
   reach against the lead. The lime "Most awaited" chip is the only lime in the section.
 - **All-time popular** compares six titles with a dotted matrix: **one dot per 25,000
   members across 42 slots.** Scaled from zero instead, an all-time top six all read 80–100
@@ -381,17 +403,43 @@ Two things `ComingLater` needed that are worth knowing before composing another 
    flex item laying its own children out inline. That is right for the one numeral it was
    built for; a composed card must restyle that slot as the column (`.comingLater__lead
    .frostedTile__number`) or its title and caption render on the same line.
-2. **A cover-derived palette can be too pale for white text.** `--on-tile` is white in both
-   themes, and `paletteFromColor` passes the cover colour straight through as the body, so
-   JUJUTSU KAISEN's `#78aee4` left white text on near-white glass. Both `.frostedTile--sm`
-   and the lead card solve it the same way, with a scrim `::before` above the colour and
-   below the content.
+2. **A cover-derived palette is normalised, not passed through** (2026-10-11).
+   `paletteFromColor` keeps the cover's hue and fixes the lightness to the genre formula —
+   cap L84, body L64, accent +26° at L57, saturation held to 40–70. It used to hand the
+   cover colour straight through as the body with the accent mixed toward black, so
+   Overgeared's dark brown made a near-black "Airing next" tile in light mode and JUJUTSU
+   KAISEN's `#78aee4` left white text on near-white glass. The scrim `::before` on
+   `.frostedTile--sm`, the lead card and the ring tile stays, since `--on-tile` is white in
+   both themes.
 
 `PopularList` clamps lightness rather than mixing toward the text colour:
 `oklch(from var(--tone) min(l, 0.68) c h)`, inverted to `max()` in dark. Half of an all-time
 top six have pale covers that vanish on a near-white row, and mixing toward `--ink` fixed
 that but turned orange to brown and yellow to olive. Relative colour syntax is behind an
 `@supports` guard with the raw colour as the fallback.
+
+**Favorites** was rebuilt on the design system on 2026-10-11 (`features/favorites/`, option B
+of the companion mockups), and it opens the way Discover does: a `live` `FrostedTile` in the
+**Supernatural genre's palette** (Mitchell's pick over a cover-derived colour, which would
+change whenever a favourite was added) carrying the count, four `FactTile`s beside it, and a
+"Next up" column of `EpisodeRow`s for the favourites airing this week — **not rendered when
+nothing is airing**, and the facts take its room. Then "The shelf": `PosterEchoCard`s, a
+fixed four per row, A to Z. Every figure comes from `features/favorites/derive.ts`, tested
+against the home fixture's `top` bucket because `e2e/fixtures/DetailsList.json` predates the
+wider query and holds only titles and covers — **recapture it** when the live API is next
+hit. Three things to know:
+
+1. **`DETAILS_LIST_QUERY` now asks for the same fields as `Featured`** (score, genres,
+   episodes, duration, start year, main studio, next episode, cover colour) so the page's
+   `Favorite` type *is* `FeaturedMedia` and Discover's components take it unchanged. One
+   request, as before.
+2. **`PosterEchoCard` grew two slots:** `badge` (anything for the top-left corner — the lime
+   "Ep 7 · Tue" chip here) and `meta` (studio · year). `rank` is optional now; given neither,
+   the corner keeps its height so the posters stay level.
+3. **The heart is a sibling of the card, not a child.** A button inside a link is invalid
+   markup and a click on it would navigate, so `.favorites__card` wraps the link and the
+   remove button side by side. Removing dispatches straight to the store, and the list
+   query re-runs on the new ids.
 
 **Squircle corners.** Square surfaces use the reference's continuous corner, via
 `corner-shape: var(--corner)` where `--corner` is `squircle`. It **pairs with**
@@ -472,15 +520,37 @@ already in the sidebar. A tile is dropped rather than rendered empty, because pl
 titles have no score and an unaired one has no ranking. Deleting `HeroRankings` orphaned
 `components/Badge`, which is gone too.
 
-`SplitButton` moved from the deleted `Actions` onto the sheet rather than onto the art: it
-opens a dropdown, and a menu over a photograph is unreadable. It is the only thing that
-actually writes list status, so losing it with `Actions` would have been a real regression.
-It still carries its old styling.
+List status is `ListStatusAction`, among the hero's glass actions: a squircle that grows
+into a pill on hover or focus, with the icon reflecting the status — tick for completed, eye
+for watching, bookmark for planned, list icon when it is not on the list. It replaced
+`components/SplitButton`, which was MUI's `ButtonGroup` plus `Popper`, `Paper` and
+`MenuList` rendering a full-width blue bar; dropping those and `react-icons` took **80 kB
+off the bundle**. Two things it needed: its label is `max-width: 0` at rest, not just
+`opacity: 0` — invisible text still takes space, and 70px of it centred in a 46px clipped
+box pushed the icon clean out of view, so the button rendered as a blank white squircle. And
+its menu opens **downward in two columns**: six rows are 336px, the trigger sits 174px down
+the page, and the banner's own `overflow: hidden` was clipping it to y = −171 — the clip now
+lives on a wrapper around the art alone. It still does not reflect server state back (the
+outstanding `TODO` on this feature).
 
 The tabs are pills now, matching the navigation, and take an icon each — they were the only
-underlined thing left in the app. **Everything below the tabs still runs on the old CSS**
-(`Summary`, `Sidebar`, `Characters`, `Staff`, `MediaStats`, `MediaTags`, `WhereToWatch`,
-`Recommendations`), so the page is two-toned at the tab boundary until that phase lands.
+underlined thing left in the app. **The body is on the design system too** (2026-10-10):
+every section is a panel on `--nested` with one heading treatment and an icon, laid out with
+`gap` on a flex column rather than sibling margins — the panel rule's `margin: 0` at two
+classes' specificity silently beat `.details__overviewMain > * + *` and left three of four
+panels touching. The sidebar is an icon-row list with `DotNumber` figures. `Characters` and
+`Staff` return null when empty rather than rendering a heading-only grey block. The
+Relations and Recommendations tabs still render `components/Card`, which has been
+colour-corrected to the tokens but not restructured.
+
+**`App.css` had `a:hover { color: var(--action) !important }`**, a global that painted every
+link in the app indigo on hover and made each redesigned surface fight it with its own
+`!important`. It is `--ink` now. The un-redesigned pages lose an indigo hover they were never
+designed around and get their own with their phase. The rest of the old token block in
+`App.css` (`--primary`, `--action`, `--accent-secondary`, `--scrim-bottom`…) is still
+defined and still read by Profile, Browse and the two banners, so **a details-page style
+that references one of them actively paints the old palette** — grep for `var(--action`,
+`var(--accent`, `var(--scrim` before declaring a page done.
 
 The old shape, for reference: a hero over the banner (poster, title, alternative titles,
 genres, four stat chips, actions) followed by tabs: Overview, Characters, Staff, Relations. The active
@@ -489,8 +559,10 @@ an unknown value falls back to Overview. Tabs are only rendered when they have c
 Relations is gated on the ANIME filter it applies internally, not on `edges.length`.
 The banner image is its own layer, extended 200px above the banner so its parallax
 translation (max 165px) never exposes an edge. Every effect is off under
-`prefers-reduced-motion`. `DetailsSkeleton` deliberately avoids the real `details__*`
-class names — the e2e suite waits on `.details__hero` to know data arrived.
+`prefers-reduced-motion`. `DetailsSkeleton` mirrors the stacked-glass hero metric for
+metric (340px band, −104px sheet, −84px poster overhang) so the swap does not jump, and
+deliberately avoids the real `details__*` class names — the e2e suite waits on
+`.details__sheet` to know data arrived.
 
 **Routing.** All routes except `/login` and `/sign-up` render inside a Navigation + Header shell.
 Private routes are rendered conditionally on `user` in the route tree, with `*` → `<Navigate to="/" />`.
@@ -529,8 +601,9 @@ Unfinished or parked — mostly deliberate, don't "fix" without asking:
 - The **bell icon in the nav footer does nothing**. Notifications were not built.
 - **Squircles cover the redesigned surfaces only.** The other pages get them with their own
   phase — see "Squircle corners" under Architecture notes.
-- `features/details/Actions.tsx` carries the only `TODO` left in `src`: the AniList
-  save-entry feature. `SplitButton` writes list status but doesn't reflect server state back.
+- `features/details/ListStatusAction.tsx` writes AniList list status but does not reflect
+  server state back — a refused mutation leaves the button claiming a change that did not
+  happen. The outstanding `TODO` on that feature; it predates the redesign.
 - `components/ActivityMap.tsx` was deleted on 2026-09-05 as the last `styled-components`
   consumer. The idea came back without it: `features/profile/ActivityHeatmap.tsx` is the
   plain-CSS replacement.
@@ -574,7 +647,7 @@ Known rough edges worth knowing before touching related code:
 - **`@types/react` is pinned via `resolutions`** in `package.json`. MUI drags in
   `@types/react-is` and `@types/react-transition-group`, which pin `@types/react` 18; two
   copies produce `TS2786: cannot be used as a JSX component` on every icon.
-- **`yarn lint` reports 16 pre-existing warnings and exits 0.** Severities are tuned in
+- **`yarn lint` reports 15 pre-existing warnings and exits 0.** Severities are tuned in
   `eslint.config.mjs` to match what CRA's `react-app` preset reported, so this is the same debt
   that was always there — not a new gate. Note Vite does **not** lint during `build`, unlike CRA.
 - **`firebase-functions` 6 and `firebase-admin` 13 are one major behind** (7 and 14 are out).

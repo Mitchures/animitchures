@@ -84,7 +84,7 @@ async function captureFavorites(browser: Browser, seen: Set<string>): Promise<vo
     .locator('.navigation a:has-text("Logout")')
     .waitFor({ state: 'attached', timeout: 25_000 });
   await page.locator('.navigation a', { hasText: 'Favorites' }).click();
-  await page.locator('.favorites__grid .card').first().waitFor({ timeout: 25_000 });
+  await page.locator('.favorites__shelf .posterEchoCard').first().waitFor({ timeout: 25_000 });
   await page.waitForTimeout(2500);
 
   await context.close();

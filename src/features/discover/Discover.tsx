@@ -21,6 +21,7 @@ import PopularList from 'features/discover/PopularList';
 import SeasonWeeks from 'features/discover/SeasonWeeks';
 import SlideHero from 'features/discover/SlideHero';
 import TimeStrip from 'features/discover/TimeStrip';
+import { useFitCount } from 'features/discover/useFitCount';
 import DayPills from 'features/discover/DayPills';
 import DiscoverSkeleton from 'features/discover/DiscoverSkeleton';
 import {
@@ -63,8 +64,13 @@ const SEASON_LABEL: Record<string, string> = {
   FALL: 'Fall',
 };
 const TONIGHT_DOTS = 14;
+/** Top rated is a fixed four: the cards scale with the width rather than adding a fifth. */
+const TOP_RATED = 4;
 
 /** The entrance stagger index, as a custom property the CSS reads. */
+/** See the TODO at the strip's render site. */
+const SHOW_TIME_STRIP = false;
+
 const rise = (index: number) => ({ '--i': Math.min(index, 7) }) as CSSProperties;
 
 /**
@@ -96,6 +102,11 @@ function Discover() {
   }, []);
   const nowSeconds = Math.floor(now.getTime() / 1000);
 
+  // The week row fills the width of the screen with as many cards as fit, four
+  // at the old 1180px and up to six on a wide display; the minimum is the width
+  // the card was designed at. Top rated is a fixed four — see TOP_RATED.
+  const [weekRef, weekCols] = useFitCount(250, 14, 4, 6);
+
   const model = useMemo(() => {
     if (!featured) return null;
     const week = airingWithin(featured, nowSeconds, WEEK);
@@ -112,8 +123,9 @@ function Discover() {
       nextSeasonName: `${SEASON_LABEL[vars.nextSeason]} ${vars.nextYear}`,
       days: weekDots(week, nowSeconds),
       trending: featured.trending?.media.slice(0, 5) ?? [],
-      topFour: featured.top?.media.slice(0, 4) ?? [],
-      genres: genreCounts(featured),
+      topList: featured.top?.media ?? [],
+      // Twelve, not the default eight: GenreTiles shows two rows of as many as fit.
+      genres: genreCounts(featured, 12),
       weeks: seasonWeeks(featured, nowSeconds),
       timeStrip: stripModel(featured, nowSeconds),
       next: nextEpisode(featured, favorites ?? [], nowSeconds),
@@ -143,7 +155,7 @@ function Discover() {
     nextSeasonName,
     days,
     trending,
-    topFour,
+    topList,
     genres,
     weeks,
     timeStrip,
@@ -221,7 +233,9 @@ function Discover() {
             label: 'Busiest day',
             value: busiest.count,
             caption: [
-              busiest.count === 1 ? `episode lands on ${busiest.day}` : `episodes land on ${busiest.day}`,
+              busiest.count === 1
+                ? `episode lands on ${busiest.day}`
+                : `episodes land on ${busiest.day}`,
               // The share is only worth saying when there is a week to be a
               // share of: one episode on one day is trivially 100 per cent.
               week.length >= 4 && busiest.share >= 0.4 ? 'nearly half the week' : null,
@@ -236,9 +250,7 @@ function Discover() {
           {
             label: 'Time to watch',
             value: runtime.hours,
-            caption: `hours across ${runtime.episodes} episode${
-              runtime.episodes === 1 ? '' : 's'
-            }`,
+            caption: `hours across ${runtime.episodes} episode${runtime.episodes === 1 ? '' : 's'}`,
           },
         ]
       : []),
@@ -247,10 +259,9 @@ function Discover() {
           {
             label: 'Best of the week',
             value: bestWeek.averageScore,
-            caption: `${displayTitle(bestWeek)}, ${whenLabel(
-              bestWeek.nextAiringEpisode.airingAt,
-              now,
-            ).split(',')[0]}`,
+            caption: `${displayTitle(bestWeek)}, ${
+              whenLabel(bestWeek.nextAiringEpisode.airingAt, now).split(',')[0]
+            }`,
           },
         ]
       : []),
@@ -306,9 +317,15 @@ function Discover() {
         <StatRow stats={stats} />
       </div>
 
-      <div className="discover__desktopOnly discover__rise" style={rise(2)}>
-        <TimeStrip strip={timeStrip} now={now} />
-      </div>
+      {/* TODO(2026-10-11): the time strip is hidden, not removed. It needs a
+          refinement pass before it goes back — Mitchell parked it while the
+          rest of the home page was being reworked. Flip SHOW_TIME_STRIP to
+          bring it back; `stripModel` and its tests are untouched. */}
+      {SHOW_TIME_STRIP && (
+        <div className="discover__desktopOnly discover__rise" style={rise(2)}>
+          <TimeStrip strip={timeStrip} now={now} />
+        </div>
+      )}
       <div className="discover__phoneOnly discover__rise" style={rise(2)}>
         <DayPills days={days} />
         {week[0] && <EpisodeRow media={week[0]} eyebrow="Airing next" now={now} />}
@@ -390,8 +407,12 @@ function Discover() {
         detail="What’s on, in the order it airs."
         action={<Button to="/calendar">See all</Button>}
       />
-      <div className="discover__cards discover__desktopOnly discover__rise" style={rise(7)}>
-        {week.slice(0, 4).map((media) => (
+      <div
+        ref={weekRef}
+        className="discover__cards discover__desktopOnly discover__rise"
+        style={{ ...rise(7), '--cols': weekCols } as CSSProperties}
+      >
+        {week.slice(0, weekCols).map((media) => (
           <EpisodeCard key={media.id} media={media} now={now} />
         ))}
       </div>
@@ -407,7 +428,7 @@ function Discover() {
         action={<Button to="/search/anime?sort=SCORE_DESC">See all</Button>}
       />
       <div className="discover__cards discover__cards--top discover__rise" style={rise(7)}>
-        {topFour.map((media, index) => (
+        {topList.slice(0, TOP_RATED).map((media, index) => (
           <PosterEchoCard key={media.id} media={media} rank={index + 1} />
         ))}
       </div>

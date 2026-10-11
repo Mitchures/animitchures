@@ -1,7 +1,9 @@
 .discover {
   display: flex;
   flex-direction: column;
-  max-width: 1180px;
+  /* No max-width (2026-10-11): the page runs the width of the screen. The
+     slider takes the room, the 300px aside keeps its size, and the card rows
+     add cards rather than stretching them — see `useFitCount`. */
   /* The stat row opens the page now that the greeting is gone, so this pad is
      the whole gap above it, and it is set to line the row up with the pill
      column's Explore / Library tab across the gutter — that pairing is the
@@ -54,7 +56,8 @@
 
 .discover__cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* `--cols` is set inline by the row from `useFitCount`; 4 before it measures. */
+  grid-template-columns: repeat(var(--cols, 4), 1fr);
   gap: 14px;
 }
 

@@ -11,16 +11,6 @@ import { mediaPath, paletteFromColor, PALETTES, seasonChip } from 'helpers';
 
 /** Ticks in a runner-up's reach strip. */
 const REACH_TICKS = 20;
-/**
- * The audience the ripple's widest ring stands for.
- *
- * A round ceiling rather than the lead's own figure, so the rings mean the same
- * thing from one season to the next: a 300,000-strong wait fills the card, a
- * small one stays tight around the poster.
- */
-const RIPPLE_CEILING = 300_000;
-const RIPPLE_MIN = 300;
-const RIPPLE_RANGE = 260;
 
 const studioOf = (media: FeaturedMedia) =>
   media.studios?.edges?.find((edge) => edge?.isMain)?.node?.name ?? '';
@@ -49,30 +39,22 @@ function ComingLater({ lead, rest, total }: Model) {
   if (!lead) return null;
 
   const leadWaiting = lead.popularity ?? 0;
-  const reach =
-    RIPPLE_MIN + RIPPLE_RANGE * Math.min(1, leadWaiting / RIPPLE_CEILING);
 
   return (
     <div className="comingLater">
       <FrostedTile
         treatment="core"
+        live
         palette={paletteFromColor(lead.coverImage.color, PALETTES.night)}
         to={mediaPath(lead.id, lead.title.userPreferred)}
         className="comingLater__lead"
-        decoration={
-          <span className="comingLater__ripple" style={{ ['--reach' as string]: `${reach}px` }} />
-        }
       >
         <span className="comingLater__leadTop">
           {/* The only lime in the section: it marks one thing. */}
           <span className="comingLater__badge">Most awaited</span>
           <SeasonTag media={lead} />
         </span>
-        <img
-          className="comingLater__leadPoster"
-          src={lead.coverImage.large ?? undefined}
-          alt=""
-        />
+        <img className="comingLater__leadPoster" src={lead.coverImage.large ?? undefined} alt="" />
         <span className="comingLater__leadTitle">{displayTitle(lead)}</span>
         <span className="comingLater__leadMeta">
           {[studioOf(lead), lead.episodes ? `${lead.episodes} episodes` : null]
@@ -104,8 +86,7 @@ function ComingLater({ lead, rest, total }: Model) {
                 <span className="comingLater__meta">
                   {studioOf(media)} · <DotNumber value={compactCount(waiting)} size="xs" /> waiting
                 </span>
-                {/* How far this reaches against the lead — the same comparison
-                    the lead's ripple makes, at row scale. */}
+                {/* How far this reaches against the lead. */}
                 <span className="comingLater__reach" aria-hidden="true">
                   {Array.from({ length: REACH_TICKS }, (_, index) => (
                     <i

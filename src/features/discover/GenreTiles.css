@@ -1,12 +1,29 @@
 .genreTiles {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* `--cols` from `useFitCount`, two rows of it; 4 before it measures. */
+  grid-template-columns: repeat(var(--cols, 4), 1fr);
   gap: 12px;
+}
+
+/* The one place in the app a word is set like a figure: the section heading's
+   display treatment — Inter Tight 400 at display tracking — scaled up to the
+   card. Doto stays for numerals only. */
+.genreTiles__title {
+  font-size: clamp(26px, 2.8vw, 36px);
+  font-weight: 400;
+  letter-spacing: var(--track-display);
+  line-height: 0.98;
+  text-wrap: balance;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.28);
 }
 
 @media (max-width: 960px) {
   .genreTiles {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
+  }
+
+  .genreTiles__title {
+    font-size: 30px;
   }
 }

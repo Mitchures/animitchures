@@ -231,6 +231,190 @@
   display: none;
 }
 
+/* The tall variant: a portrait card whose figure is a word. Built for the
+   genre tiles after the Apple Music "made for you" cards. The children slot is
+   the centred column; there is no label row and no caption. */
+.frostedTile--tall {
+  --ds: 0.9;
+  --fx-lift: 0;
+  aspect-ratio: 3 / 4;
+  min-height: 0;
+  /* On `--r-card` like every other top-level card on Discover, so the row
+     reads as one family with the widgets and the episode cards above it;
+     the padding is derived from the radius for the same reason theirs is. */
+  padding: var(--pad-card);
+  justify-content: center;
+  border-radius: var(--r-card);
+  corner-shape: var(--corner);
+}
+
+.frostedTile--tall .frostedTile__fx {
+  inset: -35%;
+  /* Lower than the widgets' 34px, so a fold keeps an edge. */
+  filter: blur(26px) saturate(1.25) contrast(1.06);
+}
+
+.frostedTile--tall .frostedTile__number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+/* The same scrim as `--sm`, for the same reason: pale caps under white text. */
+.frostedTile--tall::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.16) 0%,
+    rgba(0, 0, 0, 0.02) 62%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+
+/* The floor: the fourth disc, in the body colour, large enough to fill the
+   card whatever the treatment, painted under the other three. Without it the
+   drifting discs leave bare glass behind them, and Apple's cards are never
+   bare — the folds are currents in one colour. */
+.frostedTile--tall .frostedTile__disc:nth-child(4) {
+  display: block;
+  z-index: -1;
+  --d: calc(640px * var(--ds, 1));
+  left: 50%;
+  top: 56%;
+  background: var(--body);
+  opacity: 0.92;
+}
+
+.frostedTile--tall .frostedTile__disc:nth-child(-n + 3) {
+  z-index: 1;
+}
+
+/* Over a body-colour floor the treatments need re-tuning: band's third disc
+   was body on body, and core's concentric discs read as a bullseye at this
+   height, which a turning ellipse cannot fold. */
+.frostedTile--tall.frostedTile--band .frostedTile__disc:nth-child(3) {
+  left: 62%;
+  top: 70%;
+  background: var(--accent);
+}
+
+.frostedTile--tall.frostedTile--blob .frostedTile__disc:nth-child(2) {
+  --d: calc(300px * var(--ds, 1));
+  left: 34%;
+  top: 30%;
+  background: var(--cap);
+}
+
+.frostedTile--tall.frostedTile--core .frostedTile__disc:nth-child(1) {
+  left: 46%;
+  top: 44%;
+}
+
+.frostedTile--tall.frostedTile--core .frostedTile__disc:nth-child(2) {
+  --d: calc(300px * var(--ds, 1));
+  left: 38%;
+  top: 36%;
+}
+
+.frostedTile--tall.frostedTile--core .frostedTile__disc:nth-child(3) {
+  --d: calc(200px * var(--ds, 1));
+  left: 66%;
+  top: 64%;
+}
+
+/* Live: the discs drift. Each is an ellipse (`scale: x y`) turning on its own
+   period while it travels, which is what makes the colour fold rather than
+   slide. `translate` / `scale` / `rotate` are the individual properties, never
+   `transform`: the disc's transform is its centring and the fx layer's
+   transform is the hover drift, and these compose with both. The periods are
+   co-prime so the pattern does not repeat inside a visit, and `--phase` lets a
+   caller start each tile at a different point so a row never moves in unison.
+   Nothing here touches `.frostedTile__fx`, whose `animation` Discover's
+   entrance bloom already owns. */
+@keyframes frostedTile-fold-a {
+  0% {
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1.5 0.7;
+  }
+  50% {
+    translate: 8% -6%;
+    scale: 1.3 0.85;
+  }
+  100% {
+    translate: 0 0;
+    rotate: 360deg;
+    scale: 1.5 0.7;
+  }
+}
+
+@keyframes frostedTile-fold-b {
+  0% {
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 0.75 1.45;
+  }
+  50% {
+    translate: -7% 8%;
+    scale: 0.95 1.25;
+  }
+  100% {
+    translate: 0 0;
+    rotate: -360deg;
+    scale: 0.75 1.45;
+  }
+}
+
+@keyframes frostedTile-fold-c {
+  0% {
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1.4 0.75;
+  }
+  50% {
+    translate: 6% 9%;
+    scale: 1.1 1;
+  }
+  100% {
+    translate: 0 0;
+    rotate: 360deg;
+    scale: 1.4 0.75;
+  }
+}
+
+@keyframes frostedTile-floor {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.12 0.96;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+.frostedTile--live .frostedTile__disc:nth-child(1) {
+  animation: frostedTile-fold-a 37s ease-in-out infinite var(--phase, 0s);
+}
+
+.frostedTile--live .frostedTile__disc:nth-child(2) {
+  animation: frostedTile-fold-b 43s ease-in-out infinite var(--phase, 0s);
+}
+
+.frostedTile--live .frostedTile__disc:nth-child(3) {
+  animation: frostedTile-fold-c 53s ease-in-out infinite var(--phase, 0s);
+}
+
+.frostedTile--live .frostedTile__disc:nth-child(4) {
+  animation: frostedTile-floor 61s ease-in-out infinite var(--phase, 0s);
+}
+
 /* Footer marks. */
 .frostedTile__tick {
   display: block;
@@ -267,5 +451,9 @@
 
   .frostedTile:hover {
     transform: none;
+  }
+
+  .frostedTile--live .frostedTile__disc {
+    animation: none;
   }
 }

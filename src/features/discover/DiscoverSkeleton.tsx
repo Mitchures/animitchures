@@ -23,7 +23,14 @@ function DiscoverSkeleton() {
         ))}
       </div>
 
-      <Skeleton height="86px" radius="var(--r-pill)" className="discoverSkeleton__strip" />
+      {/* The strip's slot is phone-only while the strip itself is hidden —
+          see SHOW_TIME_STRIP in Discover.tsx. At desktop the real page has no
+          strip, so a skeleton for one would jump on the swap. */}
+      <Skeleton
+        height="86px"
+        radius="var(--r-pill)"
+        className="discoverSkeleton__strip discover__phoneOnly"
+      />
 
       <div className="discoverSkeleton__grid">
         <div className="discoverSkeleton__main">

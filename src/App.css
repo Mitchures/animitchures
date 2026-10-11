@@ -93,13 +93,20 @@
 }
 
 /* The one element that scrolls. Views read it through useScrollContainer().
-   `relative` so the top bar can sit over the page rather than above it. */
+   `relative` so the top bar can sit over the page rather than above it.
+
+   It starts under the pill column, not beside it: a scroll box clips on both
+   axes, and with its left edge on the column's right edge every tile's glow
+   died at the 28px gutter. Sliding the box under the column (and padding the
+   content back to where it was) lets the glow run on under the pills, which
+   sit above it on their own z-index and carry no background of their own. */
 .app__body {
   position: relative;
   flex: 1;
   min-width: 0;
   height: 100dvh;
-  padding: 0 var(--gutter);
+  margin-left: calc(-1 * var(--nav-width));
+  padding: 0 var(--gutter) 0 calc(var(--nav-width) + var(--gutter));
   overflow: hidden auto;
 }
 
@@ -137,11 +144,16 @@ hr {
   border-top-width: 1px;
 }
 
+/* `--muted`, not the old `--secondary`: that was one blue-grey with no dark
+   variant, so every paragraph on an un-redesigned page sat too dark on a dark
+   surface. 400, not 500 — the system has no medium-weight body text. This is
+   global, which is why the Relations tab's card captions were still the old
+   grey after the details page itself was clean. */
 p {
   font-size: 14px;
-  color: var(--secondary);
+  color: var(--muted);
   line-height: 1.5;
-  font-weight: 500;
+  font-weight: 400;
   padding: 0.25rem 0;
 }
 
@@ -159,8 +171,12 @@ a * {
   transition: var(--transition);
 }
 
+/* Ink, not the old indigo. This is global, so it reached every link on every
+   page, and each redesigned surface was fighting it with its own !important.
+   The un-redesigned pages lose an indigo hover they were never designed around;
+   they get their own when their phase lands. */
 a:hover {
-  color: var(--action) !important;
+  color: var(--ink) !important;
 }
 
 button {
@@ -248,6 +264,7 @@ button:focus {
     flex: 1;
     /* The sidebar is display:none here — reclaim its reserved width. */
     margin-left: 0;
+    padding-left: var(--gutter);
   }
 }
 

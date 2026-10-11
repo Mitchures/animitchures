@@ -7,6 +7,10 @@
   width: var(--nav-width);
   height: 100dvh;
   padding: 1.625rem var(--gutter) 1.5rem;
+  /* Above the scroll box, which now runs under the column so the tiles' glow
+     can reach the pills. The column paints nothing of its own, so the glow
+     shows on the canvas between them. */
+  z-index: 1;
 }
 
 .pillNav__brand {

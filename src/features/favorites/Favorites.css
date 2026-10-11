@@ -1,0 +1,213 @@
+.favorites {
+  display: flex;
+  flex-direction: column;
+  /* The same top pad as Discover, so the heading lines up with the pill
+     column's tab across the gutter. */
+  padding: 3.4375rem 0 3rem;
+}
+
+.favorites > .sectionHeading:first-child {
+  margin-top: 0;
+}
+
+.favorites__empty {
+  margin-top: 0.5rem;
+  color: var(--muted);
+}
+
+/* ===== the opening: tile, facts, next up ===== */
+.favorites__collection {
+  display: grid;
+  grid-template-columns: 1fr 1fr 300px;
+  gap: 14px;
+}
+
+/* Nothing airing: the column is not rendered, and the facts take its room. */
+.favorites__collection--quiet {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* A composed FrostedTile, so its one `__number` slot becomes the column — the
+   same fix the Coming later lead card and the ring tile need. Left-aligned,
+   with the figure pushed to the bottom like the mock. */
+.favorites__tile {
+  min-height: 252px;
+  align-items: stretch;
+  text-align: left;
+}
+
+/* Live, like the genre cards, and like the Coming later lead it needs a floor
+   and its discs spread across a wide card — see ComingLater.css. Three classes
+   deep so the stylesheets' order cannot matter. */
+.favorites__tile.frostedTile--core .frostedTile__disc:nth-child(4) {
+  display: block;
+  z-index: -1;
+  --d: 980px;
+  left: 50%;
+  top: 50%;
+  background: var(--body);
+  opacity: 0.92;
+}
+
+.favorites__tile.frostedTile--core .frostedTile__disc:nth-child(-n + 3) {
+  z-index: 1;
+}
+
+.favorites__tile.frostedTile--core .frostedTile__disc:nth-child(1) {
+  --d: 460px;
+  left: 30%;
+  top: 40%;
+}
+
+.favorites__tile.frostedTile--core .frostedTile__disc:nth-child(2) {
+  --d: 360px;
+  left: 68%;
+  top: 36%;
+  background: var(--cap);
+}
+
+.favorites__tile.frostedTile--core .frostedTile__disc:nth-child(3) {
+  --d: 300px;
+  left: 82%;
+  top: 74%;
+}
+
+.favorites__tile .frostedTile__number {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0;
+}
+
+.favorites__tileLabel {
+  font-size: 14px;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.18);
+}
+
+.favorites__tileFigure {
+  margin-top: auto;
+}
+
+.favorites__tileCaption {
+  margin-top: 0.5rem;
+  font-size: 13px;
+  opacity: 0.92;
+}
+
+.favorites__facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* The fact tile takes its ground from what is behind it; here that is the
+   canvas, so it sits on --card like the rows beside it. */
+.favorites__facts .factTile {
+  --factTile-bg: var(--card);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 118px;
+}
+
+.favorites__nextUp {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: var(--pad-inner);
+  border-radius: var(--r-card);
+  corner-shape: var(--corner);
+  background: var(--nested);
+}
+
+.favorites__nextUpTitle {
+  padding: 0.25rem 0.5rem 0;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+/* ===== the shelf ===== */
+.favorites__shelf {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+/* The heart is a sibling of the card's link, not a child of it: a button
+   inside a link is invalid markup and a click on it would navigate. */
+.favorites__card {
+  position: relative;
+}
+
+.favorites__card .posterEchoCard {
+  height: 100%;
+}
+
+.favorites__remove {
+  position: absolute;
+  right: var(--pad-inner);
+  top: var(--pad-inner);
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    background var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--spring);
+}
+
+.favorites__remove svg {
+  width: 16px;
+  height: 16px;
+}
+
+.favorites__remove:hover {
+  background: var(--lime);
+  color: var(--on-lime);
+}
+
+.favorites__remove:active {
+  transform: scale(0.94);
+}
+
+.favorites__remove:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+@media (max-width: 960px) {
+  .favorites {
+    /* Below 960px the mobile header is in flow and already provides the gap. */
+    padding-top: 0.5rem;
+  }
+
+  .favorites__collection,
+  .favorites__collection--quiet {
+    grid-template-columns: 1fr;
+  }
+
+  .favorites__tile {
+    min-height: 200px;
+  }
+
+  .favorites__shelf {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .favorites__remove {
+    transition: none;
+  }
+}

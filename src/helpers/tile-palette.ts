@@ -147,19 +147,64 @@ const UNMAPPED_GENRE: GenreTile = GENRE_TILES.Psychological;
 
 export const genreTile = (genre: string): GenreTile => GENRE_TILES[genre] ?? UNMAPPED_GENRE;
 
+const hexToHsl = (hex: string): [number, number, number] | null => {
+  const m = /^#?([0-9a-f]{6})$/i.exec(hex.trim());
+  if (!m) return null;
+  const n = parseInt(m[1], 16);
+  const r = ((n >> 16) & 255) / 255;
+  const g = ((n >> 8) & 255) / 255;
+  const b = (n & 255) / 255;
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const l = (max + min) / 2;
+  if (max === min) return [0, 0, l * 100];
+  const d = max - min;
+  const s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+  let h: number;
+  if (max === r) h = (g - b) / d + (g < b ? 6 : 0);
+  else if (max === g) h = (b - r) / d + 2;
+  else h = (r - g) / d + 4;
+  return [h * 60, s * 100, l * 100];
+};
+
+const hslToHex = (h: number, s: number, l: number): string => {
+  const hue = ((h % 360) + 360) % 360;
+  const sat = s / 100;
+  const lig = l / 100;
+  const k = (n: number) => (n + hue / 30) % 12;
+  const a = sat * Math.min(lig, 1 - lig);
+  const f = (n: number) => lig - a * Math.max(-1, Math.min(k(n) - 3, 9 - k(n), 1));
+  const to = (v: number) =>
+    Math.round(v * 255)
+      .toString(16)
+      .padStart(2, '0');
+  return `#${to(f(0))}${to(f(8))}${to(f(4))}`;
+};
+
 /**
- * Three hues from one AniList `coverImage.color`: a light cap, the colour
- * itself, and a deep accent. `color-mix` is Safari 16.2+/Chrome 111+; the
- * strings are handed straight to CSS custom properties.
+ * Three hues from one AniList `coverImage.color`, on the genre tiles' formula:
+ * the cover's hue kept, the lightness fixed — cap L84, body L64, accent a +26°
+ * hue shift at L57 — with the saturation held in a mid band.
+ *
+ * Fixed rather than passed through (2026-10-11): the body used to *be* the cover
+ * colour, with the accent mixed toward black, so a dark cover (Overgeared's)
+ * made a near-black tile in light mode and a pale one (JUJUTSU KAISEN's
+ * `#78aee4`) left white text on white glass. Normalised this way, every
+ * cover-derived tile sits in the same band as the eighteen genre tiles and
+ * reads as one family in both themes. A colour that does not parse falls back,
+ * the same as no colour at all.
  */
 export const paletteFromColor = (
   hex: string | null | undefined,
   fallback: TilePalette = PALETTES.score,
 ): TilePalette => {
-  if (!hex) return fallback;
+  const hsl = hex ? hexToHsl(hex) : null;
+  if (!hsl) return fallback;
+  const [h, s] = hsl;
+  const sat = Math.min(70, Math.max(40, s));
   return {
-    cap: `color-mix(in srgb, ${hex} 45%, white)`,
-    body: hex,
-    accent: `color-mix(in srgb, ${hex} 65%, black)`,
+    cap: hslToHex(h, Math.min(sat, 55), 84),
+    body: hslToHex(h, sat, 64),
+    accent: hslToHex(h + 26, sat, 57),
   };
 };

@@ -1,12 +1,38 @@
+/* The hero follows the theme (2026-10-11): in light mode the scrim is white and
+   the copy is ink, in dark the scrim is near-black and the copy is light — the
+   same rule the rest of the page runs on, where it used to be a dark card in
+   both. Everything on the artwork reads these four locals, so the shared Chip
+   and ScoreChip keep their own colours everywhere else. `--ink` already flips
+   with the theme; only the scrim and the glass need their dark values. */
 .slideHero {
+  --hero-ink: var(--ink);
+  --hero-scrim: 255, 255, 255;
+  --hero-glass: rgba(255, 255, 255, 0.5);
+  --hero-glass-rim: rgba(255, 255, 255, 0.7);
   position: relative;
   isolation: isolate;
   height: var(--hero-height);
   overflow: hidden;
   border-radius: var(--r-card);
   corner-shape: var(--corner);
+  background: var(--card);
+  color: var(--hero-ink);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .slideHero {
+    --hero-scrim: 8, 8, 10;
+    --hero-glass: rgba(16, 16, 20, 0.38);
+    --hero-glass-rim: rgba(255, 255, 255, 0.22);
+    background: #111;
+  }
+}
+
+:root[data-theme='dark'] .slideHero {
+  --hero-scrim: 8, 8, 10;
+  --hero-glass: rgba(16, 16, 20, 0.38);
+  --hero-glass-rim: rgba(255, 255, 255, 0.22);
   background: #111;
-  color: #fff;
 }
 
 .slideHero__image {
@@ -26,11 +52,30 @@
   background:
     linear-gradient(
       90deg,
-      rgba(8, 8, 10, 0.88) 0%,
-      rgba(8, 8, 10, 0.6) 42%,
-      rgba(8, 8, 10, 0.05) 78%
+      rgba(var(--hero-scrim), 0.88) 0%,
+      rgba(var(--hero-scrim), 0.6) 42%,
+      rgba(var(--hero-scrim), 0.05) 78%
     ),
-    linear-gradient(0deg, rgba(8, 8, 10, 0.6) 0%, rgba(8, 8, 10, 0) 45%);
+    linear-gradient(0deg, rgba(var(--hero-scrim), 0.6) 0%, rgba(var(--hero-scrim), 0) 45%);
+}
+
+/* The glass on the artwork takes the hero's theme: the genre chips, the score
+   chip and the favourite button. */
+.slideHero .chip--glass,
+.slideHero .scoreChip {
+  background: var(--hero-glass);
+  color: var(--hero-ink);
+}
+
+.slideHero .scoreChip {
+  box-shadow:
+    inset 0 1px 0 var(--hero-glass-rim),
+    inset 0 0 0 1px rgba(var(--hero-scrim), 0.08),
+    0 10px 30px -12px rgba(0, 0, 0, 0.3);
+}
+
+.slideHero .scoreChip .dotNumber {
+  text-shadow: 0 1px 0 rgba(var(--hero-scrim), 0.35);
 }
 
 .slideHero__score {
@@ -52,12 +97,14 @@
 
 .slideHero__poster {
   flex: none;
-  width: 124px;
-  height: 176px;
-  border-radius: 22px;
+  /* The same poster as the Top rated cards (148×212 on --r-inner), so the two
+     read as one object; the 320px band leaves it 56px of clearance. */
+  width: 148px;
+  height: 212px;
+  border-radius: var(--r-inner);
   corner-shape: var(--corner);
   object-fit: cover;
-  box-shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 24px 48px -18px rgba(0, 0, 0, 0.6);
 }
 
 .slideHero__body {
@@ -103,8 +150,8 @@
   padding: 0;
   border: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.14);
-  color: #fff;
+  background: var(--hero-glass);
+  color: var(--hero-ink);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   cursor: pointer;
@@ -113,7 +160,7 @@
 
 .slideHero__favorite:hover {
   opacity: 1;
-  color: #fff !important;
+  color: var(--hero-ink) !important;
 }
 
 .slideHero__favorite:active {
@@ -142,7 +189,7 @@
   padding: 0;
   border: 0;
   border-radius: 1px;
-  background: rgba(255, 255, 255, 0.4);
+  background: color-mix(in srgb, var(--hero-ink) 40%, transparent);
   cursor: pointer;
   transition:
     width var(--t-base) var(--ease),
@@ -153,7 +200,7 @@
   position: relative;
   width: 30px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.35);
+  background: color-mix(in srgb, var(--hero-ink) 35%, transparent);
 }
 
 .slideHero__page.is-on::after {
@@ -161,7 +208,7 @@
   position: absolute;
   inset: 0;
   transform-origin: left;
-  background: #fff;
+  background: var(--hero-ink);
   animation: slideHero-fill 7s linear;
 }
 

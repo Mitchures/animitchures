@@ -67,8 +67,10 @@ test('genre tiles close the page, each linking into Browse', () => {
   const tiles = [...document.querySelectorAll('.genreTiles .frostedTile')];
   expect(tiles).toHaveLength(8);
   expect(tiles[0]).toHaveAttribute('href', '/search/anime?genre=Action');
-  // The small variant, so the discs scale down with the tile.
-  expect(tiles[0]).toHaveClass('frostedTile--sm');
+  // The tall variant, live: a portrait card with the name as the figure.
+  expect(tiles[0]).toHaveClass('frostedTile--tall');
+  expect(tiles[0]).toHaveClass('frostedTile--live');
+  expect(tiles[0]).toHaveTextContent('Action');
   // Action is band, Drama blob, Fantasy core — the assigned identity, so no two
   // of the first three share a treatment.
   expect(tiles[0]).toHaveClass('frostedTile--band');

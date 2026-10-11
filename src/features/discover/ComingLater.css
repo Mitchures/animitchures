@@ -27,6 +27,46 @@
   margin: 0;
 }
 
+/* Live, like the genre cards, and like them it needs a floor: the core
+   treatment's three concentric discs covered this wide card when they were
+   round and still, and uncovered most of it once they were turning ellipses.
+   The fourth disc becomes a body-colour floor under the other three, and the
+   three are spread across the width so the folds travel the card rather than
+   its centre. Three classes deep so the order of the stylesheets cannot
+   matter. */
+.comingLater__lead.frostedTile--core .frostedTile__disc:nth-child(4) {
+  display: block;
+  z-index: -1;
+  --d: 980px;
+  left: 50%;
+  top: 50%;
+  background: var(--body);
+  opacity: 0.92;
+}
+
+.comingLater__lead.frostedTile--core .frostedTile__disc:nth-child(-n + 3) {
+  z-index: 1;
+}
+
+.comingLater__lead.frostedTile--core .frostedTile__disc:nth-child(1) {
+  --d: 460px;
+  left: 30%;
+  top: 40%;
+}
+
+.comingLater__lead.frostedTile--core .frostedTile__disc:nth-child(2) {
+  --d: 360px;
+  left: 68%;
+  top: 36%;
+  background: var(--cap);
+}
+
+.comingLater__lead.frostedTile--core .frostedTile__disc:nth-child(3) {
+  --d: 300px;
+  left: 82%;
+  top: 74%;
+}
+
 /* The same scrim `--sm` carries, for the same reason: this palette is derived
    from a cover colour, and a pale cover (JUJUTSU KAISEN's is #78aee4) leaves
    white text on light glass. Above the colour, below the content. */
@@ -105,24 +145,6 @@
 .comingLater__leadCount small {
   font-size: 12px;
   opacity: 0.9;
-}
-
-/* The tracker card's arcs, as an audience: concentric rings whose reach is set
-   by how many people are waiting. */
-.comingLater__ripple {
-  position: absolute;
-  right: -6%;
-  bottom: -38%;
-  width: var(--reach);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: repeating-radial-gradient(
-    circle at 50% 50%,
-    transparent 0 calc(var(--reach) / 14),
-    rgba(255, 255, 255, 0.34) calc(var(--reach) / 14) calc(var(--reach) / 14 + 1.5px)
-  );
-  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 38%, transparent 72%);
-  mask-image: radial-gradient(circle at 50% 50%, #000 38%, transparent 72%);
 }
 
 /* ===== the runners-up ===== */

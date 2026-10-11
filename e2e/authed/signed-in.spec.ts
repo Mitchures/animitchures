@@ -145,7 +145,7 @@ test.describe('signed-in views', () => {
 
     await expect(page).toHaveURL(/\/favorites$/);
     // The seed writes exactly three media ids.
-    await expect(page.locator('.favorites__grid .card')).toHaveCount(3, { timeout: 20_000 });
+    await expect(page.locator('.favorites__shelf .posterEchoCard')).toHaveCount(3, { timeout: 20_000 });
   });
 
   test('settings is reachable from the account row', async ({ page }) => {
@@ -277,6 +277,6 @@ test.describe('private routes', () => {
   test('direct navigation to a private route works when signed in', async ({ page }) => {
     await page.goto('/favorites', { waitUntil: 'domcontentloaded' });
     await expect(page).toHaveURL(/\/favorites$/, { timeout: 20_000 });
-    await expect(page.locator('.favorites__grid .card')).toHaveCount(3, { timeout: 20_000 });
+    await expect(page.locator('.favorites__shelf .posterEchoCard')).toHaveCount(3, { timeout: 20_000 });
   });
 });
